@@ -1,4 +1,6 @@
 upsert("clinic__c", "uuid__c", fields(
-  field("uuid__c", dataValue("caseId")),
-  field("name__c", dataValue("case-name"))
+  field('CAST Location ID', dataValue('properties.location_id')),
+  field('CAST Site Code', dataValue('properties.site_code')),
+  field('Name', dataValue('properties.name')),
+  field('CAST Parent Site Code', dataValue('properties.parent_site_code'))
 ));
