@@ -1,4 +1,8 @@
-upsert("clinic__c", "uuid__c", fields(
+// =============================================================================
+// Upsert Clinic records in Salesforce when Location "Hospital" records are
+// updated in Commcare.
+// =============================================================================
+upsert("clinic__c", "CAST Location ID", fields(
   field('CAST Location ID', dataValue('properties.location_id')),
   field('CAST Site Code', dataValue('properties.site_code')),
   field('Name', dataValue('properties.name')),

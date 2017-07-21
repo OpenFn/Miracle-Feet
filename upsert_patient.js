@@ -1,4 +1,7 @@
-upsert("Patient__c", "uuid__c", fields(
+// =============================================================================
+// Upsert Patient records in Salesforce from patient case updates in Commcare.
+// =============================================================================
+upsert("Patient__c", "CAST Patient ID", fields(
   field('CAST Patient ID', dataValue('properties.patient_id')),
   field('Secondary ID', dataValue('properties.secondary_id')),
   field('Secondary ID Type', dataValue('properties.secondary_id_type')),
