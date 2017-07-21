@@ -1,19 +1,30 @@
+// =============================================================================
+// Upsert Visit records in Salesforce when "Visit" cases are updated in CC.
+// (Remember to replace all labels with API names before going live.)
+// =============================================================================
 upsert("Visit__c", "uuid__c", fields(
-  // Steph, it looks like these are field labels rather than API names.
-  // We'll need to use the API names: "some_field__c" is the convention for
-  // custom fields.
-  field('uuid__c', dataValue('XXX')) // Where is the unique ID for the form
-  // submission in CommCare?
+  field('uuid__c', dataValue("case_id"),
+  relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
   field('Date', dataValue('properties.visit_date')),
-  field('', dataValue('properties.hospital_code')),
   field('Patient', dataValue('properties.patient_id')),
-  field('Patient Age (Months) at Time of Visit', dataValue('properties.patient_age_months')),
+  // Pretending we need the age in a *rough* number of days...
+  field('Patient Age (DAYS) at Time of Visit', function(state) {
+    return (state.data.properties.patient_age_months * 30.42)
+  },
   field('Patient Presented with Relapse', dataValue('properties.recurrence')),
-  field('Relapse Type', dataValue('properties.recurrence_type')),
+  // Pretending we must remove underscores from a picklist value in CommCare...
+  field('Relapse Type', function(state) {
+    return state.data.properties.recurrence_type.split('_').join(' ')
+  }),
   field('Brace Problems', dataValue('properties.brace_problems')),
   field('Brace Problems Specified', dataValue('properties.brace_problems_specified')),
   field('Brace Problems Type', dataValue('properties.brace_problems_type')),
-  field('Complications', dataValue('properties.complications')),
+  // Pretending we need to convert an array of complications into a multi-select
+  // picklist values string for Salesforce...
+  field('Complications', arrayToString(
+    dataValue('properties.complications'),
+    ";"
+  ),
   field('Complication Types', dataValue('properties.complication_type')),
   field('Other Complications', dataValue('properties.complication_type_other')),
   field('R Medial Crease', dataValue('properties.r_medial_crease')),
