@@ -1,0 +1,240 @@
+{
+  "data": {
+    "summary": {
+      "summary": {
+        "registration": "OK",
+        "next_appointment_date": "OK"
+      },
+      "next_visit_date": "2017-07-20",
+      "final_label": "OK",
+      "action": {
+        "proceed_to_visit_form": "no"
+      }
+    },
+    "registration": {
+      "registration_date": "2017-07-20",
+      "patient_id": {
+        "label": {
+          "secondary_id_choice": "no",
+          "patient_id_label": "OK"
+        }
+      },
+      "feet_affected": "both",
+      "diagnosis_notes": "xycovjpcifjckckv vjvkgkcjcjdudjdjxjcjxjxjxhsys cufjduduf cjfud",
+      "diagnosis_idiopathic_specified": "untreated_under_2 recurrent",
+      "diagnosis": "idiopathic",
+      "abnormalities": "head"
+    },
+    "referral_source": {
+      "referral_source": "clubfoot_patient"
+    },
+    "photos": {
+      "photo4": "",
+      "photo3": "",
+      "photo2": "1500572210805.jpg",
+      "photo1": "1500572201199.jpg"
+    },
+    "patient_info": {
+      "patient_name": {
+        "patient_name": "igivi jcjckfkv",
+        "patient_last_name": "jcjckfkv",
+        "patient_first_name": "igivi"
+      },
+      "patient_info": {
+        "patient_gender": "male",
+        "patient_dob_label": "OK"
+      },
+      "patient_dob_known": "no",
+      "patient_age_months": "5.0"
+    },
+    "patient_address": {
+      "location_level2": "vohitany_com",
+      "location_level1": "ampanihy",
+      "address": {
+        "pin_code": "123",
+        "location_level3": "fk",
+        "address": "xydifkhkvj"
+      }
+    },
+    "meta": {
+      "username": "mada",
+      "userID": "4493d75f1f36c5423f91220128fbbf71",
+      "timeStart": "2017-07-20T20:35:17.538+03",
+      "timeEnd": "2017-07-20T20:37:00.249+03",
+      "instanceID": "2a7b5b58-9cac-42a7-aca3-f10d6128e2b6",
+      "deviceID": "353106088056146",
+      "appVersion": "CommCare Android, version \"2.35.1\"(431713). App v424. CommCare Version 2.35. Build 431713, built on: 2017-04-03"
+    },
+    "guardians": {
+      "guardian_label": "OK",
+      "guardian3": {
+        "guardian3_relationship": "",
+        "guardian3_names": {
+          "guardian3_name": "",
+          "guardian3_last": "",
+          "guardian3_first": ""
+        }
+      },
+      "guardian2": {
+        "phone_numbers": {
+          "guardian2_phone2": "",
+          "guardian2_phone1": ""
+        },
+        "guardian2_relationship_choice": "grandfather",
+        "guardian2_relationship": "grandfather",
+        "guardian2_names": {
+          "guardian2_name": "hh gjj",
+          "guardian2_last": "gjj",
+          "guardian2_first": "hh"
+        }
+      },
+      "guardian1": {
+        "phone_numbers": {
+          "label": "OK",
+          "guardian1_phone2": "",
+          "guardian1_phone1": "2356980741"
+        },
+        "guardian1_relationship_choice": "other_relative",
+        "guardian1_relationship": "other_relative",
+        "guardian1_names": {
+          "guardian1_name": "tkb ivjcif",
+          "guardian1_last": "ivjcif",
+          "guardian1_first": "tkb"
+        }
+      }
+    },
+    "consent": {
+      "guardian_signature": "1500572127612.jpg",
+      "consent": {
+        "consent_treatment_received": "yes",
+        "consent_photograph_treatment": "yes",
+        "consent_photograph_marketing": "yes",
+        "consent_included": "yes"
+      }
+    },
+    "commcare_usercase": {
+      "case": {
+        "update": {
+          "sequence_number": "20"
+        },
+        "-user_id": "4493d75f1f36c5423f91220128fbbf71",
+        "-date_modified": "2017-07-20T20:37:00.249+03",
+        "-case_id": "f8ff1310b3d04ef0b71423b6666207be"
+      }
+    },
+    "case": {
+      "update": {
+        "patient_country": "Madagascar",
+        "diagnosis_notes": "xycovjpcifjckckv vjvkgkcjcjdudjdjxjcjxjxjxhsys cufjduduf cjfud",
+        "consent_photograph_treatment": "yes",
+        "patient_age_months": "5",
+        "hospital_name": "Test Hospital",
+        "go_to_visit_form": "0",
+        "location_level1": "ampanihy",
+        "guardian2_relationship": "grandfather",
+        "clinic_name": "",
+        "guardian3_relationship": "",
+        "patient_id_display": "0020-01",
+        "patient_gender": "male",
+        "guardian1_first_name": "tkb",
+        "guardian1_phone1_full": "2612356980741",
+        "patient_last_name": "jcjckfkv",
+        "registration_date": "2017-07-20",
+        "guardian1_last_name": "ivjcif",
+        "secondary_id_choice": "no",
+        "patient_name": "igivi jcjckfkv",
+        "patient_first_name": "igivi",
+        "patient_address": "xydifkhkvj",
+        "guardian1_name": "tkb ivjcif",
+        "diagnosis": "idiopathic",
+        "feet_affected": "both",
+        "hospital_code": "test_hospital",
+        "guardian2_first_name": "hh",
+        "location_level3": "fk",
+        "guardian1_phone2": "",
+        "clinic_code": "TM99",
+        "consent_photograph_marketing": "yes",
+        "guardian2_phone2": "",
+        "location_level2": "vohitany_com",
+        "referral_source": "clubfoot_patient",
+        "guardian2_phone1": "",
+        "patient_original_id": "",
+        "guardian3_name": "",
+        "guardian3_first_name": "",
+        "pin_code": "123",
+        "guardian1_relationship": "other_relative",
+        "next_visit_date": "2017-07-20",
+        "guardian2_last_name": "gjj",
+        "diagnosis_idiopathic_specified": "untreated_under_2 recurrent",
+        "abnormalities": "head",
+        "patient_dob": "2017-02-18",
+        "guardian1_relationship_choice": "other_relative",
+        "consent_photo": "yes",
+        "is_present": "0",
+        "location_level1_name": "",
+        "guardian2_relationship_choice": "grandfather",
+        "guardian2_name": "hh gjj",
+        "patient_dob_known": "no",
+        "guardian1_phone1": "2356980741",
+        "patient_id": "MDG-TM99-0020-01",
+        "location_level2_name": "",
+        "guardian3_last_name": "",
+        "consent_included": "yes"
+      },
+      "create": {
+        "owner_id": "4493d75f1f36c5423f91220128fbbf71",
+        "case_type": "patient",
+        "case_name": "MDG-TM99-0020-01"
+      },
+      "-user_id": "4493d75f1f36c5423f91220128fbbf71",
+      "-date_modified": "2017-07-20T20:37:00.249+03",
+      "-case_id": "91c8a163-e7d6-4e73-81f9-6d361ddd4847"
+    },
+    "calcs": {
+      "phone_numbers": {
+        "phone_country_code": "261",
+        "guardian1_phone1_full": "2612356980741"
+      },
+      "patient_id": {
+        "patient_original_id": "",
+        "id_output": {
+          "patient_id_display": "0020-01",
+          "patient_id": "MDG-TM99-0020-01"
+        },
+        "id_creation": {
+          "sequence_number_formatted": "0020",
+          "sequence_number": "20",
+          "prev_sequence_number": "19",
+          "get_user_id": "01",
+          "get_country_code": "MDG",
+          "get_clinic_code": "TM99"
+        }
+      },
+      "locations": {
+        "location_level2_name": "",
+        "location_level1_name": "",
+        "hospital_name": "Test Hospital",
+        "hospital_code": "test_hospital",
+        "country": "Madagascar",
+        "clinic_name": "",
+        "clinic_code": ""
+      },
+      "general": {
+        "next_visit_date": "2017-07-20",
+        "is_present": "0",
+        "go_to_visit_form": "0",
+        "consent_photo": "yes"
+      },
+      "age": {
+        "reverse_dob_display": "18/2/17",
+        "reverse_dob_calc": "2017-02-18",
+        "patient_dob": "2017-02-18",
+        "patient_age_months": "5",
+        "dob_age_calc": ""
+      }
+    },
+    "-version": "415",
+    "-uiVersion": "1",
+    "-name": "Ajouter un nouveau patient"
+  }
+}

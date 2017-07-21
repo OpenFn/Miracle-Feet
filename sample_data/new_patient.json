@@ -1,0 +1,236 @@
+{
+  "data": {
+    "summary": {
+      "summary": {
+        "registration": "OK"
+      },
+      "final_label": "OK",
+      "action": {
+        "proceed_to_visit_form": "mark_present"
+      }
+    },
+    "registration": {
+      "registration_date": "2017-07-20",
+      "patient_id": {
+        "label": {
+          "secondary_id_choice": "no",
+          "patient_id_label": "OK"
+        }
+      },
+      "feet_affected": "both",
+      "diagnosis_notes": "",
+      "diagnosis_idiopathic_specified": "untreated_under_2",
+      "diagnosis": "idiopathic",
+      "abnormalities": "none"
+    },
+    "referral_source": {
+      "referral_source": "midwife"
+    },
+    "photos": {
+      "photo3": "1500539543709.jpg",
+      "photo2": "1500539530709.jpg",
+      "photo1": "1500539519118.jpg"
+    },
+    "patient_info": {
+      "patient_name": {
+        "patient_name": "anonymouse",
+        "patient_last_name": "mouse",
+        "patient_first_name": "anony"
+      },
+      "patient_info": {
+        "patient_gender": "male",
+        "patient_dob_label": "OK"
+      },
+      "patient_dob_known": "no",
+      "patient_age_months": "7.0"
+    },
+    "patient_address": {
+      "location_level2": "aligarh",
+      "location_level1": "UP",
+      "address": {
+        "pin_code": "000000",
+        "level_3": "shikarpur",
+        "address": "nope not real"
+      }
+    },
+    "meta": {
+      "username": "someone",
+      "userID": "1b35d58ee3c66dd5b6e1933b2651b1d9",
+      "timeStart": "2017-07-20T13:57:14.199+05:30",
+      "timeEnd": "2017-07-20T14:02:30.025+05:30",
+      "instanceID": "1138b014-4f5b-44fb-8e54-3e9df048cb9c",
+      "deviceID": "354919086589739",
+      "appVersion": "CommCare Android, version \"2.32.1\"(425486). App v1944. CommCare Version 2.32. Build 425486, built on: 2016-12-19"
+    },
+    "guardians": {
+      "guardian_label": "OK",
+      "guardian3": {
+        "guardian3_relationship": "",
+        "guardian3_names": {
+          "guardian3_name": "",
+          "guardian3_last": "",
+          "guardian3_first": ""
+        }
+      },
+      "guardian2": {
+        "phone_numbers": {
+          "guardian2_phone2": "",
+          "guardian2_phone1": "8393976139"
+        },
+        "guardian2_relationship_choice": "father",
+        "guardian2_relationship": "father",
+        "guardian2_names": {
+          "guardian2_name": "anonymouse",
+          "guardian2_last": "",
+          "guardian2_first": "anonymouse"
+        }
+      },
+      "guardian1": {
+        "phone_numbers": {
+          "label": "OK",
+          "guardian1_phone2": "",
+          "guardian1_phone1": "0000000000"
+        },
+        "guardian1_relationship_choice": "mother",
+        "guardian1_relationship": "mother",
+        "guardian1_names": {
+          "guardian1_name": "anonymouse anonymouse",
+          "guardian1_last": "anonymouse",
+          "guardian1_first": "anonymouse"
+        }
+      }
+    },
+    "consent": {
+      "guardian_signature": "1500539272303.jpg",
+      "consent": {
+        "consent_photograph_marketing": "yes",
+        "consent_included": "yes"
+      }
+    },
+    "commcare_usercase": {
+      "case": {
+        "update": {
+          "sequence_number": "122"
+        },
+        "-user_id": "1b35d58ee3c66dd5b6e1933b2651b1d9",
+        "-date_modified": "2017-07-20T14:02:30.025+05:30",
+        "-case_id": "637cc7adf48045d587ba556ed00481c5"
+      }
+    },
+    "case": {
+      "update": {
+        "patient_country": "India",
+        "diagnosis_notes": "",
+        "patient_age_months": "7",
+        "hospital_name": "Jawarharlal Nehru Medical College, Aligarh",
+        "go_to_visit_form": "0",
+        "location_level1": "UP",
+        "guardian2_relationship": "father",
+        "clinic_name": "",
+        "guardian3_relationship": "",
+        "patient_id_display": "0122-01",
+        "patient_gender": "male",
+        "guardian1_first_name": "anonymouse",
+        "guardian1_phone1_full": "910000000000",
+        "patient_last_name": "anonymouse",
+        "registration_date": "2017-07-20",
+        "guardian1_last_name": "Devi",
+        "secondary_id_choice": "no",
+        "patient_name": "Reepanshu Kumar",
+        "patient_first_name": "Reepanshu",
+        "patient_address": "anonymouse",
+        "guardian1_name": "anonymouse anonymouse",
+        "diagnosis": "idiopathic",
+        "feet_affected": "both",
+        "hospital_code": "jnmc",
+        "guardian2_first_name": "anonymouse",
+        "location_level3": "shikarpur",
+        "guardian1_phone2": "",
+        "clinic_code": "UP10",
+        "consent_photograph_marketing": "yes",
+        "guardian2_phone2": "",
+        "location_level2": "anonymouse",
+        "referral_source": "midwife",
+        "guardian2_phone1": "8393976139",
+        "patient_original_id": "",
+        "guardian3_name": "",
+        "guardian3_first_name": "",
+        "pin_code": "000000",
+        "guardian1_relationship": "mother",
+        "next_visit_date": "2017-07-20",
+        "guardian2_last_name": "",
+        "diagnosis_idiopathic_specified": "untreated_under_2",
+        "guardian2_phone1_full": "918393976139",
+        "abnormalities": "none",
+        "patient_dob": "2016-12-19",
+        "guardian1_relationship_choice": "mother",
+        "consent_photo": "yes",
+        "is_present": "2017-07-20",
+        "location_level1_name": "Uttar Pradesh",
+        "guardian2_relationship_choice": "father",
+        "guardian2_name": "anonymouse ",
+        "patient_dob_known": "no",
+        "guardian1_phone1": "0000000000",
+        "patient_id": "IND-UP10-0122-01",
+        "location_level2_name": "Aligarh",
+        "guardian3_last_name": "",
+        "consent_included": "yes"
+      },
+      "create": {
+        "owner_id": "844f4359f82383ee7d6938227fa4ffc2",
+        "case_type": "patient",
+        "case_name": "IND-UP10-0122-01"
+      },
+      "-user_id": "1b35d58ee3c66dd5b6e1933b2651b1d9",
+      "-date_modified": "2017-07-20T14:02:30.025+05:30",
+      "-case_id": "5c02dcb9-9a5a-446b-9e64-611d52e6ffb9"
+    },
+    "calcs": {
+      "phone_numbers": {
+        "phone_country_code": "91",
+        "guardian2_phone1_full": "918393976139",
+        "guardian1_phone1_full": "910000000000"
+      },
+      "patient_id": {
+        "patient_original_id": "",
+        "id_output": {
+          "patient_id_display": "0122-01",
+          "patient_id": "IND-UP10-0122-01"
+        },
+        "id_creation": {
+          "sequence_number_formatted": "0122",
+          "sequence_number": "122",
+          "prev_sequence_number": "121",
+          "get_user_id": "01",
+          "get_country_code": "IND",
+          "get_clinic_code": "UP10"
+        }
+      },
+      "locations": {
+        "location_level2_name": "Aligarh",
+        "location_level1_name": "Uttar Pradesh",
+        "hospital_name": "Jawarharlal Nehru Medical College, Aligarh",
+        "hospital_code": "jnmc",
+        "country": "India",
+        "clinic_name": "",
+        "clinic_code": ""
+      },
+      "general": {
+        "next_visit_date": "2017-07-20",
+        "is_present": "2017-07-20",
+        "go_to_visit_form": "0",
+        "consent_photo": "yes"
+      },
+      "age": {
+        "reverse_dob_display": "19/12/16",
+        "reverse_dob_calc": "2016-12-19",
+        "patient_dob": "2016-12-19",
+        "patient_age_months": "7",
+        "dob_age_calc": ""
+      }
+    },
+    "-version": "1944",
+    "-uiVersion": "1",
+    "-name": "Register New Patient"
+  }
+}
