@@ -14,7 +14,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   // Pretending we need the age in a *rough* number of days...
   field('Patient Age (DAYS) at Time of Visit', function(state) {
     return (state.data.properties.patient_age_months * 30.42)
-  },
+  }),
   field('Patient Presented with Relapse', dataValue('properties.recurrence')),
   // Pretending we must remove underscores from a picklist value in CommCare...
   field('Relapse Type', function(state) {
@@ -28,7 +28,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   field('Complications', arrayToString(
     dataValue('properties.complications'),
     ";"
-  ),
+  )),
   field('Complication Types', dataValue('properties.complication_type')),
   field('Other Complications', dataValue('properties.complication_type_other')),
   field('R Medial Crease', dataValue('properties.r_medial_crease')),
