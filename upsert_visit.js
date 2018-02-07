@@ -1,11 +1,14 @@
 // =============================================================================
 // Upsert Visit records in Salesforce when "Visit" cases are updated in CC.
 // (Remember to replace all labels with API names before going live.)
-// test, feb 7th again.
 // =============================================================================
 upsert("Visit__c", "uuid__c", fields(
   field('uuid__c', dataValue("case_id"),
-  relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
+  // =============================================================================================================
+  // do not link to clinic for the time being, only link to patient...
+  // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
+  relationship('gciclubfoot__Patient__c', "gciclubfoot__CAST_Patient_ID__c", dataValue('indeces.parent.case_id')),
+  // =============================================================================================================
   field('Date', dataValue('properties.visit_date')),
   field('Patient', dataValue('properties.patient_id')),
   // Pretending we need the age in a *rough* number of days...
