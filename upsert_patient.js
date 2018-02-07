@@ -1,40 +1,38 @@
 // =============================================================================
 // Upsert Patient records in Salesforce from patient case updates in Commcare.
 // test, feb 7th
+// Need to add in relationship to clinic 
 // =============================================================================
-upsert("Patient__c", "CAST Patient ID", fields(
-  field('CAST Patient ID', dataValue('properties.patient_id')),
-  field('Secondary ID', dataValue('properties.secondary_id')),
-  field('Secondary ID Type', dataValue('properties.secondary_id_type')),
-  field('Registration Date', dataValue('properties.registration_date')),
-  field('Clinic', dataValue('properties.hospital_code')),
-  field('Clinic__c.Name__c', dataValue('properties.hospital_name')),
-  field('First Name', dataValue('properties.patient_first_name')),
-  field('Last Name', dataValue('properties.patient_last_name')),
-  field('Gender', dataValue('properties.patient_gender')),
-  field('Date of Birth Known', dataValue('properties.patient_dob_known')),
-  field('Date of Birth', dataValue('properties.patient_dob')),
-  field('Country', dataValue('properties.country')),
-  field('Location Level 1', dataValue('properties.location_level1')),
-  field('Location Level 2', dataValue('properties.location_level2')),
-  field('Location Level 3', dataValue('properties.location_level3')),
-  field('Pin Code', dataValue('properties.pin_code')),
-  field('Address', dataValue('properties.patient_address')),
-  field('Additional Abnormalities', dataValue('properties.abnormalities')),
-  field('Other Abnormalities Specified', dataValue('properties.abnormalities_other')),
-  field('Consent Given for Treatment?', dataValue('properties.consent_treatment')),
-  field('Consent Given for Database? ', dataValue('properties.consent_included')),
-  field('Consent Given for Photographs Marketing? ', dataValue('properties.consent_photograph_marketing')),
-  field('Consent Given for Photographs Treatment? ', dataValue('properties.consent_photograph_treatment')),
-  field('Diagnosis Category', dataValue('properties.diagnosis')),
-  field('Diagnosis Sub-Category', dataValue('properties.diagnosis_idiopathic_specified')),
-  field('Diagnosis Sub-Category', dataValue('properties.diagnosis_secondary_specified')),
-  field('Diagnosis Notes', dataValue('properties.diagnosis_notes')),
-  field('Feet Affected', dataValue('properties.feet_affected')),
-  field('Referral Source', dataValue('properties.referral_source')),
-  field('Other Referral Source', dataValue('properties.referral_source_other')),
-  field('Hospital/Clinic Referral Source', dataValue('properties.referral_source_health_facility')),
-  field('Doctor Referral Source', dataValue('properties.referral_source_doctor')),
+upsert("gciclubfoot__Patient__c", "gciclubfoot__CAST_Patient_ID__c", fields(
+  field('gciclubfoot__CAST_Patient_ID__c', dataValue('properties.patient_id')),
+  field('gciclubfoot__Secondary_ID__c', dataValue('properties.secondary_id')),
+  field('gciclubfoot__Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
+  field('gciclubfoot__Registration_Date__c', dataValue('properties.registration_date')),
+  field('gciclubfoot__Clinic__c' 'Patients__r', dataValue('properties.hospital_code')),
+  field('gciclubfoot__First_Name__c', dataValue('properties.patient_first_name')),
+  field('gciclubfoot__Last_Name__c', dataValue('properties.patient_last_name')),
+  field('gciclubfoot__Gender__c', dataValue('properties.patient_gender')), //picklist. Values in SF = Female, Male. Will need some reformmating of CC data
+  field('gciclubfoot__Date_of_Birth_Known__c', dataValue('properties.patient_dob_known')),
+  field('gciclubfoot__Date_of_Birth__c', dataValue('properties.patient_dob')),
+  field('gciclubfoot__Location_Level_1__c', dataValue('properties.location_level1')),
+  field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2')),
+  field('gciclubfoot__Street__c', dataValue('properties.location_level3')),
+  field('gciclubfoot__Zip_Code__c', dataValue('properties.pin_code')),
+  field('gciclubfoot__Abnormalities__c', dataValue('properties.abnormalities')),//SF Multi-Select PL. Values need to be reformatted
+  field('gciclubfoot__Other_Abnormalities__c', dataValue('properties.abnormalities_other')),
+  field('gciclubfoot__Consent_Treatment__c', dataValue('properties.consent_treatment')),//SF Picklist Yes/No
+  field('gciclubfoot__Consent_Database__c', dataValue('properties.consent_included')), //SF Picklist Yes/No
+  field('gciclubfoot__Consent_Photograph_Marketing__c', dataValue('properties.consent_photograph_marketing')), //SF Picklist Yes/No
+  field('gciclubfoot__Consent_Photograph_Treatment__c', dataValue('properties.consent_photograph_treatment')), //SF Picklist Yes/No
+  field('gciclubfoot__Diagnosis__c', dataValue('properties.diagnosis')),//picklist
+  field('gciclubfoot__Diagnosis_Idiopathic_Specified__c', dataValue('properties.diagnosis_idiopathic_specified')),//SF Multi-select
+  field('gciclubfoot__Diagnosis_Secondary_Specified__c', dataValue('properties.diagnosis_secondary_specified')),//SF multi-select
+  field('gciclubfoot__Diagnosis_Notes__c', dataValue('properties.diagnosis_notes')),
+  field('gciclubfoot__Feet_Affected__c', dataValue('properties.feet_affected')),//SF picklist
+  field('gciclubfoot__Referral_Source__c', dataValue('properties.referral_source')), //SF picklist
+  field('gciclubfoot__Referral_Source_Other__c	', dataValue('properties.referral_source_other')),
+  field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_health_facility')),
+  field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
   field('Guardian 1 Name', dataValue('properties.guardian1_name')),
   field('Guardian 1 Relationship', dataValue('properties.guardian1_relationship')),
   field('Guardian 1 Other Relationship ', dataValue('properties.guardian1_relationship_other')),
