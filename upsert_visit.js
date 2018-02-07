@@ -17,9 +17,9 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   }),
   field('Patient Presented with Relapse', dataValue('properties.recurrence')),
   // Pretending we must remove underscores from a picklist value in CommCare...
-  field('Relapse Type', function(state) {
-    return state.data.properties.recurrence_type.split('_').join(' ')
-  }),
+  // field('Relapse Type', function(state) {
+  //   return state.data.properties.recurrence_type.split('_').join(' ')
+  // }),
   field('Brace Problems', dataValue('properties.brace_problems')),
   field('Brace Problems Specified', dataValue('properties.brace_problems_specified')),
   field('Brace Problems Type', dataValue('properties.brace_problems_type')),
