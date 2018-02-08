@@ -26,7 +26,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   field('gciclubfoot__ICR_ID__c', dataValue('properties.visit_original_id')),
   field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
   field('gciclubfoot__Last_Modified_Date_CommCare__c', dataValue('last_modified_date')),
-  field('gciclubfoot__Left_Angle_of_Abduction__c	', dataValue('properties.l_angle_abduction')),
+  field('gciclubfoot__Left_Angle_of_Abduction__c', dataValue('properties.l_angle_abduction')),
   field('gciclubfoot__Left_Angle_of_Dorsiflexion__c', dataValue('properties.l_angle_dorsiflexion')),
   field('gciclubfoot__Left_Medial_Crease__c', dataValue('properties.l_medial_crease')),
   field('gciclubfoot__Left_Talar_Head__c', dataValue('properties.l_talar_head')),
