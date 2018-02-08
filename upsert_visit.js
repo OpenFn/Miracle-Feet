@@ -7,62 +7,60 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   // =============================================================================================================
   // do not link to clinic for the time being, only link to patient...
   // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
-  relationship('gciclubfoot__Patient__c', "gciclubfoot__CAST_Patient_ID__c", dataValue('indeces.parent.case_id')),
+  relationship('gciclubfoot__Visits__r', "gciclubfoot__Patient__c", dataValue('indeces.parent.case_id')),
   // =============================================================================================================
-  field('Date', dataValue('properties.visit_date')),
-  field('Patient', dataValue('properties.patient_id')),
-  // Pretending we need the age in a *rough* number of days...
-  field('Patient Age (DAYS) at Time of Visit', function(state) {
-    return (state.data.properties.patient_age_months * 30.42)
-  }),
-  field('Patient Presented with Relapse', dataValue('properties.recurrence')),
-  // Pretending we must remove underscores from a picklist value in CommCare...
-  // field('Relapse Type', function(state) {
-  //   return state.data.properties.recurrence_type.split('_').join(' ')
-  // }),
-  field('Brace Problems', dataValue('properties.brace_problems')),
-  field('Brace Problems Specified', dataValue('properties.brace_problems_specified')),
-  field('Brace Problems Type', dataValue('properties.brace_problems_type')),
-  // Pretending we need to convert an array of complications into a multi-select
-  // picklist values string for Salesforce...
-  field('Complications', arrayToString(
-    dataValue('properties.complications'),
-    ";"
-  )),
-  field('Complication Types', dataValue('properties.complication_type')),
-  field('Other Complications', dataValue('properties.complication_type_other')),
-  field('R Medial Crease', dataValue('properties.r_medial_crease')),
-  field('R Talar Head', dataValue('properties.r_talar_head')),
-  field('R Curved Lateral Border', dataValue('properties.r_curved_lateral_border')),
-  field('R Midfoot Score', dataValue('properties.r_midfoot_score')),
-  field('R Posterior Crease', dataValue('properties.r_posterior_crease')),
-  field('R Empty Heel', dataValue('properties.r_empty_heel')),
-  field('R Rigid Equinus', dataValue('properties.r_rigid_equinus')),
-  field('R Hindfoot Score', dataValue('properties.r_hindfoot_score')),
-  field('R Total Score', dataValue('properties.r_total_score')),
-  field('R Angle Abduction', dataValue('properties.r_angle_abduction')),
-  field('R Angle Dorsiflexion', dataValue('properties.r_angle_dorsiflexion')),
-  field('R Treatment', dataValue('properties.r_treatment')),
-  field('R Surgery Type', dataValue('properties.r_surgery_type')),
-  field('R Surgery Type Other', dataValue('properties.r_surgery_type_other')),
-  field('L Medial Crease', dataValue('properties.l_medial_crease')),
-  field('L Talar Head', dataValue('properties.l_talar_head')),
-  field('L Curved Lateral Border', dataValue('properties.l_curved_lateral_border')),
-  field('L Midfoot Score', dataValue('properties.l_midfoot_score')),
-  field('L Posterior Crease', dataValue('properties.l_posterior_crease')),
-  field('L Empty Heel', dataValue('properties.l_empty_heel')),
-  field('L Rigid Equinus', dataValue('properties.l_rigid_equinus')),
-  field('L Hindfoot Score', dataValue('properties.l_hindfoot_score')),
-  field('L Total Score', dataValue('properties.l_total_score')),
-  field('L Angle Abduction', dataValue('properties.l_angle_abduction')),
-  field('L Angle Dorsiflexion', dataValue('properties.l_angle_dorsiflexion')),
-  field('Treatment', dataValue('properties.l_treatment')),
-  field('L Surgery Type', dataValue('properties.l_surgery_type')),
-  field('L Surgery Type Other', dataValue('properties.l_surgery_type_other')),
-  field('First Brace Given', dataValue('properties.is_first_brace')),
-  field('New Brace Given', dataValue('properties.is_new_brace')),
-  field('Notes', dataValue('properties.visit_notes')),
-  field('Treatment Provider ', dataValue('properties.treatment_provider_name')),
+  field('gciclubfoot__Visit_Date__c', dataValue('properties.visit_date')),
+  field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
+  field('gciclubfoot__Brace_Problems__c', dataValue('properties.brace_problems')), //picklist Yes, No
+  field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
+  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')),
+  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), 
+  field('gciclubfoot__Case_Closed_by_Username__c', dataValue('properties.closed_by_username')),
+  field('gciclubfoot__Case_Closed__c', dataValue('properties.closed')), // SF checkbox
+  field('gciclubfoot__Case_Closed_Date__c', dataValue('properties.closed_date')),
+  field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
+  field('gciclubfoot__Casting_Complications_Type__c', dataValue('properties.complication_type')),//MS picklist None, Cast Slipped, Cast Wet or Broken, Cast Removed, Swelling, Pressure Sore, Rash, Redness, Blisters, Problems with toenails, Other 
+  field('gciclubfoot__Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
+  field('gciclubfoot__commcare_case_id__c', dataValue('properties.caseid')),
+  field('gciclubfoot__First_Brace__c', dataValue('properties.is_first_brace')), //SF checkbox
+  field('gciclubfoot__ICR_ID__c', dataValue('properties.visit_original_id')),
+  field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
+  field('gciclubfoot__Last_Modified_Date_CommCare__c', dataValue('last_modified_date')),
+  field('gciclubfoot__Left_Angle_of_Abduction__c	', dataValue('properties.l_angle_abduction')),
+  field('gciclubfoot__Left_Angle_of_Dorsiflexion__c', dataValue('properties.l_angle_dorsiflexion')),
+  field('gciclubfoot__Left_Medial_Crease__c', dataValue('properties.l_medial_crease')),
+  field('gciclubfoot__Left_Talar_Head__c', dataValue('properties.l_talar_head')),
+  field('gciclubfoot__Left_Curved_Lateral_Border__c', dataValue('properties.l_curved_lateral_border')),
+  field('gciclubfoot__Left_Midfoot_Score__c', dataValue('properties.l_midfoot_score')),
+  field('gciclubfoot__Left_Posterior_Crease__c', dataValue('properties.l_posterior_crease')),
+  field('gciclubfoot__Left_Empty_Heel__c', dataValue('properties.l_empty_heel')),
+  field('gciclubfoot__Left_Rigid_Equinus__c', dataValue('properties.l_rigid_equinus')),
+  field('gciclubfoot__Left_Hindfoot_Score__c', dataValue('properties.l_hindfoot_score')),
+  field('gciclubfoot__Left_Pirani_Total_Score__c', dataValue('properties.l_total_score')),
+  field('gciclubfoot__Left_Treatment__c', dataValue('properties.l_treatment')), //picklist Casting, First Brace, Brace Followup, Tenotomy, Surgery, Temporarily Suspend Treatment, Other, None - Treatment Complete
+  field('gciclubfoot__Left_Treatment_Other__c', dataValue('properties.l_treatment_other')),
+  field('gciclubfoot__Left_Surgery_Type__c', dataValue('properties.l_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other 
+  field('gciclubfoot__Left_Surgery_Type_Other__c', dataValue('properties.l_surgery_type_other')),
+  field('gciclubfoot__Right_Angle_of_Abduction__c	', dataValue('properties.r_angle_abduction')),
+  field('gciclubfoot__Right_Angle_of_Dorsiflexion__c', dataValue('properties.r_angle_dorsiflexion')),
+  field('gciclubfoot__Right_Medial_Crease__c', dataValue('properties.r_medial_crease')),
+  field('gciclubfoot__Right_Talar_Head__c', dataValue('properties.r_talar_head')),
+  field('gciclubfoot__Right_Curved_Lateral_Border__c', dataValue('properties.r_curved_lateral_border')),
+  field('gciclubfoot__Right_Midfoot_Score__c', dataValue('properties.r_midfoot_score')),
+  field('gciclubfoot__Right_Posterior_Crease__c', dataValue('properties.r_posterior_crease')),
+  field('gciclubfoot__Right_Empty_Heel__c', dataValue('properties.r_empty_heel')),
+  field('gciclubfoot__Right_Rigid_Equinus__c', dataValue('properties.r_rigid_equinus')),
+  field('gciclubfoot__Right_Hindfoot_Score__c', dataValue('properties.r_hindfoot_score')),
+  field('gciclubfoot__Right_Pirani_Total_Score__c', dataValue('properties.r_total_score')),
+  field('gciclubfoot__Right_Treatment__c', dataValue('properties.r_reatment')), //picklist Casting, First Brace, Brace Followup, Tenotomy, Surgery, Temporarily Suspend Treatment, Other, None - Treatment Complete
+  field('gciclubfoot__Right_Treatment_Other__c', dataValue('properties.r_treatment_other')),
+  field('gciclubfoot__Right_Surgery_Type__c', dataValue('properties.r_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other 
+  field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
+  field('gciclubfoot__New_Brace__c', dataValue('properties.is_new_brace')),
+  //field('gciclubfoot__Next_Visit_Date__c', dataValue('properties.next_visit_date')),
+  
+  field('gciclubfoot__Visit_Notes__c', dataValue('properties.visit_notes')),
+  field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider_name')),
   field('Use for mapping Patient Master-Detail? ', dataValue('properties.patient_caseid')),
   field('Last Modified By Username', dataValue('properties.last_modified_by_username')),
   field('CommCare Case ID', dataValue('properties.caseid')),
