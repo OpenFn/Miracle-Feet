@@ -13,8 +13,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
   field('gciclubfoot__Brace_Problems__c', dataValue('properties.brace_problems')), //picklist Yes, No
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
-  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')),
-  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), 
+  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), //picklist 
   field('gciclubfoot__Case_Closed_by_Username__c', dataValue('properties.closed_by_username')),
   field('gciclubfoot__Case_Closed__c', dataValue('properties.closed')), // SF checkbox
   field('gciclubfoot__Case_Closed_Date__c', dataValue('properties.closed_date')),
@@ -37,6 +36,9 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   field('gciclubfoot__Left_Rigid_Equinus__c', dataValue('properties.l_rigid_equinus')),
   field('gciclubfoot__Left_Hindfoot_Score__c', dataValue('properties.l_hindfoot_score')),
   field('gciclubfoot__Left_Pirani_Total_Score__c', dataValue('properties.l_total_score')),
+  field('gciclubfoot__Left_Pirani_Score_Improved__c', dataValue('properties.l_score_improved')),
+  field('gciclubfoot__Left_Pirani_Score_Not_Improved__c', dataValue('properties.l_score_not_improved')),
+  field('gciclubfoot__Left_Pirani_Score_Same__c', dataValue('properties.l_score_same')),
   field('gciclubfoot__Left_Treatment__c', dataValue('properties.l_treatment')), //picklist Casting, First Brace, Brace Followup, Tenotomy, Surgery, Temporarily Suspend Treatment, Other, None - Treatment Complete
   field('gciclubfoot__Left_Treatment_Other__c', dataValue('properties.l_treatment_other')),
   field('gciclubfoot__Left_Surgery_Type__c', dataValue('properties.l_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other 
@@ -52,29 +54,23 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__uuid__c", fields(
   field('gciclubfoot__Right_Rigid_Equinus__c', dataValue('properties.r_rigid_equinus')),
   field('gciclubfoot__Right_Hindfoot_Score__c', dataValue('properties.r_hindfoot_score')),
   field('gciclubfoot__Right_Pirani_Total_Score__c', dataValue('properties.r_total_score')),
+  field('gciclubfoot__Right_Pirani_Score_Improved__c', dataValue('properties.r_score_improved')),
+  field('gciclubfoot__Right_Pirani_Score_Not_Improved__c', dataValue('properties.r_score_not_improved')),
+  field('gciclubfoot__Right_Pirani_Score_Same__c', dataValue('properties.r_score_same')),
   field('gciclubfoot__Right_Treatment__c', dataValue('properties.r_reatment')), //picklist Casting, First Brace, Brace Followup, Tenotomy, Surgery, Temporarily Suspend Treatment, Other, None - Treatment Complete
   field('gciclubfoot__Right_Treatment_Other__c', dataValue('properties.r_treatment_other')),
   field('gciclubfoot__Right_Surgery_Type__c', dataValue('properties.r_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other 
   field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
   field('gciclubfoot__New_Brace__c', dataValue('properties.is_new_brace')),
   //field('gciclubfoot__Next_Visit_Date__c', dataValue('properties.next_visit_date')),
-  
-  field('gciclubfoot__Visit_Notes__c', dataValue('properties.visit_notes')),
+  field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
+  field('gciclubfoot__Opened_Date_CommCare__c', dataValue('properties.opened_date')),
+  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('properties.owner_name')),
+  field('gciclubfoot__Relapse__c', dataValue('properties.recurrence')), //picklist Yes, No
+  field('gciclubfoot__Relapse_Count__c', dataValue('properties.recurrence_count')),
+  field('gciclubfoot__Treatment_Completed__c', dataValue('properties.treatment_completed')),//checkbox 
+  field('gciclubfoot__Visit_Count__c', dataValue('properties.visit_count')),
+  field('Name', dataValue('properties.')), //create a formula of patient_name + (patient_id) + visit_count
   field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider_name')),
-  field('Use for mapping Patient Master-Detail? ', dataValue('properties.patient_caseid')),
-  field('Last Modified By Username', dataValue('properties.last_modified_by_username')),
-  field('CommCare Case ID', dataValue('properties.caseid')),
-  field('R Score Same', dataValue('properties.r_score_same')),
-  field('L Score Same', dataValue('properties.l_score_same')),
-  field('L Score Improved', dataValue('properties.l_score_improved')),
-  field('R Score Improved', dataValue('properties.r_score_improved')),
-  field('R Treatment Other', dataValue('properties.r_treatment_other')),
-  field('L Treatment Other', dataValue('properties.l_treatment_other')),
-  field('L Score Not Improved', dataValue('properties.l_score_not_improved')),
-  field('R Score Not Improved', dataValue('properties.r_score_not_improved')),
-  field('Mobile User Visit Case Closed By in CAST', dataValue('properties.closed_by_username')),
-  field('Date Visit Case Closed in CAST', dataValue('properties.closed_date')),
-  field('Date Visit Case Last Modified Date', dataValue('properties.last_modified_date')),
-  field('Date Visit Case Opened in CAST', dataValue('properties.opened_date')),
-  field('Mobile User Visit Created By in CAST', dataValue('properties.opened_by_username'))
+ 
 ));
