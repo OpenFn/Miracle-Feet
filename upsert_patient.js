@@ -6,9 +6,10 @@
 upsert("gciclubfoot__Patient__c", "gciclubfoot__CAST_Patient_ID__c", fields(
   field('gciclubfoot__CAST_Patient_ID__c', dataValue('properties.patient_id')),
   
-  relationship('gciclubfoot__Patients__c', "gciclubfoot__Clinic__c", dataValue('indeces.parent.case_id')),
+  relationship('gciclubfoot__Patients__r', "gciclubfoot__Clinic__c", dataValue('indices.parent.case_id')),
   
-  
+  field('gciclubfoot__Age_Months_First_Brace__c	', dataValue('properties.age_months_first_brace_rounded')),
+  field('gciclubfoot__Age_Months_Started_Treatment__c	', dataValue('properties.age_months_start_treatment_rounded')),
   field('gciclubfoot__Secondary_ID__c', dataValue('properties.secondary_id')),
   field('gciclubfoot__Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
   field('gciclubfoot__Registration_Date__c', dataValue('properties.registration_date')),
@@ -19,9 +20,10 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CAST_Patient_ID__c", fields(
   field('gciclubfoot__Gender__c', dataValue('properties.patient_gender')), //picklist. Female, Male
   field('gciclubfoot__Date_of_Birth_Known__c', dataValue('properties.patient_dob_known')), //picklist Yes, No
   field('gciclubfoot__Date_of_Birth__c', dataValue('properties.patient_dob')),
-  field('gciclubfoot__Location_Level_1__c', dataValue('properties.location_level1')),
-  field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2')),
-  field('gciclubfoot__Street__c', dataValue('properties.location_level3')),
+  field('gciclubfoot__Location_Level_1__c', dataValue('properties.location_level1_name')),
+  field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2_name')),
+  field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),       
+  field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
   field('gciclubfoot__Zip_Code__c', dataValue('properties.pin_code')),
   field('gciclubfoot__Abnormalities__c', dataValue('properties.abnormalities')),//SF Multi-Select PL Values = No Abnormalities, Lower Extremities, Upper Extremities, Hips, Spine, Head, Heart, Lungs, Urinary, Digestive, Skin, Neurological, Other
   field('gciclubfoot__Other_Abnormalities__c', dataValue('properties.abnormalities_other')),
@@ -44,7 +46,6 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CAST_Patient_ID__c", fields(
   field('gciclubfoot__Guardian_1_Relationship_Other__c', dataValue('properties.guardian1_relationship_other')),
   field('gciclubfoot__Guardian_1_Phone_Number_1__c', dataValue('properties.guardian1_phone1')),
   field('gciclubfoot__Guardian_1_Phone_Number_2__c', dataValue('properties.guardian1_phone2')),
-  field('gciclubfoot__Guardian_1_Last_Name__c', dataValue('properties.guardian1_last_name')),
   field('gciclubfoot__Guardian_2_First_Name__c', dataValue('properties.guardian2_first_name')),
   field('gciclubfoot__Guardian_2_Last_Name__c', dataValue('properties.guardian2_last_name')),
   field('gciclubfoot__Guardian_2_Relationship__c', dataValue('properties.guardian2_relationship')),//picklist Mother, Father, Grandmother, Grandfather, Other Relative, Friend, Other
@@ -69,6 +70,8 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CAST_Patient_ID__c", fields(
   field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')),
   field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
+  field('gciclubfoot__Treatment_Completed__c', dataValue('treatment_completed')), //checkbox SF; 0 and 1 CommCare 
+ 
  
   
 ))
