@@ -3,12 +3,13 @@
 // test, feb 7th
 // Need to add in relationship to clinic 
 // =============================================================================
-upsert("gciclubfoot__Patient__c", "gciclubfoot__CAST_Patient_ID__c", fields(
+upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
+  field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')),
+  
+  relationship('gciclubfoot__Patients__r', "gciclubfoot__Clinic__c", dataValue('indices.parent.caseid')),
+  
   field('gciclubfoot__CAST_Patient_ID__c', dataValue('properties.patient_id')),
-  
-  relationship('gciclubfoot__Patients__r', "gciclubfoot__Clinic__c", dataValue('indices.parent.case_id')),
-  
-  field('gciclubfoot__Age_Months_First_Brace__c	', dataValue('properties.age_months_first_brace_rounded')),
+  field('gciclubfoot__Age_Months_First_Brace__c', dataValue('properties.age_months_first_brace_rounded')),
   field('gciclubfoot__Age_Months_Started_Treatment__c	', dataValue('properties.age_months_start_treatment_rounded')),
   field('gciclubfoot__Secondary_ID__c', dataValue('properties.secondary_id')),
   field('gciclubfoot__Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
