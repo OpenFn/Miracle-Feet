@@ -9,7 +9,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   relationship('gciclubfoot__Visits__r', "gciclubfoot__Patient__c", dataValue('indices.parent.caseid')),
   // =============================================================================================================
   field('gciclubfoot__Visit_Date__c', dataValue('properties.visit_date')),
-  //field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
+  field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
   field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
   field('gciclubfoot__Brace_Problems__c', dataValue('properties.brace_problems')), //picklist Yes, No
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
