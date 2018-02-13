@@ -4,9 +4,10 @@
 // Need to add in relationship to clinic 
 // =============================================================================
 upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
-  field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')),
+  field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')), //seem correct? 
   
-  relationship('gciclubfoot__Patients__r', "gciclubfoot__Clinic__c", dataValue('indices.parent.caseid')),
+  relationship('gciclubfoot__Patients__r', "gciclubfoot__Clinic__c", dataValue('indices.parent.location_id')), 
+  //seem correct? Right way of using the Master-Detail Child Relationship Name? 
   
   field('gciclubfoot__CAST_Patient_ID__c', dataValue('properties.patient_id')),
   field('gciclubfoot__Age_Months_First_Brace__c', dataValue('properties.age_months_first_brace_rounded')),
