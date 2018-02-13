@@ -9,17 +9,28 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   relationship('gciclubfoot__Visits__r', "gciclubfoot__Patient__c", dataValue('indices.parent.caseid')),
   // =============================================================================================================
   field('gciclubfoot__Visit_Date__c', dataValue('properties.visit_date')),
-  field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
+  //field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
+  field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
   field('gciclubfoot__Brace_Problems__c', dataValue('properties.brace_problems')), //picklist Yes, No
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
-  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), //picklist 
+  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), //MS picklist 
+// None
+//Inadequate abduction or dorsiflexion in foot: cannot fit the brace 
+//Child not wearing the brace a sufficient amount of time
+//Child not tolerating the brace
+//Brace not acceptable to parents
+//Shoes too big or too small for child 
+//Feet slipping out of shoes/heel not flat in shoe
+//Blisters, rash, wound or other skin irritation
+//Broken or defective brace, such as brace bar or shoes broke down
+//Other  
+  
   field('gciclubfoot__Case_Closed_by_Username__c', dataValue('properties.closed_by_username')),
   field('gciclubfoot__Case_Closed__c', dataValue('properties.closed')), // SF checkbox
   field('gciclubfoot__Case_Closed_Date__c', dataValue('properties.closed_date')),
   field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
   field('gciclubfoot__Casting_Complications_Type__c', dataValue('properties.complication_type')),//MS picklist None, Cast Slipped, Cast Wet or Broken, Cast Removed, Swelling, Pressure Sore, Rash, Redness, Blisters, Problems with toenails, Other 
   field('gciclubfoot__Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
-  field('gciclubfoot__commcare_case_id__c', dataValue('properties.caseid')),
   field('gciclubfoot__First_Brace__c', dataValue('properties.is_first_brace')), //SF checkbox
   field('gciclubfoot__ICR_ID__c', dataValue('properties.visit_original_id')),
   field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
