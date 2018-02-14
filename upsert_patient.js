@@ -1,14 +1,10 @@
 // =============================================================================
 // Upsert Patient records in Salesforce from patient case updates in Commcare.
-// test, feb 7th
 // Need to add in relationship to clinic 
 // =============================================================================
 upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
-  field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')), //seem correct? 
-  
-  relationship('gciclubfoot__Patients__r', "gciclubfoot__Clinic__c", dataValue('indices.parent.location_id')), 
-  //seem correct? Right way of using the Master-Detail Child Relationship Name? 
-  
+  field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')), 
+  relationship('gciclubfoot__Clinic__r', "gciclubfoot__CAST_Location_ID__c", dataValue('indices.parent.location_id')),
   field('gciclubfoot__CAST_Patient_ID__c', dataValue('properties.patient_id')),
   field('gciclubfoot__Age_Months_First_Brace__c', dataValue('properties.age_months_first_brace_rounded')),
   field('gciclubfoot__Age_Months_Started_Treatment__c	', dataValue('properties.age_months_start_treatment_rounded')),
