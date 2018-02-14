@@ -2,29 +2,26 @@
 // Upsert Visit records in Salesforce when "Visit" cases are updated in CC.
 // =============================================================================
 upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
-  field('gciclubfoot__commcare_case_id__c', dataValue('properties.caseid')), //check setup
-  // =============================================================================================================
+  field('gciclubfoot__commcare_case_id__c', dataValue('properties.caseid')),
   // do not link to clinic for the time being, only link to patient...
   // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
-  relationship('gciclubfoot__Visits__r', "gciclubfoot__Patient__c", dataValue('indices.parent.caseid')), //check setup
-  // =============================================================================================================
+  relationship('gciclubfoot__Patient__r', "gciclubfoot__CommCare_Case_ID__c", dataValue('indices.parent.caseid')),
   field('gciclubfoot__Visit_Date__c', dataValue('properties.visit_date')),
- // field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
+  // field('gciclubfoot__Patient__c', dataValue('properties.patient_id')),
   field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
   field('gciclubfoot__Brace_Problems__c', dataValue('properties.brace_problems')), //picklist Yes, No
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
   field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), //MS picklist 
-// None
-//Inadequate abduction or dorsiflexion in foot: cannot fit the brace 
-//Child not wearing the brace a sufficient amount of time
-//Child not tolerating the brace
-//Brace not acceptable to parents
-//Shoes too big or too small for child 
-//Feet slipping out of shoes/heel not flat in shoe
-//Blisters, rash, wound or other skin irritation
-//Broken or defective brace, such as brace bar or shoes broke down
-//Other  
-  
+  // None
+  // Inadequate abduction or dorsiflexion in foot: cannot fit the brace 
+  // Child not wearing the brace a sufficient amount of time
+  // Child not tolerating the brace
+  // Brace not acceptable to parents
+  // Shoes too big or too small for child 
+  // Feet slipping out of shoes/heel not flat in shoe
+  // Blisters, rash, wound or other skin irritation
+  // Broken or defective brace, such as brace bar or shoes broke down
+  // Other  
   field('gciclubfoot__Case_Closed_by_Username__c', dataValue('properties.closed_by_username')),
   field('gciclubfoot__Case_Closed__c', dataValue('properties.closed')), // SF checkbox
   field('gciclubfoot__Case_Closed_Date__c', dataValue('properties.closed_date')),
@@ -72,7 +69,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Right_Surgery_Type__c', dataValue('properties.r_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other 
   field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
   field('gciclubfoot__New_Brace__c', dataValue('properties.is_new_brace')),
-  //field('gciclubfoot__Next_Visit_Date__c', dataValue('properties.next_visit_date')),
+  // field('gciclubfoot__Next_Visit_Date__c', dataValue('properties.next_visit_date')),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', dataValue('properties.opened_date')),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('properties.owner_name')),
