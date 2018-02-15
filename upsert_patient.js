@@ -11,7 +11,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Secondary_ID__c', dataValue('properties.secondary_id')),
   field('gciclubfoot__Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
   field('gciclubfoot__Registration_Date__c', dataValue('properties.registration_date')),
-  field('gciclubfoot__Clinic__c' 'Patients__r', dataValue('properties.hospital_code')),
+  field('gciclubfoot__Clinic__c', 'Patients__r', dataValue('properties.hospital_code')),
   field('Name', dataValue('properties.name')),
   field('gciclubfoot__First_Name__c', dataValue('properties.patient_first_name')),
   field('gciclubfoot__Last_Name__c', dataValue('properties.patient_last_name')),
@@ -68,8 +68,5 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')),
   field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
-  field('gciclubfoot__Treatment_Completed__c', dataValue('treatment_completed')), //checkbox SF; 0 and 1 CommCare 
- 
- 
-  
-))
+  field('gciclubfoot__Treatment_Completed__c', dataValue('treatment_completed')), //checkbox SF; 0 and 1 CommCare   
+));
