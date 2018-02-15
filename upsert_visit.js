@@ -78,6 +78,5 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Treatment_Completed__c', dataValue('properties.treatment_completed')),//checkbox 
   field('gciclubfoot__Visit_Count__c', dataValue('properties.visit_count')),
   field('Name', dataValue('properties.')), //create a formula of patient_name + (patient_id) + visit_count
-  field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider_name')),
- 
+  field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider_name'))
 ));
