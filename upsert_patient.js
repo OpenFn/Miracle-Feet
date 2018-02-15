@@ -65,7 +65,6 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
   field('gciclubfoot__Case_Closed_Date_CommCare__c', dataValue('properties.closed_date')),
   field('gciclubfoot__Reason_Stopped_Treatment__c', dataValue('properties.close_reason')), //picklist Treatment Complete, Moved, Family Refuses Treatment, Family Stopped Coming, Death, Duplicate Patient Record, Other Reason 
-  field('gciclubfoot__CommCare_Case_ID__c', dataValue('properties.caseid')),
   field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
   field('gciclubfoot__Treatment_Completed__c', dataValue('treatment_completed')) //checkbox SF; 0 and 1 CommCare   
