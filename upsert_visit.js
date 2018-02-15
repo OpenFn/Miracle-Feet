@@ -50,7 +50,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Left_Treatment_Other__c', dataValue('properties.l_treatment_other')),
   field('gciclubfoot__Left_Surgery_Type__c', dataValue('properties.l_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other 
   field('gciclubfoot__Left_Surgery_Type_Other__c', dataValue('properties.l_surgery_type_other')),
-  field('gciclubfoot__Right_Angle_of_Abduction__c	', dataValue('properties.r_angle_abduction')),
+  field('gciclubfoot__Right_Angle_of_Abduction__c', dataValue('properties.r_angle_abduction')),
   field('gciclubfoot__Right_Angle_of_Dorsiflexion__c', dataValue('properties.r_angle_dorsiflexion')),
   field('gciclubfoot__Right_Medial_Crease__c', dataValue('properties.r_medial_crease')),
   field('gciclubfoot__Right_Talar_Head__c', dataValue('properties.r_talar_head')),
