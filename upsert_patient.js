@@ -10,7 +10,9 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Age_Months_Started_Treatment__c', dataValue('properties.age_months_start_treatment_rounded')),
   field('gciclubfoot__Secondary_ID__c', dataValue('properties.secondary_id')),
   field('gciclubfoot__Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
-  field('gciclubfoot__Registration_Date__c', dataValue('properties.registration_date')),
+  field('gciclubfoot__Registration_Date__c', (state) => {
+    return new Date(state.properties.registration_date).toISOString() 
+  }),
   field('gciclubfoot__Clinic__c', 'Patients__r', dataValue('properties.hospital_code')),
   field('Name', dataValue('properties.name')),
   field('gciclubfoot__First_Name__c', dataValue('properties.patient_first_name')),
