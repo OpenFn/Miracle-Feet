@@ -19,7 +19,9 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Last_Name__c', dataValue('properties.patient_last_name')),
   field('gciclubfoot__Gender__c', dataValue('properties.patient_gender')), //picklist. Female, Male
   field('gciclubfoot__Date_of_Birth_Known__c', dataValue('properties.patient_dob_known')), //picklist Yes, No
-  field('gciclubfoot__Date_of_Birth__c', dataValue('properties.patient_dob')),
+  field('gciclubfoot__Date_of_Birth__c', (state) => {
+    return new Date(state.data.properties.patient_dob).toISOString() 
+  }),
   field('gciclubfoot__Location_Level_1__c', dataValue('properties.location_level1_name')),
   field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2_name')),
   field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),       
@@ -69,5 +71,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Reason_Stopped_Treatment__c', dataValue('properties.close_reason')), //picklist Treatment Complete, Moved, Family Refuses Treatment, Family Stopped Coming, Death, Duplicate Patient Record, Other Reason 
   field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
-  field('gciclubfoot__Treatment_Completed__c', dataValue('treatment_completed')) //checkbox SF; 0 and 1 CommCare   
+  field('gciclubfoot__Treatment_Completed__c', (state_ => {
+    return (state.data.treatment_completed ? TRUE : FALSE)
+  }) //checkbox SF; 0 and 1 CommCare   
 ));
