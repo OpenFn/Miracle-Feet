@@ -72,6 +72,6 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
   field('gciclubfoot__Treatment_Completed__c', (state) => {
-    return (state.data.treatment_completed ? TRUE : FALSE)
+    return (state.data.treatment_completed ? 'TRUE' : 'FALSE')
   }) //checkbox SF; 0 and 1 CommCare   
 ));
