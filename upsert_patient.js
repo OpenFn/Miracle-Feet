@@ -35,7 +35,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Diagnosis_Notes__c', dataValue('properties.diagnosis_notes')),
   field('gciclubfoot__Feet_Affected__c', dataValue('properties.feet_affected')),//SF picklist Right, Left, Both
   field('gciclubfoot__Referral_Source__c', dataValue('properties.referral_source')), //SF picklist Clubfoot Patient, Community Health Worker, Community Member, Hospital or Clinic, Midwife, Promotional Material, Other
-  field('gciclubfoot__Referral_Source_Other__c	', dataValue('properties.referral_source_other')),
+  field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
   field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_health_facility')),
   field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
   field('gciclubfoot__Guardian_1_First_Name__c', dataValue('properties.guardian1_first_name')),
