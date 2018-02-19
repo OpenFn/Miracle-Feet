@@ -5,7 +5,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__commcare_case_id__c', dataValue('case_id')),
   // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
   // How do we link to the patient? ============================================
-  relationship('gciclubfoot__Patient__r', "gciclubfoot__CommCare_Case_ID__c", dataValue('properties.patient_id')),
+  relationship('gciclubfoot__Patient__r', "gciclubfoot__CommCare_Case_ID__c", dataValue('indices.parent.case_id')),
   field('gciclubfoot__Visit_Date__c', (state) => {
     const validDate = state.data.properties.visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
