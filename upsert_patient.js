@@ -18,7 +18,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     const validDate = state.data.properties.registration_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-  field('Name', dataValue('properties.name')),
+  field('Name', dataValue('properties.patient_name')),
   field('gciclubfoot__First_Name__c', dataValue('properties.patient_first_name')),
   field('gciclubfoot__Last_Name__c', dataValue('properties.patient_last_name')),
   field('gciclubfoot__Gender__c', dataValue('properties.patient_gender')), //picklist. Female, Male
