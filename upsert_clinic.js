@@ -9,4 +9,3 @@ upsert("gciclubfoot__Clinic__c", "gciclubfoot__CAST_Location_ID__c", fields(
   // Steph to consider adding country or resolve open question on location hierarchy
   field('Name', dataValue('name'))
 ));
-// Ensure that correct CommCare ID is set in SF as external ID.
