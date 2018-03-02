@@ -21,8 +21,8 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('Name', dataValue('properties.patient_name')),
   field('gciclubfoot__First_Name__c', dataValue('properties.patient_first_name')),
   field('gciclubfoot__Last_Name__c', dataValue('properties.patient_last_name')),
-  field('gciclubfoot__Gender__c', dataValue('properties.patient_gender')), //picklist. Female, Male
-  field('gciclubfoot__Date_of_Birth_Known__c', dataValue('properties.patient_dob_known')), //picklist Yes, No
+  field('gciclubfoot__Gender__c', humanProper(state.data.properties.patient_gender)), // picklist
+  field('gciclubfoot__Date_of_Birth_Known__c', humanProper(state.data.properties.patient_dob_known)), // picklist
   field('gciclubfoot__Date_of_Birth__c', (state) => {
     const validDate = state.data.properties.patient_dob
     return ( validDate ? new Date(validDate).toISOString() : null )
@@ -32,36 +32,36 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),
   field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
   field('gciclubfoot__Zip_Code__c', dataValue('properties.pin_code')),
-  field('gciclubfoot__Abnormalities__c', dataValue('properties.abnormalities')),//SF Multi-Select PL Values = No Abnormalities, Lower Extremities, Upper Extremities, Hips, Spine, Head, Heart, Lungs, Urinary, Digestive, Skin, Neurological, Other
+  field('gciclubfoot__Abnormalities__c', dataValue('properties.abnormalities')), //SF Multi-Select PL Values = No Abnormalities, Lower Extremities, Upper Extremities, Hips, Spine, Head, Heart, Lungs, Urinary, Digestive, Skin, Neurological, Other
   field('gciclubfoot__Other_Abnormalities__c', dataValue('properties.abnormalities_other')),
-  field('gciclubfoot__Consent_Treatment__c', dataValue('properties.consent_treatment')),//SF Picklist Yes/No
-  field('gciclubfoot__Consent_Database__c', dataValue('properties.consent_included')), //SF Picklist Yes/No
-  field('gciclubfoot__Consent_Photograph_Marketing__c', dataValue('properties.consent_photograph_marketing')), //SF Picklist Yes/No
-  field('gciclubfoot__Consent_Photograph_Treatment__c', dataValue('properties.consent_photograph_treatment')), //SF Picklist Yes/No
-  field('gciclubfoot__Diagnosis__c', dataValue('properties.diagnosis')),//picklist Idiopathic, Secondary, Postural
-  field('gciclubfoot__Diagnosis_Idiopathic_Specified__c', dataValue('properties.diagnosis_idiopathic_specified')),//SF Multi-select Untreated (Under 2), Neglected (Over 2), Resistant, Recurrent, Aytpical, Complex
-  field('gciclubfoot__Diagnosis_Secondary_Specified__c', dataValue('properties.diagnosis_secondary_specified')),//SF multi-select Syndromic, Spina Bifida, Arthrogryposis, Other Neuropathic
+  field('gciclubfoot__Consent_Treatment__c', humanProper(state.data.properties.consent_treatment)), // picklist
+  field('gciclubfoot__Consent_Database__c', humanProper(state.data.properties.consent_included)), // picklist
+  field('gciclubfoot__Consent_Photograph_Marketing__c', humanProper(state.data.properties.consent_photograph_marketing)), // picklist
+  field('gciclubfoot__Consent_Photograph_Treatment__c', humanProper(state.data.properties.consent_photograph_treatment)), // picklist
+  field('gciclubfoot__Diagnosis__c', humanProper(state.data.properties.diagnosis)), // picklist
+  field('gciclubfoot__Diagnosis_Idiopathic_Specified__c', dataValue('properties.diagnosis_idiopathic_specified')), //SF Multi-select Untreated (Under 2), Neglected (Over 2), Resistant, Recurrent, Aytpical, Complex
+  field('gciclubfoot__Diagnosis_Secondary_Specified__c', dataValue('properties.diagnosis_secondary_specified')), //SF multi-select Syndromic, Spina Bifida, Arthrogryposis, Other Neuropathic
   field('gciclubfoot__Diagnosis_Notes__c', dataValue('properties.diagnosis_notes')),
-  field('gciclubfoot__Feet_Affected__c', dataValue('properties.feet_affected')),//SF picklist Right, Left, Both
-  field('gciclubfoot__Referral_Source__c', dataValue('properties.referral_source')), //SF picklist Clubfoot Patient, Community Health Worker, Community Member, Hospital or Clinic, Midwife, Promotional Material, Other
+  field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
+  field('gciclubfoot__Referral_Source__c', humanProper(state.data.properties.referral_source)), // picklist
   field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
   field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_health_facility')),
   field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
   field('gciclubfoot__Guardian_1_First_Name__c', dataValue('properties.guardian1_first_name')),
   field('gciclubfoot__Guardian_1_Last_Name__c', dataValue('properties.guardian1_last_name')),
-  field('gciclubfoot__Guardian_1_Relationship__c', dataValue('properties.guardian1_relationship')),//picklist Mother, Father, Grandmother, Grandfather, Other Relative, Friend, Other
+  field('gciclubfoot__Guardian_1_Relationship__c', humanProper(state.data.properties.guardian1_relationship)), // picklist
   field('gciclubfoot__Guardian_1_Relationship_Other__c', dataValue('properties.guardian1_relationship_other')),
   field('gciclubfoot__Guardian_1_Phone_Number_1__c', dataValue('properties.guardian1_phone1')),
   field('gciclubfoot__Guardian_1_Phone_Number_2__c', dataValue('properties.guardian1_phone2')),
   field('gciclubfoot__Guardian_2_First_Name__c', dataValue('properties.guardian2_first_name')),
   field('gciclubfoot__Guardian_2_Last_Name__c', dataValue('properties.guardian2_last_name')),
-  field('gciclubfoot__Guardian_2_Relationship__c', dataValue('properties.guardian2_relationship')),//picklist Mother, Father, Grandmother, Grandfather, Other Relative, Friend, Other
+  field('gciclubfoot__Guardian_2_Relationship__c', humanProper(state.data.properties.guardian2_relationship)), // picklist
   field('gciclubfoot__Guardian_2_Relationship_Other__c', dataValue('properties.guardian2_relationship_other')),
   field('gciclubfoot__Guardian_2_Phone_Number_1__c', dataValue('properties.guardian2_phone1')),
   field('gciclubfoot__Guardian_2_Phone_Number_2__c', dataValue('properties.guardian2_phone2')),
   field('gciclubfoot__Guardian_3_First_Name__c', dataValue('properties.guardian3_first_name')),
   field('gciclubfoot__Guardian_3_Last_Name__c', dataValue('properties.guardian3_last_name')),
-  field('gciclubfoot__Guardian_3_Relationship__c', dataValue('properties.guardian3_relationship')), //picklist Mother, Father, Grandmother, Grandfather, Other Relative, Friend, Other
+  field('gciclubfoot__Guardian_3_Relationship__c', humanProper(state.data.properties.guardian3_relationship)), // picklist
   field('gciclubfoot__Guardian_3_Relationship_Other__c', dataValue('properties.guardian3_relationship_other')),
   field('gciclubfoot__Guardian_3_Phone_Number_1__c', dataValue('properties.guardian3_phone1')),
   field('gciclubfoot__Guardian_3_Phone_Number_2__c', dataValue('properties.guardian3_phone2')),
@@ -85,7 +85,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     const validDate = state.data.properties.closed_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-  field('gciclubfoot__Reason_Stopped_Treatment__c', dataValue('properties.close_reason')), //picklist Treatment Complete, Moved, Family Refuses Treatment, Family Stopped Coming, Death, Duplicate Patient Record, Other Reason
+  field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
   field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
   field('gciclubfoot__Treatment_Completed__c', (state) => {

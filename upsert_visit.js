@@ -11,7 +11,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
-  field('gciclubfoot__Brace_Problems__c', dataValue('properties.brace_problems')), //picklist Yes, No
+  field('gciclubfoot__Brace_Problems__c', humanProper(state.data.properties.brace_problems)), // picklist
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
   field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), //MS picklist
   // None
@@ -24,7 +24,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   // Blisters, rash, wound or other skin irritation
   // Broken or defective brace, such as brace bar or shoes broke down
   // Other
-  field('gciclubfoot__Case_Closed_by_Username__c', dataValue('properties.closed_by_username')),
+  field('gciclubfoot__Case_Closed_by_Username__c', humanProper(state.data.properties.closed_by_username)), // picklist
   field('gciclubfoot__Case_Closed__c', (state) => {
     return (state.data.properties.closed == "1" ? true : false) // sf checkbox
   }),
@@ -58,9 +58,9 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Left_Pirani_Score_Improved__c', dataValue('properties.l_score_improved')),
   field('gciclubfoot__Left_Pirani_Score_Not_Improved__c', dataValue('properties.l_score_not_improved')),
   field('gciclubfoot__Left_Pirani_Score_Same__c', dataValue('properties.l_score_same')),
-  field('gciclubfoot__Left_Treatment__c', dataValue('properties.l_treatment')), //picklist Casting, First Brace, Brace Followup, Tenotomy, Surgery, Temporarily Suspend Treatment, Other, None - Treatment Complete
+  field('gciclubfoot__Left_Treatment__c', humanProper(state.data.properties.l_treatment)), // picklist
   field('gciclubfoot__Left_Treatment_Other__c', dataValue('properties.l_treatment_other')),
-  field('gciclubfoot__Left_Surgery_Type__c', dataValue('properties.l_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other
+  field('gciclubfoot__Left_Surgery_Type__c', humanProper(state.data.properties.l_surgery_type)), // picklist
   field('gciclubfoot__Left_Surgery_Type_Other__c', dataValue('properties.l_surgery_type_other')),
   field('gciclubfoot__Right_Angle_of_Abduction__c', dataValue('properties.r_angle_abduction')),
   field('gciclubfoot__Right_Angle_of_Dorsiflexion__c', dataValue('properties.r_angle_dorsiflexion')),
@@ -76,9 +76,9 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Right_Pirani_Score_Improved__c', dataValue('properties.r_score_improved')),
   field('gciclubfoot__Right_Pirani_Score_Not_Improved__c', dataValue('properties.r_score_not_improved')),
   field('gciclubfoot__Right_Pirani_Score_Same__c', dataValue('properties.r_score_same')),
-  field('gciclubfoot__Right_Treatment__c', dataValue('properties.r_reatment')), //picklist Casting, First Brace, Brace Followup, Tenotomy, Surgery, Temporarily Suspend Treatment, Other, None - Treatment Complete
+  field('gciclubfoot__Right_Treatment__c', humanProper(state.data.properties.r_reatment)), // picklist
   field('gciclubfoot__Right_Treatment_Other__c', dataValue('properties.r_treatment_other')),
-  // field('gciclubfoot__Right_Surgery_Type__c', dataValue('properties.r_surgery_type')), //picklist PMR, Tendon Transfer, Corrective Osteotomy, Achilles Tendon Lengthening, Tibialis Anterior Tendon Lengthening, Other
+  // field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
   field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
   field('gciclubfoot__New_Brace__c', dataValue('properties.is_new_brace')),
   // field('gciclubfoot__Next_Visit_Date__c', dataValue('properties.next_visit_date')),
@@ -88,7 +88,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('properties.owner_name')),
-  field('gciclubfoot__Relapse__c', dataValue('properties.recurrence')), //picklist Yes, No
+  field('gciclubfoot__Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
   field('gciclubfoot__Relapse_Count__c', dataValue('properties.recurrence_count')),
   field('gciclubfoot__Treatment_Completed__c', (state) => {
     return (state.data.properties.treatment_completed == "1" ? true : false) // sf checkbox
