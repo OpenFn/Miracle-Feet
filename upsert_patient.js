@@ -5,7 +5,7 @@
 upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__CommCare_Case_ID__c', dataValue('case_id')),
   // This is required in SF. Which should we use? ==============================
-  relationship('gciclubfoot__Clinic__r', 'gciclubfoot__CAST_Location_ID__c', dataValue('properties.clinic_code')),
+  relationship('gciclubfoot__Clinic__r', 'gciclubfoot__CAST_Location_ID__c', dataValue('properties.owner_id')),
   // relationship('gciclubfoot__Clinic__r', 'gciclubfoot__CAST_Location_ID__c', dataValue('properties.hospital_code')),
   // relationship('gciclubfoot__Clinic__r', 'gciclubfoot__CAST_Location_ID__c', dataValue('indices.parent.location_id')),
   // ===========================================================================
