@@ -13,17 +13,25 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
   field('gciclubfoot__Brace_Problems__c', humanProper(state.data.properties.brace_problems)), // picklist
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
-  field('gciclubfoot__Brace_Problems_Type__c', dataValue('properties.brace_problems_type')), //MS picklist
-  // None
-  // Inadequate abduction or dorsiflexion in foot: cannot fit the brace
-  // Child not wearing the brace a sufficient amount of time
-  // Child not tolerating the brace
-  // Brace not acceptable to parents
-  // Shoes too big or too small for child
-  // Feet slipping out of shoes/heel not flat in shoe
-  // Blisters, rash, wound or other skin irritation
-  // Broken or defective brace, such as brace bar or shoes broke down
-  // Other
+  field('gciclubfoot__Brace_Problems_Type__c', (state) => {
+    // MS
+    // None
+    // Inadequate abduction or dorsiflexion in foot: cannot fit the brace
+    // Child not wearing the brace a sufficient amount of time
+    // Child not tolerating the brace
+    // Brace not acceptable to parents
+    // Shoes too big or too small for child
+    // Feet slipping out of shoes/heel not flat in shoe
+    // Blisters, rash, wound or other skin irritation
+    // Broken or defective brace, such as brace bar or shoes broke down
+    // Other
+    const ms = state.data.properties.brace_problems_type
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return humanProper(value)
+      }).join(';');
+    } else { return "" }
+  }),
   field('gciclubfoot__Case_Closed_by_Username__c', humanProper(state.data.properties.closed_by_username)), // picklist
   field('gciclubfoot__Case_Closed__c', (state) => {
     return (state.data.properties.closed == "1" ? true : false) // sf checkbox
@@ -33,7 +41,16 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
-  field('gciclubfoot__Casting_Complications_Type__c', dataValue('properties.complication_type')),//MS picklist None, Cast Slipped, Cast Wet or Broken, Cast Removed, Swelling, Pressure Sore, Rash, Redness, Blisters, Problems with toenails, Other
+  field('gciclubfoot__Casting_Complications_Type__c', (state) => {
+    // MS picklist None, Cast Slipped, Cast Wet or Broken, Cast Removed, Swelling, Pressure Sore, Rash, Redness, Blisters, Problems with toenails, Other
+    const ms = state.data.properties.complication_type
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return humanProper(value)
+      }).join(';');
+    } else { return "" }
+    return values.join(";");
+  }),
   field('gciclubfoot__Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
   field('gciclubfoot__First_Brace__c', (state) => {
     return (state.data.properties.is_first_brace == "1" ? true : false) // sf checkbox
@@ -95,7 +112,6 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Visit_Count__c', dataValue('properties.visit_count')),
   field('Name', (state) => {
-    // Create a formula of patient_name + (patient_id) + visit_count
     return state.data.properties.patient_name + "-" +
     state.data.properties.patient_id + "/" +
     state.data.properties.visit_count
