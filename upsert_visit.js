@@ -14,17 +14,6 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Brace_Problems__c', humanProper(state.data.properties.brace_problems)), // picklist
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
   field('gciclubfoot__Brace_Problems_Type__c', (state) => {
-    // MS
-    // None
-    // Inadequate abduction or dorsiflexion in foot: cannot fit the brace
-    // Child not wearing the brace a sufficient amount of time
-    // Child not tolerating the brace
-    // Brace not acceptable to parents
-    // Shoes too big or too small for child
-    // Feet slipping out of shoes/heel not flat in shoe
-    // Blisters, rash, wound or other skin irritation
-    // Broken or defective brace, such as brace bar or shoes broke down
-    // Other
     const ms = state.data.properties.brace_problems_type
     if (ms) {
       return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
@@ -42,7 +31,6 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
   field('gciclubfoot__Casting_Complications_Type__c', (state) => {
-    // MS picklist None, Cast Slipped, Cast Wet or Broken, Cast Removed, Swelling, Pressure Sore, Rash, Redness, Blisters, Problems with toenails, Other
     const ms = state.data.properties.complication_type
     if (ms) {
       return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
@@ -52,6 +40,14 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return values.join(";");
   }),
   field('gciclubfoot__Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
+  field('gciclubfoot__Date_Referral_Made__c', (state) => {
+    const validDate = state.data.properties.date_referral_made
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
+  field('gciclubfoot__Date_of_Tenotomy__c', (state) => {
+    const validDate = state.data.properties.date_tenotomy
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
   field('gciclubfoot__First_Brace__c', (state) => {
     return (state.data.properties.is_first_brace == "1" ? true : false) // sf checkbox
   }),
@@ -89,24 +85,74 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Right_Empty_Heel__c', dataValue('properties.r_empty_heel')),
   field('gciclubfoot__Right_Rigid_Equinus__c', dataValue('properties.r_rigid_equinus')),
   field('gciclubfoot__Right_Hindfoot_Score__c', dataValue('properties.r_hindfoot_score')),
-  // field('gciclubfoot__Right_Pirani_Total_Score__c', dataValue('properties.r_total_score')),
+  field('gciclubfoot__Right_Total_Pirani_Score__c', dataValue('properties.r_total_score')),
   field('gciclubfoot__Right_Pirani_Score_Improved__c', dataValue('properties.r_score_improved')),
   field('gciclubfoot__Right_Pirani_Score_Not_Improved__c', dataValue('properties.r_score_not_improved')),
   field('gciclubfoot__Right_Pirani_Score_Same__c', dataValue('properties.r_score_same')),
   field('gciclubfoot__Right_Treatment__c', humanProper(state.data.properties.r_reatment)), // picklist
   field('gciclubfoot__Right_Treatment_Other__c', dataValue('properties.r_treatment_other')),
-  // field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
+  field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
   field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
   field('gciclubfoot__New_Brace__c', dataValue('properties.is_new_brace')),
-  // field('gciclubfoot__Next_Visit_Date__c', dataValue('properties.next_visit_date')),
+  field('gciclubfoot__Next_Visit_Date__c', (state) => {
+    const validDate = state.data.properties.next_visit_date
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.properties.opened_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('properties.owner_name')),
+
+  //Relapse questions 
   field('gciclubfoot__Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
   field('gciclubfoot__Relapse_Count__c', dataValue('properties.recurrence_count')),
+  field('gciclubfoot__Relapse_Feet_Affected__c', humanProper(state.data.properties.recurrence_feet_affected)), // picklist
+  field('gciclubfoot__Relapse_Type_Left__c', (state) => {
+    const ms = state.data.properties.recurrence_type_left
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return humanProper(value)
+      }).join(';');
+    } else { return "" }
+    return values.join(";");
+  }),
+  field('gciclubfoot__Relapse_Type_Right__c', (state) => {
+    const ms = state.data.properties.recurrence_type_right
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return humanProper(value)
+      }).join(';');
+    } else { return "" }
+    return values.join(";");
+  }),
+  
+  //Referral Questions 
+   field('gciclubfoot__Date_Referral_Made__c', (state) => {
+    const validDate = state.data.properties.date_referral_made
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
+  field('gciclubfoot__Referral_Hospital__c', dataValue('properties.referral_hospital')),
+  field('gciclubfoot__Referral_Provider__c', dataValue('properties.referral_provider')),
+  field('gciclubfoot__Referral_Surgery_Type__c', humanProper(state.data.properties.referral_surgery_type)), // picklist
+  field('gciclubfoot__Referral_Surgery_Type_Other__c', dataValue('properties.referral_surgery_type_other')),
+  field('gciclubfoot__Referral_Treatment_Date__c', (state) => {
+    const validDate = state.data.properties.referral_treatment_date
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
+  field('gciclubfoot__Referral_Type__c', humanProper(state.data.properties.referral_type)), // picklist
+  field('gciclubfoot__Referral_Advanced_Care_Specified__c', dataValue('properties.referral_advanced_care')),
+  
+  //Tenotomy Questions
+  field('gciclubfoot__Date_of_Tenotomy__c', (state) => {
+    const validDate = state.data.properties.date_tenotomy
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
+  field('gciclubfoot__Tenotomy_Given__c', humanProper(state.data.properties.tenotomy_given)), // picklist
+  field('gciclubfoot__Tenotomy_Hospital__c', dataValue('properties.tenotomy_hospital')),
+  field('gciclubfoot__Tenotomy_Provider__c', dataValue('properties.tenotomy_provider')),
+  
   field('gciclubfoot__Treatment_Completed__c', (state) => {
     return (state.data.properties.treatment_completed == "1" ? true : false) // sf checkbox
   }),
@@ -116,5 +162,5 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     state.data.properties.patient_id + "/" +
     state.data.properties.visit_count
   }),
-  field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider_name'))
+  field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider'))
 ));
