@@ -27,6 +27,22 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     const validDate = state.data.properties.patient_dob
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
+  field('gciclubfoot__Date_of_First_Brace__c', (state) => {
+    const validDate = state.data.properties.date_first_brace
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
+   field('gciclubfoot__Date_of_First_Visit__c', (state) => {
+    const validDate = state.data.properties.date_first_visit
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
+    field('gciclubfoot__Date_of_Tenotomy__c', (state) => {
+    const validDate = state.data.properties.date_tenotomy
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
+   field('gciclubfoot__Date_Stopped_Treatment__c', (state) => {
+    const validDate = state.data.properties.stop_date
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
   field('gciclubfoot__Location_Level_1__c', dataValue('properties.location_level1_name')),
   field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2_name')),
   field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),
@@ -93,6 +109,9 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     const validDate = state.data.properties.transfer_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
+   field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
+  field('gciclubfoot__Tribe_Ethnicity__c', dataValue('properties.liberia_tribe_ethnicity')),
+  field('gciclubfoot__neigbhorhood__c', dataValue('properties.patient_neighborhood')),
   field('gciclubfoot__Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
   field('gciclubfoot__Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
