@@ -105,6 +105,10 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Guardian_3_Relationship_Other__c', dataValue('properties.guardian3_relationship_other')),
   field('gciclubfoot__Guardian_3_Phone_Number_1__c', dataValue('properties.guardian3_phone1')),
   field('gciclubfoot__Guardian_3_Phone_Number_2__c', dataValue('properties.guardian3_phone2')),
+  field('gciclubfoot__Tenotomy_Given__c', humanProper(state.data.properties.tenotomy_given)), // picklist
+  field('gciclubfoot__Tenotomy_Hospital__c', dataValue('properties.tenotomy_hospital')),
+  field('gciclubfoot__Tenotomy_Provider__c', dataValue('properties.tenotomy_provider')),
+  field('gciclubfoot__Tenotomy_Reason_Not_Given__c', humanProper(state.data.properties.tenotomy_reason_not_given)), // picklist
   field('gciclubfoot__Transfer_Date__c', (state) => {
     const validDate = state.data.properties.transfer_date
     return ( validDate ? new Date(validDate).toISOString() : null )
