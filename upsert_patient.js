@@ -48,7 +48,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),
   field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
   field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
-  field('gciclubfoot__Neighborhood__c', dataValue('properties.patient_neighbor')),
+  field('gciclubfoot__Neighborhood__c', dataValue('properties.patient_neighborhood')),
   field('gciclubfoot__Abnormalities__c', (state) => {
     //SF Multi-Select PL Values = No Abnormalities, Lower Extremities, Upper Extremities, Hips, Spine, Head, Heart, Lungs, Urinary, Digestive, Skin, Neurological, Other
     const ms = state.data.properties.abnormalities
