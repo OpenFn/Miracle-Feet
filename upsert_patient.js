@@ -116,7 +116,6 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   }),
    field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
   field('gciclubfoot__Tribe_Ethnicity__c', dataValue('properties.liberia_tribe_ethnicity')),
-  field('gciclubfoot__neigbhorhood__c', dataValue('properties.patient_neighborhood')),
   field('gciclubfoot__Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
   field('gciclubfoot__Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
