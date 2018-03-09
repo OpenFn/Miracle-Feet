@@ -37,7 +37,6 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
         return humanProper(value)
       }).join(';');
     } else { return "" }
-    return values.join(";");
   }),
   field('gciclubfoot__Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
   field('gciclubfoot__Date_Referral_Made__c', (state) => {
@@ -116,7 +115,6 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
         return humanProper(value)
       }).join(';');
     } else { return "" }
-    return values.join(";");
   }),
   field('gciclubfoot__Relapse_Type_Right__c', (state) => {
     const ms = state.data.properties.recurrence_type_right
@@ -125,7 +123,6 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
         return humanProper(value)
       }).join(';');
     } else { return "" }
-    return values.join(";");
   }),
   
   //Referral Questions 
