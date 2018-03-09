@@ -88,7 +88,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Right_Pirani_Score_Improved__c', dataValue('properties.r_score_improved')),
   field('gciclubfoot__Right_Pirani_Score_Not_Improved__c', dataValue('properties.r_score_not_improved')),
   field('gciclubfoot__Right_Pirani_Score_Same__c', dataValue('properties.r_score_same')),
-  field('gciclubfoot__Right_Treatment__c', humanProper(state.data.properties.r_reatment)), // picklist
+  field('gciclubfoot__Right_Treatment__c', humanProper(state.data.properties.r_treatment)), // picklist
   field('gciclubfoot__Right_Treatment_Other__c', dataValue('properties.r_treatment_other')),
   field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
   field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
