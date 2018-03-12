@@ -119,17 +119,17 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
   field('gciclubfoot__Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.opened_date
+    const validDate = state.data.properties.date_opened
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
   field('gciclubfoot__Last_Modified_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.last_modified_date
+    const validDate = state.data.properties.date_modified
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
   field('gciclubfoot__Case_Closed_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.closed_date
+    const validDate = state.data.properties.date_closed
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
