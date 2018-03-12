@@ -155,8 +155,8 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Visit_Count__c', dataValue('properties.visit_count')),
   field('Name', (state) => {
-    return state.data.properties.patient_name + "-" +
-    state.data.properties.patient_id + "/" +
+    return state.data.properties.patient_name + "/" +
+    state.data.properties.patient_id + ":" +
     state.data.properties.visit_count
   }),
   field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider'))
