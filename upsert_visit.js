@@ -10,6 +10,8 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     const validDate = state.data.properties.visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
+  
+  //Brace Questions 
   field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
   field('gciclubfoot__Brace_Problems__c', humanProper(state.data.properties.brace_problems)), // picklist
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
@@ -21,6 +23,17 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
       }).join(';');
     } else { return "" }
   }),
+  
+  field('gciclubfoot__Brace_Type__c', humanProper(state.data.properties.brace_type)), // picklist
+  field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
+  field('gciclubfoot__MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
+  field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
+  field('gciclubfoot__MiracleFeet_Shoe_Size__c', humanProper(state.data.properties.miraclefeet_shoe_size)), // picklist
+  field('gciclubfoot__MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
+  field('gciclubfoot__MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
+ 
+  
+  
   field('gciclubfoot__Case_Closed_by_Username__c', humanProper(state.data.properties.closed_by_username)), // picklist
   field('gciclubfoot__Case_Closed__c', (state) => {
     return (state.data.properties.closed == "1" ? true : false) // sf checkbox
