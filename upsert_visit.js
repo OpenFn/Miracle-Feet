@@ -39,7 +39,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return (state.data.properties.closed == "1" ? true : false) // sf checkbox
   }),
   field('gciclubfoot__Case_Closed_Date__c', (state) => {
-    const validDate = state.data.properties.closed_date
+    const validDate = state.data.properties.date_closed
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
@@ -66,7 +66,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__ICR_ID__c', dataValue('properties.visit_original_id')),
   field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
   field('gciclubfoot__Last_Modified_Date_CommCare__c', (state) => {
-    const validDate = state.data.last_modified_date
+    const validDate = state.data.date_modified
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Left_Angle_of_Abduction__c', dataValue('properties.l_angle_abduction')),
@@ -112,7 +112,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.opened_date
+    const validDate = state.data.properties.date_opened
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('properties.owner_name')),
