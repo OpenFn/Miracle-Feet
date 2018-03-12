@@ -86,7 +86,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
   field('gciclubfoot__Referral_Source__c', humanProper(state.data.properties.referral_source)), // picklist
   field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
-  field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_health_facility')),
+  field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_hf')),
   field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
   field('gciclubfoot__Guardian_1_First_Name__c', dataValue('properties.guardian1_first_name')),
   field('gciclubfoot__Guardian_1_Last_Name__c', dataValue('properties.guardian1_last_name')),
