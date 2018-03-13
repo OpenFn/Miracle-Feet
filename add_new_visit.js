@@ -91,7 +91,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   // field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
-  field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.meta.username')),
+  // field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.subcase_0.case['@date_modified']
     return ( validDate ? new Date(validDate).toISOString() : null )
