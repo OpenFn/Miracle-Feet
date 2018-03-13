@@ -106,7 +106,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('form.case.update.stop_reason_other')),
   field('gciclubfoot__Tribe_Ethnicity__c', humanProper(state.data.form.case.update.tribe_ethnicity)),
   field('gciclubfoot__Clinic_Transferred_To__c', dataValue('form.case.update.transfer_clinic')),
-  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
+  // field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.commcare_usercase.case['@date_modified']
