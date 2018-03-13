@@ -23,15 +23,15 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     const validDate = state.data.form.case.update.date_first_brace
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-   field('gciclubfoot__Date_of_First_Visit__c', (state) => {
+  field('gciclubfoot__Date_of_First_Visit__c', (state) => {
     const validDate = state.data.form.case.update.date_first_visit
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-    field('gciclubfoot__Date_of_Tenotomy__c', (state) => {
+  field('gciclubfoot__Date_of_Tenotomy__c', (state) => {
     const validDate = state.data.form.case.update.date_tenotomy
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-   field('gciclubfoot__Date_Stopped_Treatment__c', (state) => {
+  field('gciclubfoot__Date_Stopped_Treatment__c', (state) => {
     const validDate = state.data.form.case.update.stop_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
@@ -106,12 +106,12 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('form.case.update.stop_reason_other')),
   field('gciclubfoot__Tribe_Ethnicity__c', humanProper(state.data.form.case.update.tribe_ethnicity)),
   field('gciclubfoot__Clinic_Transferred_To__c', dataValue('form.case.update.transfer_clinic')),
+  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
+  field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.commcare_usercase.case['@date_modified']
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-  field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.meta.username')),
-  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.form.case.update.close_reason)),
   field('gciclubfoot__ICR_ID__c', dataValue('form.case.update.patient_original_id')),
   field('gciclubfoot__Treatment_Completed__c', (state) => {

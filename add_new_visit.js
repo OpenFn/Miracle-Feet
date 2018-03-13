@@ -90,13 +90,12 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     const validDate = state.data.form.subcase_0.case.update.next_visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-  // TODO: move to submitted
+  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.subcase_0.case['@date_modified']
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
 
   //Relapse questions ==========================================================
   field('gciclubfoot__Relapse__c', humanProper(state.data.form.subcase_0.case.update.recurrence)), // picklist
@@ -121,7 +120,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   // ===========================================================================
 
   // Referral Questions ========================================================
-   field('gciclubfoot__Date_Referral_Made__c', (state) => {
+  field('gciclubfoot__Date_Referral_Made__c', (state) => {
     const validDate = state.data.form.subcase_0.case.update.date_referral_made
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
