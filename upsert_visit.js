@@ -10,6 +10,8 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     const validDate = state.data.properties.visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
+  
+  //Brace Questions 
   field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
   field('gciclubfoot__Brace_Problems__c', humanProper(state.data.properties.brace_problems)), // picklist
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
@@ -21,12 +23,23 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
       }).join(';');
     } else { return "" }
   }),
+  
+  field('gciclubfoot__Brace_Type__c', humanProper(state.data.properties.brace_type)), // picklist
+  field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
+  field('gciclubfoot__MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
+  field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
+  field('gciclubfoot__MiracleFeet_Shoe_Size__c', humanProper(state.data.properties.miraclefeet_shoe_size)), // picklist
+  field('gciclubfoot__MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
+  field('gciclubfoot__MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
+ 
+  
+  
   field('gciclubfoot__Case_Closed_by_Username__c', humanProper(state.data.properties.closed_by_username)), // picklist
   field('gciclubfoot__Case_Closed__c', (state) => {
     return (state.data.properties.closed == "1" ? true : false) // sf checkbox
   }),
   field('gciclubfoot__Case_Closed_Date__c', (state) => {
-    const validDate = state.data.properties.closed_date
+    const validDate = state.data.properties.date_closed
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
@@ -53,7 +66,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__ICR_ID__c', dataValue('properties.visit_original_id')),
   field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
   field('gciclubfoot__Last_Modified_Date_CommCare__c', (state) => {
-    const validDate = state.data.last_modified_date
+    const validDate = state.data.date_modified
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Left_Angle_of_Abduction__c', dataValue('properties.l_angle_abduction')),
@@ -88,7 +101,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Right_Pirani_Score_Improved__c', dataValue('properties.r_score_improved')),
   field('gciclubfoot__Right_Pirani_Score_Not_Improved__c', dataValue('properties.r_score_not_improved')),
   field('gciclubfoot__Right_Pirani_Score_Same__c', dataValue('properties.r_score_same')),
-  field('gciclubfoot__Right_Treatment__c', humanProper(state.data.properties.r_reatment)), // picklist
+  field('gciclubfoot__Right_Treatment__c', humanProper(state.data.properties.r_treatment)), // picklist
   field('gciclubfoot__Right_Treatment_Other__c', dataValue('properties.r_treatment_other')),
   field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
   field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
@@ -99,7 +112,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.opened_date
+    const validDate = state.data.properties.date_opened
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Owner_Name_CommCare__c', dataValue('properties.owner_name')),
@@ -155,9 +168,10 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Visit_Count__c', dataValue('properties.visit_count')),
   field('Name', (state) => {
-    return state.data.properties.patient_name + "-" +
+    return state.data.properties.patient_name + "/" +
     state.data.properties.patient_id + "/" +
     state.data.properties.visit_count
   }),
+  field('gciclubfoot__Visit_Notes__c', dataValue('properties.visit_notes')),
   field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider'))
 ));

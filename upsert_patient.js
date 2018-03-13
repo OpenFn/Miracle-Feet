@@ -86,7 +86,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
   field('gciclubfoot__Referral_Source__c', humanProper(state.data.properties.referral_source)), // picklist
   field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
-  field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_health_facility')),
+  field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_hf')),
   field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
   field('gciclubfoot__Guardian_1_First_Name__c', dataValue('properties.guardian1_first_name')),
   field('gciclubfoot__Guardian_1_Last_Name__c', dataValue('properties.guardian1_last_name')),
@@ -115,21 +115,21 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
    field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
-  field('gciclubfoot__Tribe_Ethnicity__c', dataValue('properties.liberia_tribe_ethnicity')),
+  field('gciclubfoot__Tribe_Ethnicity__c', dataValue('properties.tribe_ethnicity')),
   field('gciclubfoot__Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
   field('gciclubfoot__Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.opened_date
+    const validDate = state.data.properties.date_opened
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
   field('gciclubfoot__Last_Modified_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.last_modified_date
+    const validDate = state.data.properties.date_modified
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
   field('gciclubfoot__Case_Closed_Date_CommCare__c', (state) => {
-    const validDate = state.data.properties.closed_date
+    const validDate = state.data.properties.date_closed
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
