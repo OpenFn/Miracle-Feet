@@ -19,8 +19,8 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('Name', dataValue('properties.patient_name')),
-  field('gciclubfoot__First_Name__c', dataValue('properties.patient_first_name')),
-  field('gciclubfoot__Last_Name__c', dataValue('properties.patient_last_name')),
+  field('gciclubfoot__First_Name__c', humanProper(state.data.properties.patient_first_name)),
+  field('gciclubfoot__Last_Name__c', humanProper(state.data.properties.patient_last_name)),
   field('gciclubfoot__Gender__c', humanProper(state.data.properties.patient_gender)), // picklist
   field('gciclubfoot__Date_of_Birth_Known__c', humanProper(state.data.properties.patient_dob_known)), // picklist
   field('gciclubfoot__Date_of_Birth__c', (state) => {
