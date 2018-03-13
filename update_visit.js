@@ -6,14 +6,13 @@ upsertIf(
   "gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     field('gciclubfoot__commcare_case_id__c', dataValue('case_id')),
     // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
-    // How do we link to the patient? ============================================
     relationship('gciclubfoot__Patient__r', "gciclubfoot__CommCare_Case_ID__c", dataValue('indices.parent.case_id')),
     field('gciclubfoot__Visit_Date__c', (state) => {
       const validDate = state.data.properties.visit_date
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
 
-    //Brace Questions
+    //Brace Questions ==========================================================
     field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
     field('gciclubfoot__Brace_Problems__c', humanProper(state.data.properties.brace_problems)), // picklist
     field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
@@ -25,6 +24,7 @@ upsertIf(
         }).join(';');
       } else { return "" }
     }),
+    // =========================================================================
 
     field('gciclubfoot__Brace_Type__c', humanProper(state.data.properties.brace_type)), // picklist
     field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
@@ -33,9 +33,6 @@ upsertIf(
     field('gciclubfoot__MiracleFeet_Shoe_Size__c', humanProper(state.data.properties.miraclefeet_shoe_size)), // picklist
     field('gciclubfoot__MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
     field('gciclubfoot__MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
-
-
-
     field('gciclubfoot__Case_Closed_by_Username__c', humanProper(state.data.properties.closed_by_username)), // picklist
     field('gciclubfoot__Case_Closed__c', (state) => {
       return (state.data.properties.closed == "1" ? true : false) // sf checkbox
@@ -119,7 +116,7 @@ upsertIf(
     }),
     field('gciclubfoot__Owner_Name_CommCare__c', dataValue('properties.owner_name')),
 
-    //Relapse questions
+    //Relapse questions ========================================================
     field('gciclubfoot__Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
     field('gciclubfoot__Relapse_Count__c', dataValue('properties.recurrence_count')),
     field('gciclubfoot__Relapse_Feet_Affected__c', humanProper(state.data.properties.recurrence_feet_affected)), // picklist
@@ -139,8 +136,9 @@ upsertIf(
         }).join(';');
       } else { return "" }
     }),
+    // =========================================================================
 
-    //Referral Questions
+    //Referral Questions =======================================================
      field('gciclubfoot__Date_Referral_Made__c', (state) => {
       const validDate = state.data.properties.date_referral_made
       return ( validDate ? new Date(validDate).toISOString() : null )
@@ -155,8 +153,9 @@ upsertIf(
     }),
     field('gciclubfoot__Referral_Type__c', humanProper(state.data.properties.referral_type)), // picklist
     field('gciclubfoot__Referral_Advanced_Care_Specified__c', dataValue('properties.referral_advanced_care')),
+    // =========================================================================
 
-    //Tenotomy Questions
+    //Tenotomy Questions =======================================================
     field('gciclubfoot__Date_of_Tenotomy__c', (state) => {
       const validDate = state.data.properties.date_tenotomy
       return ( validDate ? new Date(validDate).toISOString() : null )
@@ -164,6 +163,7 @@ upsertIf(
     field('gciclubfoot__Tenotomy_Given__c', humanProper(state.data.properties.tenotomy_given)), // picklist
     field('gciclubfoot__Tenotomy_Hospital__c', dataValue('properties.tenotomy_hospital')),
     field('gciclubfoot__Tenotomy_Provider__c', dataValue('properties.tenotomy_provider')),
+    // =========================================================================
 
     field('gciclubfoot__Treatment_Completed__c', (state) => {
       return (state.data.properties.treatment_completed == "1" ? true : false) // sf checkbox

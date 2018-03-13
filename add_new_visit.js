@@ -27,18 +27,6 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__MiracleFeet_Shoe_Size__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_shoe_size)), // picklist
   field('gciclubfoot__MiracleFeet_Brace_Given__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_brace_given)), // picklist
   field('gciclubfoot__MiracleFeet_Shoes_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_shoes_condition)), // picklist
-
-
-  // TODO: confirm that we can safely remove this ==============================
-  // field('gciclubfoot__Case_Closed_by_Username__c', humanProper(state.data.form.subcase_0.case.update.closed_by_username)), // picklist
-  // field('gciclubfoot__Case_Closed__c', (state) => {
-  //   return (state.data.form.subcase_0.case.update.closed == "1" ? true : false) // sf checkbox
-  // }),
-  // field('gciclubfoot__Case_Closed_Date__c', (state) => {
-  //   const validDate = state.data.form.subcase_0.case.update.date_closed
-  //   return ( validDate ? new Date(validDate).toISOString() : null )
-  // }),
-  // ===========================================================================
   field('gciclubfoot__Cast_Count__c', dataValue('form.subcase_0.case.update.cast_count')),
   field('gciclubfoot__Casting_Complications_Type__c', (state) => {
     const ms = state.data.form.subcase_0.case.update.complication_type
@@ -102,22 +90,13 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     const validDate = state.data.form.subcase_0.case.update.next_visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-
-  // TODO: confirm that this is submitted by and submitted date ================
-  // and we can safely remove last_modified and last_modified_by
-  field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.subcase_0.case.update.opened_by_username')),
+  // TODO: move to submitted
+  field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('form.meta.username')),
   field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.date_opened
+    const validDate = state.data.form.subcase_0.case['@date_modified']
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-  // field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
-  // field('gciclubfoot__Last_Modified_Date_CommCare__c', (state) => {
-    // const validDate = state.data.date_modified
-    // return ( validDate ? new Date(validDate).toISOString() : null )
-  // }),
-  // ===========================================================================
-
-  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.subcase_0.case.update.owner_name')),
+  field('gciclubfoot__Owner_Name_CommCare__c', dataValue('form.meta.username')),
 
   //Relapse questions ==========================================================
   field('gciclubfoot__Relapse__c', humanProper(state.data.form.subcase_0.case.update.recurrence)), // picklist
