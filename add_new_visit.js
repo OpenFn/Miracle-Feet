@@ -160,19 +160,19 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field("gciclubfoot__Photo_1_URL__c", function(state) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
-    const image = state.data.form.photos.photos.photo1;
+    const image = state.data.form.photos.photos.photo_1;
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   }),
   field("gciclubfoot__Photo_2_URL__c", function(state) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
-    const image = state.data.form.photos.photos.photo2;
+    const image = state.data.form.photos.photos.photo_2;
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   }),
   field("gciclubfoot__Photo_3_URL__c", function(state) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
-    const image = state.data.form.photos.photos.photo3;
+    const image = state.data.form.photos.photos.photo_3;
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   })
 ));
