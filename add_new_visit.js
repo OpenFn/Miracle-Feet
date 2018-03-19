@@ -160,19 +160,19 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field("gciclubfoot__Photo_1_URL__c", function(state) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.photos.photo_1 : null);
+    const image = (state.data.form.photos.add_photos == "yes" ? state.data.form.photos.photos.photo_1 : null);
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   }),
   field("gciclubfoot__Photo_2_URL__c", function(state) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.photos.photo_2 : null);
+    const image = (state.data.form.photos.add_photos == "yes" ? state.data.form.photos.photos.photo_2 : null);
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   }),
   field("gciclubfoot__Photo_3_URL__c", function(state) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.photos.photo_3 : null);
+    const image = (state.data.form.photos.add_photos == "yes" ? state.data.form.photos.photos.photo_3 : null);
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   })
 ));
