@@ -144,7 +144,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field("gciclubfoot__Consent_Signature__c", function(state) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
-    const image = state.data.form.photos.guardian_signature;
+    const image = (state.data.form.photos ? state.data.form.photos.guardian_signature : null);
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   })
 ));
