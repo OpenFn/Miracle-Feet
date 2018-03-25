@@ -1,14 +1,15 @@
 alterState((state) => {
-  function handlePhoto(state, photoField) {
+  state.handlePhoto = function handlePhoto(state, photoField) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
     const hasPhotos = (state.data.form.photos && state.data.form.photos.add_photos == "yes")
     const image = (hasPhotos ? state.data.form.photos.photos[`${photoField}`] : null);
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   };
-  state.handlePhoto = handlePhoto;
+
   return state
-})
+});
+
 upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__commcare_case_id__c', dataValue('form.subcase_0.case.@case_id')),
   relationship('gciclubfoot__Patient__r', "gciclubfoot__CommCare_Case_ID__c", dataValue('form.case.@case_id')),
