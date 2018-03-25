@@ -1,3 +1,23 @@
+alterState((state) => {
+  state.handlePhoto = function handlePhoto(state, photoField) {
+    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
+    const uuid = state.data.metadata.instanceID;
+    const image = (state.data.form.photos ? state.data.form.photos[`${photoField}`] : null);
+    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+  };
+
+  state.handleMultiSelect = function(state, multiField) {
+    const ms = state.data.form.case.update[`${multiField}`]
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return humanProper(value)
+      }).join(';');
+    } else { return "" }
+  }
+
+  return state
+});
+
 upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__CommCare_Case_ID__c', dataValue("form.case.@case_id")),
   relationship('gciclubfoot__Clinic__r', 'gciclubfoot__CAST_Location_ID__c', dataValue('form.case.create.owner_id')),
@@ -42,12 +62,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Street__c', dataValue('form.case.update.patient_address')),
   field('gciclubfoot__Neighborhood__c', dataValue('form.case.update.patient_neighborhood')),
   field('gciclubfoot__Abnormalities__c', (state) => {
-    const ms = state.data.form.case.update.abnormalities
-    if (ms) {
-      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-        return humanProper(value)
-      }).join(';');
-    } else { return "" }
+    return state.handleMultiSelect(state, "abnormalities");
   }),
   field('gciclubfoot__Other_Abnormalities__c', dataValue('form.case.update.abnormalities_other')),
   field('gciclubfoot__Consent_Treatment__c', humanProper(state.data.form.case.update.consent_treatment)),
@@ -56,12 +71,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Consent_Photograph_Treatment__c', humanProper(state.data.form.case.update.consent_photograph_treatment)),
   field('gciclubfoot__Diagnosis__c', humanProper(state.data.form.case.update.diagnosis)),
   field('gciclubfoot__Diagnosis_Idiopathic_Specified__c', (state) => {
-    const ms = state.data.form.case.update.diagnosis_idiopathic_specified
-    if (ms) {
-      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-        return humanProper(value)
-      }).join(';');
-    } else { return "" }
+    return state.handleMultiSelect(state, "diagnosis_idiopathic_specified");
   }),
   field('gciclubfoot__Diagnosis_Secondary_Specified__c', (state) => {
     const ms = state.data.form.case.update.diagnosis_secondary_specified
@@ -118,33 +128,18 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     return (state.data.form.case.update.treatment_completed == "1" ? true : false)
   }),
   field("gciclubfoot__Registration_Photo_1__c", function(state) {
-    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
-    const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.photo1 : null);
-    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+    return state.handlePhoto(state, "photo1");
   }),
   field("gciclubfoot__Registration_Photo_2__c", function(state) {
-    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
-    const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.photo2 : null);
-    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+    return state.handlePhoto(state, "photo2");
   }),
   field("gciclubfoot__Registration_Photo_3__c", function(state) {
-    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
-    const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.photo3 : null);
-    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+    return state.handlePhoto(state, "photo3");
   }),
   field("gciclubfoot__Registration_Photo_4__c", function(state) {
-    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
-    const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.photo4 : null);
-    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+    return state.handlePhoto(state, "photo4");
   }),
   field("gciclubfoot__Consent_Signature__c", function(state) {
-    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
-    const uuid = state.data.metadata.instanceID;
-    const image = (state.data.form.photos ? state.data.form.photos.guardian_signature : null);
-    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+    return state.handlePhoto(state, "guardian_signature");
   })
 ));
