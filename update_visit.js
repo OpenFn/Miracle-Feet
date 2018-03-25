@@ -1,6 +1,19 @@
 // =============================================================================
 // Upsert Visit records in Salesforce when "Visit" cases are updated in CC.
 // =============================================================================
+alterState((state) => {
+  state.handleMultiSelect = function(state, multiField) {
+    const ms = state.data.properties[`${multiField}`]
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return humanProper(value)
+      }).join(';');
+    } else { return "" }
+  };
+
+  return state
+});
+
 upsertIf(
   state.data.date_modified != state.data.properties.date_opened + "000Z",
   "gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
@@ -17,12 +30,7 @@ upsertIf(
     field('gciclubfoot__Brace_Problems__c', humanProper(state.data.properties.brace_problems)), // picklist
     field('gciclubfoot__Brace_Problems_Notes__c', dataValue('properties.brace_problems_specified')),
     field('gciclubfoot__Brace_Problems_Type__c', (state) => {
-      const ms = state.data.properties.brace_problems_type
-      if (ms) {
-        return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-          return humanProper(value)
-        }).join(';');
-      } else { return "" }
+      return state.handleMultiSelect(state, "brace_problems_type")
     }),
     // =========================================================================
 
@@ -43,12 +51,7 @@ upsertIf(
     }),
     field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
     field('gciclubfoot__Casting_Complications_Type__c', (state) => {
-      const ms = state.data.properties.complication_type
-      if (ms) {
-        return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-          return humanProper(value)
-        }).join(';');
-      } else { return "" }
+      return state.handleMultiSelect(state, "complication_type")
     }),
     field('gciclubfoot__Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
     field('gciclubfoot__Date_Referral_Made__c', (state) => {
@@ -121,20 +124,10 @@ upsertIf(
     field('gciclubfoot__Relapse_Count__c', dataValue('properties.recurrence_count')),
     field('gciclubfoot__Relapse_Feet_Affected__c', humanProper(state.data.properties.recurrence_feet_affected)), // picklist
     field('gciclubfoot__Relapse_Type_Left__c', (state) => {
-      const ms = state.data.properties.recurrence_type_left
-      if (ms) {
-        return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-          return humanProper(value)
-        }).join(';');
-      } else { return "" }
+      return state.handleMultiSelect(state, "recurrence_type_left")
     }),
     field('gciclubfoot__Relapse_Type_Right__c', (state) => {
-      const ms = state.data.properties.recurrence_type_right
-      if (ms) {
-        return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-          return humanProper(value)
-        }).join(';');
-      } else { return "" }
+      return state.handleMultiSelect(state, "recurrence_type_right")
     }),
     // =========================================================================
 

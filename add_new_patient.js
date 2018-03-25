@@ -13,7 +13,7 @@ alterState((state) => {
         return humanProper(value)
       }).join(';');
     } else { return "" }
-  }
+  };
 
   return state
 });
