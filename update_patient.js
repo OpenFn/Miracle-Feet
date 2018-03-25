@@ -1,6 +1,19 @@
 // =============================================================================
 // Upsert Patient records in Salesforce from patient case updates in Commcare.
 // =============================================================================
+alterState((state) => {
+  state.handleMultiSelect = function(state, multiField) {
+    const ms = state.data.properties[`${multiField}`]
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return humanProper(value)
+      }).join(';');
+    } else { return "" }
+  };
+
+  return state
+});
+
 upsertIf(
   state.data.date_modified != state.data.properties.date_opened + "000Z",
   "gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
@@ -47,13 +60,7 @@ upsertIf(
     field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
     field('gciclubfoot__Neighborhood__c', dataValue('properties.patient_neighborhood')),
     field('gciclubfoot__Abnormalities__c', (state) => {
-      //SF Multi-Select PL Values = No Abnormalities, Lower Extremities, Upper Extremities, Hips, Spine, Head, Heart, Lungs, Urinary, Digestive, Skin, Neurological, Other
-      const ms = state.data.properties.abnormalities
-      if (ms) {
-        return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-          return humanProper(value)
-        }).join(';');
-      } else { return "" }
+      return state.handleMultiSelect(state, "abnormalities")
     }),
     field('gciclubfoot__Other_Abnormalities__c', dataValue('properties.abnormalities_other')),
     field('gciclubfoot__Consent_Treatment__c', humanProper(state.data.properties.consent_treatment)), // picklist
@@ -62,22 +69,10 @@ upsertIf(
     field('gciclubfoot__Consent_Photograph_Treatment__c', humanProper(state.data.properties.consent_photograph_treatment)), // picklist
     field('gciclubfoot__Diagnosis__c', humanProper(state.data.properties.diagnosis)), // picklist
     field('gciclubfoot__Diagnosis_Idiopathic_Specified__c', (state) => {
-      //SF Multi-select Untreated (Under 2), Neglected (Over 2), Resistant, Recurrent, Aytpical, Complex
-      const ms = state.data.properties.diagnosis_idiopathic_specified
-      if (ms) {
-        return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-          return humanProper(value)
-        }).join(';');
-      } else { return "" }
+      return state.handleMultiSelect(state, "diagnosis_idiopathic_specified")
     }),
     field('gciclubfoot__Diagnosis_Secondary_Specified__c', (state) => {
-      //SF multi-select Syndromic, Spina Bifida, Arthrogryposis, Other Neuropathic
-      const ms = state.data.properties.diagnosis_secondary_specified
-      if (ms) {
-        return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
-          return humanProper(value)
-        }).join(';');
-      } else { return "" }
+      return state.handleMultiSelect(state, "diagnosis_secondary_specified")
     }),
     field('gciclubfoot__Diagnosis_Notes__c', dataValue('properties.diagnosis_notes')),
     field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
