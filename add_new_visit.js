@@ -152,9 +152,9 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Visit_Count__c', dataValue('form.subcase_0.case.update.visit_count')),
   field('Name', (state) => {
-    return state.data.form.subcase_0.case.update.patient_name + "/" +
-    state.data.form.subcase_0.case.update.patient_id + "/" +
-    state.data.form.subcase_0.case.update.visit_count
+    return state.data.form.subcase_0.case.update.patient_name + "(" +
+    state.data.form.subcase_0.case.update.patient_id + ") (" +
+    state.data.form.subcase_0.case.update.visit_date + ")"
   }),
   field('gciclubfoot__Visit_Notes__c', dataValue('form.subcase_0.case.update.visit_notes')),
   field('gciclubfoot__Treatment_Provider__c', dataValue('form.subcase_0.case.update.treatment_provider')),
