@@ -26,6 +26,10 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     const validDate = state.data.form.subcase_0.case.update.visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
+  field('gciclubfoot__Next_Visit_Date__c', (state) => {
+    const validDate = state.data.form.subcase_0.case.update.next_visit_date
+    return ( validDate ? new Date(validDate).toISOString() : null )
+  }),
 
   //Brace Questions ============================================================
   field('gciclubfoot__Brace_Count__c', dataValue('form.subcase_0.case.update.brace_count')),
