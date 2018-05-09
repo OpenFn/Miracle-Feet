@@ -24,6 +24,10 @@ upsertIf(
       const validDate = state.data.properties.visit_date
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
+     field('gciclubfoot__Next_Visit_Date__c', (state) => {
+      const validDate = state.data.properties.next_visit_date
+      return ( validDate ? new Date(validDate).toISOString() : null )
+    }),
 
     //Brace Questions ==========================================================
     field('gciclubfoot__Brace_Count__c', dataValue('properties.brace_count')),
