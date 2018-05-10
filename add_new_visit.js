@@ -27,7 +27,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Next_Visit_Date__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.next_visit_date
+    const validDate = state.data.form.case.update.update.next_visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
 
