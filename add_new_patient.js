@@ -19,6 +19,7 @@ alterState((state) => {
 });
 
 upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
+  //hello changes
   field('gciclubfoot__CommCare_Case_ID__c', dataValue("form.case.@case_id")),
   relationship('gciclubfoot__Clinic__r', 'gciclubfoot__CAST_Location_ID__c', dataValue('form.case.create.owner_id')),
   field('gciclubfoot__First_Name__c', humanProper(state.data.form.case.update.patient_first_name)),
