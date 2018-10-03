@@ -87,11 +87,11 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Feet_Affected__c', humanProper(state.data.form.case.update.feet_affected)),
   /*field('gciclubfoot__Referral_Source__c', humanProper(state.data.form.case.update.referral_source)),*/
   //New fields
-  field("gciclubfoot__Referral_Source__c", (state) => {
+  field('gciclubfoot__Referral_Source__c', (state) => {
     const ref = state.data.form.case.update
     return ( ref.referral_source ? ref.referral_source_india : ref.referral_source );
   }),
-  field("gciclubfoot__rbsk_deic__c", dataValue('form.case.update.referral_source_rbsk_deic')),
+  field('gciclubfoot__rbsk_deic__c', dataValue('form.case.update.referral_source_rbsk_deic')),
   //
   field('gciclubfoot__Referral_Source_Other__c', dataValue('form.case.update.referral_source_other')),
   field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('form.case.update.referral_source_hf')),
