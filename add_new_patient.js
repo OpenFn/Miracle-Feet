@@ -27,7 +27,8 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__CAST_Patient_ID__c', dataValue('form.case.update.patient_id')),
   field('gciclubfoot__Age_Months_First_Brace__c', dataValue('form.case.update.age_months_first_brace_rounded')),
   field('gciclubfoot__Age_Months_Started_Treatment__c', dataValue('form.case.update.age_months_start_treatment_rounded')),
-  field('gciclubfoot__Secondary_ID__c', dataValue('form.case.update.secondary_id')),
+  //changed from secondary_id to patient_file_number
+  field('gciclubfoot__Secondary_ID__c', dataValue('form.case.update.patient_file_number')),
   field('gciclubfoot__Secondary_ID_Type__c', dataValue('form.case.update.secondary_id_type')),
   field('gciclubfoot__Registration_Date__c', (state) => {
     const validDate = state.data.form.case.update.registration_date
@@ -84,7 +85,14 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   }),
   field('gciclubfoot__Diagnosis_Notes__c', dataValue('form.case.update.diagnosis_notes')),
   field('gciclubfoot__Feet_Affected__c', humanProper(state.data.form.case.update.feet_affected)),
-  field('gciclubfoot__Referral_Source__c', humanProper(state.data.form.case.update.referral_source)),
+  /*field('gciclubfoot__Referral_Source__c', humanProper(state.data.form.case.update.referral_source)),*/
+  //New fields
+  field("gciclubfoot__Referral_Source__c", (state) => {
+    const ref = state.data.form.case.update
+    return ( ref.referral_source ? ref.referral_source_india : ref.referral_source );
+  }),
+  field("gciclubfoot__rbsk_deic__c", dataValue('form.case.update.referral_source_rbsk_deic')),
+  //
   field('gciclubfoot__Referral_Source_Other__c', dataValue('form.case.update.referral_source_other')),
   field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('form.case.update.referral_source_hf')),
   field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('form.case.update.referral_source_doctor')),
