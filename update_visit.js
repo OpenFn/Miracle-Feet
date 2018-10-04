@@ -36,18 +36,13 @@ upsertIf(
     field('gciclubfoot__Brace_Problems_Type__c', (state) => {
       return state.handleMultiSelect(state, "brace_problems_type")
     }),
-    // =========================================================================
-
-    // field('gciclubfoot__Brace_Type__c', humanProper(state.data.properties.brace_type)), // picklist
     field('gciclubfoot__Brace_Type__c', (state) => {
       const ref = state.data.properties
       return ( ref.brace_type ? ref.brace_type_india : ref.brace_type );
     }),
-    //
     field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
     field('gciclubfoot__MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
     field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
-    //field('gciclubfoot__MiracleFeet_Shoe_Size__c', humanProper(state.data.properties.miraclefeet_shoe_size)), // picklist
     field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
       const form = state.data.properties
       return ( form.miraclefeet_shoe_size ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
