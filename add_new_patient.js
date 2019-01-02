@@ -145,3 +145,4 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     return state.handlePhoto(state, "guardian_signature");
   })
 ));
+//
