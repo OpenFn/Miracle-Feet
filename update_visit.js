@@ -1,5 +1,6 @@
 // =============================================================================
 // Upsert Visit records in Salesforce when "Visit" cases are updated in CC.
+// Example Note
 // =============================================================================
 alterState((state) => {
   state.handleMultiSelect = function(state, multiField) {
