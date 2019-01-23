@@ -31,7 +31,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('gciclubfoot__Brace_Count__c', dataValue('form.subcase_0.case.update.brace_count')),
-  field('gciclubfoot__Brace_Problems__c', humanProper('form.subcase_0.case.update.brace_problems')), // picklist
+  field('gciclubfoot__Brace_Problems__c', dataValue('form.subcase_0.case.update.brace_problems')), // picklist
   field('gciclubfoot__Brace_Problems_Notes__c', dataValue('form.subcase_0.case.update.brace_problems_specified')),
   field('gciclubfoot__Brace_Problems_Type__c', (state) => {
     return state.handleMultiSelect(state, "brace_problems_type")
