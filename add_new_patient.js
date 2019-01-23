@@ -5,6 +5,15 @@ alterState((state) => {
     const image = (state.data.form.photos ? state.data.form.photos[`${photoField}`] : null);
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   };
+  
+  state.consentPhoto = function handlePhoto(state, photoField) {
+    const url1 = `https:`
+    const url2 = `/`
+    const baseUrl = `/www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
+    const uuid = state.data.metadata.instanceID;
+    const image = (state.data.form.consent.photo_consent_5[`${photoField}`] ? state.data.form.consent.photo_consent_5[`${photoField}`]  : null);
+    return ( image ? `${url1}${url2}${baseUrl}${uuid}/${image}` : "" )
+  };
 
   state.handleMultiSelect = function(state, multiField) {
     const ms = state.data.form.case.update[`${multiField}`]
@@ -142,7 +151,8 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
     return state.handlePhoto(state, "photo4");
   }),
   field("gciclubfoot__Consent_Signature__c", function(state) {
-    return state.handlePhoto(state, "guardian_signature");
+    const c_photo = state.data.form.consent.photo_consent_5.consent_form_photo;
+    return ( c_photo ? state.consentPhoto(state, "consent_form_photo") : state.consentPhoto(state, "guardian_signature"));
   })
 ));
 //
