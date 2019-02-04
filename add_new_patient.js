@@ -150,9 +150,6 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field("gciclubfoot__Registration_Photo_4__c", function(state) {
     return state.handlePhoto(state, "photo4");
   }),
-  field("gciclubfoot__Consent_Signature__c", function(state) {
-    const c_photo = state.data.form.consent.photo_consent_5.consent_form_photo;
-    return ( c_photo ? state.consentPhoto(state, "consent_form_photo") : state.consentPhoto(state, "guardian_signature"));
-  })
+
 ));
 //
