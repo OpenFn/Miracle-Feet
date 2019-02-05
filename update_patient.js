@@ -68,6 +68,7 @@ upsertIf(
     field('gciclubfoot__Consent_Photograph_Marketing__c', humanProper(state.data.properties.consent_photograph_marketing)), // picklist
     field('gciclubfoot__Consent_Photograph_Treatment__c', humanProper(state.data.properties.consent_photograph_treatment)), // picklist
     field('gciclubfoot__Diagnosis__c', humanProper(state.data.properties.diagnosis)), // picklist
+    field('gciclubfoot__Bracing_Stage__c', dataValue('properties.bracing_stage')),
     field('gciclubfoot__Diagnosis_Idiopathic_Specified__c', (state) => {
       return state.handleMultiSelect(state, "diagnosis_idiopathic_specified")
     }),
