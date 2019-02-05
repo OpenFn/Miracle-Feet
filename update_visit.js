@@ -117,7 +117,7 @@ upsertIf(
     field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
     field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
     field('gciclubfoot__New_Brace__c', dataValue('properties.is_new_brace')),
-    field('gciclubfoot__Bracing_Stage__c', dataValue('properties.bracing_stage')),
+    field('Bracing_Stage__c', dataValue('properties.bracing_stage')),
     field('gciclubfoot__Next_Visit_Date__c', (state) => {
       const validDate = state.data.properties.next_visit_date
       return ( validDate ? new Date(validDate).toISOString() : null )
