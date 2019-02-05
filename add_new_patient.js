@@ -149,6 +149,6 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   }),
   field("gciclubfoot__Registration_Photo_4__c", function(state) {
     return state.handlePhoto(state, "photo4");
-  }),
+  })
 ));
 //
