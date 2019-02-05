@@ -103,7 +103,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.form.subcase_0.case.update.r_surgery_type)),
   field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('form.subcase_0.case.update.r_surgery_type_other')),
   field('gciclubfoot__New_Brace__c', dataValue('form.subcase_0.case.update.is_new_brace')),
-  field('gciclubfoot__Bracing_Stage__c', dataValue('form.subcase_0.case.update.bracing_stage')),
+  field('Bracing_Stage__c', dataValue('form.subcase_0.case.update.bracing_stage')),
   field('gciclubfoot__Next_Visit_Date__c', (state) => {
     const validDate = state.data.form.subcase_0.case.update.next_visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
