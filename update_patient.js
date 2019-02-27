@@ -121,12 +121,12 @@ upsertIf(
     }),
     field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
     field('gciclubfoot__Last_Modified_Date_CommCare__c', (state) => {
-      const validDate = state.data.properties.date_modified
+      const validDate = state.data.date_modified
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
     field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
     field('gciclubfoot__Case_Closed_Date_CommCare__c', (state) => {
-      const validDate = state.data.properties.date_closed
+      const validDate = state.data.date_closed
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
     field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
