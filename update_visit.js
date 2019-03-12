@@ -55,7 +55,7 @@ upsertIf(
       return (state.data.properties.closed == "1" ? true : false) // sf checkbox
     }),
     field('gciclubfoot__Case_Closed_Date__c', (state) => {
-      const validDate = state.data.properties.date_closed
+      const validDate = state.data.date_closed
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
     field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
