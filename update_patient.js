@@ -57,7 +57,6 @@ upsertIf(
     field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2_name')),
     field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),
     field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
-    field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
     field('gciclubfoot__Neighborhood__c', dataValue('properties.patient_neighborhood')),
     field('gciclubfoot__Abnormalities__c', (state) => {
       return state.handleMultiSelect(state, "abnormalities")
