@@ -55,6 +55,8 @@ upsertIf(
     }),
     field('gciclubfoot__Location_Level_1__c', dataValue('properties.location_level1_name')),
     field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2_name')),
+    field('Location_Level_3__c', dataValue('properties.location_level3_name')).
+    field('City__c', dataValue('properties.city')),
     field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),
     field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
     field('gciclubfoot__Neighborhood__c', dataValue('properties.patient_neighborhood')),
