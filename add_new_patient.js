@@ -66,6 +66,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   }),
   field('gciclubfoot__Location_Level_1__c', dataValue('form.case.update.location_level1_name')),
   field('gciclubfoot__Location_Level_2__c', dataValue('form.case.update.location_level2_name')),
+  field('Location_Level_3__c', dataValue('form.case.update.location_level3_name')),
   field('gciclubfoot__City_Town__c', dataValue('form.case.update.location_level3')),
   field('gciclubfoot__Street__c', dataValue('form.case.update.patient_address')),
   field('gciclubfoot__Street__c', dataValue('form.case.update.patient_address')),
