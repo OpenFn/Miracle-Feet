@@ -58,6 +58,9 @@ upsertIf(
       const validDate = state.data.date_closed
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
+    field('Duplicate_Visit__c', (state) => {
+       return(state.data.properties.duplicate_visit == "1" ? true : false)
+    }),
     field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
     field('gciclubfoot__Casting_Complications_Type__c', (state) => {
       return state.handleMultiSelect(state, "complication_type")
