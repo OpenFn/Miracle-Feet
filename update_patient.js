@@ -133,6 +133,9 @@ upsertIf(
     field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
     field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
     field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
+    field('Duplicate_Patient__c', (state) => {
+       return (state.data.properties.duplicate_patient == "1" ? true : false)
+    }),
     field('gciclubfoot__Treatment_Completed__c', (state) => {
       return (state.data.properties.treatment_completed == "1" ? true : false)
     })
