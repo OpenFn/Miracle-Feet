@@ -73,6 +73,7 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Street__c', dataValue('form.case.update.patient_address')),
   field('gciclubfoot__Neighborhood__c', dataValue('form.case.update.patient_neighborhood')),
   field('gciclubfoot__Country__c', dataValue('form.case.update.patient_country')),
+  field('gciclubfoot__Zip_Code__c', dataValue('form.case.update.pin_code')),
   field('gciclubfoot__Abnormalities__c', (state) => {
     return state.handleMultiSelect(state, "abnormalities");
   }),
