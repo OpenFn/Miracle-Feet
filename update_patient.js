@@ -82,7 +82,7 @@ upsertIf(
       const ref = state.data.properties
       return ( ref.referral_source ? ref.referral_source_india : ref.referral_source );
     }),
-    field('gciclubfoot__rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
+    field('rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
     field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
     field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_hf')),
     field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
