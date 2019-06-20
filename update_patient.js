@@ -115,6 +115,9 @@ upsertIf(
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
      field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
+    field('Dropout__c', (state) => {
+       return (properties.dropout == "dropout" ? true : false)
+    }),
     field('gciclubfoot__Tribe_Ethnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
     field('gciclubfoot__Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
     field('gciclubfoot__Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
