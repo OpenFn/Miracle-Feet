@@ -110,6 +110,9 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Guardian_1_Relationship_Other__c', dataValue('form.case.update.guardian1_relationship_other')),
   field('gciclubfoot__Guardian_1_Phone_Number_1__c', dataValue('form.case.update.guardian1_phone1')),
   field('gciclubfoot__Guardian_1_Phone_Number_2__c', dataValue('form.case.update.guardian1_phone2')),
+  field('SMS_Opt_In__c', (state) => {
+    return('form.case.update.sms_opt_in' == "1" ? true : false)
+  }),
   field('gciclubfoot__Guardian_2_First_Name__c', dataValue('form.case.update.guardian2_first_name')),
   field('gciclubfoot__Guardian_2_Last_Name__c', dataValue('form.case.update.guardian2_last_name')),
   field('gciclubfoot__Guardian_2_Relationship__c', humanProper(state.data.form.case.update.guardian2_relationship)),
