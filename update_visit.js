@@ -42,6 +42,7 @@ upsertIf(
       return ( ref.brace_type ? ref.brace_type_india : ref.brace_type );
     }),
     field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
+    field('Steenbeek_Brace_Size__c', humanProper(state.data.properties.steenbeek_size)),
     field('gciclubfoot__MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
     field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
     field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
