@@ -41,7 +41,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
       return ( ref.brace_type ? ref.brace_type_india : ref.brace_type );
     }),
   field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.form.subcase_0.case.update.brace_condition)), // picklist
-  field('Steenbeek__Brace_Size__c', humanProper(state.data.form.subcase_0.case.update.steenbeek_size)),
+  field('Steenbeek_Brace_Size__c', humanProper(state.data.form.subcase_0.case.update.steenbeek_size)),
   field('gciclubfoot__MiracleFeet_Bar_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_condition)), // picklist
   field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_size)), // picklist
   field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
