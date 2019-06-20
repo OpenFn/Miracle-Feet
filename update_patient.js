@@ -116,7 +116,7 @@ upsertIf(
     }),
      field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
     field('gciclubfoot__Tribe_Ethnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
-    field('Dropout__c', (state=> {
+    field('Dropout__c', (state) => {
       return(state.data.properties.dropout == "dropout" ? true: false)
     }),
     field('gciclubfoot__Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
