@@ -46,7 +46,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_size)), // picklist
   field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
       const form = state.data.form.subcase_0.case.update
-      return ( form.miraclefeet_shoe_size ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
+      return ( form.miraclefeet_shoe_size == null ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
     }),
   field('gciclubfoot__MiracleFeet_Brace_Given__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_brace_given)), // picklist
   field('gciclubfoot__MiracleFeet_Shoes_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_shoes_condition)), // picklist
