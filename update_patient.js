@@ -136,7 +136,7 @@ upsertIf(
     field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
     field('gciclubfoot__Case_Closed_Date_CommCare__c', (state) => {
       const validDate = state.data.date_closed
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate != null ? new Date(validDate).toISOString() : null )
     }),
     field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
     field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
