@@ -115,7 +115,7 @@ upsertIf(
     field('gciclubfoot__Tenotomy_Reason_Not_Given__c', humanProper(state.data.properties.tenotomy_reason_not_given)), // picklist
     field('gciclubfoot__Transfer_Date__c', (state) => {
       const validDate = state.data.properties.transfer_date
-      return ( validDate != null ? new Date(validDate).toISOString() : null )
+      return ( validDate ? new Date(validDate).toISOString() : null )
     }),
      field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
     field('gciclubfoot__Tribe_Ethnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
