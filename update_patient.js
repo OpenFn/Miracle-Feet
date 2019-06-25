@@ -82,7 +82,7 @@ upsertIf(
     field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
     field('gciclubfoot__Referral_Source__c', (state) => {
       const ref = state.data.properties
-      return ( ref.referral_source ? ref.referral_source_india : ref.referral_source );
+      return ( ref.referral_source == null ? ref.referral_source_india : ref.referral_source );
     }),
     field('rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
     field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
