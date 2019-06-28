@@ -68,7 +68,7 @@ upsertIf(
       if(mf_shoe==undefined) {
         shoe=india_shoe.charAt(0).toUpperCase() + india_shoe.slice(1).replace('_'. ' ');
       } else {
-        shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slide(1).replace('_', ' ');
+        shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
       }
       return shoe;
     }),
