@@ -38,10 +38,10 @@ upsertIf(
       return state.handleMultiSelect(state, "brace_problems_type")
     }),
     field('gciclubfoot__Brace_Type__c', (state) => {
-      const ref=state.data.properties.brace_type
+      const ref=state.data.form.properties.brace_type
       var bracetype='';
         if (ref==undefined) {
-          bracetype=state.data.properties.brace_type_india;
+          bracetype='';
         } else if (ref=='dobbs_or_mitchell') {
           bracetype='Dobbs or Mitchell';
         } else if (ref=='iowa') {
@@ -55,7 +55,7 @@ upsertIf(
         } else {
           bracetype='Not Defined';
         }
-          return bractype;
+          return bracetype;
     }),
     field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
     field('Steenbeek_Brace_Size__c', humanProper(state.data.properties.steenbeek_size)),
