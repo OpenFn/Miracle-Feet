@@ -62,8 +62,15 @@ upsertIf(
     field('gciclubfoot__MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
     field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
     field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
-      const form = state.data.properties
-      return ( form.miraclefeet_shoe_size ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
+      const mf_shoe = state.data.properties.miraclefeet_shoe_size
+      const india_shoe = state.data.properties.miraclefeet_shoe_size_india
+      var shoe = '';
+      if(mf_shoe==undefined) {
+        shoe=india_shoe.charAt(0).toUpperCase() + india_shoe.slice(1).replace('_'. ' ');
+      } else {
+        shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slide(1).replace('_', ' ');
+      }
+      return shoe;
     }),
     field('gciclubfoot__MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
     field('gciclubfoot__MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
