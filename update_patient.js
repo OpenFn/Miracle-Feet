@@ -82,30 +82,7 @@ upsertIf(
     field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
     field('gciclubfoot__Referral_Source__c', (state) => {
       const ref = state.data.properties
-       var source='';
-              if (ref==undefined) {
-                //make sure this path to the *india* referral source field is correct by checking the india forms/messages
-                source=state.data.form.referral_source.referral_source_india;
-              } else if (ref=='health_facility') {
-                source='Hospital or Clinic';
-              } else if (ref=='midwife') {
-                source='Midwife';
-              } else if (ref=='chw') {
-                source='Community Health Worker';
-              } else if (ref=='promotional_material') {
-                source='Promotional Material';
-              } else if (ref=='clubfoot_patient') {
-                source='Clubfoot Patient';
-              } else if (ref=='community_member') {
-                source='Community Member';
-              } else if (ref=='rbsk_deic') {
-                source='RBSK DEIC';
-              } else if (ref=='other') {
-                source='Other';
-              } else {
-                source='Not Defined';
-              }
-              return source;
+      return ( ref.referral_source == null ? ref.referral_source_india : ref.referral_source );
     }),
     field('rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
     field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
