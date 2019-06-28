@@ -66,7 +66,7 @@ upsertIf(
       const india_shoe = state.data.properties.miraclefeet_shoe_size_india
       var shoe = '';
       if (mf_shoe==undefined) {
-        shoe=india_shoe.charAt(0).toUpperCase() + india_shoe.slice(1).replace('_'. ' ');
+        shoe=india_shoe.charAt(0).toUpperCase() + india_shoe.slice(1).replace('_', ' ');
       } else {
         shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
       }
