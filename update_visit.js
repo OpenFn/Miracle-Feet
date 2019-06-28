@@ -38,8 +38,8 @@ upsertIf(
       return state.handleMultiSelect(state, "brace_problems_type")
     }),
     field('gciclubfoot__Brace_Type__c', (state) => {
-      const ref = state.data.properties.brace_type
-      var bracetype=='';
+      const ref=state.data.properties.brace_type
+      var bracetype='';
         if (ref==undefined) {
           bracetype=state.data.properties.brace_type_india;
         } else if (ref=='dobbs_or_mitchell') {
