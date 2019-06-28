@@ -38,7 +38,9 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   }),
   field('gciclubfoot__Brace_Type__c', (state) => {
     var bracetype='';
-      if (ref=='dobbs_or_mitchell') {
+      if (ref==undefined) {
+        bracetype='';
+      } else if (ref=='dobbs_or_mitchell') {
         bracetype='Dobbs or Mitchell';
       } else if (ref=='iowa') {
         bracetype='Iowa';
