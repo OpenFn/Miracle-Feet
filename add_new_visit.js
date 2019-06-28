@@ -40,15 +40,15 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     var bracetype='';
       if (ref=='dobbs_or_mitchell') {
         bracetype='Dobbs or Mitchell';
-      else if (ref=='iowa') {
+      } else if (ref=='iowa') {
         bracetype='Iowa';
-      else if (ref=='miraclefeet') {
+      } else if (ref=='miraclefeet') {
         bracetype='MiracleFeet';
-      else if (ref=='steenbeek') {
+      } else if (ref=='steenbeek') {
          bracetype='Steenbeek';
-      else if (ref=='other') {
+      } else if (ref=='other') {
           bracetype='Other';
-      else {
+      } else {
          bracetype='Not Defined';
       }
         return bracetype;
