@@ -38,8 +38,24 @@ upsertIf(
       return state.handleMultiSelect(state, "brace_problems_type")
     }),
     field('gciclubfoot__Brace_Type__c', (state) => {
-      const ref = state.data.properties
-      return ( ref.brace_type == null ? ref.brace_type_india : ref.brace_type );
+      const ref = state.data.properties.brace_type
+      var bracetype=='';
+        if (ref==undefined) {
+          bracetype=state.data.properties.brace_type_india;
+        } else if (ref=='dobbs_or_mitchell') {
+          bracetype='Dobbs or Mitchell';
+        } else if (ref=='iowa') {
+          bracetype='Iowa';
+        } else if (ref=='miraclefeet') {
+          bracetype='MiracleFeet';
+        } else if (ref=='steenbeek') {
+          bracetype='Steenbeek';
+        } else if (ref=='other') {
+          bracetype='Other';
+        } else {
+          bracetype='Not Defined';
+        }
+          return bractype;
     }),
     field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
     field('Steenbeek_Brace_Size__c', humanProper(state.data.properties.steenbeek_size)),
