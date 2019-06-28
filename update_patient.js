@@ -99,8 +99,10 @@ upsertIf(
           source='Community Member';
         } else if (ref=='rbsk_deic') {
           source='RBSK DEIC';
-        } else (ref=='other') {
+        } else if (ref=='other') {
           source='Other';
+        } else {
+          source='Not Defined';
         }
         return source;
     }),
