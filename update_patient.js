@@ -101,6 +101,7 @@ upsertIf(
           source='RBSK DEIC';
         } else (ref=='other') {
           source='Other';
+        }
         return source;
     }),
     field('rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
