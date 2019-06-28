@@ -37,6 +37,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
     return state.handleMultiSelect(state, "brace_problems_type")
   }),
   field('gciclubfoot__Brace_Type__c', (state) => {
+    const ref=state.data.form.subcase_0.case.update.brace_type
     var bracetype='';
       if (ref==undefined) {
         bracetype='';
