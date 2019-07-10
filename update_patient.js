@@ -81,16 +81,9 @@ upsertIf(
     field('gciclubfoot__Diagnosis_Notes__c', dataValue('properties.diagnosis_notes')),
     field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
     field('gciclubfoot__Referral_Source__c', (state) => {
-      var ref='';
-         if (state.data.form.referral_source.referral_source !== undefined ){
-             ref = state.data.form.referral_source.referral_source;
-        } else {
-             ref = state.data.form.referral_source.referral_source_india;
-        }
-      var source= '';
-        if (ref==undefined) {
-          source='';
-        } else if (ref=='health_facility') {
+      const ref = state.data.properties.referral_source
+      var source='';
+        if (ref=='health_facility') {
           source='Hospital or Clinic';
         } else if (ref=='midwife') {
           source='Midwife';
