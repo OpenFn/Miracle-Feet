@@ -53,7 +53,7 @@ upsertIf(
         } else if (ref=='other') {
           bracetype='Other';
         } else {
-          bracetype='Not Defined';
+          bracetype='';
         }
           return bracetype;
     }),
