@@ -63,10 +63,9 @@ upsertIf(
     field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
     field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
       const mf_shoe = state.data.properties.miraclefeet_shoe_size
-      const india_shoe = state.data.properties.miraclefeet_shoe_size_india
       var shoe = '';
       if (mf_shoe==undefined) {
-        shoe=india_shoe.charAt(0).toUpperCase() + india_shoe.slice(1).replace('_', ' ');
+        shoe='';
       } else {
         shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
       }
