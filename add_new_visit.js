@@ -69,7 +69,7 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
       } else if (typeof mf_brace.miraclefeet_shoe_size_india==='undefined'){
         shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
       } else {
-        shoe=mf_brace.miraclefeet_shoe_size_india.charAt(0).toUpperCase() + mf_brace.miraclefeet_soe_size_india.slice(1).replace('_', ' ');
+        shoe=mf_brace.miraclefeet_shoe_size_india.charAt(0).toUpperCase() + mf_brace.miraclefeet_shoe_size_india.slice(1).replace('_', ' ');
       }
       return shoe;
     }),
