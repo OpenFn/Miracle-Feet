@@ -62,14 +62,14 @@ upsert("gciclubfoot__Visit__c", "gciclubfoot__commcare_case_id__c", fields(
   field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_size)), // picklist
   field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
       const mf_shoe = state.data.form.subcase_0.case.update.miraclefeet_shoe_size;
-      const india_shoe = state.data.form.brace.miraclefeet_brace.miraclefeet_shoe_size_india;
+      const mf_brace = state.data.form.brace.miraclefeet_brace;
       var shoe = '';
-      if (typeof india_shoe==='undefined' && typeof mf_shoe==='undefined'){
+      if (typeof mf_brace==='undefined' && typeof mf_shoe==='undefined'){
         shoe='';
-      } else if (typeof india_shoe==='undefined'){
+      } else if (typeof india_shoe.miraclefeet_shoe_size_india==='undefined'){
         shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
       } else {
-        shoe=india_shoe.charAt(0).toUpperCase() + india_shoe.slice(1).replace('_', ' ');
+        shoe=mf_brace.miraclefeet_shoe_size_india.charAt(0).toUpperCase() + mf_brace.miraclefeet_soe_size_india.slice(1).replace('_', ' ');
       }
       return shoe;
     }),
