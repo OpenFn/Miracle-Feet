@@ -49,6 +49,9 @@ upsertIf(
       const validDate = state.data.properties.date_tenotomy
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
+      field('gciclubfoot__Most_Recent_Treatment_Left__c',dataValue('properties.l_treatment')), 
+      field('gciclubfoot__Most_Recent_Treatment_Right__c', dataValue('properties.r_treatment'))
+    }),
      field('gciclubfoot__Date_Stopped_Treatment__c', (state) => {
       const validDate = state.data.properties.stop_date
       return ( validDate ? new Date(validDate).toISOString() : null )
