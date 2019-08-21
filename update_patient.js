@@ -62,7 +62,16 @@ upsertIf(
     field('gciclubfoot__Neighborhood__c', dataValue('properties.patient_neighborhood')),
     field('gciclubfoot__Country__c', dataValue('properties.patient_country')),
     field('gciclubfoot__Zip_Code__c', dataValue('properties.pin_code')),
-    field('gciclubfoot__Most_Recent_Treatment_Left__c',dataValue('properties.l_treatment')), 
+    field('gciclubfoot__Most_Recent_Treatment_Left__c', (state) => {
+       const left =state.data.properties.l_treatment'
+       var capLeft = '';
+       if (typeof left=='undefined'){
+         capLeft='';
+       } else {
+         capLeft=left.charAt(0).toUpperCase();
+       }
+      return capLeft;
+    }),
     field('gciclubfoot__Most_Recent_Treatment_Right__c', dataValue('properties.r_treatment')),
     field('gciclubfoot__Abnormalities__c', (state) => {
       return state.handleMultiSelect(state, "abnormalities")
