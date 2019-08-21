@@ -65,7 +65,7 @@ upsertIf(
     field('gciclubfoot__Most_Recent_Treatment_Left__c', (state) => {
        const left =state.data.properties.l_treatment;
        var capLeft = '';
-       if (typeof left=='undefined'){
+       if (typeof left==='undefined'){
          capLeft='';
        } else {
          capLeft=left.charAt(0).toUpperCase();
