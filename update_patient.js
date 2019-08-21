@@ -63,7 +63,7 @@ upsertIf(
     field('gciclubfoot__Country__c', dataValue('properties.patient_country')),
     field('gciclubfoot__Zip_Code__c', dataValue('properties.pin_code')),
     field('gciclubfoot__Most_Recent_Treatment_Left__c', (state) => {
-       const left =state.data.properties.l_treatment'
+       const left =state.data.properties.l_treatment;
        var capLeft = '';
        if (typeof left=='undefined'){
          capLeft='';
