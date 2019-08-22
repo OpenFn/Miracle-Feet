@@ -72,7 +72,16 @@ upsertIf(
        }
       return capLeft;
     }),
-    field('gciclubfoot__Most_Recent_Treatment_Right__c', dataValue('properties.r_treatment')),
+    field('gciclubfoot__Most_Recent_Treatment_Right__c', (state) => {
+      const right =state.data.properties.r_treatment;
+       var capRight = '';
+       if (typeof right==='undefined'){
+         capRight='';
+       } else {
+         capRight=right.charAt(0).toUpperCase() + right.slice(1);
+       }
+      return capRight;
+    }),   
     field('gciclubfoot__Abnormalities__c', (state) => {
       return state.handleMultiSelect(state, "abnormalities")
     }),
