@@ -68,7 +68,7 @@ upsertIf(
        if (typeof left==='undefined'){
          capLeft='';
        } else {
-         capLeft=left.charAt(0).toUpperCase();
+         capLeft=left.charAt(0).toUpperCase() + left.slice(1);
        }
       return capLeft;
     }),
