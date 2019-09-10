@@ -31,16 +31,33 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('Brace_Count__c', dataValue('form.subcase_0.case.update.brace_count')),
-  field('Brace_Problems__c', humanProper('form.subcase_0.case.update.brace_problems')), // picklist
+  field('Brace_Problems__c', datValue('form.subcase_0.case.update.brace_problems')), // picklist
   field('Brace_Problems_Notes__c', dataValue('form.subcase_0.case.update.brace_problems_specified')),
   field('Brace_Problems_Type__c', (state) => {
     return state.handleMultiSelect(state, "brace_problems_type")
   }),
   field('Brace_Type__c', (state) => {
-      const ref = state.data.form.subcase_0.case.update
-      return ( ref.brace_type ? ref.brace_type_india : ref.brace_type );
+    const ref=state.data.form.subcase_0.case.update.brace_type
+    var bracetype='';
+      if (ref==undefined) {
+        bracetype=state.data.form.brace.brace_type_india;
+      } else if (ref=='dobbs_or_mitchell') {
+        bracetype='Dobbs or Mitchell';
+      } else if (ref=='iowa') {
+        bracetype='Iowa';
+      } else if (ref=='miraclefeet') {
+        bracetype='MiracleFeet';
+      } else if (ref=='steenbeek') {
+         bracetype='Steenbeek';
+      } else if (ref=='other') {
+          bracetype='Other';
+      } else {
+         bracetype='Not Defined';
+      }
+        return bracetype;
     }),
   field('Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.form.subcase_0.case.update.brace_condition)), // picklist
+  field('Steenbeek_Brace_Size__c', humanProper(state.data.form.subcase_0.case.update.steenbeek_size)),
   field('MiracleFeet_Bar_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_condition)), // picklist
   field('MiracleFeet_Bar_Size__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_size)), // picklist
   field('MiracleFeet_Shoe_Size__c', (state) => {
@@ -115,6 +132,7 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields(
   field('Right_Surgery_Type__c', humanProper(state.data.form.subcase_0.case.update.r_surgery_type)),
   field('Right_Surgery_Type_Other__c', dataValue('form.subcase_0.case.update.r_surgery_type_other')),
   field('New_Brace__c', dataValue('form.subcase_0.case.update.is_new_brace')),
+  field('Bracing_Stage__c', dataValue('form.subcase_0.case.update.bracing_stage')),
   field('Next_Visit_Date__c', (state) => {
     const validDate = state.data.form.subcase_0.case.update.next_visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
