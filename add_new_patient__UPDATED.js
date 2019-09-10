@@ -59,7 +59,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Location_Level_1__c', dataValue('form.case.update.location_level1_name')),
   field('Location_Level_2__c', dataValue('form.case.update.location_level2_name')),
   field('City_Town__c', dataValue('form.case.update.location_level3')),
-  field('StreetTown__c', dataValue('form.case.update.patient_address')), //Changed from Street__c
+  field('StreetLandmark__c', dataValue('form.case.update.patient_address')), //Changed from Street__c
   field('Neighborhood__c', dataValue('form.case.update.patient_neighborhood')),
   field('Abnormalities__c', (state) => {
     return state.handleMultiSelect(state, "abnormalities");
