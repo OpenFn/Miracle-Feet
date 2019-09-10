@@ -19,9 +19,9 @@ alterState((state) => {
   return state
 });
 
-upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields(
-  field('commcare_case_id__c', dataValue('form.subcase_0.case.@case_id')),
-  relationship('Contact', "CommCare_Case_ID__c", dataValue('form.case.@case_id')),
+upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
+  field('gciclubfootommcare_case_id__c', dataValue('form.subcase_0.case.@case_id')), //changed from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
+  relationship('Patient__r', "CommCare_Case_ID__c", dataValue('form.case.@case_id')), //Changed from Contact to Patient__r
   field('Visit_Date__c', (state) => {
     const validDate = state.data.form.subcase_0.case.update.visit_date
     return ( validDate ? new Date(validDate).toISOString() : null )
