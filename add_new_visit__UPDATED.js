@@ -31,7 +31,7 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('Brace_Count__c', dataValue('form.subcase_0.case.update.brace_count')),
-  field('Brace_Problems__c', datValue('form.subcase_0.case.update.brace_problems')), // picklist
+  field('Brace_Problems__c', dataValue('form.subcase_0.case.update.brace_problems')), // picklist
   field('Brace_Problems_Notes__c', dataValue('form.subcase_0.case.update.brace_problems_specified')),
   field('Brace_Problems_Type__c', (state) => {
     return state.handleMultiSelect(state, "brace_problems_type")
@@ -61,20 +61,19 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields(
   field('MiracleFeet_Bar_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_condition)), // picklist
   field('MiracleFeet_Bar_Size__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_size)), // picklist
   field('MiracleFeet_Shoe_Size__c', (state) => {
-      const steen = state.data.form.case.update.steenbeek_size
-      const india = state.data.form.case.update.steenbeek_size_india
+      const mf_shoe = state.data.form.subcase_0.case.update.miraclefeet_shoe_size;
+      const mf_brace = state.data.form.brace.miraclefeet_brace;
       var shoe = '';
-      if (steen==undefined) {
-        shoe=india.charAt(0).toUpperCase() + india.slice(1).replace('_', ' ');
+      if (typeof mf_brace==='undefined' && typeof mf_shoe==='undefined'){
+        shoe='';
+      } else if (typeof mf_brace.miraclefeet_shoe_size_india==='undefined' && typeof mf_shoe==='undefined'){
+        shoe='';
+      } else if (typeof mf_brace.miraclefeet_shoe_size_india==='undefined'){
+        shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
       } else {
-        shoe=steen.charAt(0).toUpperCase() + steen.slice(1).replace('_', ' ');
+        shoe=mf_brace.miraclefeet_shoe_size_india.charAt(0).toUpperCase() + mf_brace.miraclefeet_shoe_size_india.slice(1).replace('_', ' ');
       }
       return shoe;
-      //const form = state.data.form.subcase_0.case.update
-    //  return ( form.miraclefeet_shoe_size ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
-
-  //  const shoe = ( state.data.form.case.update.steenbeek_size == undefined ? state.data.form.case.update.steenbeek_size_india : state.data.form.case.update.steenbeek_size );
-  //  var size = shoe.charAt(0).toUpperCase() + shoe.slice(1).replace('_', ' ');
     }),
   field('MiracleFeet_Brace_Given__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_brace_given)), // picklist
   field('MiracleFeet_Shoes_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_shoes_condition)), // picklist
