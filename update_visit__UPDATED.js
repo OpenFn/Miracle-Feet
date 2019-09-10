@@ -17,9 +17,9 @@ alterState((state) => {
 upsertIf(
   state.data.date_modified != state.data.properties.date_opened + "000Z",
   "Visit_new__c", "gciclubfootommcare_case_id__c", fields(
-    field('gciclubfoot__commcare_case_id__c', dataValue('case_id')),
+    field('gciclubfootommcare_case_id__c', dataValue('case_id')), //changed from gciclubfoot__commcare_case_id__c
     // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
-    relationship('Contact', "CommCare_Case_ID__c", dataValue('indices.parent.case_id')),
+    relationship('Patient__r', "CommCare_Case_ID__c", dataValue('indices.parent.case_id')), //changed from Contact to Patient__r
     field('Visit_Date__c', (state) => {
       const validDate = state.data.properties.visit_date
       return ( validDate ? new Date(validDate).toISOString() : null )
