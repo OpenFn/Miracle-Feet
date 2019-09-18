@@ -58,6 +58,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   }),
   field('Location_Level_1__c', dataValue('form.case.update.location_level1_name')),
   field('Location_Level_2__c', dataValue('form.case.update.location_level2_name')),
+  field('Location_Level_3__c', dataValue('form.case.update.location_level3_name')),
   field('Country__c', dataValue('form.case.update.patient_country')),
   field('CityTown__c', dataValue('form.case.update.location_level3')),
   field('City_new__c', dataValue('form.case.update.location_level3')),

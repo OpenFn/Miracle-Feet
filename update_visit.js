@@ -1,5 +1,6 @@
 // =============================================================================
 // Upsert Visit records in Salesforce when "Visit" cases are updated in CC.
+// Example Note
 // =============================================================================
 alterState((state) => {
   state.handleMultiSelect = function(state, multiField) {
@@ -37,15 +38,38 @@ upsertIf(
       return state.handleMultiSelect(state, "brace_problems_type")
     }),
     field('gciclubfoot__Brace_Type__c', (state) => {
-      const ref = state.data.properties
-      return ( ref.brace_type ? ref.brace_type_india : ref.brace_type );
+      const ref=state.data.properties.brace_type
+      var bracetype='';
+        if (ref==undefined) {
+          bracetype='';
+        } else if (ref=='dobbs_or_mitchell') {
+          bracetype='Dobbs or Mitchell';
+        } else if (ref=='iowa') {
+          bracetype='Iowa';
+        } else if (ref=='miraclefeet') {
+          bracetype='MiracleFeet';
+        } else if (ref=='steenbeek') {
+          bracetype='Steenbeek';
+        } else if (ref=='other') {
+          bracetype='Other';
+        } else {
+          bracetype='';
+        }
+          return bracetype;
     }),
     field('gciclubfoot__Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
+    field('Steenbeek_Brace_Size__c', humanProper(state.data.properties.steenbeek_size)),
     field('gciclubfoot__MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
     field('gciclubfoot__MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
     field('gciclubfoot__MiracleFeet_Shoe_Size__c', (state) => {
-      const form = state.data.properties
-      return ( form.miraclefeet_shoe_size ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
+      const mf_shoe = state.data.properties.miraclefeet_shoe_size
+      var shoe = '';
+      if (mf_shoe==undefined) {
+        shoe='';
+      } else {
+        shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
+      }
+      return shoe;
     }),
     field('gciclubfoot__MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
     field('gciclubfoot__MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
@@ -54,8 +78,11 @@ upsertIf(
       return (state.data.properties.closed == "1" ? true : false) // sf checkbox
     }),
     field('gciclubfoot__Case_Closed_Date__c', (state) => {
-      const validDate = state.data.properties.date_closed
+      const validDate = state.data.date_closed
       return ( validDate ? new Date(validDate).toISOString() : null )
+    }),
+    field('Duplicate_Visit__c', (state) => {
+       return(state.data.properties.duplicate_visit == "1" ? true : false)
     }),
     field('gciclubfoot__Cast_Count__c', dataValue('properties.cast_count')),
     field('gciclubfoot__Casting_Complications_Type__c', (state) => {
@@ -116,6 +143,7 @@ upsertIf(
     field('gciclubfoot__Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
     field('gciclubfoot__Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
     field('gciclubfoot__New_Brace__c', dataValue('properties.is_new_brace')),
+    field('Bracing_Stage__c', dataValue('properties.bracing_stage')),
     field('gciclubfoot__Next_Visit_Date__c', (state) => {
       const validDate = state.data.properties.next_visit_date
       return ( validDate ? new Date(validDate).toISOString() : null )
@@ -171,9 +199,9 @@ upsertIf(
     }),
     field('gciclubfoot__Visit_Count__c', dataValue('properties.visit_count')),
     field('Name', (state) => {
-      return state.data.properties.patient_name + "/" +
-      state.data.properties.patient_id + "/" +
-      state.data.properties.visit_count
+      return state.data.properties.patient_name + "(" +
+      state.data.properties.patient_id + ") (" +
+      state.data.properties.visit_date + ")"
     }),
     field('gciclubfoot__Visit_Notes__c', dataValue('properties.visit_notes')),
     field('gciclubfoot__Treatment_Provider__c', dataValue('properties.treatment_provider'))
