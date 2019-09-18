@@ -32,7 +32,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
     const validDate = state.data.form.case.update.registration_date
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
-  //Commenting out. We are already mapping to Contact Name in lines 24-25. On Contact, Name = FirstName + LastName. If you want to map the full name again, you will need to create a new Name field, but this seems redundant? 
+  //Commenting out. We are already mapping to Contact Name in lines 24-25. On Contact, Name = FirstName + LastName. If you want to map the full name again, you will need to create a new Name field, but this seems redundant?
   //field('Name', dataValue('form.case.update.patient_name')),
   field('Gender__c', dataValue('form.case.update.patient_gender')),
   field('Date_of_Birth_Known__c', dataValue('form.case.update.patient_dob_known')),
@@ -58,7 +58,9 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   }),
   field('Location_Level_1__c', dataValue('form.case.update.location_level1_name')),
   field('Location_Level_2__c', dataValue('form.case.update.location_level2_name')),
-  field('City_Town__c', dataValue('form.case.update.location_level3')),
+  field('Location_Level_3__c', dataValue('form.case.update.location_level3_name')),
+  field('City_new__c', dataValue('form.case.update.location_level3')),
+  field('CityTown__c', dataValue('form.case.update.location_level3')),
   field('StreetLandmark__c', dataValue('form.case.update.patient_address')), //Changed from Street__c
   field('Neighborhood__c', dataValue('form.case.update.patient_neighborhood')),
   field('Abnormalities__c', (state) => {
@@ -141,7 +143,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
     return ( validDate ? new Date(validDate).toISOString() : null )
   }),
   field('Stopped_Treatment_Reason_Other__c', dataValue('form.case.update.stop_reason_other')),
-  field('Tribe_Ethnicity__c', dataValue('form.case.update.tribe_ethnicity')),
+  field('TribeEthnicity__c', dataValue('form.case.update.tribe_ethnicity')),
   field('Clinic_Transferred_To__c', dataValue('form.case.update.transfer_clinic')),
   field('Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.commcare_usercase.case['@date_modified']
