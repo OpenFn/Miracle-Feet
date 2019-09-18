@@ -58,7 +58,7 @@ upsertIf(
     field('Location_Level_2__c', dataValue('properties.location_level2_name')),
     field('Location_Level_3__c', dataValue('properties.location_level3_name')),
     field('City_new__c', dataValue('properties.city')), //Changed from City__c
-    field('City_Town__c', dataValue('properties.location_level3')),
+    field('CityTown__c', dataValue('properties.location_level3')),
     field('StreetLandmark__c', dataValue('properties.patient_address')), //Changed from Street__c
     field('Neighborhood__c', dataValue('properties.patient_neighborhood')),
     field('Country__c', dataValue('properties.patient_country')),
@@ -82,7 +82,7 @@ upsertIf(
          capRight=right.charAt(0).toUpperCase() + right.slice(1);
        }
       return capRight;
-    }),   
+    }),
     field('Abnormalities__c', (state) => {
       return state.handleMultiSelect(state, "abnormalities")
     }),
@@ -159,7 +159,7 @@ upsertIf(
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
      field('Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
-    field('Tribe_Ethnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
+    field('TribeEthnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
     field('Dropout__c', (state) => {
       return(state.data.properties.dropout == "dropout" ? true: false)
     }),
