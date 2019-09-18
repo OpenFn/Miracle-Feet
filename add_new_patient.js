@@ -5,6 +5,15 @@ alterState((state) => {
     const image = (state.data.form.photos ? state.data.form.photos[`${photoField}`] : null);
     return ( image ? `${baseUrl}${uuid}/${image}` : "" )
   };
+  
+  state.consentPhoto = function handlePhoto(state, photoField) {
+    const url1 = `https:`
+    const url2 = `/`
+    const baseUrl = `/www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
+    const uuid = state.data.metadata.instanceID;
+    const image = (state.data.form.consent.photo_consent_5[`${photoField}`] ? state.data.form.consent.photo_consent_5[`${photoField}`]  : null);
+    return ( image ? `${url1}${url2}${baseUrl}${uuid}/${image}` : "" )
+  };
 
   state.handleMultiSelect = function(state, multiField) {
     const ms = state.data.form.case.update[`${multiField}`]
@@ -57,10 +66,14 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   }),
   field('gciclubfoot__Location_Level_1__c', dataValue('form.case.update.location_level1_name')),
   field('gciclubfoot__Location_Level_2__c', dataValue('form.case.update.location_level2_name')),
+  field('Location_Level_3__c', dataValue('form.case.update.location_level3_name')),
   field('gciclubfoot__City_Town__c', dataValue('form.case.update.location_level3')),
+  field('City__C', dataValue('form.case.update.city')),
   field('gciclubfoot__Street__c', dataValue('form.case.update.patient_address')),
   field('gciclubfoot__Street__c', dataValue('form.case.update.patient_address')),
   field('gciclubfoot__Neighborhood__c', dataValue('form.case.update.patient_neighborhood')),
+  field('gciclubfoot__Country__c', dataValue('form.case.update.patient_country')),
+  field('gciclubfoot__Zip_Code__c', dataValue('form.case.update.pin_code')),
   field('gciclubfoot__Abnormalities__c', (state) => {
     return state.handleMultiSelect(state, "abnormalities");
   }),
@@ -84,10 +97,37 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Diagnosis_Notes__c', dataValue('form.case.update.diagnosis_notes')),
   field('gciclubfoot__Feet_Affected__c', humanProper(state.data.form.case.update.feet_affected)),
   field('gciclubfoot__Referral_Source__c', (state) => {
-    const ref = state.data.form.case.update
-    return ( ref.referral_source ? ref.referral_source_india : ref.referral_source );
+    var ref =' ';
+       if (state.data.form.referral_source.referral_source !== undefined ){
+             ref = state.data.form.referral_source.referral_source;
+        } else {
+             ref = state.data.form.referral_source.referral_source_india;
+        }
+    var source= '';
+    if (ref==undefined) {
+                source='';
+              } else if (ref=='health_facility') {
+                source='Hospital or Clinic';
+              } else if (ref=='midwife') {
+                source='Midwife';
+              } else if (ref=='chw') {
+                source='Community Health Worker';
+              } else if (ref=='promotional_material') {
+                source='Promotional Material';
+              } else if (ref=='clubfoot_patient') {
+                source='Clubfoot Patient';
+              } else if (ref=='community_member') {
+                source='Community Member';
+              } else if (ref=='rbsk_deic') {
+                source='RBSK DEIC';
+              } else if (ref=='other') {
+                source='Other';
+              } else {
+                source='Not Defined';
+              }
+              return source;
   }),
-  field('gciclubfoot__rbsk_deic__c', dataValue('form.case.update.referral_source_rbsk_deic')),
+  field('rbsk_deic__c', dataValue('form.case.update.referral_source_rbsk_deic')),
   field('gciclubfoot__Referral_Source_Other__c', dataValue('form.case.update.referral_source_other')),
   field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('form.case.update.referral_source_hf')),
   field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('form.case.update.referral_source_doctor')),
@@ -97,6 +137,9 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   field('gciclubfoot__Guardian_1_Relationship_Other__c', dataValue('form.case.update.guardian1_relationship_other')),
   field('gciclubfoot__Guardian_1_Phone_Number_1__c', dataValue('form.case.update.guardian1_phone1')),
   field('gciclubfoot__Guardian_1_Phone_Number_2__c', dataValue('form.case.update.guardian1_phone2')),
+  field('SMS_Opt_In__c', (state) => {
+    return(state.data.form.case.update.sms_opt_in == "1" ? true : false)
+  }),
   field('gciclubfoot__Guardian_2_First_Name__c', dataValue('form.case.update.guardian2_first_name')),
   field('gciclubfoot__Guardian_2_Last_Name__c', dataValue('form.case.update.guardian2_last_name')),
   field('gciclubfoot__Guardian_2_Relationship__c', humanProper(state.data.form.case.update.guardian2_relationship)),
@@ -140,8 +183,6 @@ upsert("gciclubfoot__Patient__c", "gciclubfoot__CommCare_Case_ID__c", fields(
   }),
   field("gciclubfoot__Registration_Photo_4__c", function(state) {
     return state.handlePhoto(state, "photo4");
-  }),
-  field("gciclubfoot__Consent_Signature__c", function(state) {
-    return state.handlePhoto(state, "guardian_signature");
   })
 ));
+//

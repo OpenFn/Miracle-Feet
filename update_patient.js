@@ -55,10 +55,33 @@ upsertIf(
     }),
     field('gciclubfoot__Location_Level_1__c', dataValue('properties.location_level1_name')),
     field('gciclubfoot__Location_Level_2__c', dataValue('properties.location_level2_name')),
+    field('Location_Level_3__c', dataValue('properties.location_level3_name')),
+    field('City__c', dataValue('properties.city')),
     field('gciclubfoot__City_Town__c', dataValue('properties.location_level3')),
     field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
-    field('gciclubfoot__Street__c', dataValue('properties.patient_address')),
     field('gciclubfoot__Neighborhood__c', dataValue('properties.patient_neighborhood')),
+    field('gciclubfoot__Country__c', dataValue('properties.patient_country')),
+    field('gciclubfoot__Zip_Code__c', dataValue('properties.pin_code')),
+    field('gciclubfoot__Most_Recent_Treatment_Left__c', (state) => {
+       const left =state.data.properties.l_treatment;
+       var capLeft = '';
+       if (typeof left==='undefined'){
+         capLeft='';
+       } else {
+         capLeft=left.charAt(0).toUpperCase() + left.slice(1);
+       }
+      return capLeft;
+    }),
+    field('gciclubfoot__Most_Recent_Treatment_Right__c', (state) => {
+      const right =state.data.properties.r_treatment;
+       var capRight = '';
+       if (typeof right==='undefined'){
+         capRight='';
+       } else {
+         capRight=right.charAt(0).toUpperCase() + right.slice(1);
+       }
+      return capRight;
+    }),   
     field('gciclubfoot__Abnormalities__c', (state) => {
       return state.handleMultiSelect(state, "abnormalities")
     }),
@@ -68,6 +91,7 @@ upsertIf(
     field('gciclubfoot__Consent_Photograph_Marketing__c', humanProper(state.data.properties.consent_photograph_marketing)), // picklist
     field('gciclubfoot__Consent_Photograph_Treatment__c', humanProper(state.data.properties.consent_photograph_treatment)), // picklist
     field('gciclubfoot__Diagnosis__c', humanProper(state.data.properties.diagnosis)), // picklist
+    field('Bracing_Stage__c', dataValue('properties.bracing_stage')),
     field('gciclubfoot__Diagnosis_Idiopathic_Specified__c', (state) => {
       return state.handleMultiSelect(state, "diagnosis_idiopathic_specified")
     }),
@@ -77,10 +101,30 @@ upsertIf(
     field('gciclubfoot__Diagnosis_Notes__c', dataValue('properties.diagnosis_notes')),
     field('gciclubfoot__Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
     field('gciclubfoot__Referral_Source__c', (state) => {
-      const ref = state.data.properties
-      return ( ref.referral_source ? ref.referral_source_india : ref.referral_source );
+      const ref = state.data.properties.referral_source
+      var source='';
+        if (ref=='health_facility') {
+          source='Hospital or Clinic';
+        } else if (ref=='midwife') {
+          source='Midwife';
+        } else if (ref=='chw') {
+          source='Community Health Worker';
+        } else if (ref=='promotional_material') {
+          source='Promotional Material';
+        } else if (ref=='clubfoot_patient') {
+          source='Clubfoot Patient';
+        } else if (ref=='community_member') {
+          source='Community Member';
+        } else if (ref=='rbsk_deic') {
+          source='RBSK DEIC';
+        } else if (ref=='other') {
+          source='Other';
+        } else {
+          source='Not Defined';
+        }
+        return source;
     }),
-    field('gciclubfoot__rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
+    field('rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
     field('gciclubfoot__Referral_Source_Other__c', dataValue('properties.referral_source_other')),
     field('gciclubfoot__Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_hf')),
     field('gciclubfoot__Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
@@ -90,6 +134,9 @@ upsertIf(
     field('gciclubfoot__Guardian_1_Relationship_Other__c', dataValue('properties.guardian1_relationship_other')),
     field('gciclubfoot__Guardian_1_Phone_Number_1__c', dataValue('properties.guardian1_phone1')),
     field('gciclubfoot__Guardian_1_Phone_Number_2__c', dataValue('properties.guardian1_phone2')),
+    field('SMS_Opt_In__c', (state) => {
+       return (state.data.properties.update_sms_opt_in == "1" ? true: false)
+    }),
     field('gciclubfoot__Guardian_2_First_Name__c', dataValue('properties.guardian2_first_name')),
     field('gciclubfoot__Guardian_2_Last_Name__c', dataValue('properties.guardian2_last_name')),
     field('gciclubfoot__Guardian_2_Relationship__c', humanProper(state.data.properties.guardian2_relationship)), // picklist
@@ -112,6 +159,9 @@ upsertIf(
     }),
      field('gciclubfoot__Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
     field('gciclubfoot__Tribe_Ethnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
+    field('Dropout__c', (state) => {
+      return(state.data.properties.dropout == "dropout" ? true: false)
+    }),
     field('gciclubfoot__Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
     field('gciclubfoot__Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
     field('gciclubfoot__Opened_Date_CommCare__c', (state) => {
@@ -120,17 +170,20 @@ upsertIf(
     }),
     field('gciclubfoot__Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
     field('gciclubfoot__Last_Modified_Date_CommCare__c', (state) => {
-      const validDate = state.data.properties.date_modified
+      const validDate = state.data.date_modified
       return ( validDate ? new Date(validDate).toISOString() : null )
     }),
     field('gciclubfoot__Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
     field('gciclubfoot__Case_Closed_Date_CommCare__c', (state) => {
-      const validDate = state.data.properties.date_closed
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      const validDate = state.data.date_closed
+      return ( validDate != null ? new Date(validDate).toISOString() : null )
     }),
     field('gciclubfoot__Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
     field('gciclubfoot__ICR_ID__c', dataValue('properties.patient_original_id')),
     field('gciclubfoot__Owner_Name_CommCare__c', dataValue('owner_name')),
+    field('Duplicate_Patient__c', (state) => {
+       return (state.data.properties.duplicate_patient == "1" ? true : false)
+    }),
     field('gciclubfoot__Treatment_Completed__c', (state) => {
       return (state.data.properties.treatment_completed == "1" ? true : false)
     })
