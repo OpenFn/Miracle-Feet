@@ -23,11 +23,11 @@ upsertIf(
     relationship('Patient__r', "CommCare_Case_ID__c", dataValue('indices.parent.case_id')), //changed from Contact to Patient__r
     field('Visit_Date__c', (state) => {
       const validDate = state.data.properties.visit_date
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate!== null ? new Date(validDate).toISOString() : null )
     }),
      field('Next_Visit_Date__c', (state) => {
       const validDate = state.data.properties.next_visit_date
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
 
     //Brace Questions ==========================================================
@@ -39,14 +39,14 @@ upsertIf(
     }),
     field('Brace_Type__c', (state) => {
       const ref = state.data.properties
-      return ( ref.brace_type ? ref.brace_type_india : ref.brace_type );
+      return ( ref.brace_type === null ? ref.brace_type_india : ref.brace_type );
     }),
     field('Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
     field('MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
     field('MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
     field('MiracleFeet_Shoe_Size__c', (state) => {
       const form = state.data.properties
-      return ( form.miraclefeet_shoe_size ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
+      return ( form.miraclefeet_shoe_size === null ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
     }),
     field('MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
     field('MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
@@ -65,11 +65,11 @@ upsertIf(
     field('Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
     field('Date_Referral_Made__c', (state) => {
       const validDate = state.data.properties.date_referral_made
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Date_of_Tenotomy__c', (state) => {
       const validDate = state.data.properties.date_tenotomy
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('First_Brace__c', (state) => {
       return (state.data.properties.is_first_brace == "1" ? true : false) // sf checkbox
@@ -78,7 +78,7 @@ upsertIf(
     field('Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
     field('Last_Modified_Date_CommCare__c', (state) => {
       const validDate = state.data.date_modified
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Left_Angle_of_Abduction__c', dataValue('properties.l_angle_abduction')),
     field('Left_Angle_of_Dorsiflexion__c', dataValue('properties.l_angle_dorsiflexion')),
@@ -119,12 +119,12 @@ upsertIf(
     field('New_Brace__c', dataValue('properties.is_new_brace')),
     field('Next_Visit_Date__c', (state) => {
       const validDate = state.data.properties.next_visit_date
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
     field('Opened_Date_CommCare__c', (state) => {
       const validDate = state.data.properties.date_opened
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Owner_Name_CommCare__c', dataValue('properties.owner_name')),
 
@@ -143,7 +143,7 @@ upsertIf(
     //Referral Questions =======================================================
      field('Date_Referral_Made__c', (state) => {
       const validDate = state.data.properties.date_referral_made
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Referral_Hospital__c', dataValue('properties.referral_hospital')),
     field('Referral_Provider__c', dataValue('properties.referral_provider')),
@@ -151,7 +151,7 @@ upsertIf(
     field('Referral_Surgery_Type_Other__c', dataValue('properties.referral_surgery_type_other')),
     field('Referral_Treatment_Date__c', (state) => {
       const validDate = state.data.properties.referral_treatment_date
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Referral_Type__c', humanProper(state.data.properties.referral_type)), // picklist
     field('Referral_Advanced_Care_Specified__c', dataValue('properties.referral_advanced_care')),
@@ -160,7 +160,7 @@ upsertIf(
     //Tenotomy Questions =======================================================
     field('Date_of_Tenotomy__c', (state) => {
       const validDate = state.data.properties.date_tenotomy
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Tenotomy_Given__c', humanProper(state.data.properties.tenotomy_given)), // picklist
     field('Tenotomy_Hospital__c', dataValue('properties.tenotomy_hospital')),

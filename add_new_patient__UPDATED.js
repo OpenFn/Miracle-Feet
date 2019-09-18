@@ -30,7 +30,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Secondary_ID_Type__c', dataValue('form.case.update.secondary_id_type')),
   field('Registration_Date__c', (state) => {
     const validDate = state.data.form.case.update.registration_date
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
   }),
   //Commenting out. We are already mapping to Contact Name in lines 24-25. On Contact, Name = FirstName + LastName. If you want to map the full name again, you will need to create a new Name field, but this seems redundant?
   //field('Name', dataValue('form.case.update.patient_name')),
@@ -38,23 +38,23 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Date_of_Birth_Known__c', dataValue('form.case.update.patient_dob_known')),
   field('Birthdate', (state) => {
     const validDate = state.data.form.case.update.patient_dob
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
   }),
   field('Date_of_First_Brace__c', (state) => {
     const validDate = state.data.form.case.update.date_first_brace
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null ? new Date(validDate).toISOString() : null )
   }),
   field('Date_of_First_Visit__c', (state) => {
     const validDate = state.data.form.case.update.date_first_visit
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null ? new Date(validDate).toISOString() : null )
   }),
   field('Date_of_Tenotomy__c', (state) => {
     const validDate = state.data.form.case.update.date_tenotomy
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null ? new Date(validDate).toISOString() : null )
   }),
   field('Date_Stopped_Treatment__c', (state) => {
     const validDate = state.data.form.case.update.stop_date
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null ? new Date(validDate).toISOString() : null )
   }),
   field('Location_Level_1__c', dataValue('form.case.update.location_level1_name')),
   field('Location_Level_2__c', dataValue('form.case.update.location_level2_name')),
@@ -141,14 +141,14 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Tenotomy_Reason_Not_Given__c', dataValue('form.case.update.tenotomy_reason_not_given')),
   field('Transfer_Date__c', (state) => {
     const validDate = state.data.form.case.update.transfer_date
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null ? new Date(validDate).toISOString() : null )
   }),
   field('Stopped_Treatment_Reason_Other__c', dataValue('form.case.update.stop_reason_other')),
   field('TribeEthnicity__c', dataValue('form.case.update.tribe_ethnicity')),
   field('Clinic_Transferred_To__c', dataValue('form.case.update.transfer_clinic')),
   field('Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.commcare_usercase.case['@date_modified']
-    return ( validDate ? new Date(validDate).toISOString() : null )
+    return ( validDate !== null ? new Date(validDate).toISOString() : null )
   }),
   field('Reason_Stopped_Treatment__c', dataValue('form.case.update.close_reason')),
   field('ICR_ID__c', dataValue('form.case.update.patient_original_id')),
