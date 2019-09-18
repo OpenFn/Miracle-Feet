@@ -33,8 +33,6 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
     const validDate = state.data.form.case.update.registration_date
     return ( validDate !== null  ? new Date(validDate).toISOString() : null )
   }),
-  //Commenting out. We are already mapping to Contact Name in lines 24-25. On Contact, Name = FirstName + LastName. If you want to map the full name again, you will need to create a new Name field, but this seems redundant?
-  //field('Name', dataValue('form.case.update.patient_name')),
   field('Gender__c', dataValue('form.case.update.patient_gender')),
   field('Date_of_Birth_Known__c', dataValue('form.case.update.patient_dob_known')),
   field('Birthdate', (state) => {
@@ -63,7 +61,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Country__c', dataValue('form.case.update.patient_country')),
   field('City_new__c', dataValue('form.case.update.city')),
   //field('CityTown__c', dataValue('form.case.update.location_level3')),
-  field('StreetLandmark__c', dataValue('form.case.update.patient_address')), //Changed from Street__c
+  field('StreetLandmark__c', dataValue('form.case.update.patient_address')),
   field('Neighborhood__c', dataValue('form.case.update.patient_neighborhood')),
   field('Abnormalities__c', (state) => {
     return state.handleMultiSelect(state, "abnormalities");
