@@ -1,4 +1,4 @@
-aalterState((state) => {
+alterState((state) => {
   state.handlePhoto = function handlePhoto(state, photoField) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
