@@ -29,8 +29,7 @@ upsertIf(
       const validDate = state.data.properties.registration_date
       return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
-    //Again commenting out Name, because we're already mapping to FirstName + LastName (which = Name on Contact)
-    //field('Name', humanProper(state.data.properties.patient_name)),
+    field('Patient_Name__c', humanProper(state.data.properties.patient_name)),
     field('FirstName', humanProper(state.data.properties.patient_first_name)),
     field('LastName', humanProper(state.data.properties.patient_last_name)),
     field('Gender__c', humanProper(state.data.properties.patient_gender)), // picklist
@@ -59,7 +58,7 @@ upsertIf(
     field('Location_Level_2__c', dataValue('properties.location_level2_name')),
     field('Location_Level_3__c', dataValue('properties.location_level3_name')),
     field('City_new__c', dataValue('properties.city')),
-    field('CityTown__c', dataValue('properties.location_level3_name')),
+    //field('CityTown__c', dataValue('properties.location_level3_name')),
     field('StreetLandmark__c', dataValue('properties.patient_address')), //Changed from Street__c
     field('Neighborhood__c', dataValue('properties.patient_neighborhood')),
     field('Country__c', dataValue('properties.patient_country')),

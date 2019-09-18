@@ -21,6 +21,7 @@ alterState((state) => {
 upsert("Contact", "CommCare_Case_ID__c", fields(
   field('CommCare_Case_ID__c', dataValue('form.case.@case_id')),
   relationship('Account', 'CAST_Location_ID__c', dataValue('form.case.create.owner_id')),
+  field('Patient_Name__c', dataValue('form.case.update.patient_name')),
   field('FirstName', dataValue('form.case.update.patient_first_name')),
   field('LastName', dataValue('form.case.update.patient_last_name')),
   field('CAST_Patient_ID__c', dataValue('form.case.update.patient_id')),
@@ -61,7 +62,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Location_Level_3__c', dataValue('form.case.update.location_level3_name')),
   field('Country__c', dataValue('form.case.update.patient_country')),
   field('City_new__c', dataValue('form.case.update.city')),
-  field('CityTown__c', dataValue('form.case.update.location_level3')),
+  //field('CityTown__c', dataValue('form.case.update.location_level3')),
   field('StreetLandmark__c', dataValue('form.case.update.patient_address')), //Changed from Street__c
   field('Neighborhood__c', dataValue('form.case.update.patient_neighborhood')),
   field('Abnormalities__c', (state) => {
