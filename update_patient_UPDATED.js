@@ -27,7 +27,7 @@ upsertIf(
     field('Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
     field('Registration_Date__c', (state) => {
       const validDate = state.data.properties.registration_date
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     //Again commenting out Name, because we're already mapping to FirstName + LastName (which = Name on Contact)
     //field('Name', humanProper(state.data.properties.patient_name)),
@@ -37,23 +37,23 @@ upsertIf(
     field('Date_of_Birth_Known__c', humanProper(state.data.properties.patient_dob_known)), // picklist
     field('Birthdate', (state) => {
       const validDate = state.data.properties.patient_dob
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Date_of_First_Brace__c', (state) => {
       const validDate = state.data.properties.date_first_brace
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
      field('Date_of_First_Visit__c', (state) => {
       const validDate = state.data.properties.date_first_visit
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
       field('Date_of_Tenotomy__c', (state) => {
       const validDate = state.data.properties.date_tenotomy
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
      field('Date_Stopped_Treatment__c', (state) => {
       const validDate = state.data.properties.stop_date
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Location_Level_1__c', dataValue('properties.location_level1_name')),
     field('Location_Level_2__c', dataValue('properties.location_level2_name')),
@@ -157,7 +157,7 @@ upsertIf(
     field('Tenotomy_Reason_Not_Given__c', humanProper(state.data.properties.tenotomy_reason_not_given)), // picklist
     field('Transfer_Date__c', (state) => {
       const validDate = state.data.properties.transfer_date
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
      field('Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
     field('TribeEthnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
@@ -168,12 +168,12 @@ upsertIf(
     field('Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
     field('Opened_Date_CommCare__c', (state) => {
       const validDate = state.data.properties.date_opened
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
     field('Last_Modified_Date_CommCare__c', (state) => {
       const validDate = state.data.date_modified
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return ( validDate !== null ? new Date(validDate).toISOString() : null )
     }),
     field('Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
     field('Case_Closed_Date_CommCare__c', (state) => {
