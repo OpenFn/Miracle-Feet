@@ -17,6 +17,10 @@ alterState((state) => {
     } else { return "" }
   };
 
+  state.dateConverter = function(state, dateString) {
+    return ( dateString ? new Date(dateString).toISOString() : null )
+  }
+
   return state
 });
 
@@ -24,12 +28,10 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   field('gciclubfootommcare_case_id__c', dataValue('form.subcase_0.case.@case_id')), //changed from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
   relationship('Patient__r', "CommCare_Case_ID__c", dataValue('form.case.@case_id')), //Changed from Contact to Patient__r
   field('Visit_Date__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.visit_date
-    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.subcase_0.case.update.visit_date);
   }),
   field('Next_Visit_Date__c', (state) => {
-    const validDate = state.data.form.case.update.update.next_visit_date
-    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.subcase_0.case.update.next_visit_date);
   }),
   field('Brace_Count__c', dataValue('form.subcase_0.case.update.brace_count')),
   field('Brace_Problems__c', dataValue('form.subcase_0.case.update.brace_problems')), // picklist
@@ -84,12 +86,10 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   }),
   field('Casting_Complications_Notes__c', dataValue('form.subcase_0.case.update.complication_type_other')),
   field('Date_Referral_Made__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.date_referral_made
-    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.subcase_0.case.update.date_referral_made);
   }),
   field('Date_of_Tenotomy__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.date_tenotomy
-    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.subcase_0.case.update.date_tenotomy);
   }),
   field('First_Brace__c', (state) => {
     return (state.data.form.subcase_0.case.update.is_first_brace == "1" ? true : false) // sf checkbox
@@ -133,13 +133,9 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   field('Right_Surgery_Type_Other__c', dataValue('form.subcase_0.case.update.r_surgery_type_other')),
   field('New_Brace__c', dataValue('form.subcase_0.case.update.is_new_brace')),
   field('Bracing_Stage__c', dataValue('form.subcase_0.case.update.bracing_stage')),
-  field('Next_Visit_Date__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.next_visit_date
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
-  }),
   field('Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.subcase_0.case['@date_modified']
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, validDate);
   }),
 
   //Relapse questions ==========================================================
@@ -156,16 +152,14 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
 
   // Referral Questions ========================================================
   field('Date_Referral_Made__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.date_referral_made
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.subcase_0.case.update.date_referral_made);
   }),
   field('Referral_Hospital__c', dataValue('form.subcase_0.case.update.referral_hospital')),
   field('Referral_Provider__c', dataValue('form.subcase_0.case.update.referral_provider')),
   field('Referral_Surgery_Type__c', humanProper(state.data.form.subcase_0.case.update.referral_surgery_type)), // picklist
   field('Referral_Surgery_Type_Other__c', dataValue('form.subcase_0.case.update.referral_surgery_type_other')),
   field('Referral_Treatment_Date__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.referral_treatment_date
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.subcase_0.case.referral_treatment_date);
   }),
   field('Referral_Type__c', humanProper(state.data.form.subcase_0.case.update.referral_type)), // picklist
   field('Referral_Advanced_Care_Specified__c', dataValue('form.subcase_0.case.update.referral_advanced_care')),
@@ -173,8 +167,7 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
 
   // Tenotomy Questions ========================================================
   field('Date_of_Tenotomy__c', (state) => {
-    const validDate = state.data.form.subcase_0.case.update.date_tenotomy
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.subcase_0.case.update.date_tenotomy);
   }),
   field('Tenotomy_Given__c', humanProper(state.data.form.subcase_0.case.update.tenotomy_given)), // picklist
   field('Tenotomy_Hospital__c', dataValue('form.subcase_0.case.update.tenotomy_hospital')),

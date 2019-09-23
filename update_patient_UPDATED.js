@@ -12,6 +12,10 @@ alterState((state) => {
     } else { return "" }
   };
 
+  state.dateConverter = function(state, dateString) {
+    return ( dateString ? new Date(dateString).toISOString() : null )
+  }
+
   return state
 });
 
@@ -26,8 +30,7 @@ upsertIf(
     field('Secondary_ID__c', dataValue('properties.patient_file_number')),
     field('Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
     field('Registration_Date__c', (state) => {
-      const validDate = state.data.properties.registration_date
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.registration_date);
     }),
     field('Patient_Name__c', humanProper(state.data.properties.patient_name)),
     field('FirstName', humanProper(state.data.properties.patient_first_name)),
@@ -35,24 +38,19 @@ upsertIf(
     field('Gender__c', humanProper(state.data.properties.patient_gender)), // picklist
     field('Date_of_Birth_Known__c', humanProper(state.data.properties.patient_dob_known)), // picklist
     field('Birthdate', (state) => {
-      const validDate = state.data.properties.patient_dob
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.patient_dob);
     }),
     field('Date_of_First_Brace__c', (state) => {
-      const validDate = state.data.properties.date_first_brace
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_first_brace);
     }),
      field('Date_of_First_Visit__c', (state) => {
-      const validDate = state.data.properties.date_first_visit
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_first_visit);
     }),
       field('Date_of_Tenotomy__c', (state) => {
-      const validDate = state.data.properties.date_tenotomy
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_tenotomy);
     }),
      field('Date_Stopped_Treatment__c', (state) => {
-      const validDate = state.data.properties.stop_date
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.stop_date);
     }),
     field('Location_Level_1__c', dataValue('properties.location_level1_name')),
     field('Location_Level_2__c', dataValue('properties.location_level2_name')),
@@ -155,8 +153,7 @@ upsertIf(
     field('Tenotomy_Provider__c', dataValue('properties.tenotomy_provider')),
     field('Tenotomy_Reason_Not_Given__c', humanProper(state.data.properties.tenotomy_reason_not_given)), // picklist
     field('Transfer_Date__c', (state) => {
-      const validDate = state.data.properties.transfer_date
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.transfer_date);
     }),
      field('Stopped_Treatment_Reason_Other__c', dataValue('properties.stop_reason_other')),
     field('TribeEthnicity__c', humanProper(state.data.properties.tribe_ethnicity)),
@@ -166,18 +163,15 @@ upsertIf(
     field('Clinic_Transferred_To__c', dataValue('properties.transfer_clinic')),
     field('Case_Closed_by_Username_CommCare__c', dataValue('properties.closed_by_username')),
     field('Opened_Date_CommCare__c', (state) => {
-      const validDate = state.data.properties.date_opened
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_opened);
     }),
     field('Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
     field('Last_Modified_Date_CommCare__c', (state) => {
-      const validDate = state.data.date_modified
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.date_modified);
     }),
     field('Last_Modified_By_Username_CommCare__c', dataValue('properties.last_modified_by_username')),
     field('Case_Closed_Date_CommCare__c', (state) => {
-      const validDate = state.data.date_closed
-      return ( validDate != null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.date_closed);
     }),
     field('Reason_Stopped_Treatment__c', humanProper(state.data.properties.close_reason)), // picklist
     field('ICR_ID__c', dataValue('properties.patient_original_id')),

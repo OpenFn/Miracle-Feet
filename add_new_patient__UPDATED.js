@@ -15,6 +15,10 @@ alterState((state) => {
     } else { return "" }
   };
 
+  state.dateConverter = function(state, dateString) {
+    return ( dateString ? new Date(dateString).toISOString() : null )
+  }
+
   return state
 });
 
@@ -30,30 +34,24 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Secondary_ID__c', dataValue('form.case.update.patient_file_number')),
   field('Secondary_ID_Type__c', dataValue('form.case.update.secondary_id_type')),
   field('Registration_Date__c', (state) => {
-    const validDate = state.data.form.case.update.registration_date
-    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.case.update.registration_date);
   }),
   field('Gender__c', dataValue('form.case.update.patient_gender')),
   field('Date_of_Birth_Known__c', dataValue('form.case.update.patient_dob_known')),
   field('Birthdate', (state) => {
-    const validDate = state.data.form.case.update.patient_dob
-    return ( validDate !== null  ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.case.update.patient_dob);
   }),
   field('Date_of_First_Brace__c', (state) => {
-    const validDate = state.data.form.case.update.date_first_brace
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.case.update.date_first_brace);
   }),
   field('Date_of_First_Visit__c', (state) => {
-    const validDate = state.data.form.case.update.date_first_visit
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.case.update.date_first_visit);
   }),
   field('Date_of_Tenotomy__c', (state) => {
-    const validDate = state.data.form.case.update.date_tenotomy
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.case.update.date_tenotomy);
   }),
   field('Date_Stopped_Treatment__c', (state) => {
-    const validDate = state.data.form.case.update.stop_date
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.case.update.stop_date);
   }),
   field('Location_Level_1__c', dataValue('form.case.update.location_level1_name')),
   field('Location_Level_2__c', dataValue('form.case.update.location_level2_name')),
@@ -139,15 +137,14 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   field('Tenotomy_Provider__c', dataValue('form.case.update.tenotomy_provider')),
   field('Tenotomy_Reason_Not_Given__c', dataValue('form.case.update.tenotomy_reason_not_given')),
   field('Transfer_Date__c', (state) => {
-    const validDate = state.data.form.case.update.transfer_date
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, state.data.form.case.update.transfer_date);
   }),
   field('Stopped_Treatment_Reason_Other__c', dataValue('form.case.update.stop_reason_other')),
   field('TribeEthnicity__c', dataValue('form.case.update.tribe_ethnicity')),
   field('Clinic_Transferred_To__c', dataValue('form.case.update.transfer_clinic')),
   field('Opened_Date_CommCare__c', (state) => {
     const validDate = state.data.form.commcare_usercase.case['@date_modified']
-    return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    return state.dateConverter(state, validDate);
   }),
   field('Reason_Stopped_Treatment__c', dataValue('form.case.update.close_reason')),
   field('ICR_ID__c', dataValue('form.case.update.patient_original_id')),
