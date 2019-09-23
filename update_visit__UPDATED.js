@@ -12,22 +12,24 @@ alterState((state) => {
     } else { return "" }
   };
 
-  return state
+  state.dateConverter = function(state, dateString) {
+    return ( dateString ? new Date(dateString).toISOString() : null )
+  }
+
+  return state;
 });
 
 upsertIf(
-  state.data.date_modified != state.data.properties.date_opened + "000Z",
+  state.data.date_modified != (state.data.properties.date_opened + "000Za"),
   "Visit_new__c", "gciclubfootommcare_case_id__c", fields(
     field('gciclubfootommcare_case_id__c', dataValue('case_id')), //changed from gciclubfoot__commcare_case_id__c
     // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
     relationship('Patient__r', "CommCare_Case_ID__c", dataValue('indices.parent.case_id')), //changed from Contact to Patient__r
     field('Visit_Date__c', (state) => {
-      const validDate = state.data.properties.visit_date
-      return ( validDate!== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.visit_date);
     }),
-     field('Next_Visit_Date__c', (state) => {
-      const validDate = state.data.properties.next_visit_date
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+    field('Next_Visit_Date__c', (state) => {
+      return state.dateConverter(state, state.data.properties.next_visit_date);
     }),
 
     //Brace Questions ==========================================================
@@ -55,8 +57,7 @@ upsertIf(
       return (state.data.properties.closed == "1" ? true : false) // sf checkbox
     }),
     field('Case_Closed_Date__c', (state) => {
-      const validDate = state.data.properties.date_closed
-      return ( validDate ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_closed);
     }),
     field('Cast_Count__c', dataValue('properties.cast_count')),
     field('Casting_Complications_Type__c', (state) => {
@@ -64,12 +65,10 @@ upsertIf(
     }),
     field('Casting_Complications_Notes__c', dataValue('properties.complication_type_other')),
     field('Date_Referral_Made__c', (state) => {
-      const validDate = state.data.properties.date_referral_made
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_referral_made);
     }),
     field('Date_of_Tenotomy__c', (state) => {
-      const validDate = state.data.properties.date_tenotomy
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_tenotomy);
     }),
     field('First_Brace__c', (state) => {
       return (state.data.properties.is_first_brace == "1" ? true : false) // sf checkbox
@@ -77,8 +76,7 @@ upsertIf(
     field('ICR_ID__c', dataValue('properties.visit_original_id')),
     field('Last_Modified_By_Username_CommCare__c', dataValue('last_modified_by_user_username')),
     field('Last_Modified_Date_CommCare__c', (state) => {
-      const validDate = state.data.date_modified
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_modified);
     }),
     field('Left_Angle_of_Abduction__c', dataValue('properties.l_angle_abduction')),
     field('Left_Angle_of_Dorsiflexion__c', dataValue('properties.l_angle_dorsiflexion')),
@@ -117,14 +115,9 @@ upsertIf(
     field('Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
     field('Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
     field('New_Brace__c', dataValue('properties.is_new_brace')),
-    field('Next_Visit_Date__c', (state) => {
-      const validDate = state.data.properties.next_visit_date
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
-    }),
     field('Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
     field('Opened_Date_CommCare__c', (state) => {
-      const validDate = state.data.properties.date_opened
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_opened);
     }),
     field('Owner_Name_CommCare__c', dataValue('properties.owner_name')),
 
@@ -142,16 +135,14 @@ upsertIf(
 
     //Referral Questions =======================================================
      field('Date_Referral_Made__c', (state) => {
-      const validDate = state.data.properties.date_referral_made
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_referral_made);
     }),
     field('Referral_Hospital__c', dataValue('properties.referral_hospital')),
     field('Referral_Provider__c', dataValue('properties.referral_provider')),
     field('Referral_Surgery_Type__c', humanProper(state.data.properties.referral_surgery_type)), // picklist
     field('Referral_Surgery_Type_Other__c', dataValue('properties.referral_surgery_type_other')),
     field('Referral_Treatment_Date__c', (state) => {
-      const validDate = state.data.properties.referral_treatment_date
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.referral_treatment_date);
     }),
     field('Referral_Type__c', humanProper(state.data.properties.referral_type)), // picklist
     field('Referral_Advanced_Care_Specified__c', dataValue('properties.referral_advanced_care')),
@@ -159,8 +150,7 @@ upsertIf(
 
     //Tenotomy Questions =======================================================
     field('Date_of_Tenotomy__c', (state) => {
-      const validDate = state.data.properties.date_tenotomy
-      return ( validDate !== null ? new Date(validDate).toISOString() : null )
+      return state.dateConverter(state, state.data.properties.date_tenotomy);      
     }),
     field('Tenotomy_Given__c', humanProper(state.data.properties.tenotomy_given)), // picklist
     field('Tenotomy_Hospital__c', dataValue('properties.tenotomy_hospital')),
