@@ -123,7 +123,7 @@ upsertIf(
         }
         return source;
     }),
-    field('rbsk_deic__c', dataValue('properties.referral_source_rbsk_deic')),
+    field('RBSKDEIC__c', dataValue('properties.referral_source_rbsk_deic')),
     field('Referral_Source_Other__c', dataValue('properties.referral_source_other')),
     field('Referral_Source_Health_Facility_Name__c', dataValue('properties.referral_source_hf')),
     field('Referral_Source_Doctor_Name__c', dataValue('properties.referral_source_doctor')),
