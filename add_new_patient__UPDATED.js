@@ -110,7 +110,7 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
               return source;
 
   }),
-  field('rbsk_deic__c', dataValue('form.case.update.referral_source_rbsk_deic')),
+  field('RBSKDEIC__c', dataValue('form.case.update.referral_source_rbsk_deic')),
   field('Referral_Source_Other__c', dataValue('form.case.update.referral_source_other')),
   field('Referral_Source_Health_Facility_Name__c', dataValue('form.case.update.referral_source_hf')),
   field('Referral_Source_Doctor_Name__c', dataValue('form.case.update.referral_source_doctor')),
