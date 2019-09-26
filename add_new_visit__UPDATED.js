@@ -179,7 +179,7 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   }),
   field('Visit_Count__c', dataValue('form.subcase_0.case.update.visit_count')),
   field('Name', (state) => {
-    return state.data.form.subcase_0.case.update.patient_name + "(" +
+    return state.data.form.subcase_0.case.update.patient_name + " (" +
     state.data.form.subcase_0.case.update.patient_id + ") (" +
     state.data.form.subcase_0.case.update.visit_date + ")"
   }),
