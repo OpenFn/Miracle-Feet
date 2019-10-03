@@ -47,8 +47,14 @@ upsertIf(
     field('MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
     field('MiracleFeet_Bar_Size__c', humanProper(state.data.properties.miraclefeet_bar_size)), // picklist
     field('MiracleFeet_Shoe_Size__c', (state) => {
-      const form = state.data.properties
-      return ( form.miraclefeet_shoe_size === null ? form.miraclefeet_shoe_size_india : form.miraclefeet_shoe_size );
+      const mf_shoe = state.data.properties.miraclefeet_shoe_size
+      var shoe = '';
+      if (mf_shoe==undefined) {
+        shoe='';
+      } else {
+        shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
+      }
+      return shoe;
     }),
     field('MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
     field('MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
@@ -150,7 +156,7 @@ upsertIf(
 
     //Tenotomy Questions =======================================================
     field('Date_of_Tenotomy__c', (state) => {
-      return state.dateConverter(state, state.data.properties.date_tenotomy);      
+      return state.dateConverter(state, state.data.properties.date_tenotomy);
     }),
     field('Tenotomy_Given__c', humanProper(state.data.properties.tenotomy_given)), // picklist
     field('Tenotomy_Hospital__c', dataValue('properties.tenotomy_hospital')),
@@ -162,9 +168,9 @@ upsertIf(
     }),
     field('Visit_Count__c', dataValue('properties.visit_count')),
     field('Name', (state) => {
-      return state.data.properties.patient_name + "/" +
-      state.data.properties.patient_id + "/" +
-      state.data.properties.visit_count
+      return state.data.properties.patient_name + "(" +
+      state.data.properties.patient_id + ") (" +
+      state.data.properties.visit_date + ")"
     }),
     field('Visit_Notes__c', dataValue('properties.visit_notes')),
     field('Treatment_Provider__c', dataValue('properties.treatment_provider'))
