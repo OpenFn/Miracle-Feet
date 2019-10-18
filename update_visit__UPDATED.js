@@ -40,8 +40,24 @@ upsertIf(
       return state.handleMultiSelect(state, "brace_problems_type")
     }),
     field('Brace_Type__c', (state) => {
-      const ref = state.data.properties
-      return ( ref.brace_type === null ? ref.brace_type_india : ref.brace_type );
+      const ref=state.data.properties.brace_type
+      var bracetype='';
+        if (ref==undefined) {
+          bracetype='';
+        } else if (ref=='dobbs_or_mitchell') {
+          bracetype='Dobbs or Mitchell';
+        } else if (ref=='iowa') {
+          bracetype='Iowa';
+        } else if (ref=='miraclefeet') {
+          bracetype='MiracleFeet';
+        } else if (ref=='steenbeek') {
+          bracetype='Steenbeek';
+        } else if (ref=='other') {
+          bracetype='Other';
+        } else {
+          bracetype='';
+        }
+          return bracetype;
     }),
     field('Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.properties.brace_condition)), // picklist
     field('MiracleFeet_Bar_Condition__c', humanProper(state.data.properties.miraclefeet_bar_condition)), // picklist
