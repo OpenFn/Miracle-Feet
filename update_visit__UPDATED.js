@@ -136,7 +136,6 @@ upsertIf(
     field('Right_Surgery_Type__c', humanProper(state.data.properties.r_surgery_type)),
     field('Right_Surgery_Type_Other__c', dataValue('properties.r_surgery_type_other')),
     field('New_Brace__c', dataValue('properties.is_new_brace')),
-    field('Opened_By_Username_CommCare__c', dataValue('properties.opened_by_username')),
     field('Opened_Date_CommCare__c', (state) => {
       return state.dateConverter(state, state.data.properties.date_opened);
     }),
