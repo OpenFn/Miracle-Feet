@@ -74,7 +74,6 @@ upsertIf(
     }),
     field('MiracleFeet_Brace_Given__c', humanProper(state.data.properties.miraclefeet_brace_given)), // picklist
     field('MiracleFeet_Shoes_Condition__c', humanProper(state.data.properties.miraclefeet_shoes_condition)), // picklist
-    field('Case_Closed_by_Username__c', humanProper(state.data.properties.closed_by_username)), // picklist
     field('Case_Closed__c', (state) => {
       return (state.data.properties.closed == "1" ? true : false) // sf checkbox
     }),
