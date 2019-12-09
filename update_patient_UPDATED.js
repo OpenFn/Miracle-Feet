@@ -90,7 +90,11 @@ upsertIf(
     field('Consent_Photograph_Marketing__c', humanProper(state.data.properties.consent_photograph_marketing)), // picklist
     field('Consent_Photograph_Treatment__c', humanProper(state.data.properties.consent_photograph_treatment)), // picklist
     field('Diagnosis__c', humanProper(state.data.properties.diagnosis)), // picklist
-    field('Bracing_Stage__c', dataValue('properties.bracing_stage')),
+    //field('Bracing_Stage__c', (state)=>{}dataValue('properties.bracing_stage')), //replaced with below mapping + transformation
+    field('Bracing_Stage__c', (state)=>{
+      var stage = dataValue('properties.bracing_stage')(state);
+      return(stage=="bracing_all_day" ? "All day and night" : "At night and for naps"); //transformation that returns formatted CommCare choice values
+    }),
     field('Diagnosis_Idiopathic_Specified__c', (state) => {
       return state.handleMultiSelect(state, "diagnosis_idiopathic_specified")
     }),
