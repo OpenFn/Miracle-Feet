@@ -62,24 +62,14 @@ upsertIf(
     field('Country__c', dataValue('properties.patient_country')),
     field('Zip_Code__c', dataValue('properties.pin_code')),
     field('Most_Recent_Treatment_Left__c', (state) => {
-       const left =state.data.properties.l_treatment;
-       var capLeft = '';
-       if (typeof left==='undefined'){
-         capLeft='';
-       } else {
-         capLeft=left.charAt(0).toUpperCase() + left.slice(1);
-       }
-      return capLeft;
+       var left =state.data.properties.l_treatment;
+       var treatment = (left!==undefined ? left.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(';') : null); //if l_treatment not blank, reformatting choice value as picklist values joined by ;
+       return(treatment!==null ? treatment.toString().replace(/_/g," ") : null); //remove underscores if l_treatment not blank & return reformatted value
     }),
     field('Most_Recent_Treatment_Right__c', (state) => {
-      const right =state.data.properties.r_treatment;
-       var capRight = '';
-       if (typeof right==='undefined'){
-         capRight='';
-       } else {
-         capRight=right.charAt(0).toUpperCase() + right.slice(1);
-       }
-      return capRight;
+      var right =state.data.properties.r_treatment;
+      var treatment = (right!==undefined ? right.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(';') : null); //if r_treatment not blank, reformatting choice value as picklist values joined by ;
+      return(treatment!==null ? treatment.toString().replace(/_/g," ") : null); //remove underscores if r_treatment not blank & return reformatted value
     }),
     field('Abnormalities__c', (state) => {
       return state.handleMultiSelect(state, "abnormalities")
