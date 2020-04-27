@@ -81,6 +81,7 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   field('MiracleFeet_Brace_Given__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_brace_given)), // picklist
   field('MiracleFeet_Shoes_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_shoes_condition)), // picklist
   field('Cast_Count__c', dataValue('form.subcase_0.case.update.cast_count')),
+  field('Casting_Complications__c', dataValue('form.subcase_0.case.update.complications')),
   field('Casting_Complications_Type__c', (state) => {
     return state.handleMultiSelect(state, "complication_type")
   }),
