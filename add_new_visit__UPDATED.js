@@ -137,6 +137,13 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
     const validDate = state.data.form.subcase_0.case['@date_modified']
     return state.dateConverter(state, validDate);
   }),
+  
+field('Remote_Visit__c', datavalue('form.subcase_0.case.update.visit_type')), // if visit type is on_site, needs to check box in salesforce
+
+field('Home_exercise_program__c' datavalue('form.subcase_0.case.update.home_exercise_programs_advised')), // this is a multiselect
+
+field('Instruction_or_advice__c' datavalue('form.subcase_0.case.update.instruction_advice_given')), // this is a multiselect
+
 
   //Relapse questions ==========================================================
   field('Relapse__c', humanProper(state.data.form.subcase_0.case.update.recurrence)), // picklist
@@ -148,6 +155,12 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   field('Relapse_Type_Right__c', (state) => {
     return state.handleMultiSelect(state, "recurrence_type_right")
   }),
+  
+field('Relapse_signs_symptoms__c', datavalue('form.subcase_0.case.update.symptoms_of_relapse')), // this is a multiselect
+
+field('Relapse_Reason__c', datavalue('form.subcase_0.case.update.relapse_reason')), // this is a picklist
+
+field('Relapse_Action_Taken__c', datavalue('form.subcase_0.case.update.action_taken_relapse')), // this is a multiselect
   // ===========================================================================
 
   // Referral Questions ========================================================
