@@ -110,6 +110,10 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
               return source;
 
   }),
+  field('Treatment_Postponed_due_to_Covid_19__c', (state) => {
+	return (form.case.update.delay_treatment)
+}), // in commcare, if yes, needs to checkbox in salesforce
+
   field('RBSKDEIC__c', dataValue('form.case.update.referral_source_rbsk_deic')),
   field('Referral_Source_Other__c', dataValue('form.case.update.referral_source_other')),
   field('Referral_Source_Health_Facility_Name__c', dataValue('form.case.update.referral_source_hf')),
