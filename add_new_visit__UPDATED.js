@@ -158,7 +158,7 @@ field('Instruction_or_advice__c' datavalue('form.subcase_0.case.update.instructi
   
 field('Relapse_signs_symptoms__c', datavalue('form.subcase_0.case.update.symptoms_of_relapse')), // this is a multiselect
 
-field('Relapse_Reason__c', datavalue('form.subcase_0.case.update.relapse_reason')), // this is a picklist
+field('Relapse_Reason__c', datavalue('form.subcase_0.case.update.why_did_relapse_occur')), // this is a picklist
 
 field('Relapse_Action_Taken__c', datavalue('form.subcase_0.case.update.action_taken_relapse')), // this is a multiselect
   // ===========================================================================
