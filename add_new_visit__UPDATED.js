@@ -169,7 +169,6 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   }),
   field('Relapse_Reason__c', (state) => {
     var reason = dataValue('form.subcase_0.case.update.why_did_relapse_occur')(state); // this is a picklist
-  //  var reasonNew= reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' ');
     return (reason ? reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' ') : '');
   }),
   field('Relapse_Action_Taken__c', (state) => { // this is a multiselect
