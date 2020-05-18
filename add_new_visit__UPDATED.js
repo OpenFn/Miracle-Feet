@@ -140,8 +140,10 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
     return state.dateConverter(state, validDate);
   }),
 
-  field('Remote_Visit__c', datavalue('form.subcase_0.case.update.visit_type')), // if visit type is on_site, needs to check box in salesforce
-
+  field('Remote_Visit__c',  (state) => {
+    var type = dataValue('form.subcase_0.case.update.visit_type')(state) // if visit type is on_site, needs to check box in salesforce
+    return (type==='remote' ? true : false);
+  }),
   field('Home_exercise_program__c', (state) => { // this is a multiselect
     return state.handleMultiSelect(state, "home_exercise_programs_advised")
   }),
@@ -166,8 +168,9 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
     return state.handleMultiSelect(state, "symptoms_of_relapse")
   }),
   field('Relapse_Reason__c', (state) => {
-    var reason = datavalue('form.subcase_0.case.update.why_did_relapse_occur')(state); // this is a picklist
-    (reason ? reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' '), '');
+    var reason = dataValue('form.subcase_0.case.update.why_did_relapse_occur')(state); // this is a picklist
+  //  var reasonNew= reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' ');
+    return (reason ? reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' ') : '');
   }),
   field('Relapse_Action_Taken__c', (state) => { // this is a multiselect
     return state.handleMultiSelect(state, "action_taken_relapse")
