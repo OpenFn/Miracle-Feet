@@ -3,7 +3,7 @@ alterState((state) => {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
     const image = (state.data.form.photos ? state.data.form.photos[`${photoField}`] : null);
-    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+    return (image ? `${baseUrl}${uuid}/${image}` : "")
   };
 
   state.handleMultiSelect = function(state, multiField) {
@@ -12,11 +12,13 @@ alterState((state) => {
       return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
         return humanProper(value)
       }).join(';');
-    } else { return "" }
+    } else {
+      return ""
+    }
   };
 
   state.dateConverter = function(state, dateString) {
-    return ( dateString ? new Date(dateString).toISOString() : null )
+    return (dateString ? new Date(dateString).toISOString() : null)
   }
 
   return state
@@ -79,41 +81,43 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
       return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
         return humanProper(value)
       }).join(';');
-    } else { return "" }
+    } else {
+      return ""
+    }
   }),
   field('Diagnosis_Notes__c', dataValue('form.case.update.diagnosis_notes')),
   field('Feet_Affected__c', dataValue('form.case.update.feet_affected')),
   field('Referral_Source__c', (state) => {
     const ref = state.data.form.referral_source.referral_source
-    var source='';
-              if (ref==undefined) {
-                source=state.data.form.referral_source.referral_source_india;
-              } else if (ref=='health_facility') {
-                source='Hospital or Clinic';
-              } else if (ref=='midwife') {
-                source='Midwife';
-              } else if (ref=='chw') {
-                source='Community Health Worker';
-              } else if (ref=='promotional_material') {
-                source='Promotional Material';
-              } else if (ref=='clubfoot_patient') {
-                source='Clubfoot Patient';
-              } else if (ref=='community_member') {
-                source='Community Member';
-              } else if (ref=='rbsk_deic') {
-                source='RBSK DEIC';
-              } else if (ref=='other') {
-                source='Other';
-              } else {
-                source='Not Defined';
-              }
-              return source;
+    var source = '';
+    if (ref == undefined) {
+      source = state.data.form.referral_source.referral_source_india;
+    } else if (ref == 'health_facility') {
+      source = 'Hospital or Clinic';
+    } else if (ref == 'midwife') {
+      source = 'Midwife';
+    } else if (ref == 'chw') {
+      source = 'Community Health Worker';
+    } else if (ref == 'promotional_material') {
+      source = 'Promotional Material';
+    } else if (ref == 'clubfoot_patient') {
+      source = 'Clubfoot Patient';
+    } else if (ref == 'community_member') {
+      source = 'Community Member';
+    } else if (ref == 'rbsk_deic') {
+      source = 'RBSK DEIC';
+    } else if (ref == 'other') {
+      source = 'Other';
+    } else {
+      source = 'Not Defined';
+    }
+    return source;
 
   }),
   field('Treatment_Postponed_due_to_Covid_19__c', (state) => {
-	return (form.case.update.delay_treatment)
-}), // in commcare, if yes, needs to checkbox in salesforce
-
+    var delay = dataValue('form.case.update.delay_treatment')(state); // in commcare, if yes, needs to checkbox in salesforce
+    return (delay === 'yes' ? true : false);
+  }),
   field('RBSKDEIC__c', dataValue('form.case.update.referral_source_rbsk_deic')),
   field('Referral_Source_Other__c', dataValue('form.case.update.referral_source_other')),
   field('Referral_Source_Health_Facility_Name__c', dataValue('form.case.update.referral_source_hf')),
