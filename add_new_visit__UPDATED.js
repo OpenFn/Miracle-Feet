@@ -5,7 +5,7 @@ alterState((state) => {
     const uuid = state.data.metadata.instanceID;
     const hasPhotos = (state.data.form.photos && state.data.form.photos.add_photos == "yes")
     const image = (hasPhotos ? state.data.form.photos.photos[`${photoField}`] : null);
-    return ( image ? `${baseUrl}${uuid}/${image}` : "" )
+    return (image ? `${baseUrl}${uuid}/${image}` : "")
   };
 
   state.handleMultiSelect = function(state, multiField) {
@@ -14,11 +14,13 @@ alterState((state) => {
       return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
         return humanProper(value)
       }).join(';');
-    } else { return "" }
+    } else {
+      return ""
+    }
   };
 
   state.dateConverter = function(state, dateString) {
-    return ( dateString ? new Date(dateString).toISOString() : null )
+    return (dateString ? new Date(dateString).toISOString() : null)
   }
 
   return state
@@ -40,44 +42,44 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
     return state.handleMultiSelect(state, "brace_problems_type")
   }),
   field('Brace_Type__c', (state) => {
-    const ref=state.data.form.subcase_0.case.update.brace_type
-    var bracetype='';
-      if (ref==undefined) {
-        bracetype=state.data.form.brace.brace_type_india;
-      } else if (ref=='dobbs_or_mitchell') {
-        bracetype='Dobbs or Mitchell';
-      } else if (ref=='iowa') {
-        bracetype='Iowa';
-      } else if (ref=='miraclefeet') {
-        bracetype='MiracleFeet';
-      } else if (ref=='steenbeek') {
-         bracetype='Steenbeek';
-      } else if (ref=='other') {
-          bracetype='Other';
-      } else {
-         bracetype='Not Defined';
-      }
-        return bracetype;
-    }),
+    const ref = state.data.form.subcase_0.case.update.brace_type
+    var bracetype = '';
+    if (ref == undefined) {
+      bracetype = state.data.form.brace.brace_type_india;
+    } else if (ref == 'dobbs_or_mitchell') {
+      bracetype = 'Dobbs or Mitchell';
+    } else if (ref == 'iowa') {
+      bracetype = 'Iowa';
+    } else if (ref == 'miraclefeet') {
+      bracetype = 'MiracleFeet';
+    } else if (ref == 'steenbeek') {
+      bracetype = 'Steenbeek';
+    } else if (ref == 'other') {
+      bracetype = 'Other';
+    } else {
+      bracetype = 'Not Defined';
+    }
+    return bracetype;
+  }),
   field('Brace_Condition_Non_MiracleFeet_Brace__c', humanProper(state.data.form.subcase_0.case.update.brace_condition)), // picklist
   field('Steenbeek_Brace_Size__c', humanProper(state.data.form.subcase_0.case.update.steenbeek_size)),
   field('MiracleFeet_Bar_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_condition)), // picklist
   field('MiracleFeet_Bar_Size__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_bar_size)), // picklist
   field('MiracleFeet_Shoe_Size__c', (state) => {
-      const mf_shoe = state.data.form.subcase_0.case.update.miraclefeet_shoe_size;
-      const mf_brace = state.data.form.brace.miraclefeet_brace;
-      var shoe = '';
-      if (typeof mf_brace==='undefined' && typeof mf_shoe==='undefined'){
-        shoe='';
-      } else if (typeof mf_brace.miraclefeet_shoe_size_india==='undefined' && typeof mf_shoe==='undefined'){
-        shoe='';
-      } else if (typeof mf_brace.miraclefeet_shoe_size_india==='undefined'){
-        shoe=mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
-      } else {
-        shoe=mf_brace.miraclefeet_shoe_size_india.charAt(0).toUpperCase() + mf_brace.miraclefeet_shoe_size_india.slice(1).replace('_', ' ');
-      }
-      return shoe;
-    }),
+    const mf_shoe = state.data.form.subcase_0.case.update.miraclefeet_shoe_size;
+    const mf_brace = state.data.form.brace.miraclefeet_brace;
+    var shoe = '';
+    if (typeof mf_brace === 'undefined' && typeof mf_shoe === 'undefined') {
+      shoe = '';
+    } else if (typeof mf_brace.miraclefeet_shoe_size_india === 'undefined' && typeof mf_shoe === 'undefined') {
+      shoe = '';
+    } else if (typeof mf_brace.miraclefeet_shoe_size_india === 'undefined') {
+      shoe = mf_shoe.charAt(0).toUpperCase() + mf_shoe.slice(1).replace('_', ' ');
+    } else {
+      shoe = mf_brace.miraclefeet_shoe_size_india.charAt(0).toUpperCase() + mf_brace.miraclefeet_shoe_size_india.slice(1).replace('_', ' ');
+    }
+    return shoe;
+  }),
   field('MiracleFeet_Brace_Given__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_brace_given)), // picklist
   field('MiracleFeet_Shoes_Condition__c', humanProper(state.data.form.subcase_0.case.update.miraclefeet_shoes_condition)), // picklist
   field('Cast_Count__c', dataValue('form.subcase_0.case.update.cast_count')),
@@ -139,6 +141,19 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
     return state.dateConverter(state, validDate);
   }),
 
+  field('Remote_Visit__c',  (state) => {
+    var type = dataValue('form.subcase_0.case.update.visit_type')(state) // if visit type is on_site, needs to check box in salesforce
+    return (type==='remote' ? true : false);
+  }),
+  field('Home_exercise_program__c', (state) => { // this is a multiselect
+    return state.handleMultiSelect(state, "home_exercise_programs_advised")
+  }),
+
+  field('Instruction_or_advice__c', (state) => { // this is a multiselect
+    return state.handleMultiSelect(state, "instruction_advice_given")
+  }),
+
+
   //Relapse questions ==========================================================
   field('Relapse__c', humanProper(state.data.form.subcase_0.case.update.recurrence)), // picklist
   field('Relapse_Count__c', dataValue('form.subcase_0.case.update.recurrence_count')),
@@ -148,6 +163,17 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   }),
   field('Relapse_Type_Right__c', (state) => {
     return state.handleMultiSelect(state, "recurrence_type_right")
+  }),
+
+  field('Relapse_signs_symptoms__c', (state) => { // this is a multiselect
+    return state.handleMultiSelect(state, "symptoms_of_relapse")
+  }),
+  field('Relapse_Reason__c', (state) => {
+    var reason = dataValue('form.subcase_0.case.update.why_did_relapse_occur')(state); // this is a picklist
+    return (reason ? reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' ') : '');
+  }),
+  field('Relapse_Action_Taken__c', (state) => { // this is a multiselect
+    return state.handleMultiSelect(state, "action_taken_relapse")
   }),
   // ===========================================================================
 
@@ -181,8 +207,8 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
   field('Visit_Count__c', dataValue('form.subcase_0.case.update.visit_count')),
   field('Name', (state) => {
     return state.data.form.subcase_0.case.update.patient_name + " (" +
-    state.data.form.subcase_0.case.update.patient_id + ") (" +
-    state.data.form.subcase_0.case.update.visit_date + ")"
+      state.data.form.subcase_0.case.update.patient_id + ") (" +
+      state.data.form.subcase_0.case.update.visit_date + ")"
   }),
   field('Visit_Notes__c', dataValue('form.subcase_0.case.update.visit_notes')),
   field('Treatment_Provider__c', dataValue('form.subcase_0.case.update.treatment_provider')),
