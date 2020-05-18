@@ -179,6 +179,6 @@ upsertIf(
     field('Treatment_Postponed_due_to_Covid_19__c', (state) => {
       var delay = dataValue('properties.delay_treatment')(state); // in commcare, if yes, needs to checkbox in salesforce
       return (delay === 'yes' ? true : false);
-    }),
+    })
   )
 );
