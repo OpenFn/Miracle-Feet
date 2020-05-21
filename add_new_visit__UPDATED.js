@@ -164,7 +164,7 @@ upsert("Visit_new__c", "gciclubfootommcare_case_id__c", fields( //changed EXT ID
     const advice = state.handleMultiSelectFirstCap(state, "instruction_advice_given")
     var advice2='';
     if (advice === 'Cast_caremaintenance') {
-      advice2 = 'Cast care maintnenance';
+      advice2 = 'Cast care maintenance';
     } else if (advice == 'Pre-treatment_advice_and_education') {
       advice2 = 'Pre-treatment advice and education';
     } else {
