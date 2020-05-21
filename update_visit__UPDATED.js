@@ -14,6 +14,17 @@ alterState((state) => {
     }
   };
 
+  state.handleMultiSelectFirstCap = function(state, multiField) {
+    const ms = state.data.properties[`${multiField}`]
+    if (ms) {
+      return ms.replace(/ /gi, ';').toLowerCase().split(';').map((value) => {
+        return value.charAt(0).toUpperCase() + value.substring(1); //return only first letter of entire string as UpperCase
+      }).join(';');
+    } else {
+      return ""
+    }
+  };
+
   state.dateConverter = function(state, dateString) {
     return (dateString ? new Date(dateString).toISOString() : null)
   }
@@ -152,7 +163,16 @@ upsertIf(
     }),
 
     field('Instruction_or_advice__c', (state) => { // this is a multiselect
-      return state.handleMultiSelect(state, "instruction_advice_given")
+      const advice = state.handleMultiSelectFirstCap(state, "instruction_advice_given")
+      var advice2='';
+      if (advice === 'Cast_caremaintenance') {
+        advice2 = 'Cast care maintnenance';
+      } else if (advice == 'Pre-treatment_advice_and_education') {
+        advice2 = 'Pre-treatment advice and education';
+      } else {
+        advice2 = advice.charAt(0).toUpperCase() + advice.slice(1).replace('_', ' ')
+      }
+      return advice2;
     }),
 
     //Relapse questions ========================================================
