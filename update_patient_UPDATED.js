@@ -55,6 +55,7 @@ upsertIf(
     field('Location_Level_1__c', dataValue('properties.location_level1_name')),
     field('Location_Level_2__c', dataValue('properties.location_level2_name')),
     field('Location_Level_3__c', dataValue('properties.location_level3_name')),
+    field('Location_Level_1_Other__c', dataValue('properties.location_level1_other')),
     field('City_new__c', dataValue('properties.city')),
     //field('CityTown__c', dataValue('properties.location_level3_name')),
     field('StreetLandmark__c', dataValue('properties.patient_address')), //Changed from Street__c
