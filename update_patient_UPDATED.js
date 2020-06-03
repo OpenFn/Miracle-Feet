@@ -187,7 +187,7 @@ upsertIf(
     field('R_First_Pirani_Score__c', dataValue('properties.r_first_pirani_score')),
     field('L_Most_Recent_Pirani_Score__c', dataValue('properties.l_total_score')),
     field('R_Most_Recent_Pirani_Score__c', dataValue('properties.r_total_score')),
-    field('R_Pirani_Score_at_Tenotomy__c', dataValue('properties.r_tenotomay_pirani_score')),
-    field('L_Pirani_Score_at_Tenotomy__c', dataValue('properties.l_tenotomay_pirani_score'))
+    field('R_Pirani_Score_at_Tenotomy__c', dataValue('properties.r_tenotomy_pirani_score')),
+    field('L_Pirani_Score_at_Tenotomy__c', dataValue('properties.l_tenotomy_pirani_score'))
   )
 );
