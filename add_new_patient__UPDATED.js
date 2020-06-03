@@ -174,5 +174,13 @@ upsert("Contact", "CommCare_Case_ID__c", fields(
   }),
   field("Consent_Signature__c", function(state) {
     return state.handlePhoto(state, "guardian_signature");
-  })
+  }),
+  field('R_First_Brace_Pirani_Score__c', dataValue('form.case.update.r_first_brace_pirani_score')),
+  field('L_First_Brace_Pirani_Score__c', dataValue('form.case.update.l_first_brace_pirani_score')),
+  field('L_First_Pirani_Score__c', dataValue('form.case.update.l_first_pirani_score')),
+  field('R_First_Pirani_Score__c', dataValue('form.case.update.r_first_pirani_score')),
+  field('L_Most_Recent_Pirani_Score__c', dataValue('form.case.update.l_total_score')),
+  field('R_Most_Recent_Pirani_Score__c', dataValue('form.case.update.r_total_score')),
+  field('R_Pirani_Score_at_Tenotomy__c', dataValue('form.case.update.r_tenotomy_pirani_score')),
+  field('L_Pirani_Score_at_Tenotomy__c', dataValue('form.case.update.l_tenotomy_pirani_score'))
 ));
