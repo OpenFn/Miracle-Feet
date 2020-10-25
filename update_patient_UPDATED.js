@@ -73,7 +73,8 @@ upsertIf(
       return(treatment!==null ? treatment.toString().replace(/_/g," ") : null); //remove underscores if r_treatment not blank & return reformatted value
     }),
     field('Abnormalities__c', (state) => {
-      return state.handleMultiSelect(state, "abnormalities")
+      var value = state.data.properties.abnormalities;
+      return value ? state.handleMultiSelect(state, "abnormalities") : null; 
     }),
     field('Other_Abnormalities__c', dataValue('properties.abnormalities_other')),
     field('Consent_Treatment__c', humanProper(state.data.properties.consent_treatment)), // picklist
@@ -87,10 +88,12 @@ upsertIf(
       return(stage=="bracing_all_day" ? "All day and night" : "At night and for naps"); //transformation that returns formatted CommCare choice values
     }),
     field('Diagnosis_Idiopathic_Specified__c', (state) => {
-      return state.handleMultiSelect(state, "diagnosis_idiopathic_specified")
+      var value = state.data.properties.diagnosis_idiopathic_specified; 
+      return value ? state.handleMultiSelect(state, "diagnosis_idiopathic_specified") : null;
     }),
     field('Diagnosis_Secondary_Specified__c', (state) => {
-      return state.handleMultiSelect(state, "diagnosis_secondary_specified")
+      var value = state.data.properties.diagnosis_secondary_specified;
+      return value ? state.handleMultiSelect(state, "diagnosis_secondary_specified") : null; 
     }),
     field('Diagnosis_Notes__c', dataValue('properties.diagnosis_notes')),
     field('Feet_Affected__c', humanProper(state.data.properties.feet_affected)), // picklist
