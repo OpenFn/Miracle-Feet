@@ -64,12 +64,12 @@ upsertIf(
     field('Zip_Code__c', dataValue('properties.pin_code')),
     field('Most_Recent_Treatment_Left__c', (state) => {
        var left =state.data.properties.l_treatment;
-       var treatment = (left!==undefined ? left.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(';') : null); //if l_treatment not blank, reformatting choice value as picklist values joined by ;
+       var treatment = (left  ? left.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(';') : null); //if l_treatment not blank, reformatting choice value as picklist values joined by ;
        return(treatment!==null ? treatment.toString().replace(/_/g," ") : null); //remove underscores if l_treatment not blank & return reformatted value
     }),
     field('Most_Recent_Treatment_Right__c', (state) => {
       var right =state.data.properties.r_treatment;
-      var treatment = (right!==undefined ? right.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(';') : null); //if r_treatment not blank, reformatting choice value as picklist values joined by ;
+      var treatment = (right ? right.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(';') : null); //if r_treatment not blank, reformatting choice value as picklist values joined by ;
       return(treatment!==null ? treatment.toString().replace(/_/g," ") : null); //remove underscores if r_treatment not blank & return reformatted value
     }),
     field('Abnormalities__c', (state) => {
