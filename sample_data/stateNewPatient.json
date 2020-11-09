@@ -6,18 +6,18 @@
   "app_id": "cedf746aedd34c8fa559da17df52e20d",
   "archived": false,
   "attachments": {
-    "1603284680407.jpg": {
+    "1603329695658.jpg": {
       "content_type": "image/jpeg",
-      "length": 16397,
-      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/05b7fc9d-9b65-4c5c-b258-7bea37e48a41/1603284680407.jpg"
+      "length": 17929,
+      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/b4356f2a-5d91-4224-9570-9232df1d1ac2/1603329695658.jpg"
     },
     "form.xml": {
       "content_type": "text/xml",
-      "length": 12945,
-      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/05b7fc9d-9b65-4c5c-b258-7bea37e48a41/form.xml"
+      "length": 12017,
+      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/b4356f2a-5d91-4224-9570-9232df1d1ac2/form.xml"
     }
   },
-  "build_id": "ccec8d76a3804f39b05aca19468d1eb8",
+  "build_id": "6298bc371d24401a839c313bba0e4bbe",
   "domain": "miraclefeet",
   "edited_by_user_id": null,
   "edited_on": null,
@@ -29,26 +29,26 @@
     "@xmlns": "http://openrosa.org/formdesigner/34532e2a938003aae150198e2613ed2b54c410fb",
     "calcs": {
       "age": {
-        "age_at_registration_days": "26",
-        "age_at_registration_months": "0",
-        "age_display": "0y 1m",
-        "age_months_rounded": "1",
-        "age_months_rounded_mod": "1",
+        "age_at_registration_days": "292",
+        "age_at_registration_months": "9",
+        "age_display": "0y 10m",
+        "age_months_rounded": "10",
+        "age_months_rounded_mod": "10",
         "age_years_rounded": "0",
         "calcs": {
-          "reverse_dob_calc_months": "2020-09-20",
+          "reverse_dob_calc_months": "",
           "reverse_dob_calc_years": ""
         },
-        "patient_dob": "2020-09-20",
-        "patient_dob_formatted": "20/9/20"
+        "patient_dob": "2019-12-14",
+        "patient_dob_formatted": "14/12/19"
       },
       "duplicates": {
         "duplicate_patient": ""
       },
       "general": {
-        "case_name": "Tom Mgabe (TAN-test_tanzania_clinic-0046-01)",
+        "case_name": "Test Test (NIC-nica_prueba-0027-01)",
         "consent_photo": "yes",
-        "go_to_visit_form": "1",
+        "go_to_visit_form": "0",
         "is_present": "1",
         "next_visit_date": "2020-10-21",
         "next_visit_date_formatted": "21/10/20",
@@ -56,163 +56,151 @@
         "test_data": "1"
       },
       "locations": {
-        "city": "Mlali",
-        "clinic_code": "test_tanzania_clinic",
-        "clinic_name": "Test Tanzania Clinic",
-        "country": "Tanzania",
-        "location_level1_name": "Central Zone",
-        "location_level2_name": "Dodoma",
+        "city": "Boaco",
+        "clinic_code": "nica_prueba",
+        "clinic_name": "Nicaragua Test",
+        "country": "Nicaragua",
+        "location_level1_name": "Region Central",
+        "location_level2_name": "Boaco",
         "location_level3_name": "",
-        "patient_address": "Roman Catholic church",
-        "patient_neighborhood": "Abubakari",
+        "patient_address": "Del empalme de Boaco 5 varasa al norte casa color rasado de porche",
+        "patient_neighborhood": "Empalme de Boaco",
         "pin_code": ""
       },
       "patient_id": {
         "id_creation": {
-          "get_clinic_code": "test_tanzania_clinic",
-          "get_country_code": "TAN",
+          "get_clinic_code": "nica_prueba",
+          "get_country_code": "NIC",
           "get_user_id": "01",
-          "prev_sequence_number": "45",
-          "sequence_number": "46",
-          "sequence_number_formatted": "0046"
+          "prev_sequence_number": "26",
+          "sequence_number": "27",
+          "sequence_number_formatted": "0027"
         },
         "id_output": {
-          "patient_id": "TAN-test_tanzania_clinic-0046-01",
-          "patient_id_display": "0046-01"
+          "patient_id": "NIC-nica_prueba-0027-01",
+          "patient_id_display": "0027-01"
         },
         "patient_original_id": ""
       },
       "phone_numbers": {
-        "guardian1_phone1_full": "255000000000",
-        "guardian1_phone2_full": "2550000000000",
-        "phone_country_code": "255"
+        "guardian1_phone1_full": "0050587224400",
+        "phone_country_code": "00505"
       },
       "remove_zero": {
-        "remove_zero": "000000000",
-        "starts_with_zero": "yes"
+        "starts_with_zero": "no"
       },
       "sms": {
-        "contact_backend_id": "",
-        "contact_phone_number": "255000000000",
-        "language_code": "",
-        "pronoun_he_she": "",
-        "pronoun_him_her": "",
-        "pronoun_his_her": "",
-        "send_sms": "",
+        "contact_backend_id": "TELERIVET_NICARAGUA",
+        "contact_phone_number": "0050587224400",
+        "language_code": "es",
+        "pronoun_he_she": "ella",
+        "pronoun_him_her": "ella",
+        "pronoun_his_her": "su",
+        "send_sms": "on",
         "sms_opt_in": "no",
-        "time_zone": "",
+        "time_zone": "US/Central",
         "treatment": ""
       }
     },
     "case": {
-      "@case_id": "4106955b-554d-4ee8-8ab9-5da43a2c4e06",
-      "@date_modified": "2020-10-21T12:56:06.921000Z",
-      "@user_id": "2d36e101e9d94f508190124b5a1a2b4b",
+      "@case_id": "8514aea0-3db3-436e-92d3-a1fec834b82a",
+      "@date_modified": "2020-10-22T01:33:32.505000Z",
+      "@user_id": "5c5b395d02304039b385fa17ac7e00e6",
       "@xmlns": "http://commcarehq.org/case/transaction/v2",
       "create": {
-        "case_name": "Tom Mgabe (TAN-test_tanzania_clinic-0046-01)",
+        "case_name": "Test Test (NIC-nica_prueba-0027-01)",
         "case_type": "patient",
-        "owner_id": "0ab62be7b4af4632b0096db444b191bd"
+        "owner_id": "1e869962350443d0a51d05923d5d6f17"
       },
       "update": {
         "consent_included": "yes",
-        "guardian3_last_name": "",
-        "location_level2_name": "Dodoma",
-        "patient_id": "TAN-test_tanzania_clinic-0046-01",
-        "age_months_rounded": "1",
-        "language_code": "",
-        "input_age_months": "1",
+        "location_level2_name": "Boaco",
+        "patient_id": "NIC-nica_prueba-0027-01",
+        "age_months_rounded": "10",
+        "language_code": "es",
         "phone_number_has_11digits": "no",
-        "guardian1_phone1": "0000000000",
-        "phone_number_has_10digits": "yes",
-        "patient_dob_known": "no",
+        "guardian1_phone1": "87224400",
+        "phone_number_has_10digits": "no",
+        "patient_dob_known": "yes",
         "sms_opt_in": "no",
-        "guardian2_name": "Test Kizumbe",
-        "guardian2_relationship_choice": "mother",
-        "location_level1_name": "Central Zone",
+        "guardian2_name": " ",
+        "sms_interest": "",
+        "location_level1_name": "Region Central",
         "is_present": "1",
         "consent_photo": "yes",
         "phone_number_has_7digits": "no",
-        "guardian1_relationship_choice": "father",
+        "guardian1_relationship_choice": "grandmother",
         "show_tribe_ethnicity_lookup_table": "no",
-        "patient_dob": "2020-09-20",
+        "patient_dob": "2019-12-14",
         "age_years_rounded": "0",
         "consent_treatment": "yes",
         "location_level3_name": "",
         "show_diagnosis_in_visit_form": "yes",
-        "contact_phone_number": "255000000000",
-        "guardian2_last_name": "Kizumbe",
+        "contact_phone_number": "0050587224400",
+        "guardian2_last_name": "",
         "next_visit_date": "2020-10-21",
-        "guardian1_relationship": "father",
+        "guardian1_relationship": "grandmother",
         "show_location_level2": "yes",
         "pin_code": "",
-        "guardian3_first_name": "",
-        "show_secondary_id": "yes",
-        "guardian3_name": " ",
-        "send_sms": "",
+        "show_secondary_id": "no",
+        "send_sms": "on",
         "phone_number_has_12digits": "no",
         "patient_original_id": "",
-        "age_input": "months",
-        "guardian2_phone1": "",
-        "referral_source": "clubfoot_patient",
+        "referral_source": "promotional_material",
         "duplicate_patient": "",
-        "pronoun_his_her": "",
+        "pronoun_his_her": "su",
         "phone_number_has_9_or_11_digits": "no",
         "phone_number_has_8_or_9_or_10_digits": "no",
-        "location_level2": "dodoma",
-        "guardian2_phone2": "",
+        "location_level2": "boaco",
         "consent_photograph_marketing": "yes",
         "show_referral_questions": "1",
-        "clinic_code": "test_tanzania_clinic",
-        "guardian1_phone2": "0000000000",
+        "clinic_code": "nica_prueba",
+        "guardian1_phone2": "",
         "show_pin_code": "no",
-        "guardian1_phone2_full": "2550000000000",
-        "guardian2_first_name": "Rozina",
+        "guardian2_first_name": "",
         "use_treatment_provider_lookup_table": "no",
-        "age_at_registration_days": "26",
-        "guardian1_name": "Dan Mgabe",
-        "city": "Mlali",
-        "age_display": "0y 1m",
-        "patient_address": "Roman Catholic church",
-        "phone_number_has_8digits": "no",
-        "patient_first_name": "Tom",
-        "age_at_registration_months": "0",
-        "patient_name": "Tom Mgabe",
+        "age_at_registration_days": "292",
+        "guardian1_name": "Test Test",
+        "city": "Boaco",
+        "age_display": "0y 10m",
+        "patient_address": "Del empalme de Boaco 5 varasa al norte casa color rasado de porche",
+        "phone_number_has_8digits": "yes",
+        "patient_first_name": "Angela",
+        "age_at_registration_months": "9",
+        "patient_name": "Angela Leon",
         "phone_number_has_9_or_10_digits": "no",
-        "patient_neighborhood": "Abubakari",
-        "secondary_id_choice": "no",
-        "guardian1_last_name": "Mgabe",
-        "contact_backend_id": "",
-        "registration_date": "2020-10-16",
+        "patient_neighborhood": "Empalme de Boaco",
+        "guardian1_last_name": "Test",
+        "contact_backend_id": "TELERIVET_NICARAGUA",
+        "registration_date": "2020-10-01",
         "show_diagnosis_in_registration_form": "",
-        "patient_last_name": "Mgabe",
-        "guardian1_phone1_full": "255000000000",
+        "patient_last_name": "Test",
+        "guardian1_phone1_full": "0050587224400",
         "next_visit_date_formatted_day": "Wed, Oct 21, 2020",
         "phone_number_has_9digits": "no",
-        "guardian1_first_name": "Dan",
-        "patient_gender": "male",
-        "pronoun_he_she": "",
-        "patient_id_display": "0046-01",
-        "guardian3_relationship": "",
-        "clinic_name": "Test Tanzania Clinic",
-        "guardian2_relationship": "mother",
-        "location_level1": "central_zone",
+        "guardian1_first_name": "Mariana",
+        "patient_gender": "female",
+        "pronoun_he_she": "ella",
+        "patient_id_display": "0027-01",
+        "clinic_name": "Nicaragua Test",
+        "guardian2_relationship": "",
+        "location_level1": "region_central",
         "next_visit_date_formatted": "21/10/20",
-        "pronoun_him_her": "",
-        "time_zone": "",
-        "go_to_visit_form": "1",
+        "pronoun_him_her": "ella",
+        "time_zone": "US/Central",
+        "go_to_visit_form": "0",
         "treatment": "",
-        "patient_country": "Tanzania"
+        "patient_country": "Nicaragua"
       }
     },
     "commcare_usercase": {
       "case": {
-        "@case_id": "0b45fdcae8ab4873b5416798358a734e",
-        "@date_modified": "2020-10-21T12:56:06.921000Z",
-        "@user_id": "2d36e101e9d94f508190124b5a1a2b4b",
+        "@case_id": "0f988928bf334481af8cb9334c40a206",
+        "@date_modified": "2020-10-22T01:33:32.505000Z",
+        "@user_id": "5c5b395d02304039b385fa17ac7e00e6",
         "@xmlns": "http://commcarehq.org/case/transaction/v2",
         "update": {
-          "sequence_number": "46"
+          "sequence_number": "27"
         }
       }
     },
@@ -231,18 +219,18 @@
       },
       "photo_consent_4": "",
       "photo_consent_5": {
-        "guardian_signature": "1603284680407.jpg"
+        "guardian_signature": "1603329695658.jpg"
       }
     },
     "country_configurations": {
       "phone_number_has_10-13_digits": "no",
-      "phone_number_has_10digits": "yes",
+      "phone_number_has_10digits": "no",
       "phone_number_has_11_or_14digits": "no",
       "phone_number_has_11digits": "no",
       "phone_number_has_12digits": "no",
       "phone_number_has_7digits": "no",
       "phone_number_has_8_or_9_or_10_digits": "no",
-      "phone_number_has_8digits": "no",
+      "phone_number_has_8digits": "yes",
       "phone_number_has_9_or_10_digits": "no",
       "phone_number_has_9_or_11_digits": "no",
       "phone_number_has_9digits": "no",
@@ -253,106 +241,84 @@
       "show_location_level3": "no",
       "show_pin_code": "no",
       "show_referral_questions": "1",
-      "show_secondary_id": "yes",
+      "show_secondary_id": "no",
       "show_tribe_ethnicity_lookup_table": "no",
       "use_treatment_provider_lookup_table": "no"
     },
     "guardians": {
       "guardian1": {
         "guardian1_names": {
-          "guardian1_first": "Dan",
-          "guardian1_last": "Mgabe",
-          "guardian1_name": "Dan Mgabe"
+          "guardian1_first": "Test",
+          "guardian1_last": "Test",
+          "guardian1_name": "Test"
         },
-        "guardian1_relationship": "father",
-        "guardian1_relationship_choice": "father",
+        "guardian1_relationship": "grandmother",
+        "guardian1_relationship_choice": "grandmother",
         "guardian1_sms_label": "OK",
         "phone_numbers": {
-          "phone_numbers_10digits": {
-            "guardian1_phone1_10": "0000000000",
-            "guardian1_phone2_10": "0000000000",
+          "phone_numbers_8digits": {
+            "guardian1_phone1_8": "87224400",
+            "guardian1_phone2_8": "",
             "label": "OK"
           },
           "phone_numbers_final": {
-            "guardian1_phone1": "0000000000",
-            "guardian1_phone2": "0000000000"
+            "guardian1_phone1": "87224400",
+            "guardian1_phone2": ""
           }
-        }
+        },
+        "sms_interest": ""
       },
       "guardian2": {
         "guardian2_names": {
-          "guardian2_first": "Ros",
-          "guardian2_last": "Kizumbe",
-          "guardian2_name": "Ros Kizumbe"
+          "guardian2_first": "",
+          "guardian2_last": "",
+          "guardian2_name": " "
         },
-        "guardian2_relationship": "mother",
-        "guardian2_relationship_choice": "mother",
-        "phone_numbers": {
-          "phone_numbers_10digits": {
-            "guardian2_phone1_10": "",
-            "guardian2_phone2_10": ""
-          },
-          "phone_numbers_final": {
-            "guardian2_phone1": "",
-            "guardian2_phone2": ""
-          }
-        }
-      },
-      "guardian3": {
-        "guardian3_names": {
-          "guardian3_first": "",
-          "guardian3_last": "",
-          "guardian3_name": " "
-        },
-        "guardian3_relationship": ""
+        "guardian2_relationship": ""
       },
       "guardian_label": {
-        "image_africa": "OK",
         "label": "OK"
       }
     },
     "meta": {
       "@xmlns": "http://openrosa.org/jr/xforms",
-      "appVersion": "CommCare Android, version \"2.49.7\"(461634). App v804. CommCare Version 2.49. Build 461634, built on: 2020-08-25",
-      "app_build_version": 804,
-      "commcare_version": "2.49.7",
-      "deviceID": "commcare_084736d6-8f2e-45fb-81a7-49b8292a305e",
+      "appVersion": "ODK, version \"2.50.2\"(463796). Kawok v806. CommCare v2.50.2. Compilación 463796, creada en: 2020-10-13",
+      "app_build_version": 806,
+      "commcare_version": "2.50.2",
+      "deviceID": "commcare_79259386-22b4-49a6-9b7c-4978758df7a1",
       "drift": "0",
       "geo_point": null,
-      "instanceID": "05b7fc9d-9b65-4c5c-b258-7bea37e48a41",
-      "timeEnd": "2020-10-21T12:56:06.921000Z",
-      "timeStart": "2020-10-21T12:50:35.396000Z",
-      "userID": "2d36e101e9d94f508190124b5a1a2b4b",
-      "username": "test_tanzania"
+      "instanceID": "b4356f2a-5d91-4224-9570-9232df1d1ac2",
+      "timeEnd": "2020-10-22T01:33:32.505000Z",
+      "timeStart": "2020-10-22T01:19:10.582000Z",
+      "userID": "5c5b395d02304039b385fa17ac7e00e6",
+      "username": "nica_practica"
     },
     "patient_address": {
       "address": {
-        "city": "Mlali",
-        "patient_address": "Roman Catholic church",
-        "patient_neighborhood": "Abubakari"
+        "city": "Boaco",
+        "patient_address": "Del empalme de Boaco 5 varasa al norte casa color rasado de porche",
+        "patient_neighborhood": "Empalme de Boaco"
       },
       "location_level1": {
-        "location_level1": "central_zone",
+        "location_level1": "region_central",
         "location_level1_is_other": "0"
       },
       "location_level2": {
-        "location_level2": "dodoma"
+        "location_level2": "boaco"
       }
     },
     "patient_info": {
-      "enter_age": {
-        "age_input": "months",
-        "input_age_months": "1.0"
-      },
-      "patient_dob_known": "no",
+      "patient_dob": "2019-12-14",
+      "patient_dob_known": "yes",
       "patient_info": {
-        "patient_dob_label": "OK",
-        "patient_gender": "male"
+        "patient_age_label": "OK",
+        "patient_gender": "female"
       },
       "patient_name": {
-        "patient_first_name": "Tom",
-        "patient_last_name": "Mgabe",
-        "patient_name": "Tom Mgabe"
+        "patient_first_name": "Test",
+        "patient_last_name": "Test",
+        "patient_name": "Test Leon"
       }
     },
     "photos": {
@@ -364,20 +330,19 @@
       "photo3_text": "OK"
     },
     "referral_source": {
-      "referral_source": "clubfoot_patient"
+      "referral_source": "promotional_material"
     },
     "registration_info": {
       "patient_id": {
         "label": {
-          "patient_id_label": "OK",
-          "secondary_id_choice": "no"
+          "patient_id_label": "OK"
         }
       },
-      "registration_date": "2020-10-16"
+      "registration_date": "2020-10-01"
     },
     "summary": {
       "action": {
-        "proceed_to_visit_form": "yes"
+        "proceed_to_visit_form": "mark_present"
       },
       "final_label": "OK",
       "summary": {
@@ -385,28 +350,28 @@
       }
     }
   },
-  "id": "05b7fc9d-9b65-4c5c-b258-7bea37e48a41",
-  "indexed_on": "2020-10-21T14:02:40.748931",
+  "id": "b4356f2a-5d91-4224-9570-9232df1d1ac2",
+  "indexed_on": "2020-10-22T01:33:34.961051",
   "initial_processing_complete": true,
   "is_phone_submission": true,
   "metadata": {
-    "appVersion": "CommCare Android, version \"2.49.7\"(461634). App v804. CommCare Version 2.49. Build 461634, built on: 2020-08-25",
-    "app_build_version": 804,
-    "commcare_version": "2.49.7",
-    "deviceID": "commcare_084736d6-8f2e-45fb-81a7-49b8292a305e",
+    "appVersion": "ODK, version \"2.50.2\"(463796). Kawok v806. CommCare v2.50.2. Compilación 463796, creada en: 2020-10-13",
+    "app_build_version": 806,
+    "commcare_version": "2.50.2",
+    "deviceID": "commcare_79259386-22b4-49a6-9b7c-4978758df7a1",
     "drift": "0",
     "geo_point": null,
-    "instanceID": "05b7fc9d-9b65-4c5c-b258-7bea37e48a41",
+    "instanceID": "b4356f2a-5d91-4224-9570-9232df1d1ac2",
     "location": null,
-    "timeEnd": "2020-10-21T12:56:06.921000Z",
-    "timeStart": "2020-10-21T12:50:35.396000Z",
-    "userID": "2d36e101e9d94f508190124b5a1a2b4b",
-    "username": "test_tanzania"
+    "timeEnd": "2020-10-22T01:33:32.505000Z",
+    "timeStart": "2020-10-22T01:19:10.582000Z",
+    "userID": "5c5b395d02304039b385fa17ac7e00e6",
+    "username": "nica_practica"
   },
   "problem": null,
-  "received_on": "2020-10-21T14:02:40.337205Z",
+  "received_on": "2020-10-22T01:33:34.501558Z",
   "resource_uri": "",
-  "server_modified_on": "2020-10-21T14:02:40.437123Z",
+  "server_modified_on": "2020-10-22T01:33:34.595799Z",
   "type": "data",
   "uiversion": "1",
   "version": "804"
