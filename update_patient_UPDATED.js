@@ -52,7 +52,8 @@ alterState(state => {
     'test_uganda_clinic',
     'test_clinic1',
     'TestMAJ01', //another?
-    'senegal_test_clinic' //another
+    'senegal_test_clinic', //another
+    'uganda_test_clinic' //another
   ];
 
   return { ...state, discardedClinics };
