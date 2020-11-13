@@ -19,8 +19,19 @@ alterState(state => {
     }
   };
 
+  state.Year2digitsTo4digits = function (dateString) {
+    if (dateString.split('-')[0].length === 2) {
+      var dateArr = dateString.split('-');
+      dateArr[0] = '20' + dateArr[0];
+      return dateArr.join('-');
+    }
+    return dateString;
+  };
+
   state.dateConverter = function (state, dateString) {
-    return dateString ? new Date(dateString).toISOString() : null;
+    return dateString
+      ? new Date(state.Year2digitsTo4digits(dateString)).toISOString()
+      : null;
   };
 
   const discardedClinics = [
@@ -54,7 +65,7 @@ alterState(state => {
     'TestMAJ01', //another?
     'senegal_test_clinic', //another
     'uganda_test_clinic', //another
-    'mali_test'   //another
+    'mali_test', //another
   ];
 
   return { ...state, discardedClinics };
