@@ -107,8 +107,8 @@
         "pronoun_he_she": "",
         "pronoun_him_her": "",
         "pronoun_his_her": "",
-        "send_sms": "",
-        "sms_opt_in": "no",
+        "send_sms": "on",
+        "sms_opt_in": "yes",
         "time_zone": "",
         "treatment": ""
       }
@@ -134,7 +134,7 @@
         "guardian1_phone1": "07777777",
         "phone_number_has_10digits": "yes",
         "patient_dob_known": "yes",
-        "sms_opt_in": "no",
+        "sms_opt_in": "yes",
         "guardian2_name": "Test Name ",
         "guardian2_relationship_choice": "father",
         "location_level1_name": "Lake Zone",
@@ -158,7 +158,7 @@
         "guardian3_first_name": "",
         "show_secondary_id": "yes",
         "guardian3_name": " ",
-        "send_sms": "",
+        "send_sms": "on",
         "phone_number_has_12digits": "no",
         "patient_original_id": "",
         "guardian2_phone1": "077777777",
