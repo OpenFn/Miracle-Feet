@@ -330,7 +330,7 @@
       "timeEnd": "2020-11-17T07:41:59.109000Z",
       "timeStart": "2020-11-17T07:32:59.924000Z",
       "userID": "dc15ba6a5f334a1dbb05b1a72495912c",
-      "username": "shirati01"
+      "username": "username"
     },
     "patient_address": {
       "address": {
@@ -405,7 +405,7 @@
     "timeEnd": "2020-11-17T07:41:59.109000Z",
     "timeStart": "2020-11-17T07:32:59.924000Z",
     "userID": "dc15ba6a5f334a1dbb05b1a72495912c",
-    "username": "shirati01"
+    "username": "username"
   },
   "problem": null,
   "received_on": "2020-11-17T07:42:42.082858Z",
