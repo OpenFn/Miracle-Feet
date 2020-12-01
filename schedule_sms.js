@@ -17,7 +17,8 @@ alterState(state => {
   if (sms_opt_in === 'yes' && send_sms === 'on') {
     const { treatment } = calcs.sms;
     if (treatment === '') {
-      bulkId.push(`register-${form.case['@case_id']}`);
+      bulkId.push({ patientReg: 'register-' });
+      bulkId.push({ treatmentReg: 'treatment-' });
       activeConditions.push('patientReg', 'treatmentReg');
     } else {
       //bulkId = `${treatmentMap[treatment]}-${form.case['@case_id']}`;
@@ -46,7 +47,7 @@ alterState(state => {
             "c'est la clinique du pied bot. Nous vous enverrons des informations importantes et des rappels concernant le traitement de",
             'patient_first_name',
           ],
-          delay: 0,
+          relativeDay: 0,
         },
       ],
       treatmentReg: [
@@ -61,7 +62,8 @@ alterState(state => {
             'guardian1_first_name',
             "Le pied bot est un trouble médical qui touche 1 bébé sur 800. Personne n'est à blâmer concernant le pied bot. Cela peut affecter n'importe qui!",
           ],
-          delay: 0,
+          relativeDay: 0,
+          clockTime: '09:00:00',
           date: 'registration_date',
         },
         {
@@ -71,7 +73,8 @@ alterState(state => {
           FR: [
             "Presque tous les enfants qui complètent la méthode de moulage en plâtre de Ponseti grandissent normalement, sans douleur. C'est le meilleur traitement pour votre bébé!",
           ],
-          delay: 300,
+          relativeDay: 0,
+          clockTime: '09:05:00',
           date: 'registration_date',
         },
         {
@@ -85,7 +88,8 @@ alterState(state => {
             'guardian1_first_name',
             "Vous n'êtes pas seul dans le processus de traitement du pied bot. Communiquez avec d'autres parents à la clinique ou avec votre médecin pour obtenir des informations et de l'aide!",
           ],
-          delay: 86400,
+          relativeDay: 1,
+          clockTime: '09:00:00',
           date: 'registration_date',
         },
       ],
@@ -154,67 +158,66 @@ alterState(state => {
     )(state);
   }
 
+  function sendSMS(bulkId, messages) {
+    //console.log('bulkId', bulkId);
+    getSMS(bulkId).then(res => {
+      const { form } = state.data;
+      const { calcs } = form;
+      const { next_visit_date } = calcs.general;
+      if (res.requestError) {
+        console.log(`Scheduling SMS for ${next_visit_date}...`);
+
+        //scheduleSMS(bulkId, messages);
+      } else {
+        console.log(
+          `SMS already scheduled for ${next_visit_date}. Rescheduling...`
+        );
+        //rescheduleSMS(bulkId, next_visit_date);
+      }
+    });
+  }
   const { form } = state.data;
-  const {
-    guardian1_first_name,
-    clinic_name,
-    patient_first_name,
-  } = form.case.update;
   const { calcs } = form;
 
   const maps = state.buildMapping();
   const language_code = calcs.sms.language_code || 'EN';
 
   for (var i = 0; i < state.activeConditions.length; i++) {
-    const test = maps[state.activeConditions[i]].map(mapping => {
-      const date = dataValue(`form.case.update.${mapping.date}`)(state);
-      console
-      console.log('Sending this sms at ', Date(date));
-      console.log(
-        mapping[language_code]
-          .map((item, pos) =>
-            pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
-          )
-          .join(' ')
-      );
-      //console.log(mapping[language_code].join(''));
-      return mapping[language_code]
+    const test = maps[state.activeConditions[i]].map((mapping, nb) => {
+      const date =
+        dataValue(`form.case.update.${mapping.date}`)(state) || Date.now();
+
+      let sendAtDate = new Date(date);
+
+      // We build the bulkId from the case-type, the number of sms and the case id
+      const bulkId = `${state.bulkId[i][state.activeConditions[i]]}${nb + 1}-${
+        form.case['@case_id']
+      }`;
+
+      const sms = mapping[language_code]
         .map((item, pos) =>
           pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
         )
         .join(' ');
-    });
-    console.log(test);
-  }
+      //bulkId.push(`register-${form.case['@case_id']}`);
 
-  /* 
-  getSMS(state.bulkId).then(res => {
-    const { form } = state.data;
-    const { calcs } = form;
-    const { next_visit_date } = calcs.general;
-    if (res.requestError) {
-      console.log(`Scheduling SMS for ${next_visit_date}...`);
+      sendAtDate.setDate(sendAtDate.getDate() + mapping.relativeDay);
+      const hours = mapping.clockTime
+        ? mapping.clockTime.split(':')[0]
+        : new Date().getHours();
+      const minutes = mapping.clockTime
+        ? mapping.clockTime.split(':')[1]
+        : new Date().getMinutes();
+      const seconds = mapping.clockTime
+        ? mapping.clockTime.split(':')[2]
+        : new Date().getSeconds();
 
-      // Live Data
-      const {
-        guardian1_first_name,
-        clinic_name,
-        patient_first_name,
-      } = form.case.update;
+      sendAtDate.setHours(parseInt(hours));
+      sendAtDate.setMinutes(parseInt(minutes));
+      sendAtDate.setSeconds(parseInt(seconds));
 
-      // Building mapping from live data
-      const mapping = buildMapping(
-        guardian1_first_name,
-        clinic_name,
-        patient_first_name
-      );
-
-      const language_code = calcs.sms.language_code || 'EN';
-
-      const text = mapping.patientReg.map(msg =>
-        msg[language_code].join('')
-      )[0];
-
+      const sendAt = sendAtDate.toISOString();
+      console.log('Sending this sms at ', sendAtDate.toISOString());
       const messages = [
         {
           from: '+221771791380',
@@ -223,20 +226,31 @@ alterState(state => {
               to: '+221771791380',
             },
           ],
-          text,
-          sendAt: next_visit_date,
+          text: sms,
+          sendAt,
         },
       ];
 
+      // Check output for details
       console.log(messages);
-      scheduleSMS(state.bulkId, messages);
-    } else {
-      console.log(
-        `SMS already scheduled for ${next_visit_date}. Rescheduling...`
-      );
-      rescheduleSMS(state.bulkId, next_visit_date);
-    }
-  });
- */
+
+      sendSMS(bulkId, messages);
+      /* console.log(
+        mapping[language_code]
+          .map((item, pos) =>
+            pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
+          )
+          .join(' ')
+      ); */
+      //console.log(mapping[language_code].join(''));
+      return mapping[language_code]
+        .map((item, pos) =>
+          pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
+        )
+        .join(' ');
+    });
+    //console.log(test);
+  }
+
   return state;
 });
