@@ -53,7 +53,7 @@
       },
       "case_properties": {
         "case_name": "Rita Zagoni (TAN-KEN01-0075-01) 2020-11-17",
-        "clinic_code": "MTW01",
+        "clinic_code": "guinea_test_clinic",
         "clinic_name": "Ndanda Hospital",
         "patient_dob": "2019-08-31",
         "patient_first_name": "Rita",
@@ -551,7 +551,7 @@
           "l_angle_abduction": "",
           "test_data": "0",
           "l_score_not_improved": "0",
-          "clinic_code": "MTW01",
+          "clinic_code": "guinea_test_clinic",
           "visit_type": "on_site",
           "show_pin_code": "no",
           "age_months_start_treatment_rounded": "2",
