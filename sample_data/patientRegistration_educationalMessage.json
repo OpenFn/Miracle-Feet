@@ -66,7 +66,7 @@
       },
       "locations": {
         "city": "nyankanga/Butiama",
-        "clinic_code": "MAR01",
+        "clinic_code": "guinea_test_clinic",
         "clinic_name": "Shirati Hospital",
         "country": "Tanzania",
         "location_level1_name": "Lake Zone",
@@ -78,7 +78,7 @@
       },
       "patient_id": {
         "id_creation": {
-          "get_clinic_code": "MAR01",
+          "get_clinic_code": "guinea_test_clinic",
           "get_country_code": "TAN",
           "get_user_id": "01",
           "prev_sequence_number": "109",
@@ -171,7 +171,7 @@
         "guardian2_phone2": "",
         "consent_photograph_marketing": "yes",
         "show_referral_questions": "1",
-        "clinic_code": "MAR01",
+        "clinic_code": "guinea_test_clinic",
         "guardian1_phone2": "",
         "show_pin_code": "no",
         "guardian2_first_name": "Test Name",
