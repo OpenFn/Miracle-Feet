@@ -38,7 +38,4 @@ Object.keys(result).map(type => {
   result[type] = cleaned;
 });
 
-fs.writeFileSync(
-  './mappings/content-output.json',
-  JSON.stringify(result, null, 2)
-);
+fs.writeFileSync('./mappings/content-output.json', result);
