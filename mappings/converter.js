@@ -23,7 +23,13 @@ Object.keys(result).map(type => {
     Object.keys(x).map(lang => {
       if (lang.length <= 3) {
         // This is how we identify language keys
-        x[lang] = x[lang].split(/[{}]+/);
+        x[lang] = x[lang].split(/[{}]+/).map(bit => {
+          if (bit.startsWith('case.')) {
+            // These should not be nested inside "case"
+            return bit.substring(5);
+          }
+          return bit;
+        });
       }
       return lang;
     });
