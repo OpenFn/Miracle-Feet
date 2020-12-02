@@ -42,3 +42,8 @@ fs.writeFileSync(
   './mappings/content-output.json',
   JSON.stringify(result, null, 2)
 );
+
+fs.writeFileSync(
+  './mappings/content-output-minified.js',
+  `const mapping=${JSON.stringify(result)})`
+);
