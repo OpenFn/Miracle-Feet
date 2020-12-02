@@ -36,76 +36,6 @@ alterState(state => {
     }
   }
 
-  // Once upon a time, there was this place where magic happens...
-  function buildMapping() {
-    const staticObject = {
-      '01 - Patient Registration': [
-        {
-          EN: [
-            'Hi',
-            'guardian1_first_name',
-            'This is from the clubfoot clinic at',
-            'clinic_name',
-            'We will send you important information and reminders regarding',
-            'patient_first_name',
-            "'s treatment.",
-          ],
-          FR: [
-            'Bonjour',
-            'guardian1_first_name',
-            "c'est la clinique du pied bot. Nous vous enverrons des informations importantes et des rappels concernant le traitement de",
-            'patient_first_name',
-          ],
-          relativeDay: 0,
-        },
-      ],
-      '02 - Treatment Introduction': [
-        {
-          EN: [
-            'Hi',
-            'guardian1_first_name',
-            'Clubfoot is a medical condition that happens to 1 out of 800 babies. No one is to blame for clubfoot. It can affect anyone!',
-          ],
-          FR: [
-            'Bonjour',
-            'guardian1_first_name',
-            "Le pied bot est un trouble médical qui touche 1 bébé sur 800. Personne n'est à blâmer concernant le pied bot. Cela peut affecter n'importe qui!",
-          ],
-          relativeDay: 0,
-          clockTime: '09:00:00',
-          date: 'registration_date',
-        },
-        {
-          EN: [
-            'Almost all children that complete the Ponseti plaster casting method grow up walking normally, with no pain. It is the best treatment for your baby!',
-          ],
-          FR: [
-            "Presque tous les enfants qui complètent la méthode de moulage en plâtre de Ponseti grandissent normalement, sans douleur. C'est le meilleur traitement pour votre bébé!",
-          ],
-          relativeDay: 0,
-          clockTime: '09:05:00',
-          date: 'registration_date',
-        },
-        {
-          EN: [
-            'Hi',
-            'guardian1_first_name',
-            'You are not alone in the clubfoot treatment process. Reach out to other parents at the clinic or to your doctor for support!',
-          ],
-          FR: [
-            'Bonjour',
-            'guardian1_first_name',
-            "Vous n'êtes pas seul dans le processus de traitement du pied bot. Communiquez avec d'autres parents à la clinique ou avec votre médecin pour obtenir des informations et de l'aide!",
-          ],
-          relativeDay: 1,
-          clockTime: '09:00:00',
-          date: 'registration_date',
-        },
-      ],
-    };
-    return staticObject;
-  }
-
   return { ...state, bulkId, activeConditions, mapping };
 });
 
@@ -119,13 +49,22 @@ alterState(state => {
         header: {
           'Content-Type': 'application/json',
           Authorization: `Basic ${token}`,
-          options: {
-            successCodes: [404],
-          },
+        },
+        options: {
+          successCodes: [200, 404],
         },
       },
       state => {
-        return state.data;
+        const response = state.data;
+        if (
+          response.bulkId ||
+          (response.requestError &&
+            response.requestError.serviceException &&
+            response.requestError.serviceException.messageId === 'NOT_FOUND')
+        ) {
+          return response;
+        }
+        throw new Error(response);
       }
     )(state);
   }
@@ -167,21 +106,21 @@ alterState(state => {
     )(state);
   }
 
-  function sendSMS(bulkId, messages) {
-    console.log('bulkId', bulkId);
+  function sendSMS(bulkId, messages, sendAt) {
+    console.log(`Fetching scheduled SMS for ${bulkId}...`);
     getSMS(bulkId).then(res => {
       const { form } = state.data;
       const { calcs } = form;
       const { next_visit_date } = calcs.general;
       if (res.requestError) {
-        console.log(`Scheduling SMS for ${next_visit_date}...`);
+        console.log(`Scheduling SMS for ${bulkId} at ${sendAt}...`);
 
-        //scheduleSMS(bulkId, messages);
+        scheduleSMS(bulkId, messages);
       } else {
         console.log(
-          `SMS already scheduled for ${next_visit_date}. Rescheduling...`
+          `SMS already scheduled. Rescheduling for ${next_visit_date}...`
         );
-        //rescheduleSMS(bulkId, next_visit_date);
+        rescheduleSMS(bulkId, next_visit_date);
       }
     });
   }
@@ -192,7 +131,6 @@ alterState(state => {
   const language_code = calcs.sms.language_code || 'EN';
 
   for (var i = 0; i < state.activeConditions.length; i++) {
-    console.log(state.activeConditions[i]);
     state.mapping[state.activeConditions[i]].map((mapping, nb) => {
       const date =
         mapping['Schedule Start Date (SSD)'] === 'now'
@@ -213,29 +151,28 @@ alterState(state => {
           pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
         )
         .join(' ');
-      //bulkId.push(`register-${form.case['@case_id']}`);
-
-      sendAtDate.setDate(sendAtDate.getDate() + mapping['Days from SSD']);
       
+      sendAtDate.setDate(sendAtDate.getDate() + mapping['Days from SSD']);
+
       const hours = mapping['Clock Time']
         ? mapping['Clock Time'].split(':')[0]
         : new Date().getHours();
       const minutes = mapping['Clock Time']
         ? mapping['Clock Time'].split(':')[1]
         : new Date().getMinutes();
-    
+
       sendAtDate.setHours(parseInt(hours));
       sendAtDate.setMinutes(parseInt(minutes));
-    
+
       const sendAt = sendAtDate.toISOString();
-      
-      //console.log('Sending this sms at ', sendAtDate.toISOString());
+
+      const to = form.case.update.guardian1_phone1;
       const messages = [
         {
-          from: '+221771791380',
+          from: to,
           destinations: [
             {
-              to: '+221771791380',
+              to,
             },
           ],
           text: sms,
@@ -243,18 +180,8 @@ alterState(state => {
         },
       ];
 
-      // Check output for details
-      console.log(messages);
+      sendSMS(bulkId, messages, sendAt);
 
-      sendSMS(bulkId, messages);
-      /* console.log(
-        mapping[language_code]
-          .map((item, pos) =>
-            pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
-          )
-          .join(' ')
-      ); */
-      //console.log(mapping[language_code].join(''));
       return mapping[language_code]
         .map((item, pos) =>
           pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
