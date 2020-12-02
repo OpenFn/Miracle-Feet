@@ -97,7 +97,7 @@
         "pronoun_him_her": "ella",
         "pronoun_his_her": "su",
         "send_sms": "on",
-        "sms_opt_in": "no",
+        "sms_opt_in": "1",
         "time_zone": "US/Central",
         "treatment": ""
       }
@@ -122,7 +122,7 @@
         "guardian1_phone1": "87224400",
         "phone_number_has_10digits": "no",
         "patient_dob_known": "yes",
-        "sms_opt_in": "no",
+        "sms_opt_in": "1",
         "guardian2_name": " ",
         "sms_interest": "",
         "location_level1_name": "Region Central",
