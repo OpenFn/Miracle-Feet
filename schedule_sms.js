@@ -13,7 +13,8 @@ alterState(state => {
 
   const { form } = state.data;
   const { calcs } = form;
-  const { sms_opt_in, send_sms } = calcs.sms;
+
+  const { sms_opt_in, send_sms } = form.case.update;
 
   let bulkId = [];
   let activeConditions = [];
@@ -151,7 +152,7 @@ alterState(state => {
           pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
         )
         .join(' ');
-      
+
       sendAtDate.setDate(sendAtDate.getDate() + mapping['Days from SSD']);
 
       const hours = mapping['Clock Time']
