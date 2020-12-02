@@ -103,8 +103,7 @@
         ". Magpadala mi sa inyo ug importanteng mga impormasyon ug mga pahinumdum bahin sa kaayuhan ni ",
         "case.patient_first_name",
         "."
-      ],
-      "order": 1
+      ]
     }
   ],
   "02 - Treatment Introduction": [
@@ -173,8 +172,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Ang Clubfoot ay usa medikal nga kondisyon nga mahitabo sa usa sa kada otso-syentos nga mga bata. Walay  dapat basulon kung naay clubfoot ang bata. Mahitabo kini kang bisan kinsa."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on'",
@@ -219,8 +217,7 @@
       ],
       "PHI": [
         "Halos tanang mga bata nga nakakompleto sa Ponseti plaster casting method kay midakong makalakaw ug normal nga walay sakit. Kini ang pinakamaayong proseso sa pagpa-ayo sa inyong anak!"
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on'",
@@ -287,8 +284,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Dili ka mag-inusara sa proseso sa pagpatambal sa clubfoot. Pangutana sa ubang mga ginikanan sa klinik o sa imohang doktor para sa suporta!"
-      ],
-      "order": 3
+      ]
     }
   ],
   "03 - Casting Introduction": [
@@ -357,8 +353,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Ang Serial plaster casting kay ang pinaka-unang proseso sa pagpa-ayo sa clubfoot. Halos tanang mga bata nanginahanglan ug lima hangtud pito ka casts para matarong ang ilang mga tiil, pero lahi-lahi ang kada bata."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -403,8 +398,7 @@
       ],
       "PHI": [
         "Ang casting phase sa pagpa-ayo kay mu-abot ug hangtud tulo ka bulan."
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -449,8 +443,7 @@
       ],
       "PHI": [
         "Ang posisyon sa tiil kay hinay-hinay nga mulihok kada plaster cast. Pagkahuman sa kina-ulahiang cast, ang tiil kay matarong ug makalihok ug normal."
-      ],
-      "order": 3
+      ]
     }
   ],
   "04 - Casting Campaign": [
@@ -541,8 +534,7 @@
         ". Siguraduha nga ang bag-ong plaster casts kay uga na bag-o nimu hatagag permiso nga paduwaon si ",
         "case.patient_first_name",
         " para ang kabug-aton sa pagtindog o pagkamang dili maka-apekto sa porma sa tiil."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -631,8 +623,7 @@
         ". Normal ra para sa mga bata nga maghilak-hilak paghuman mabutangan ug bag-ong plaster cast. Mama-ayo ang paminaw ni ",
         "case.patient_first_name",
         " paghuman sa pipila ka adlaw."
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -699,8 +690,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Importante nga permi limpyo ug uga ang ang plaster. Ayaw ug gamit ug sabon, pulbos o lotion sa sulod sa cast."
-      ],
-      "order": 3
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -767,8 +757,7 @@
         "Ayaw kuhaa ang cast ni ",
         "case.patient_first_name",
         " bag-o mo muadto sa klinika. Ang cast kay nagpugong sa tiil para dili mubalik ug pasulod."
-      ],
-      "order": 4
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -855,8 +844,7 @@
         ", ang iritasyon sa panit kay komon ra na kung ang mga bata naay plaster cast. Istoryahi ang imong doktor o sa tawag sa klinika para matambagan ka kung ang panit ni ",
         "case.patient_first_name",
         " kay nagka-iritasyon."
-      ],
-      "order": 5
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -945,8 +933,7 @@
         ". Hinumdumi nga kinahanglang regular nga ilisan ang diaper ni ",
         "case.patient_first_name",
         " para dili mulapas ang ihi gikan sa diaper padung sa cast."
-      ],
-      "order": 6
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1013,8 +1000,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Halos tanang mga bata kay nanginahanglan ug simple ug dali nga operasyon nga ginatawag nga tenotomy para mutaas ang ugat sa likod sa takong."
-      ],
-      "order": 7
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1115,8 +1101,7 @@
         ". Importante ang Tenotomy para sa pagpa-ayo ni ",
         "case.patient_first_name",
         ". Dili kini kuyaw ug makatabang kini para makalakaw siya ug normal."
-      ],
-      "order": 8
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1205,8 +1190,7 @@
         ". Kada bisita nimu, pangutan-a imong doktor bahin sa pagpa-ayo sa clubfoot ni ",
         "case.patient_first_name",
         ". I-ambit kung unsa imong natun-an sa imong pamilya!"
-      ],
-      "order": 9
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1303,8 +1287,7 @@
         ". Kung si ",
         "case.patient_first_name",
         " naay plaster casts, sulayi ug pagpagsanina niya ug mga sanina nga dali ra matangtang kung mag-ilis mog diaper."
-      ],
-      "order": 10
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1401,8 +1384,7 @@
         ". Hinumdumi nga gaksa ug pakigdula gihapon kay ",
         "case.patient_first_name",
         " pareha gihapon niadtong wala pa siya'y plaster casts!"
-      ],
-      "order": 11
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1501,8 +1483,7 @@
         ". Makatabang sa duha ka ginikanan nga muanhi sila sa mga du-aw bahin sa clubfoot ni ",
         "case.patient_first_name",
         " sa klinika para makasuporta sa pagpa-ayo sa bata."
-      ],
-      "order": 12
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1605,8 +1586,7 @@
         ". Paghuman sa pinaka-ulahing plaster cast, si ",
         "case.patient_first_name",
         " kay magsuot ug brace para magpugngan ang pagsulod ug balik sa tiil. Sa permiro, kailangan niya nga suoton ang brace sa sulod sa 23 ka oras kada adlaw."
-      ],
-      "order": 13
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
@@ -1695,8 +1675,7 @@
         ". Ang plaster casting phase kay hapit na mahuman! Sunod nga suoton ni ",
         "case.patient_first_name",
         " kay ang brace para dili mubalik ug pasulod ang tiil."
-      ],
-      "order": 14
+      ]
     }
   ],
   "05 - Tenotomy": [
@@ -1805,8 +1784,7 @@
         "! Karon, kinahanglang suoton ni ",
         "case.patient_first_name",
         " ang plaster cast sa tulo ka semana para masigurado nga maayo ug tarong."
-      ],
-      "order": 1
+      ]
     }
   ],
   "06 - Bracing Introduction": [
@@ -1897,8 +1875,7 @@
         ". Ang plaster casting kay nakatarong sa clubfoot ni ",
         "case.patient_first_name",
         " pero ang tiil kay dali ra gihapong mubalik paubos ug pasulod. Kini mao ang ginatawag nga relapsing."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -1965,8 +1942,7 @@
         "Importante nga magsuot ug brace si ",
         "case.patient_first_name",
         " kay kini magpugong sa mga tiil sa pag-relapse!"
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2011,8 +1987,7 @@
       ],
       "PHI": [
         "Kung ang bata dili mag-suot ug brace sama sa mando sa doktor, ang tiil kay dako kaayong tsansa nga mag-relapse ug manginahanglang napud mobalik ug casting."
-      ],
-      "order": 3
+      ]
     }
   ],
   "07 - Bracing All Day Campaign": [
@@ -2125,8 +2100,7 @@
         " sa mga permirong mga adlaw sa pagsuot sa brace. Dili ni kay gibati siya ug kasakit pero kay ang brace lahi ra gayud siya sa na-andan ni ",
         "case.patient_first_name",
         "."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2205,8 +2179,7 @@
         " magsuot sa iyang brace 23 ka oras kada adlaw, gawas sa ig kaligo sa iya. Kadugayan si ",
         "case.patient_first_name",
         " maanad na!"
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2301,8 +2274,7 @@
         ". Importante nga ang sapatos ni ",
         "case.patient_first_name",
         " kay natarong ug pagsuot. Tan-awa ang buslot sa kilid sa sapatos para makasiguro ka nga tiil niya makatukod gyud sa lapalapa."
-      ],
-      "order": 3
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2361,8 +2333,7 @@
         "Kung ang tiil dili kompletong nakatukod sa lapalapa sa sapatos, ang tiil kay mo-relapse ug si ",
         "case.patient_first_name",
         " kay posibleng manginahanglan napud ug tenotomy!"
-      ],
-      "order": 4
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2475,8 +2446,7 @@
         ". Si ",
         "case.patient_first_name",
         " kay pwede ra gihapon makakamang bisan nagsuot siya sa iyang brace. Manginahanglan nga mag-praktis aning mga lihoka para ma-anad siya sa brace."
-      ],
-      "order": 5
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2565,8 +2535,7 @@
         ". Sa sulod sa tulo ka bulan nga nagsuot sa brace, si ",
         "case.patient_first_name",
         " kay nanginahanglan nga isuot ni niya 23 ka oras kada adlaw."
-      ],
-      "order": 6
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2629,8 +2598,7 @@
         "Pagkahuman sa tulo ka bulan, pwede na nga suoton ni ",
         "case.patient_first_name",
         " ang brace sa gabii nalang ug inig katulog niya sa hapon."
-      ],
-      "order": 7
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2725,8 +2693,7 @@
         ". Hinumdumi nga kailangan kanunay nga isul-ob ang brace, bisan pa ug maghilak si ",
         "case.patient_first_name",
         ". Makatabang kini sa pag-anad ug para sa mga tiil niya nga matarong ug posisyon."
-      ],
-      "order": 8
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2793,8 +2760,7 @@
         "Ang pagsuot sa brace uyon sa tambag sa doktor kay makatabang sa pagka-anad ni ",
         "case.patient_first_name",
         " ug para dili siya mag-relapse."
-      ],
-      "order": 9
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2869,8 +2835,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Tan-awa pirmi ang panit sa imong anak kung panahon nga imong hubuon ang iyang sapatos."
-      ],
-      "order": 10
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -2915,8 +2880,7 @@
       ],
       "PHI": [
         "Ang paghubag sa tumoy sa tiil kay kasagaran ra na ug dili peligro, pero kung makakita kag mga lagum-lagum, tawaga dayun imong doktor."
-      ],
-      "order": 11
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3005,8 +2969,7 @@
         ". Importante gyud kaayo nga suoton ni ",
         "case.patient_first_name",
         " ang mga braces sama sa kung unsay ingon sa doktor. Halos tanang mga bata nga ninghunong ug suot sa brace sama sa ingon sa doktor kay risgo kini sa relapsing."
-      ],
-      "order": 12
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3107,8 +3070,7 @@
         ". Salamat sa inyong makanunayung pag-gam sa pagpaayo ni ",
         "case.patient_first_name",
         ", ug sa pagsiguro nga nagsuot siya ug brace permi."
-      ],
-      "order": 13
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3195,8 +3157,7 @@
         "Bisan pag pila ka buwan naay brace si ",
         "case.patient_first_name",
         ", pwede gihapon siya nga mag-replase. Siguraduha gayud nga permi siya magsuot sa iyang brace."
-      ],
-      "order": 14
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3293,8 +3254,7 @@
         ". Palihug pasiguro nga ang sapatos ni ",
         "case.patient_first_name",
         " kay hugot gyud. Dili ni sakit sa iyaha. Gisiguro ni nga ang clubfoot kay natarong."
-      ],
-      "order": 15
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3383,8 +3343,7 @@
         ". Usahay, ang pagbutang sa brace kay mas dali kung duha ka tawo ang magbutang. Ang usa kay makigdula kang ",
         "case.patient_first_name",
         " samtang ang usa kay nagbutang sa brace ug tarong."
-      ],
-      "order": 16
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3473,8 +3432,7 @@
         ". Sa sulod sa proseso sa bracing, pwede nimong hubuon ang brace ni ",
         "case.patient_first_name",
         " sa usa ka oras kada adlaw. Halos tanang ginikanan naggamit ani nga panahon para ligoon ang bata."
-      ],
-      "order": 17
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3541,8 +3499,7 @@
         "Siguraduha nga ang mga tiil ni ",
         "case.patient_first_name",
         " kay uga sa dili pa nimu isuot ug balik ang mga brace ug usab."
-      ],
-      "order": 18
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3631,8 +3588,7 @@
         ". Paghuman sa permirong tulo ka bulan sa paggamit sa brace, kinahanglan nalang suoton ni ",
         "case.patient_first_name",
         " ang mga braces sa 12-14 ka oras sa usa ka adlaw. Permi gayud sunda ang mga tugun sa imong doktor."
-      ],
-      "order": 19
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3739,8 +3695,7 @@
         ". Pakigdula ni ",
         "case.patient_first_name",
         " kung nagsuot siya sa iyang brace. Makatabang kini sa iyaha nga makomportable ug mahimong sayon ang pagsuot sa braces."
-      ],
-      "order": 20
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
@@ -3829,8 +3784,7 @@
         ". Ang brace kay dili sakit para kang ",
         "case.patient_first_name",
         ". Nagpadayun kini ug tarong sa iyang mga tiil ug nagpugong sa iyang mga tiil nga musulod ug balik. Hinumdumi nga permi ni niya suoton!"
-      ],
-      "order": 21
+      ]
     }
   ],
   "08 - Bracing Night Introduction": [
@@ -3939,8 +3893,7 @@
         ". Karon si ",
         "case.patient_first_name",
         " kay magsuot nalang sa iyang mga braces matag gabie ug kung matulog siya sa hapon! Siguraduha nga nagsuot siya niini kada gabie para mahimong parti kini sa iyang naandan."
-      ],
-      "order": 1
+      ]
     }
   ],
   "09A - Bracing Night Campaign Y1": [
@@ -4041,8 +3994,7 @@
         ". Bisan pag ang mga tiil ni ",
         "case.patient_first_name",
         " kay tarong tan-awon, kinahanglan gihapon ni niyang suoton ug gabie ug inag katulog sa hapon para dili napud musulod ug balik ang tiil."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4109,8 +4061,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Halos tanang mga bata kay nagsuot sa ilang brace kada gabie sa halos upat ka tuig hangtud ang ilang clubfoot kay kompletong naayo."
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4155,8 +4106,7 @@
       ],
       "PHI": [
         "Kahibalo mi nga taas kaayo ni nga panahon, pero kung himuon nimong parti sa imong naandan ang pagbutang ug brace, maanad gyud ang imong tibuok pamilya."
-      ],
-      "order": 3
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4245,8 +4195,7 @@
         ". Kung ang tiil ni ",
         "case.patient_first_name",
         " kay natubuan ang iyang mga sapatos, palihug ug balik diri sa clinic para makahatag ang doktor ug bag-ong brace."
-      ],
-      "order": 4
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4335,8 +4284,7 @@
         ". Siguraduha nga si ",
         "case.patient_first_name",
         " kay nagsuot sa iyang braces. Ang replasing kay dugay makita, mao dili ni nimu mabantayan permiro. Unya ug mabantayan na nimu, ulahi na para matarong!"
-      ],
-      "order": 5
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4405,8 +4353,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Maayo ang imong mga gipangbuhat! Puhon ang imong anak kay makalakaw na ug normal."
-      ],
-      "order": 6
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4507,8 +4454,7 @@
         ". Bisan pag usa ra ka gabie nga walay brace kay maka-apekto kini sa pagpa-ayo ni ",
         "case.patient_first_name",
         ". Hinumdumi nga kinahanglan gayud siya magsuot ug brace kada gabie!"
-      ],
-      "order": 7
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4607,8 +4553,7 @@
         ". Kung si ",
         "case.patient_first_name",
         " kay naglisud ug tulog tungod sa brace, pangutana sa imong doktor ug mga tips para makomportable ang bata."
-      ],
-      "order": 8
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4697,8 +4642,7 @@
         ". Hinumdumi nga paggatan-awon nimu kung naa bay mga luto si ",
         "case.patient_first_name",
         " o mga lagum-lagum o iritasyon sa panit. Pahibal-a imong doktor kung makita ni nimu na mga sinyales."
-      ],
-      "order": 9
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4809,8 +4753,7 @@
         ". Hinumdumi nga gaksa ug pakigdula kay ",
         "case.patient_first_name",
         " ug sige siya ug idasig nga mag-dagan-dagan o mag-dula-dula ma-adlawan samtang wala siya nagsuot sa braces."
-      ],
-      "order": 10
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -4915,8 +4858,7 @@
         ". Kung si ",
         "case.patient_first_name",
         " naay mga hayag nga mga pula-pula o mga nalut-han, lu-ag ra ang iyang mga sapatos. Siguraduha nga ang iyang takong kay sangko sa laplapa sa sapatos."
-      ],
-      "order": 11
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5015,8 +4957,7 @@
         ". Importante gayud kaayo nga ang takong ni ",
         "case.patient_first_name",
         " kay magpabilin sa sulod sa sapatos kung nagsuot siya sa brace aron mutalab ang pagpa-ayo!"
-      ],
-      "order": 12
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5111,8 +5052,7 @@
         ". Kung si ",
         "case.patient_first_name",
         " kay mmalut-han o mga nuka-nuka gikan sa brace, ayaw ug gamit ug losyon o mga lana sa pagtabang sa pag-ayo sa panit. Makasamot ni siya sa problema."
-      ],
-      "order": 13
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5179,8 +5119,7 @@
         "Siguraduha nga ang mga tiil ni ",
         "case.patient_first_name",
         " kay uga kung ibutang nimu ang brace, ug pakig-istorya sa imong doktor kung naa kay gikabalak-an."
-      ],
-      "order": 14
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5247,8 +5186,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Ayaw ug undang ug paggamit sa brace kada gabie hangtud mu-ingon ang doktor nga pwede na."
-      ],
-      "order": 15
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5337,8 +5275,7 @@
         ". Pwede ra nimu permi ipahibalo ang mga problema sa imong doktor bahin sa pagpa-ayo ni ",
         "case.patient_first_name",
         "."
-      ],
-      "order": 16
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5439,8 +5376,7 @@
         ". Padayuna ang imong maayong ginabuhat. Hinumdumi nga importante para kang ",
         "case.patient_first_name",
         " nga isuot niya ang brace kada gabie para makadagan-dagan ug makadula siya ma-adlawan."
-      ],
-      "order": 17
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5555,8 +5491,7 @@
         ". Salamat sa inyong makanunayung pag-gam sa pagpayo ni ",
         "case.patient_first_name",
         ". Bisan ug nag-brace nalang siya sa pipila ka bulan, pwede gihapon siya mag-relapse."
-      ],
-      "order": 18
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5623,8 +5558,7 @@
         "Para mapug-ngan ang pag-relapse, siguraduha nga si ",
         "case.patient_first_name",
         " nagsuot sa iyang brace sa sulod sa tibuok bracing period."
-      ],
-      "order": 19
+      ]
     }
   ],
   "09B - Bracing Night Campaign Y2": [
@@ -5693,8 +5627,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Kahibalo mi ang braces kay usa kini kataas nga proseso, pero masulit ra gyud ni!"
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5783,8 +5716,7 @@
         ". Samtang nagdako ang mga tiil ni ",
         "case.patient_first_name",
         ", nanginahanglan sad sila mas dakong brace."
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5861,8 +5793,7 @@
       ],
       "PHI": [
         "Kung nakamatikod ka nga magsige siya ug hilak inag ka gabie o kung magsige siya ug kulong sa iyang mga kuyamoy sa tumoy sa sapatos, nagpagsabot ni nga nanginahanglan na siya ug dako-dako nga brace."
-      ],
-      "order": 3
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -5951,8 +5882,7 @@
         ". Pakig-istorya sa imong doktor kung nakabantay ka nga ang mga tiil ni ",
         "case.patient_first_name",
         " kay nibalik sa clubfoot nga posisyon o kung nagsugod siya ug tudlo paubos. Basin kini mao ang mga sinyales sa relapse!"
-      ],
-      "order": 4
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6041,8 +5971,7 @@
         ". Si ",
         "case.patient_first_name",
         " kay swerte kaayo nga maampingon ka nga ginikanan. Ipadayun ang imong maayong gibuhat!"
-      ],
-      "order": 5
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6131,8 +6060,7 @@
         ". Hinumdumi nga si ",
         "case.patient_first_name",
         " nagsuot sa brace para mapugngan ang iyang clubfoot sa pagbalik. Kung magka-relapse man gani, ang pagpatambal kay balik napud sa uno."
-      ],
-      "order": 6
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6221,8 +6149,7 @@
         ". Kung si ",
         "case.patient_first_name",
         " nagsugod ug lisud matulog tungod sa brace inag ka gabie, pangutana ug tambag sa klinika."
-      ],
-      "order": 7
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6289,8 +6216,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Palihug ug hinumdumi nga kung naa kay mga pangutana, pwede raka makatawag o makabisita sa klinika."
-      ],
-      "order": 8
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6379,8 +6305,7 @@
         ". Ipagpadayun ang imong mga maayong ginabuhat. Hinumdumi nga kailangan magsuot si ",
         "case.patient_first_name",
         " sa iyang braces para mapugngan ang pag-relapse."
-      ],
-      "order": 9
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6473,8 +6398,7 @@
         ". Hinumdumi nga pagatan-awa kung si ",
         "case.patient_first_name",
         " kay dili komportable. Ingna imong doktor kung nakabantay kag mga bun-og, nalut-han o mga pula-pula marka nga dili mawala."
-      ],
-      "order": 10
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6575,8 +6499,7 @@
         ". Hinumdumi nga para mutalab ang pagpa-ayo, ang takong ni ",
         "case.patient_first_name",
         " kay kinahanglang manatili sa sulod sa sapatos kung magsuot siya sa brace."
-      ],
-      "order": 11
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6643,8 +6566,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Naa ra mi diri para mutabang ug musuporta sa imo. Kontaka ang klinika kung naa moy mga pangutana ug mga gikabalak-an."
-      ],
-      "order": 12
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6731,8 +6653,7 @@
         ". Maayo ang imong mga gipangbuhat sa pagsunod sa pagpa-ayo! Ayaw ug kalimot sa pagpadayun sa imong mga bisita sa ",
         "case.clinic_name",
         "."
-      ],
-      "order": 13
+      ]
     }
   ],
   "09C - Bracing Night Campaign Y3": [
@@ -6801,8 +6722,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Ang clubfoot kay naka-apekto na siya sa usa kada otso siyentos nga mga bata, nagpasabot kini nga daghang mga ginikanan ang nag-agi sa clubfoot treatment."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6847,8 +6767,7 @@
       ],
       "PHI": [
         "Hinumdumi nga wala ka mag-inusara! Pakig-istorya sa ubang mga ginikanan sa klinika bahin sa ilang mga ka-agi."
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -6937,8 +6856,7 @@
         ". Hinumdumi nga ang brace kay dili sakit para kay ",
         "case.patient_first_name",
         ". Nagpadayun kini sa pagtarong sa posisyon sa tiil ug nagpugong sa tiil sa pagsulod ug balik."
-      ],
-      "order": 3
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7027,8 +6945,7 @@
         ". Ang Clubfoot treatment kay usa ka taas nga proseso pero nagsiguro kini nga mabuhi si ",
         "case.patient_first_name",
         " nga walay clubfeet."
-      ],
-      "order": 4
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7119,8 +7036,7 @@
         ". Importante gyud kaayo nga ang sapatos ni ",
         "case.patient_first_name",
         " masuot ug tarong. Tan-awa ang buslot sa kilid sa sapatos para makasiguro nga ang iyang tiil kay naka-ubos gayud pag-ayo."
-      ],
-      "order": 5
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7197,8 +7113,7 @@
         "Kung ang tiil ni ",
         "case.patient_first_name",
         " kay wala naka-ubos ug ayo, ang tiil kay pwede magka-relapse ug manginahanglan na sad siya ug plaster casts."
-      ],
-      "order": 6
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7287,8 +7202,7 @@
         ". Ayaw ug kalimot ug anhi gihapon para imong pagbisita sa klinika. Kinahanglan pa gihapon tan-awon sa doktor ang mga tiil ni ",
         "case.patient_first_name",
         "."
-      ],
-      "order": 7
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7377,8 +7291,7 @@
         ". Hinumdumi nga bantayi kung si ",
         "case.patient_first_name",
         " kay dili komportable. Ingna imong doktor kung nakabantay kag mga bun-og, nalut-han o mga pula-pula nga dili mawala."
-      ],
-      "order": 8
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7479,8 +7392,7 @@
         ". Maayo ka nga pagka-ginikanan! Ipagpadayun ang pagpa-ayo kay ",
         "case.patient_first_name",
         " para naa siyay hayag nga kaugmaon nga walay clubfoot."
-      ],
-      "order": 9
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7569,8 +7481,7 @@
         ". Siguraduha nga ipagpadayun ang pagsuot ni ",
         "case.patient_first_name",
         " ug brace kada gabii, importante kini nga parti pagpa-ayo sa clubfoot."
-      ],
-      "order": 10
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7637,8 +7548,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Kahibalo mi ang braces kay usa kini ka taas ug kapoy nga proseso, pero maayo na ang imong mga gipangbuhat! Ipagpadayun kini!"
-      ],
-      "order": 11
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7733,8 +7643,7 @@
         ". Huna-hunaa kung unsa kalayo ang na-abtan ni ",
         "case.patient_first_name",
         " sa pagpa-ayo niya sa clubfoot. Ipagpadayun ang imong maayong gibuhat!"
-      ],
-      "order": 12
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7825,8 +7734,7 @@
         ". Importante gyud kaayo nga ang sapatos ni ",
         "case.patient_first_name",
         " masuot ug tarong. Tan-awa ang kilid sa sapatos para makasiguro nga ang iyang tiil kay naka-ubos gayud pag-ayo."
-      ],
-      "order": 13
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7903,8 +7811,7 @@
         "Kung ang tiil ni ",
         "case.patient_first_name",
         " kay wala kaayo naka-ubos, ang tiil kay pwede magka-relapse ug manginahanglan na sad siya ug plaster casts."
-      ],
-      "order": 14
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -7971,8 +7878,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Maayo ang imong mga gipangbuhat sa pagsunod sa pagpa-ayo! Hinumdumi nga ipagpadayun ang brace hangtud mahuman ang pagpa-ayo."
-      ],
-      "order": 15
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8061,8 +7967,7 @@
         ". Daghang mga bata nga na-anak nga naay clubfoot sa tibuok kalibutan. Wala ka mag-inusara. Ipagpadayun ang maayong binuhatan. Puhon ang maayo ra gayud ang clubfoot ni ",
         "case.patient_first_name",
         "."
-      ],
-      "order": 16
+      ]
     }
   ],
   "09D - Bracing Night Campaign Y4": [
@@ -8153,8 +8058,7 @@
         ". Kung nakabantay kag mga lagum-lagum sa mga tiil ni ",
         "case.patient_first_name",
         " paghuman pagkuha sa brace, kontaka dayun ang imong doktor."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8243,8 +8147,7 @@
         ". Kung ang tiil ni ",
         "case.patient_first_name",
         " kay natubuan ang iyang mga sapatos, palihug ug balik diri sa klinika para makahatag ang doktor ug bag-ong brace."
-      ],
-      "order": 2
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8345,8 +8248,7 @@
         ". Bisan pag usa ra ka gabie nga walay brace kay maka-apekto kini sa pagpa-ayo ni ",
         "case.patient_first_name",
         ". Hinumdumi nga kinahanglan gayud siya magsuot ug brace kada gabii!"
-      ],
-      "order": 3
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8413,8 +8315,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Daghan na kaayo ka'g mga maayong gipangbuhat! Hinumdumi nga ipadayun ang paggamit sa brace hangtud mahuman ang pagpa-ayo."
-      ],
-      "order": 4
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8503,8 +8404,7 @@
         ".  Ayaw ug kalimot ug anhi gihapon para imong pagbisita sa klinika. Kinahanglan pa gihapon tan-awon sa doktor ang mga tiil ni ",
         "case.patient_first_name",
         "."
-      ],
-      "order": 5
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8593,8 +8493,7 @@
         ". Ipagpadayun ang imong mga maayong ginabuhat. Hinumdumi nga kailangan magsuot si ",
         "case.patient_first_name",
         " sa iyang braces para mapugngan ang pag-relapse."
-      ],
-      "order": 6
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8695,8 +8594,7 @@
         ". Hapit na mahuman si ",
         "case.patient_first_name",
         " sa iyang pagpa-ayo! Hinumdumi nga dili siya muhunong ug gamit sa brace kada gabie hangtud mu-ingon ang doktor nga pwede na."
-      ],
-      "order": 7
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8804,8 +8702,7 @@
         ". Hinumdumi nga gaksa ug pakigdula kay ",
         "case.patient_first_name",
         " ug sige siya ug idasig nga dagan o dula ma-adlawan samtang wala siya nagsuot sa braces."
-      ],
-      "order": 8
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8906,8 +8803,7 @@
         ". Ipagpadayun ang imong mga maayong ginabuhat. Hinumdumi nga kailangan magsuot si ",
         "case.patient_first_name",
         " sa iyang braces kada gabii para makadagan ug makadula siya."
-      ],
-      "order": 9
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
@@ -8996,8 +8892,7 @@
         ". Si ",
         "case.patient_first_name",
         " kay swerte kaayo nga maampingon ka nga ginikanan. Ipadayun ang imong maayong gibuhat!"
-      ],
-      "order": 10
+      ]
     }
   ],
   "10 - Treatment Complete": [
@@ -9088,8 +8983,7 @@
         ". Congratulations sa paghuman sa pagpa-ayo. Salamat kaayo sa imong pagkugi sa tibuok proseso. Nag-garantiya kag hayag nga kaugmaon ni ",
         "case.patient_first_name",
         "."
-      ],
-      "order": 1
+      ]
     }
   ],
   "11 - Not Wearing Brace Enough": [
@@ -9158,8 +9052,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Ang Relapse kay kung ang clubfoot natarong na pero paghuman nibalik. Ang hinungdan niini kay ang dili saktong pagsuot sa brace or dili sakto ang mga oras sa pagbutang."
-      ],
-      "order": 1
+      ]
     }
   ],
   "12 - Not Tolerating Brace": [
@@ -9254,8 +9147,7 @@
         "Hi ",
         "case.guardian1_first_name",
         ". Buhata ang imong labing maayo sa pirming pagsuot sa brace para makahibalo si (Pangalan) nga parti ni sa iyang pangadlaw-adlaw, ug maanad sad siya ani."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND brace_problems_type = \"child_not_tolerating",
@@ -9362,8 +9254,7 @@
         ". Pakigdula ni ",
         "case.patient_first_name",
         " kung nagsuot siya sa iyang brace. Makatabang kini sa iyaha nga makomportable ug mahimong sayon ang pagsuot sa braces."
-      ],
-      "order": 2
+      ]
     }
   ],
   "13 - Not Accepting Brace": [
@@ -9472,8 +9363,7 @@
         ". Bisan pag ang mga tiil ni ",
         "case.patient_first_name",
         " kay tarong tan-awon, kinahanglan gihapon ni niyang suoton aron dili mubalik ang clubfoot!"
-      ],
-      "order": 1
+      ]
     }
   ],
   "14 - Reminder: 2 days before visit": [
@@ -9620,8 +9510,7 @@
         " sa ",
         "case.next_visit_date",
         ". Palihug ug hinumdumi nga kahinanglan nimu siya dalhon. Ginabuhat nimo ang pinakamaayo para sa iya."
-      ],
-      "order": 1
+      ]
     }
   ],
   "15 - Reminder: 1 day after missed visit": [
@@ -9734,8 +9623,7 @@
         " sa ",
         "case.next_visit_date",
         "."
-      ],
-      "order": 1
+      ]
     },
     {
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND missed_visit != \"",
@@ -9802,8 +9690,7 @@
         "Hinumdumi nga kailangan magpadayun si ",
         "case.patient_first_name",
         " sa pagbisita sa iyang doktor para makasiguro nga ang tarong ang iyang pagpa-ayo. Sulayi ug balik dayun sa klinikasa pinaka!"
-      ],
-      "order": 2
+      ]
     }
   ],
   "16 - Treatment Suspended": [
@@ -9870,8 +9757,7 @@
         "Hinumdumi nga sunda ang mga tugun sa doktor ug balik sa klinika para sa pagpa-ayo ni ",
         "case.patient_first_name",
         " kung pwede na!"
-      ],
-      "order": 1
+      ]
     }
   ]
 }
