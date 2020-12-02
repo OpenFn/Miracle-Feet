@@ -17,7 +17,7 @@ alterState(state => {
 
   let bulkId = [];
   let activeConditions = [];
-  if (sms_opt_in === 'yes' && send_sms === 'on') {
+  if (sms_opt_in === '1' && send_sms === 'on') {
     const { treatment } = calcs.sms;
     if (treatment === '') {
       bulkId.push({ '01 - Patient Registration': 'registration-' });
@@ -166,7 +166,7 @@ alterState(state => {
 
       const sendAt = sendAtDate.toISOString();
 
-      const to = form.case.update.guardian1_phone1;
+      const to = form.case.update.guardian1_phone1_full;
       const messages = [
         {
           from: to,
