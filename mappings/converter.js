@@ -14,6 +14,25 @@ const groupBy = (array, key) => {
 };
 
 const result = groupBy(data, 'Name');
+
+Object.keys(result).map(type => {
+  const cleaned = result[type].map(x => {
+    delete x.Name;
+    delete x['# Alert'];
+    x.order = x['# SMS'];
+    delete x['# SMS'];
+    Object.keys(x).map(lang => {
+      if (lang.length <= 3) {
+        console.log(`${lang} is a language key`);
+        x[lang] = x[lang].split(/[{}]+/);
+      }
+      return lang;
+    });
+    return x;
+  });
+  result[type] = cleaned;
+});
+
 fs.writeFileSync(
   './mappings/content-output.json',
   JSON.stringify(result, null, 2)
