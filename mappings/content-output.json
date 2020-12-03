@@ -1,6 +1,7 @@
 {
   "01 - Patient Registration": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on'",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -108,6 +109,7 @@
   ],
   "02 - Treatment Introduction": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on'",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "registration_date",
@@ -175,6 +177,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on'",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "registration_date",
@@ -220,6 +223,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on'",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "registration_date",
@@ -289,6 +293,7 @@
   ],
   "03 - Casting Introduction": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -356,6 +361,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -401,6 +407,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -448,6 +455,7 @@
   ],
   "04 - Casting Campaign": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -537,6 +545,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -626,6 +635,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -693,6 +703,7 @@
       ]
     },
     {
+      "# SMS": 4,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -760,6 +771,7 @@
       ]
     },
     {
+      "# SMS": 5,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -847,6 +859,7 @@
       ]
     },
     {
+      "# SMS": 6,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -936,6 +949,7 @@
       ]
     },
     {
+      "# SMS": 7,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1003,6 +1017,7 @@
       ]
     },
     {
+      "# SMS": 8,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1104,6 +1119,7 @@
       ]
     },
     {
+      "# SMS": 9,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1193,6 +1209,7 @@
       ]
     },
     {
+      "# SMS": 10,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1290,6 +1307,7 @@
       ]
     },
     {
+      "# SMS": 11,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1387,6 +1405,7 @@
       ]
     },
     {
+      "# SMS": 12,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1486,6 +1505,7 @@
       ]
     },
     {
+      "# SMS": 13,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1589,6 +1609,7 @@
       ]
     },
     {
+      "# SMS": 14,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1680,6 +1701,7 @@
   ],
   "05 - Tenotomy": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"tenotomy",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1789,6 +1811,7 @@
   ],
   "06 - Bracing Introduction": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1878,6 +1901,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1945,6 +1969,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -1992,6 +2017,7 @@
   ],
   "07 - Bracing All Day Campaign": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2103,6 +2129,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2182,6 +2209,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2277,6 +2305,7 @@
       ]
     },
     {
+      "# SMS": 4,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2336,6 +2365,7 @@
       ]
     },
     {
+      "# SMS": 5,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2449,6 +2479,7 @@
       ]
     },
     {
+      "# SMS": 6,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2538,6 +2569,7 @@
       ]
     },
     {
+      "# SMS": 7,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2601,6 +2633,7 @@
       ]
     },
     {
+      "# SMS": 8,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2696,6 +2729,7 @@
       ]
     },
     {
+      "# SMS": 9,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2763,6 +2797,7 @@
       ]
     },
     {
+      "# SMS": 10,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2838,6 +2873,7 @@
       ]
     },
     {
+      "# SMS": 11,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2883,6 +2919,7 @@
       ]
     },
     {
+      "# SMS": 12,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -2972,6 +3009,7 @@
       ]
     },
     {
+      "# SMS": 13,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3073,6 +3111,7 @@
       ]
     },
     {
+      "# SMS": 14,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3160,6 +3199,7 @@
       ]
     },
     {
+      "# SMS": 15,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3257,6 +3297,7 @@
       ]
     },
     {
+      "# SMS": 16,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3346,6 +3387,7 @@
       ]
     },
     {
+      "# SMS": 17,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3435,6 +3477,7 @@
       ]
     },
     {
+      "# SMS": 18,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3502,6 +3545,7 @@
       ]
     },
     {
+      "# SMS": 19,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3591,6 +3635,7 @@
       ]
     },
     {
+      "# SMS": 20,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3698,6 +3743,7 @@
       ]
     },
     {
+      "# SMS": 21,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3789,6 +3835,7 @@
   ],
   "08 - Bracing Night Introduction": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -3898,6 +3945,7 @@
   ],
   "09A - Bracing Night Campaign Y1": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -3997,6 +4045,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4064,6 +4113,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4109,6 +4159,7 @@
       ]
     },
     {
+      "# SMS": 4,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4198,6 +4249,7 @@
       ]
     },
     {
+      "# SMS": 5,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4287,6 +4339,7 @@
       ]
     },
     {
+      "# SMS": 6,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4356,6 +4409,7 @@
       ]
     },
     {
+      "# SMS": 7,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4457,6 +4511,7 @@
       ]
     },
     {
+      "# SMS": 8,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4556,6 +4611,7 @@
       ]
     },
     {
+      "# SMS": 9,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4645,6 +4701,7 @@
       ]
     },
     {
+      "# SMS": 10,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4756,6 +4813,7 @@
       ]
     },
     {
+      "# SMS": 11,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4861,6 +4919,7 @@
       ]
     },
     {
+      "# SMS": 12,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -4960,6 +5019,7 @@
       ]
     },
     {
+      "# SMS": 13,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5055,6 +5115,7 @@
       ]
     },
     {
+      "# SMS": 14,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5122,6 +5183,7 @@
       ]
     },
     {
+      "# SMS": 15,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5189,6 +5251,7 @@
       ]
     },
     {
+      "# SMS": 16,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5278,6 +5341,7 @@
       ]
     },
     {
+      "# SMS": 17,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5379,6 +5443,7 @@
       ]
     },
     {
+      "# SMS": 18,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5494,6 +5559,7 @@
       ]
     },
     {
+      "# SMS": 19,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5563,6 +5629,7 @@
   ],
   "09B - Bracing Night Campaign Y2": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5630,6 +5697,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5719,6 +5787,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5796,6 +5865,7 @@
       ]
     },
     {
+      "# SMS": 4,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5885,6 +5955,7 @@
       ]
     },
     {
+      "# SMS": 5,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -5974,6 +6045,7 @@
       ]
     },
     {
+      "# SMS": 6,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6063,6 +6135,7 @@
       ]
     },
     {
+      "# SMS": 7,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6152,6 +6225,7 @@
       ]
     },
     {
+      "# SMS": 8,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6219,6 +6293,7 @@
       ]
     },
     {
+      "# SMS": 9,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6308,6 +6383,7 @@
       ]
     },
     {
+      "# SMS": 10,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6401,6 +6477,7 @@
       ]
     },
     {
+      "# SMS": 11,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6502,6 +6579,7 @@
       ]
     },
     {
+      "# SMS": 12,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6569,6 +6647,7 @@
       ]
     },
     {
+      "# SMS": 13,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6658,6 +6737,7 @@
   ],
   "09C - Bracing Night Campaign Y3": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6725,6 +6805,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6770,6 +6851,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6859,6 +6941,7 @@
       ]
     },
     {
+      "# SMS": 4,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -6948,6 +7031,7 @@
       ]
     },
     {
+      "# SMS": 5,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7039,6 +7123,7 @@
       ]
     },
     {
+      "# SMS": 6,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7116,6 +7201,7 @@
       ]
     },
     {
+      "# SMS": 7,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7205,6 +7291,7 @@
       ]
     },
     {
+      "# SMS": 8,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7294,6 +7381,7 @@
       ]
     },
     {
+      "# SMS": 9,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7395,6 +7483,7 @@
       ]
     },
     {
+      "# SMS": 10,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7484,6 +7573,7 @@
       ]
     },
     {
+      "# SMS": 11,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7551,6 +7641,7 @@
       ]
     },
     {
+      "# SMS": 12,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7646,6 +7737,7 @@
       ]
     },
     {
+      "# SMS": 13,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7737,6 +7829,7 @@
       ]
     },
     {
+      "# SMS": 14,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7814,6 +7907,7 @@
       ]
     },
     {
+      "# SMS": 15,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7881,6 +7975,7 @@
       ]
     },
     {
+      "# SMS": 16,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -7972,6 +8067,7 @@
   ],
   "09D - Bracing Night Campaign Y4": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8061,6 +8157,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8150,6 +8247,7 @@
       ]
     },
     {
+      "# SMS": 3,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8251,6 +8349,7 @@
       ]
     },
     {
+      "# SMS": 4,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8318,6 +8417,7 @@
       ]
     },
     {
+      "# SMS": 5,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8407,6 +8507,7 @@
       ]
     },
     {
+      "# SMS": 6,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8496,6 +8597,7 @@
       ]
     },
     {
+      "# SMS": 7,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8597,6 +8699,7 @@
       ]
     },
     {
+      "# SMS": 8,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8705,6 +8808,7 @@
       ]
     },
     {
+      "# SMS": 9,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8806,6 +8910,7 @@
       ]
     },
     {
+      "# SMS": 10,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -8897,6 +9002,7 @@
   ],
   "10 - Treatment Complete": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"complete",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
@@ -8988,6 +9094,7 @@
   ],
   "11 - Not Wearing Brace Enough": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND brace_problems_type = \"not_wearing_enough",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "last_visit_date",
@@ -9057,6 +9164,7 @@
   ],
   "12 - Not Tolerating Brace": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND brace_problems_type = \"child_not_tolerating",
       "Recipients": "",
       "Schedule Start Date (SSD)": "last_visit_date",
@@ -9150,6 +9258,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND brace_problems_type = \"child_not_tolerating",
       "Recipients": "",
       "Schedule Start Date (SSD)": "last_visit_date",
@@ -9259,6 +9368,7 @@
   ],
   "13 - Not Accepting Brace": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND brace_problems_type = \"family_not_accepting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "last_visit_date",
@@ -9368,6 +9478,7 @@
   ],
   "14 - Reminder: 2 days before visit": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND next_visit_date != \"",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "next_visit_date",
@@ -9515,6 +9626,7 @@
   ],
   "15 - Reminder: 1 day after missed visit": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND missed_visit != \"",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -9626,6 +9738,7 @@
       ]
     },
     {
+      "# SMS": 2,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND missed_visit != \"",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
@@ -9695,6 +9808,7 @@
   ],
   "16 - Treatment Suspended": [
     {
+      "# SMS": 1,
       "Triggering Criteria?": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"suspended",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
