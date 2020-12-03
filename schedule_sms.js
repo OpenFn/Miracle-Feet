@@ -19,6 +19,7 @@ alterState(state => {
 
   let bulkIds = [];
   let activeConditions = [];
+  
   if (sms_opt_in === '1' && send_sms === 'on') {
     const { treatment } = calcs.sms;
     if (treatment === '') {
@@ -185,9 +186,13 @@ alterState(state => {
         },
       ];
 
-      console.log(messages);
-
+      
+      // Question about sendAt =================================================
+      console.log(messages); // these look good.
+      // Does each message have a sendAt, or does sendSMS take a single sendAt
+      // for an array of messages?
       // sendSMS(bulkId, messages, sendAt);
+      // =======================================================================
       return state;
 
       // What is being returned here? - TD =====================================
