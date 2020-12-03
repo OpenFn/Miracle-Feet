@@ -15,28 +15,27 @@ alterState(state => {
 
   const { form } = state.data;
   const { calcs } = form;
-
   const { sms_opt_in, send_sms } = form.case.update;
 
-  let bulkId = [];
+  let bulkIds = [];
   let activeConditions = [];
   if (sms_opt_in === '1' && send_sms === 'on') {
     const { treatment } = calcs.sms;
     if (treatment === '') {
-      bulkId.push(treatmentMap['registration']);
-      bulkId.push(treatmentMap['treatmentIntro']);
+      bulkIds.push(treatmentMap['registration']);
+      bulkIds.push(treatmentMap['treatmentIntro']);
       activeConditions.push(
         '01 - Patient Registration',
         '02 - Treatment Introduction'
       );
     } else {
-      bulkId.push(treatmentMap[treatment]);
+      bulkIds.push(treatmentMap[treatment]);
       activeConditions.push('07 - Bracing All Day Campaign'); // replace with instruction to get key
     }
-    console.log('bulk', bulkId);
+    console.log('multiple bulk Ids, right?', bulkIds);
   }
 
-  return { ...state, bulkId, activeConditions, mapping };
+  return { ...state, bulkIds, activeConditions, mapping };
 });
 
 alterState(state => {
@@ -112,7 +111,9 @@ alterState(state => {
       const { form } = state.data;
       const { calcs } = form;
       if (res.requestError) {
-        console.log(`Scheduling SMS for ${bulkId} at ${sendAt}...`);
+        console.log(
+          `No existing SMS found. Scheduling SMS for ${bulkId} at ${sendAt}...`
+        );
 
         //scheduleSMS(bulkId, messages);
       } else {
@@ -124,40 +125,45 @@ alterState(state => {
       }
     });
   }
-  const { form } = state.data;
+
+  const { bulkIds, mapping, activeConditions, data } = state;
+  const { form } = data;
   const { calcs } = form;
 
   const language_code = calcs.sms.language_code || 'EN';
 
-  for (var i = 0; i < state.activeConditions.length; i++) {
-    state.mapping[state.activeConditions[i]].map((mapping, nb) => {
+  console.log('activeConditions', activeConditions);
+  console.log('bulkIds', bulkIds);
+
+  activeConditions.forEach((condition, i) => {
+    mapping[condition].map((rule, nb) => {
       const date =
-        mapping['Schedule Start Date (SSD)'] === 'now'
+        rule['Schedule Start Date (SSD)'] === 'now'
           ? Date.now()
-          : dataValue(
-              `form.case.update.${mapping['Schedule Start Date (SSD)']}`
-            )(state);
+          : dataValue(`form.case.update.${rule['Schedule Start Date (SSD)']}`)(
+              state
+            );
 
       let sendAtDate = new Date(date);
 
       // We build the bulkId from the case-type, the number of sms and the case id
-      const bulkId = `${state.bulkId[i][state.activeConditions[i]]}${nb + 1}-${
+      const bulkId = `${bulkIds[i][activeConditions[i]]}${nb + 1}-${
         form.case['@case_id']
       }`;
 
-      const sms = mapping[language_code]
+      const sms = rule[language_code]
         .map((item, pos) =>
           pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
         )
-        .join(' ');
+        .join('');
 
-      sendAtDate.setDate(sendAtDate.getDate() + mapping['Days from SSD']);
+      sendAtDate.setDate(sendAtDate.getDate() + rule['Days from SSD']);
 
-      const hours = mapping['Clock Time']
-        ? mapping['Clock Time'].split(':')[0]
+      const hours = rule['Clock Time']
+        ? rule['Clock Time'].split(':')[0]
         : new Date().getHours();
-      const minutes = mapping['Clock Time']
-        ? mapping['Clock Time'].split(':')[1]
+      const minutes = rule['Clock Time']
+        ? rule['Clock Time'].split(':')[1]
         : new Date().getMinutes();
 
       sendAtDate.setHours(parseInt(hours));
@@ -179,15 +185,20 @@ alterState(state => {
         },
       ];
 
-      sendSMS(bulkId, messages, sendAt);
+      console.log(messages);
 
-      return mapping[language_code]
-        .map((item, pos) =>
-          pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
-        )
-        .join(' ');
+      // sendSMS(bulkId, messages, sendAt);
+      return state;
+
+      // What is being returned here? - TD =====================================
+      // return mapping[language_code]
+      //   .map((item, pos) =>
+      //     pos % 2 === 0 ? item : dataValue(`form.case.update.${item}`)(state)
+      //   )
+      //   .join(' ');
+      // =======================================================================
     });
-  }
+  });
 
   return state;
 });
