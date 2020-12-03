@@ -19,7 +19,7 @@ alterState(state => {
 
   let bulkIds = [];
   let activeConditions = [];
-  
+
   if (sms_opt_in === '1' && send_sms === 'on') {
     const { treatment } = calcs.sms;
     if (treatment === '') {
@@ -171,10 +171,11 @@ alterState(state => {
       sendAtDate.setMinutes(parseInt(minutes));
 
       const sendAt = sendAtDate.toISOString();
-
       const to = form.case.update.guardian1_phone1_full;
+
       const messages = [
         {
+          // Why is "from" set as "to" here? This seems strange.
           from: to,
           destinations: [
             {
@@ -186,7 +187,6 @@ alterState(state => {
         },
       ];
 
-      
       // Question about sendAt =================================================
       console.log(messages); // these look good.
       // Does each message have a sendAt, or does sendSMS take a single sendAt
