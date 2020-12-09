@@ -11,15 +11,39 @@ alterState(state => {
       key: '02 - Treatment Introduction',
       bulkPrefix: 'treatment-',
     },
-    casting: { key: '01 - Patient Registration', bulkPrefix: 'casting_intro-' },
+    casting: { key: '03 - Casting Introduction', bulkPrefix: 'casting_intro-' },
+    casting_campaign: {
+      key: '04 - Casting Campaign',
+      bulkPrefix: 'casting_intro-',
+    },
     tenotomy: { key: '05 - Tenotomy', bulkPrefix: 'tenotomy' },
+    bracing_intro: {
+      key: '06 - Bracing Introduction',
+      bulkPrefix: 'bracing_intro-',
+    },
     bracing_day: {
       key: '07 - Bracing All Day Campaign',
       bulkPrefix: 'bracing_day-',
     },
-    bracing_night: {
-      key: '09D - Bracing Night Campaign',
+    bracing_night_intro: {
+      key: '08 - Bracing Night Introduction',
       bulkPrefix: 'bracing_night-',
+    },
+    bracing_night_y1: {
+      key: '09A - Bracing Night Campaign Y1',
+      bulkPrefix: 'bracing_night_campaign-',
+    },
+    bracing_night_y2: {
+      key: '09B - Bracing Night Campaign Y2',
+      bulkPrefix: 'bracing_night_campaign-',
+    },
+    bracing_night_y3: {
+      key: '09C - Bracing Night Campaign Y3',
+      bulkPrefix: 'bracing_night_campaign-',
+    },
+    bracing_night_y4: {
+      key: '09D - Bracing Night Campaign Y4',
+      bulkPrefix: 'bracing_night_campaign-',
     },
     complete: {
       key: '10 - Treatment Complete',
@@ -27,8 +51,65 @@ alterState(state => {
     },
     suspended: {
       key: '16 - Treatment Suspended',
-      bulkPrefix: 'treatment_suspensed-',
+      bulkPrefix: 'treatment_suspended-',
     },
+    not_wearing_enough: {
+      key: '11 - Not Wearing Brace Enough',
+      bulkPrefix: 'not_wearing_brace-',
+    },
+    child_not_tolerating: {
+      key: '12 - Not Tolerating Brace',
+      bulkPrefix: 'not_tolerating_brace-',
+    },
+    family_not_accepting: {
+      key: '13 - Not Accepting Brace',
+      bulkPrefix: 'not_accepting_brace-',
+    },
+  };
+
+  const PhoneMapping = {
+    220: 'GCF',
+    'The Gambia': 'GCF',
+    224: 'PONSETIGN',
+    Guinea: 'PONSETIGN',
+    231: 'LIBclubfoot',
+    Liberia: 'LIBclubfoot',
+    261: 'GASYPIEDBOT',
+    Madagascar: 'GASYPIEDBOT',
+    223: 'PiedBotMali',
+    Mali: 'PiedBotMali',
+    212: 'MarocPBVE',
+    Morocco: 'MarocPBVE',
+    234: 'TSCFFOOT',
+    Nigeria: 'TSCFFOOT',
+    242: 'PiedbotCG',
+    'Republic of the Congo': 'PiedbotCG',
+    221: 'laagotankSN',
+    Senegal: 'laagotankSN',
+    232: 'SALONKLUFUT',
+    'Sierra Leone': 'SALONKLUFUT',
+    252: 'BISHACAS',
+    Somalia: 'BISHACAS',
+    211: 'CLUBFOOT',
+    'South Sudan': 'CLUBFOOT',
+    255: 'MGUUKIFUNDO',
+    Tanzania: 'MGUUKIFUNDO',
+    256: 'CLUBFOOT',
+    Uganda: 'CLUBFOOT',
+    505: 'EQUINOVARO',
+    Nicaragua: 'EQUINOVARO',
+    880: 'WALKFORLIFE',
+    Bangladesh: 'WALKFORLIFE',
+    62: 'YAYASAN-SSB',
+    Indonesia: 'YAYASAN-SSB',
+    95: 'WALKFORLIFE',
+    Myanmar: 'WALKFORLIFE',
+    977: 'YAYASAN-SSB',
+    Nepal: 'YAYASAN-SSB',
+    63: 'PNGOC',
+    Philippines: 'PNGOC',
+    94: 'HICLUBFOOT',
+    'Sri Lanka': 'HICLUBFOOT',
   };
 
   const { form } = state.data;
@@ -38,18 +119,42 @@ alterState(state => {
   let alertsToSend = [];
 
   // TODO: Rework this logic! ==================================================
-  if (sms_opt_in === '1' && send_sms === 'on') {
+  if (sms_opt_in === 'yes' && send_sms === 'on') {
     const { treatment } = calcs.sms;
-    if (treatment === '') {
-      alertsToSend.push(treatmentMap['registration']);
-      alertsToSend.push(treatmentMap['treatmentIntro']);
-    } else {
-      alertsToSend.push(treatmentMap[treatment]);
+    alertsToSend.push(treatmentMap['registration']);
+    alertsToSend.push(treatmentMap['treatmentIntro']);
+    if (treatment !== '') {
+      if (treatment === 'casting') {
+        alertsToSend.push(treatmentMap['casting']);
+        alertsToSend.push(treatmentMap['casting_campaign']);
+      }
+      if (treatment === 'bracing_day') {
+        alertsToSend.push(treatmentMap['bracing_intro']);
+        alertsToSend.push(treatmentMap['bracing_day']);
+      }
+      if (treatment === 'bracing_night') {
+        alertsToSend.push(treatmentMap['bracing_night_intro']);
+        alertsToSend.push(treatmentMap['bracing_night_y1']);
+        alertsToSend.push(treatmentMap['bracing_night_y2']);
+        alertsToSend.push(treatmentMap['bracing_night_y3']);
+        alertsToSend.push(treatmentMap['bracing_night_y4']);
+      }
+      if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
+      if (treatment === 'suspended')
+        alertsToSend.push(treatmentMap['suspended']);
+    }
+
+    if (calcs.save !== undefined) {
+      const { brace_problems_type } = calcs.save;
+
+      if (brace_problems_type !== '')
+        alertsToSend.push(treatmentMap[brace_problems_type]);
     }
   }
   // ===========================================================================
 
-  return { ...state, alertsToSend, mapping };
+  console.log('alerts', alertsToSend);
+  return { ...state, alertsToSend, mapping, PhoneMapping };
 });
 
 alterState(state => {
@@ -133,8 +238,6 @@ alterState(state => {
   const { calcs } = form;
   const language_code = calcs.sms.language_code || 'EN';
 
-  console.log('alertsToSend', alertsToSend);
-
   alertsToSend.forEach((alert, i) => {
     const { key, bulkPrefix } = alert;
     mapping[key].map(rule => {
@@ -145,6 +248,7 @@ alterState(state => {
               state
             );
 
+      console.log('date', date);
       let sendAtDate = new Date(date);
 
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
@@ -156,6 +260,7 @@ alterState(state => {
         )
         .join('');
 
+      console.log('sms', sms);
       sendAtDate.setDate(sendAtDate.getDate() + rule['Days from SSD']);
 
       const hours = rule['Clock Time']
@@ -169,11 +274,16 @@ alterState(state => {
       sendAtDate.setMinutes(parseInt(minutes));
 
       const sendAt = sendAtDate.toISOString();
-      const to = form.case.update.guardian1_phone1_full;
+      const to = form.calcs.sms.contact_phone_number;
+      const dataForTheFromPhoneNumber =
+        form.calcs.phone_numbers.phone_country_code ||
+        form.calcs.locations.country;
+
+      const from = state.PhoneMapping[dataForTheFromPhoneNumber];
 
       const message = {
         // TODO: UPDATE THE `from` PHONE NUMBER BELOW ==========================
-        from: to,
+        from,
         // =====================================================================
         destinations: [
           {
