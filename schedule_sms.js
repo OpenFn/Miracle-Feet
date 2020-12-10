@@ -118,44 +118,43 @@ alterState(state => {
 
   let alertsToSend = [];
 
-  // TODO: Rework this logic! ==================================================
   if (sms_opt_in === 'yes' && send_sms === 'on') {
+    const { treatment } = calcs.sms;
+    if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
+    if (treatment === 'suspended') alertsToSend.push(treatmentMap['suspended']);
+
     if (sms_opt_in_educational === 'yes') {
-      const { treatment } = calcs.sms;
+      // YELLOW CONDITIONS =====================================================
       if (form['@name'] === 'Register New Patient') {
         alertsToSend.push(treatmentMap['registration']);
         alertsToSend.push(treatmentMap['treatmentIntro']);
       }
-      if (treatment !== '') {
-        if (treatment === 'casting') {
-          alertsToSend.push(treatmentMap['casting']);
-          alertsToSend.push(treatmentMap['casting_campaign']);
-        }
-        if (treatment === 'bracing_day') {
-          alertsToSend.push(treatmentMap['bracing_intro']);
-          alertsToSend.push(treatmentMap['bracing_day']);
-        }
-        if (treatment === 'bracing_night') {
-          alertsToSend.push(treatmentMap['bracing_night_intro']);
-          alertsToSend.push(treatmentMap['bracing_night_y1']);
-          alertsToSend.push(treatmentMap['bracing_night_y2']);
-          alertsToSend.push(treatmentMap['bracing_night_y3']);
-          alertsToSend.push(treatmentMap['bracing_night_y4']);
-        }
+      // =======================================================================
+
+      // RED CONDITIONS ========================================================
+      if (treatment === 'casting') {
+        alertsToSend.push(treatmentMap['casting']);
+        alertsToSend.push(treatmentMap['casting_campaign']);
       }
-      if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
-      if (treatment === 'suspended')
-        alertsToSend.push(treatmentMap['suspended']);
+      if (treatment === 'bracing_day') {
+        alertsToSend.push(treatmentMap['bracing_intro']);
+        alertsToSend.push(treatmentMap['bracing_day']);
+      }
+      if (treatment === 'bracing_night') {
+        alertsToSend.push(treatmentMap['bracing_night_intro']);
+        alertsToSend.push(treatmentMap['bracing_night_y1']);
+        alertsToSend.push(treatmentMap['bracing_night_y2']);
+        alertsToSend.push(treatmentMap['bracing_night_y3']);
+        alertsToSend.push(treatmentMap['bracing_night_y4']);
+      }
+      // =======================================================================
     }
 
-    if (calcs.save !== undefined) {
-      const { brace_problems_type } = calcs.save;
-
-      if (brace_problems_type !== '')
-        alertsToSend.push(treatmentMap[brace_problems_type]);
-    }
+    // TEAL CONDITIONS =========================================================
+    if (calcs?.save?.brace_problems_type !== '')
+      alertsToSend.push(treatmentMap[brace_problems_type]);
+    // =========================================================================
   }
-  // ===========================================================================
 
   console.log('alerts', alertsToSend);
   return { ...state, alertsToSend, mapping, PhoneMapping };
