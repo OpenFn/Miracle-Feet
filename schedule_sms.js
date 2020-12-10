@@ -65,6 +65,14 @@ alterState(state => {
       key: '13 - Not Accepting Brace',
       bulkPrefix: 'not_accepting_brace-',
     },
+    reminder_before: {
+      key: '14 - Reminder: 2 days before visit',
+      bulkPrefix: 'visitBefore-',
+    },
+    reminder_after: {
+      key: '15 - Reminder: 1 day after missed visit',
+      bulkPrefix: 'visitAfter-',
+    },
   };
 
   const PhoneMapping = {
@@ -114,12 +122,11 @@ alterState(state => {
 
   const { form } = state.data;
   const { calcs } = form;
-  const { sms_opt_in, send_sms, sms_opt_in_educational } = form.case.update;
+  const { sms_opt_in, send_sms, sms_opt_in_educational, treatment } = calcs.sms;
 
   let alertsToSend = [];
 
   if (sms_opt_in === 'yes' && send_sms === 'on') {
-    const { treatment } = calcs.sms;
     if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
     if (treatment === 'suspended') alertsToSend.push(treatmentMap['suspended']);
 
@@ -149,6 +156,15 @@ alterState(state => {
       }
       // =======================================================================
     }
+
+    // TO EDIT: YELLOW ROWS ON SHEET ====================================================
+    if (path_for_next_visit_date !== '') {
+      alertsToSend.push(treatmentMap['reminder_before']);
+    }
+    if (path_for_missed_visit_date !== '') {
+      alertsToSend.push(treatmentMap['reminder_after']);
+    }
+    // =========================================================================
 
     // TEAL CONDITIONS =========================================================
     if (calcs.save && calcs.save.brace_problems_type !== '')
