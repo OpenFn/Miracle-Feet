@@ -114,30 +114,34 @@ alterState(state => {
 
   const { form } = state.data;
   const { calcs } = form;
-  const { sms_opt_in, send_sms } = form.case.update;
+  const { sms_opt_in, send_sms, sms_opt_in_educational } = form.case.update;
 
   let alertsToSend = [];
 
   // TODO: Rework this logic! ==================================================
   if (sms_opt_in === 'yes' && send_sms === 'on') {
-    const { treatment } = calcs.sms;
-    alertsToSend.push(treatmentMap['registration']);
-    alertsToSend.push(treatmentMap['treatmentIntro']);
-    if (treatment !== '') {
-      if (treatment === 'casting') {
-        alertsToSend.push(treatmentMap['casting']);
-        alertsToSend.push(treatmentMap['casting_campaign']);
+    if (sms_opt_in_educational === 'yes') {
+      const { treatment } = calcs.sms;
+      if (form['@name'] === 'Register New Patient') {
+        alertsToSend.push(treatmentMap['registration']);
+        alertsToSend.push(treatmentMap['treatmentIntro']);
       }
-      if (treatment === 'bracing_day') {
-        alertsToSend.push(treatmentMap['bracing_intro']);
-        alertsToSend.push(treatmentMap['bracing_day']);
-      }
-      if (treatment === 'bracing_night') {
-        alertsToSend.push(treatmentMap['bracing_night_intro']);
-        alertsToSend.push(treatmentMap['bracing_night_y1']);
-        alertsToSend.push(treatmentMap['bracing_night_y2']);
-        alertsToSend.push(treatmentMap['bracing_night_y3']);
-        alertsToSend.push(treatmentMap['bracing_night_y4']);
+      if (treatment !== '') {
+        if (treatment === 'casting') {
+          alertsToSend.push(treatmentMap['casting']);
+          alertsToSend.push(treatmentMap['casting_campaign']);
+        }
+        if (treatment === 'bracing_day') {
+          alertsToSend.push(treatmentMap['bracing_intro']);
+          alertsToSend.push(treatmentMap['bracing_day']);
+        }
+        if (treatment === 'bracing_night') {
+          alertsToSend.push(treatmentMap['bracing_night_intro']);
+          alertsToSend.push(treatmentMap['bracing_night_y1']);
+          alertsToSend.push(treatmentMap['bracing_night_y2']);
+          alertsToSend.push(treatmentMap['bracing_night_y3']);
+          alertsToSend.push(treatmentMap['bracing_night_y4']);
+        }
       }
       if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
       if (treatment === 'suspended')
@@ -275,8 +279,11 @@ alterState(state => {
 
       const sendAt = sendAtDate.toISOString();
       const to = form.calcs.sms.contact_phone_number;
+
       const dataForTheFromPhoneNumber =
-        form.calcs.phone_numbers.phone_country_code ||
+        (form.calcs.phone_numbers_country_code
+          ? form.calcs.phone_numbers_country_code.phone_country_code
+          : form.calcs.phone_numbers.phone_country_code) ||
         form.calcs.locations.country;
 
       const from = state.PhoneMapping[dataForTheFromPhoneNumber];
