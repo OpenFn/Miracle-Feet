@@ -263,9 +263,7 @@ alterState(state => {
       const date =
         rule['Schedule Start Date (SSD)'] === 'now'
           ? Date.now()
-          : dataValue(`form.case.update.${rule['Schedule Start Date (SSD)']}`)(
-              state
-            );
+          : dataValue(rule['Schedule Start Date (SSD)'])(state);
 
       console.log('date', date);
       let sendAtDate = new Date(date);
