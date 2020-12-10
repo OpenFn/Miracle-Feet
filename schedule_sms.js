@@ -151,7 +151,7 @@ alterState(state => {
     }
 
     // TEAL CONDITIONS =========================================================
-    if (calcs?.save?.brace_problems_type !== '')
+    if (calcs.save && calcs.save.brace_problems_type !== '')
       alertsToSend.push(treatmentMap[brace_problems_type]);
     // =========================================================================
   }
