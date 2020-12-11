@@ -18,7 +18,7 @@ const result = groupBy(data, 'Name');
 Object.keys(result).map(type => {
   const cleaned = result[type].map(x => {
     delete x['Name'];
-    delete x['# Alert'];
+    //delete x['# Alert'];
     Object.keys(x).map(lang => {
       if (lang.length <= 3) {
         // This is how we identify language keys
