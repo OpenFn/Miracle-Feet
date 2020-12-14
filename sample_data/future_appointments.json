@@ -17,7 +17,7 @@
   "edited_on": null,
   "form": {
     "#type": "data",
-    "@name": "Test",
+    "@name": "ណាត់ជួបថ្ងៃក្រោយ",
     "@uiVersion": "1",
     "@version": "781",
     "@xmlns": "http://openrosa.org/formdesigner/E9CBE19F-300C-40B6-A965-B79000B4BC50",
@@ -28,6 +28,19 @@
         "instant_dropout": "0",
         "last_marker": "",
         "marker": ""
+      },
+      "sms": {
+        "contact_backend_id": "MOBILE_BACKEND_MACH",
+        "contact_phone_number": "2346254793666",
+        "sms_opt_in": "yes",
+        "sms_interest": "yes",
+        "sms_interest_educational": "yes",
+        "language_code": "en",
+        "time_zone": "Africa/Lagos",
+        "treatment": "casting",
+        "pronoun_his_her": "her",
+        "pronoun_he_she": "she",
+        "pronoun_him_her": "her"
       },
       "flag_contacted": "contacted",
       "go_to_close_form": "0",
