@@ -337,7 +337,7 @@ alterState(state => {
 
       console.log('Sending message:', message);
       console.log('With bulkId:', bulkId);
-      /* sendSMS(bulkId, message); */
+      sendSMS(bulkId, message);
     });
   });
 
