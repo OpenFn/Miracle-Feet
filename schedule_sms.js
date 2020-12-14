@@ -75,6 +75,11 @@ alterState(state => {
     },
   };
 
+  const languageCodeMap = {
+    en: 'EN',
+    fr: 'FR',
+  };
+
   const PhoneMapping = {
     220: 'GCF',
     'The Gambia': 'GCF',
@@ -169,13 +174,14 @@ alterState(state => {
     // TEAL CONDITIONS =========================================================
     if (calcs.save && calcs.save.brace_problems_type !== '') {
       const { brace_problems_type } = calcs.save;
-      alertsToSend.push(treatmentMap[brace_problems_type]);
+      if (brace_problems_type !== null)
+        alertsToSend.push(treatmentMap[brace_problems_type]);
     }
     // =========================================================================
   }
 
   console.log('alerts', alertsToSend);
-  return { ...state, alertsToSend, mapping, PhoneMapping };
+  return { ...state, alertsToSend, mapping, PhoneMapping, languageCodeMap };
 });
 
 alterState(state => {
@@ -277,8 +283,8 @@ alterState(state => {
       const start_date =
         fetch_data_from_multiple_path(rule['Schedule Start Date (SSD)']) ||
         rule['Schedule Start Date (SSD)'];
-      
-        const date =
+
+      const date =
         start_date === 'now' ? Date.now() : dataValue(`${start_date}`)(state);
 
       let sendAtDate = new Date(date);
@@ -286,7 +292,7 @@ alterState(state => {
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
       const bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
 
-      const sms = rule[language_code]
+      const sms = rule[state.languageCodeMap[language_code]]
         .map((item, pos) =>
           pos % 2 === 0
             ? item
@@ -331,7 +337,7 @@ alterState(state => {
 
       console.log('Sending message:', message);
       console.log('With bulkId:', bulkId);
-      sendSMS(bulkId, message);
+      /* sendSMS(bulkId, message); */
     });
   });
 
