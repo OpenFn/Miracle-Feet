@@ -165,13 +165,17 @@ alterState(state => {
       // =======================================================================
     }
 
-    // TO EDIT: YELLOW ROWS ON SHEET ====================================================
-    /*  if (path_for_next_visit_date !== '') {
+    // REMINDERS ===============================================================
+    const next_visit_date_path =
+      'form.calcs.general.next_visit_date || form.calcs.save.next_visit_date || form.calcs.next_visit_date.next_visit_date';
+    let paths = [];
+    const path_arrays = next_visit_date_path.split(' || ');
+    paths = path_arrays.filter(path => {
+      return dataValue(`${path}`)(state) !== undefined;
+    });
+    if (paths[0] !== undefined) {
       alertsToSend.push(treatmentMap['reminder_before']);
     }
-    if (path_for_missed_visit_date !== '') {
-      alertsToSend.push(treatmentMap['reminder_after']);
-    } */
     // =========================================================================
 
     // TEAL CONDITIONS =========================================================
@@ -347,7 +351,6 @@ alterState(state => {
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
       getSMS(bulkId).then(res => {
         const { form } = state.data;
-        const { calcs } = form;
         if (res.requestError) {
           console.log(
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
@@ -363,7 +366,6 @@ alterState(state => {
             reschedule_date === 'now'
               ? Date.now()
               : dataValue(`${reschedule_date}`)(state);
-          /* const { next_visit_date } = calcs.general; */
 
           let sendAtDate = new Date(next_visit_date);
 
