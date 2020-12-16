@@ -148,6 +148,9 @@ alterState(state => {
         alertsToSend.push(treatmentMap['casting']);
         alertsToSend.push(treatmentMap['casting_campaign']);
       }
+      if (treatment === 'tenotomy') {
+        alertsToSend.push(treatmentMap['tenotomy']);
+      }
       if (treatment === 'bracing_day') {
         alertsToSend.push(treatmentMap['bracing_intro']);
         alertsToSend.push(treatmentMap['bracing_day']);
@@ -361,7 +364,7 @@ alterState(state => {
               ? Date.now()
               : dataValue(`${reschedule_date}`)(state);
           /* const { next_visit_date } = calcs.general; */
-          
+
           let sendAtDate = new Date(next_visit_date);
 
           sendAtDate.setDate(sendAtDate.getDate() + rule['Days from SSD']);
