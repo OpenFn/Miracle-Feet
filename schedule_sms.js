@@ -174,7 +174,10 @@ alterState(state => {
       return dataValue(`${path}`)(state) !== undefined;
     });
     if (paths[0] !== undefined) {
-      alertsToSend.push(treatmentMap['reminder_before']);
+      const date_value = dataValue(`${paths[0]}`)(state);
+      if (new Date(date_value).getDate() - new Date().getDate() > 2) {
+        alertsToSend.push(treatmentMap['reminder_before']);
+      }
     }
     // =========================================================================
 
