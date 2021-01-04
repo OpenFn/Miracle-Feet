@@ -184,8 +184,12 @@ alterState(state => {
     // TEAL CONDITIONS =========================================================
     if (calcs.save && calcs.save.brace_problems_type !== '') {
       const { brace_problems_type } = calcs.save;
-      if (brace_problems_type !== null)
-        alertsToSend.push(treatmentMap[brace_problems_type]);
+      if (brace_problems_type !== null) {
+        const braceProblemsTypes = brace_problems_type.split(' ');
+        braceProblemsTypes.forEach(brace_problems_type =>
+          alertsToSend.push(treatmentMap[brace_problems_type])
+        );
+      }
     }
     // =========================================================================
   }
