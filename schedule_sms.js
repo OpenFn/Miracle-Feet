@@ -185,6 +185,7 @@ alterState(state => {
       if (new Date(date_value).getDate() - new Date().getDate() > 2) {
         alertsToSend.push(treatmentMap['reminder_before']);
       }
+      alertsToSend.push(treatmentMap['reminder_after']);
     }
     if (last_visit_paths[0] !== undefined) {
       alertsToSend.push(treatmentMap['reminder_after']);
@@ -430,7 +431,7 @@ alterState(state => {
           const sendAt = sendAtDate.toISOString();
 
           // c. if a sms is found for visitAfter we delete it (cancel) and schedule a new one
-          
+
           if (bulkPrefix === 'visitAfter-') {
             deleteSMS(bulkId);
             bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
