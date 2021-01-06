@@ -143,7 +143,13 @@ alterState(state => {
 
   const { form } = state.data;
   const { calcs } = form;
-  const { sms_opt_in, send_sms, sms_opt_in_educational, treatment } = calcs.sms;
+  const {
+    sms_opt_in,
+    send_sms,
+    sms_opt_in_educational,
+    treatment,
+    original_treatment,
+  } = calcs.sms;
 
   let alertsToSend = [];
   let alertsToDisable = [];
@@ -190,7 +196,7 @@ alterState(state => {
       }
       // =======================================================================
       // RED CONDITIONS=========================================================
-      treatmentValueMap[treatment].forEach(value => {
+      alertsValueMap[treatment].forEach(value => {
         alertsToDisable.push(treatmentMap[value]);
       });
       // =======================================================================
@@ -227,9 +233,15 @@ alterState(state => {
       }
       // =======================================================================
       // RED CONDITIONS ========================================================
-      treatmentValueMap[treatment].forEach(value => {
+      alertsValueMap[treatment].forEach(value => {
         alertsToSend.push(treatmentMap[value]);
       });
+
+      if (original_treatment) {
+        alertsValueMap[original_treatment].forEach(value => {
+          alertsToDisable.push(treatmentMap[value]);
+        });
+      }
       // =======================================================================
     }
 
@@ -268,6 +280,20 @@ alterState(state => {
         braceProblemsTypes.forEach(brace_problems_type =>
           alertsToSend.push(treatmentMap[brace_problems_type])
         );
+      }
+    }
+    if (
+      original_treatment === 'bracing_day' ||
+      original_treatment === 'bracing_night'
+    ) {
+      if (calcs.save && calcs.save.brace_problems_type !== '') {
+        const { brace_problems_type } = calcs.save;
+        if (brace_problems_type !== null) {
+          const braceProblemsTypes = brace_problems_type.split(' ');
+          braceProblemsTypes.forEach(brace_problems_type =>
+            alertsToDisable.push(treatmentMap[brace_problems_type])
+          );
+        }
       }
     }
     // =========================================================================
