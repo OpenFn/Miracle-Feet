@@ -75,6 +75,22 @@ alterState(state => {
     },
   };
 
+  // only for red alerts but extendable
+  const alertsValueMap = {
+    complete: ['complete'],
+    suspended: ['suspended'],
+    casting: ['casting', 'casting_campaign'],
+    tenotomy: ['tenotomy'],
+    bracing_day: ['bracing_intro', 'bracing_day'],
+    bracing_night: [
+      'bracing_night_intro',
+      'bracing_night_y1',
+      'bracing_night_y2',
+      'bracing_night_y3',
+      'bracing_night_y4',
+    ],
+  };
+
   const languageCodeMap = {
     en: 'EN',
     fr: 'FR',
@@ -130,7 +146,75 @@ alterState(state => {
   const { sms_opt_in, send_sms, sms_opt_in_educational, treatment } = calcs.sms;
 
   let alertsToSend = [];
+  let alertsToDisable = [];
 
+  // 1. If send_sms = 'no' then the patient opted out of all SMS alerts.
+  if (send_sms === 'no') {
+    // a. delete sms for treatment
+    // YELLOW CONDITIONS =====================================================
+    if (form['@name'] === 'Register New Patient') {
+      alertsToDisable.push(treatmentMap['registration']);
+      alertsToDisable.push(treatmentMap['treatmentIntro']);
+    }
+    // =======================================================================
+    // RED CONDITIONS=========================================================
+    alertsValueMap[treatment].forEach(value => {
+      alertsToDisable.push(treatmentMap[value]);
+    });
+    // =======================================================================
+
+    // b. delete sms for alerts 14, 15, 16
+    if (treatment === 'bracing_day' || treatment === 'bracing_night') {
+      if (calcs.save && calcs.save.brace_problems_type !== '') {
+        const { brace_problems_type } = calcs.save;
+        if (brace_problems_type !== null) {
+          const braceProblemsTypes = brace_problems_type.split(' ');
+          braceProblemsTypes.forEach(brace_problems_type =>
+            alertsToDisable.push(treatmentMap[brace_problems_type])
+          );
+        }
+      }
+    }
+    // c. delete reminders
+    alertsToDisable.push(treatmentMap['reminder_before']);
+    alertsToDisable.push(treatmentMap['reminder_after']);
+  }
+  if (send_sms === 'on') {
+    // 2. send_sms = "on" AND sms_opt_in_educational = "no" then the patient opted out of educational SMS alerts.
+    if (sms_opt_in_educational === 'no') {
+      // a. delete sms for treatment
+      // YELLOW CONDITIONS =====================================================
+      if (form['@name'] === 'Register New Patient') {
+        alertsToDisable.push(treatmentMap['registration']);
+        alertsToDisable.push(treatmentMap['treatmentIntro']);
+      }
+      // =======================================================================
+      // RED CONDITIONS=========================================================
+      treatmentValueMap[treatment].forEach(value => {
+        alertsToDisable.push(treatmentMap[value]);
+      });
+      // =======================================================================
+
+      // b. delete sms for alerts 14, 15, 16
+      if (treatment === 'bracing_day' || treatment === 'bracing_night') {
+        if (calcs.save && calcs.save.brace_problems_type !== '') {
+          const { brace_problems_type } = calcs.save;
+          if (brace_problems_type !== null) {
+            const braceProblemsTypes = brace_problems_type.split(' ');
+            braceProblemsTypes.forEach(brace_problems_type =>
+              alertsToDisable.push(treatmentMap[brace_problems_type])
+            );
+          }
+        }
+      }
+    }
+    // 3. send_sms = "on" AND sms_opt_in = "no" then the patient opted out of appointment reminder SMS alerts.
+    // a. delete reminders
+    if (sms_opt_in === 'no') {
+      alertsToDisable.push(treatmentMap['reminder_before']);
+      alertsToDisable.push(treatmentMap['reminder_after']);
+    }
+  }
   if (sms_opt_in === 'yes' && send_sms === 'on') {
     if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
     if (treatment === 'suspended') alertsToSend.push(treatmentMap['suspended']);
@@ -142,26 +226,10 @@ alterState(state => {
         alertsToSend.push(treatmentMap['treatmentIntro']);
       }
       // =======================================================================
-
       // RED CONDITIONS ========================================================
-      if (treatment === 'casting') {
-        alertsToSend.push(treatmentMap['casting']);
-        alertsToSend.push(treatmentMap['casting_campaign']);
-      }
-      if (treatment === 'tenotomy') {
-        alertsToSend.push(treatmentMap['tenotomy']);
-      }
-      if (treatment === 'bracing_day') {
-        alertsToSend.push(treatmentMap['bracing_intro']);
-        alertsToSend.push(treatmentMap['bracing_day']);
-      }
-      if (treatment === 'bracing_night') {
-        alertsToSend.push(treatmentMap['bracing_night_intro']);
-        alertsToSend.push(treatmentMap['bracing_night_y1']);
-        alertsToSend.push(treatmentMap['bracing_night_y2']);
-        alertsToSend.push(treatmentMap['bracing_night_y3']);
-        alertsToSend.push(treatmentMap['bracing_night_y4']);
-      }
+      treatmentValueMap[treatment].forEach(value => {
+        alertsToSend.push(treatmentMap[value]);
+      });
       // =======================================================================
     }
 
@@ -205,8 +273,16 @@ alterState(state => {
     // =========================================================================
   }
 
-  console.log('alerts', alertsToSend);
-  return { ...state, alertsToSend, mapping, PhoneMapping, languageCodeMap };
+  console.log('alerts to send', alertsToSend);
+  console.log('alerts to disable', alertsToDisable);
+  return {
+    ...state,
+    alertsToSend,
+    alertsToDisable,
+    mapping,
+    PhoneMapping,
+    languageCodeMap,
+  };
 });
 
 alterState(state => {
@@ -297,7 +373,7 @@ alterState(state => {
     });
   }*/
 
-  const { alertsToSend, mapping, data } = state;
+  const { alertsToSend, alertsToDisable, mapping, data } = state;
   const { form } = data;
   const { calcs } = form;
   const language_code = calcs.sms.language_code || 'EN';
@@ -314,6 +390,7 @@ alterState(state => {
     return value;
   }
 
+  // SCHEDULE SMS PROCESS =======================================================
   alertsToSend.forEach((alert, i) => {
     const { key, bulkPrefix } = alert;
     mapping[key].map(rule => {
@@ -445,6 +522,34 @@ alterState(state => {
       // END Send SMS ================================================
     });
   });
+
+  // DISABLE SMS PROCESS ========================================================
+  alertsToDisable.forEach(alert => {
+    const { key, bulkPrefix } = alert;
+    mapping[key].map(rule => {
+      // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
+      let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
+
+      // a. if alert is for visitAfter we add next_visit_date to bulkId
+      if (bulkPrefix === 'visitAfter-') {
+        const schedule_date = fetch_data_from_multiple_path(
+          rule['Schedule Start Date (SSD)']
+        );
+        const next_visit_date = dataValue(`${schedule_date}`)(state);
+        bulkId = `${bulkId}-${next_visit_date}`;
+      }
+
+      // GET SMS then DISABLE =========================================
+      console.log(`Check for existing scheduled SMS for ${bulkId}...`);
+      getSMS(bulkId).then(res => {
+        const { form } = state.data;
+        if (!res.requestError) {
+          deleteSMS(bulkId);
+        }
+      });
+    });
+  });
+  // ============================================================================
 
   return state;
 });
