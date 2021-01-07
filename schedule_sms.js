@@ -142,7 +142,7 @@ alterState(state => {
   };
 
   const { form } = state.data;
-  const { calcs } = form;
+  const { calcs, properties } = form;
   const {
     sms_opt_in,
     send_sms,
@@ -225,6 +225,21 @@ alterState(state => {
     if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
     if (treatment === 'suspended') alertsToSend.push(treatmentMap['suspended']);
 
+    if (
+      treatment === 'suspended' ||
+      treatment === 'complete' ||
+      (properties && properties.close_reason !== '')
+    ) {
+      alertsValueMap[original_treatment].forEach(value => {
+        alertsToDisable.push(treatmentMap[value]);
+      });
+
+      // REMINDERS ===============================================================
+      alertsToDisable.push(treatmentMap['reminder_before']);
+      alertsToDisable.push(treatmentMap['reminder_after']);
+      // =========================================================================
+    }
+
     if (sms_opt_in_educational === 'yes') {
       // YELLOW CONDITIONS =====================================================
       if (form['@name'] === 'Register New Patient') {
@@ -237,7 +252,7 @@ alterState(state => {
         alertsToSend.push(treatmentMap[value]);
       });
 
-      if (original_treatment) {
+      if (original_treatment || properties) {
         alertsValueMap[original_treatment].forEach(value => {
           alertsToDisable.push(treatmentMap[value]);
         });
