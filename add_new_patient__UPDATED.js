@@ -33,7 +33,7 @@ alterState(state => {
     'brazzaville_test',
     'ecu_test',
     'gambia_test',
-    'gambia_test_clinic'
+    'gambia_test_clinic',
     'guat_test',
     'guinea_test_clinic',
     'hon_test',
