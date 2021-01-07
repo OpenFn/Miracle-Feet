@@ -188,7 +188,6 @@ alterState(state => {
   }
   if (send_sms === 'on') {
     // 2. send_sms = "on" AND sms_opt_in_educational = "no" then the patient opted out of educational SMS alerts.
-    console.log('Patient opted out of educational SMS alerts.');
 
     if (sms_opt_in_educational === 'no') {
       // a. delete sms for treatment
