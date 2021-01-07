@@ -156,6 +156,7 @@ alterState(state => {
 
   // 1. If send_sms = 'no' then the patient opted out of all SMS alerts.
   if (send_sms === 'no') {
+    console.log('Patient opted out of all SMS alerts.');
     // a. delete sms for treatment
     // YELLOW CONDITIONS =====================================================
     if (form['@name'] === 'Register New Patient') {
@@ -187,6 +188,8 @@ alterState(state => {
   }
   if (send_sms === 'on') {
     // 2. send_sms = "on" AND sms_opt_in_educational = "no" then the patient opted out of educational SMS alerts.
+    console.log('Patient opted out of educational SMS alerts.');
+
     if (sms_opt_in_educational === 'no') {
       // a. delete sms for treatment
       // YELLOW CONDITIONS =====================================================
@@ -248,9 +251,10 @@ alterState(state => {
       }
       // =======================================================================
       // RED CONDITIONS ========================================================
-      alertsValueMap[treatment].forEach(value => {
-        alertsToSend.push(treatmentMap[value]);
-      });
+      if (treatment)
+        alertsValueMap[treatment].forEach(value => {
+          alertsToSend.push(treatmentMap[value]);
+        });
 
       if (original_treatment || properties) {
         alertsValueMap[original_treatment].forEach(value => {
