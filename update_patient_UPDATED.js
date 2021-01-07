@@ -43,12 +43,14 @@ alterState(state => {
     'brazzaville_test',
     'ecu_test',
     'gambia_test',
+    'gambia_test_clinic',
     'guat_test',
     'guinea_test_clinic',
     'hon_test',
     'uptest',
     'indonesia_test',
     'test',
+    'liberia_test_clinic',
     'majunga_test_clinic',
     'morocco_test',
     'mya_test',
@@ -226,11 +228,12 @@ alterState(state => {
         //field('Bracing_Stage__c', (state)=>{}dataValue('properties.bracing_stage')), //replaced with below mapping + transformation
         field('Bracing_Stage__c', state => {
           var stage = dataValue('properties.bracing_stage')(state);
-          return stage=='bracing_all_day'
+          var newStage = (stage=='bracing_all_day')
             ? 'All day and night' 
-            : stage=='bracing_night_naps'
+            : (stage=='bracing_night_naps')
             ? 'At night and for naps'
             : null; //transformation that returns formatted CommCare choice values
+          return  newStage;
         }),
         field('Diagnosis_Idiopathic_Specified__c', state => {
           var value = state.data.properties.diagnosis_idiopathic_specified;
