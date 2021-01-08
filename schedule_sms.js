@@ -227,19 +227,21 @@ alterState(state => {
     if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
     if (treatment === 'suspended') alertsToSend.push(treatmentMap['suspended']);
 
-    if (
-      treatment === 'suspended' ||
-      treatment === 'complete' ||
-      (properties && properties.close_reason !== '')
-    ) {
-      alertsValueMap[original_treatment].forEach(value => {
-        alertsToDisable.push(treatmentMap[value]);
-      });
+    if (original_treatment) {
+      if (
+        treatment === 'suspended' ||
+        treatment === 'complete' ||
+        (properties && properties.close_reason !== '')
+      ) {
+        alertsValueMap[original_treatment].forEach(value => {
+          alertsToDisable.push(treatmentMap[value]);
+        });
 
-      // REMINDERS ===============================================================
-      alertsToDisable.push(treatmentMap['reminder_before']);
-      alertsToDisable.push(treatmentMap['reminder_after']);
-      // =========================================================================
+        // REMINDERS ===============================================================
+        alertsToDisable.push(treatmentMap['reminder_before']);
+        alertsToDisable.push(treatmentMap['reminder_after']);
+        // =========================================================================
+      }
     }
 
     if (sms_opt_in_educational === 'yes') {
@@ -301,8 +303,9 @@ alterState(state => {
       }
     }
     if (
-      original_treatment === 'bracing_day' ||
-      original_treatment === 'bracing_night'
+      original_treatment &&
+      (original_treatment === 'bracing_day' ||
+        original_treatment === 'bracing_night')
     ) {
       if (calcs.save && calcs.save.brace_problems_type !== '') {
         const { brace_problems_type } = calcs.save;
@@ -521,7 +524,7 @@ alterState(state => {
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
           );
 
-          // scheduleSMS(bulkId, message);
+          scheduleSMS(bulkId, message);
         } else {
           const reschedule_date = fetch_data_from_multiple_path(
             rule['Schedule Start Date (SSD)']
@@ -554,13 +557,13 @@ alterState(state => {
           // c. if a sms is found for visitAfter we delete it (cancel) and schedule a new one
 
           if (bulkPrefix === 'visitAfter-') {
-            // deleteSMS(bulkId);
+            deleteSMS(bulkId);
             bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
           }
           console.log(
             `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
           );
-          // rescheduleSMS(bulkId, sendAt);
+          rescheduleSMS(bulkId, sendAt);
         }
       });
       // END Send SMS ================================================
@@ -588,7 +591,7 @@ alterState(state => {
       getSMS(bulkId).then(res => {
         const { form } = state.data;
         if (!res.requestError) {
-          // deleteSMS(bulkId);
+          deleteSMS(bulkId);
         }
       });
     });
