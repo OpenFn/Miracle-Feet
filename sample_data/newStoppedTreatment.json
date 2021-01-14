@@ -1,0 +1,126 @@
+{
+  "__query_params": {
+    "app_id": "cedf746aedd34c8fa559da17df52e20d"
+  },
+  "app_id": "cedf746aedd34c8fa559da17df52e20d",
+  "archived": false,
+  "attachments": {
+    "form.xml": {
+      "content_type": "text/xml",
+      "length": 3042,
+      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/621e7009-fa18-4442-8bc6-1c031ddd650b/form.xml"
+    }
+  },
+  "build_id": "0de4f3792bf347f6879d9e916f2069cd",
+  "domain": "miraclefeet",
+  "edited_by_user_id": null,
+  "edited_on": null,
+  "form": {
+    "#type": "data",
+    "@name": "Mark Patient Stopped Treatment",
+    "@uiVersion": "1",
+    "@version": "923",
+    "@xmlns": "http://openrosa.org/formdesigner/8ba743a61f123fe6a3bf5cf573edbdd80986c806",
+    "calcs": {
+      "close_case": "0",
+      "dropout": {
+        "flag_dropout": "dropout",
+        "instant_dropout": "1"
+      },
+      "duplicate_patient": "",
+      "hide_case": "1",
+      "last_visit_date": "2020-12-28",
+      "last_visit_date_formatted": "Dec 28, 2020",
+      "last_visit_date_formatted_day": "Mon, Dec 28, 2020",
+      "next_visit_date": "",
+      "phone_numbers_country_code": {
+        "phone_country_code": "234"
+      },
+      "registration_date": "2020-12-28",
+      "registration_date_formatted": "Dec 28, 2020",
+      "registration_date_formatted_day": "Mon, Dec 28, 2020",
+      "sms": {
+        "brace_problems_type": "",
+        "contact_backend_id": "MOBILE_BACKEND_MACH",
+        "contact_phone_number": "23411162533333",
+        "language_code": "en",
+        "original_treatment": "casting",
+        "pronoun_he_she": "she",
+        "pronoun_him_her": "her",
+        "pronoun_his_her": "her",
+        "send_sms": "on",
+        "time_zone": "Africa/Lagos",
+        "treatment": "stopped"
+      },
+      "treatment_completed": "0"
+    },
+    "case": {
+      "@case_id": "944bffaf-5a51-4be3-83a4-a667dffc3f75",
+      "@date_modified": "2021-01-14T10:39:50.283000Z",
+      "@user_id": "41e0e8f1a137469b9b5c15725f9a8117",
+      "@xmlns": "http://commcarehq.org/case/transaction/v2",
+      "update": {
+        "close_case": "0",
+        "close_reason": "refuses_treatment",
+        "contact_backend_id": "MOBILE_BACKEND_MACH",
+        "contact_phone_number": "23411162533333",
+        "dropout": "dropout",
+        "duplicate_patient": "",
+        "hide_case": "1",
+        "language_code": "en",
+        "next_visit_date": "",
+        "pronoun_he_she": "she",
+        "pronoun_him_her": "her",
+        "pronoun_his_her": "her",
+        "send_sms": "on",
+        "time_zone": "Africa/Lagos",
+        "treatment": "stopped",
+        "treatment_completed": "0"
+      }
+    },
+    "close_reason": "refuses_treatment",
+    "info": {
+      "last_visit_date_label": "OK",
+      "registration_date_label": "OK"
+    },
+    "meta": {
+      "@xmlns": "http://openrosa.org/jr/xforms",
+      "appVersion": "CommCare Android, version \"2.48.7\"(461473). App v928. CommCare Version 2.48. Build 461473, built on: 2020-05-20",
+      "app_build_version": 928,
+      "commcare_version": "2.48.7",
+      "deviceID": "commcare_0e915c9c-4ae6-4bf6-9593-3c87a621774f",
+      "drift": "0",
+      "geo_point": null,
+      "instanceID": "621e7009-fa18-4442-8bc6-1c031ddd650b",
+      "timeEnd": "2021-01-14T10:39:50.283000Z",
+      "timeStart": "2021-01-14T10:39:43.701000Z",
+      "userID": "41e0e8f1a137469b9b5c15725f9a8117",
+      "username": "nigeria_test"
+    }
+  },
+  "id": "621e7009-fa18-4442-8bc6-1c031ddd650b",
+  "indexed_on": "2021-01-14T10:39:59.903515",
+  "initial_processing_complete": true,
+  "is_phone_submission": true,
+  "metadata": {
+    "appVersion": "CommCare Android, version \"2.48.7\"(461473). App v928. CommCare Version 2.48. Build 461473, built on: 2020-05-20",
+    "app_build_version": 928,
+    "commcare_version": "2.48.7",
+    "deviceID": "commcare_0e915c9c-4ae6-4bf6-9593-3c87a621774f",
+    "drift": "0",
+    "geo_point": null,
+    "instanceID": "621e7009-fa18-4442-8bc6-1c031ddd650b",
+    "location": null,
+    "timeEnd": "2021-01-14T10:39:50.283000Z",
+    "timeStart": "2021-01-14T10:39:43.701000Z",
+    "userID": "41e0e8f1a137469b9b5c15725f9a8117",
+    "username": "nigeria_test"
+  },
+  "problem": null,
+  "received_on": "2021-01-14T10:39:59.217800Z",
+  "resource_uri": "",
+  "server_modified_on": "2021-01-14T10:39:59.348623Z",
+  "type": "data",
+  "uiversion": "1",
+  "version": "923"
+}
