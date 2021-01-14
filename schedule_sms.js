@@ -142,7 +142,7 @@ alterState(state => {
   };
 
   const { form } = state.data;
-  const { calcs, properties } = form;
+  const { calcs, properties, close_reason } = form;
   const {
     sms_opt_in,
     send_sms,
@@ -231,7 +231,7 @@ alterState(state => {
       if (
         treatment === 'suspended' ||
         treatment === 'complete' ||
-        (properties && properties.close_reason !== '')
+        (close_reason && close_reason !== '')
       ) {
         alertsValueMap[original_treatment].forEach(value => {
           alertsToDisable.push(treatmentMap[value]);
