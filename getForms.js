@@ -57,16 +57,11 @@ alterState(state => {
         );
       });
       console.log(body.length, 'forms fetched...');
+      console.log(`Posting to OpenFn Inbox...${JSON.stringify(body, null, 2)}`);
 
       return each(
         body,
         alterState(state => {
-          const { received_on, server_modified_on } = state.data;
-          const receivedOnDate = new Date(received_on);
-          const serverModifiedOnDate = new Date(server_modified_on);
-          receivedOnDate.setHours(0, 0, 0, 0);
-          serverModifiedOnDate.setHours(0, 0, 0, 0);
-
           return post(
             `${openfnInboxUrl}`,
             { body: state => state.data },
@@ -112,16 +107,11 @@ alterState(state => {
         );
       });
       console.log(body.length, 'forms fetched...');
+      console.log(`Posting to OpenFn Inbox...${JSON.stringify(body, null, 2)}`);
 
       return each(
         body,
         alterState(state => {
-          const { received_on, server_modified_on } = state.data;
-          const receivedOnDate = new Date(received_on);
-          const serverModifiedOnDate = new Date(server_modified_on);
-          receivedOnDate.setHours(0, 0, 0, 0);
-          serverModifiedOnDate.setHours(0, 0, 0, 0);
-
           return post(
             `${openfnInboxUrl}`,
             { body: state => state.data },
