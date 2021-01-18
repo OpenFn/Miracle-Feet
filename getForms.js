@@ -9,8 +9,8 @@ alterState(state => {
   // ================================================================
 
   // Manual cursors =================================================
-  const received_on_start = '2020-01-01'; // start date
-  const received_on_end = '2020-01-31'; // start date
+  const received_on_start = '2021-01-01'; // start date
+  const received_on_end = '2021-01-31'; // start date
   // ================================================================
 
   const cursorStart = month_prior_start || received_on_start; // Remove 'month_prior_start ||' to use manualCursor
