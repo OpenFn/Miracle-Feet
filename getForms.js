@@ -58,7 +58,7 @@ alterState(state => {
           receivedOnDate.toISOString() === serverModifiedOnDate.toISOString()
         );
       });
-      console.log(body.length, 'forms fetched...');
+      console.log(body.length, 'cleaned forms fetched...');
       console.log(`Posting to OpenFn Inbox...${JSON.stringify(body, null, 2)}`);
 
       return each(
