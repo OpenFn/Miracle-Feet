@@ -154,42 +154,11 @@ alterState(state => {
   let alertsToSend = [];
   let alertsToDisable = [];
 
-  // 1. If send_sms = 'no' then the patient opted out of all SMS alerts.
-  if (send_sms === 'no') {
-    console.log('Patient opted out of all SMS alerts.');
-    // a. delete sms for treatment
-    // YELLOW CONDITIONS =====================================================
-    if (form['@name'] === 'Register New Patient') {
-      alertsToDisable.push(treatmentMap['registration']);
-      alertsToDisable.push(treatmentMap['treatmentIntro']);
-    }
-    // =======================================================================
-    // RED CONDITIONS=========================================================
-    alertsValueMap[treatment].forEach(value => {
-      alertsToDisable.push(treatmentMap[value]);
-    });
-    // =======================================================================
-
-    // b. delete sms for alerts 14, 15, 16
-    if (treatment === 'bracing_day' || treatment === 'bracing_night') {
-      if (calcs.save && calcs.save.brace_problems_type !== '') {
-        const { brace_problems_type } = calcs.save;
-        if (brace_problems_type !== null) {
-          const braceProblemsTypes = brace_problems_type.split(' ');
-          braceProblemsTypes.forEach(brace_problems_type =>
-            alertsToDisable.push(treatmentMap[brace_problems_type])
-          );
-        }
-      }
-    }
-    // c. delete reminders
-    alertsToDisable.push(treatmentMap['reminder_before']);
-    alertsToDisable.push(treatmentMap['reminder_after']);
-  }
-  if (send_sms === 'on') {
-    // 2. send_sms = "on" AND sms_opt_in_educational = "no" then the patient opted out of educational SMS alerts.
-
-    if (sms_opt_in_educational === 'no') {
+  const { username } = state.data.metadata;
+  if (username.includes('test') || username.includes('practica')) {
+    // 1. If send_sms = 'no' then the patient opted out of all SMS alerts.
+    if (send_sms === 'no') {
+      console.log('Patient opted out of all SMS alerts.');
       // a. delete sms for treatment
       // YELLOW CONDITIONS =====================================================
       if (form['@name'] === 'Register New Patient') {
@@ -198,13 +167,153 @@ alterState(state => {
       }
       // =======================================================================
       // RED CONDITIONS=========================================================
-      alertsValueMap[treatment].forEach(value => {
-        alertsToDisable.push(treatmentMap[value]);
-      });
+      if (treatment)
+        alertsValueMap[treatment].forEach(value => {
+          alertsToDisable.push(treatmentMap[value]);
+        });
       // =======================================================================
 
       // b. delete sms for alerts 14, 15, 16
       if (treatment === 'bracing_day' || treatment === 'bracing_night') {
+        if (calcs.save && calcs.save.brace_problems_type !== '') {
+          const { brace_problems_type } = calcs.save;
+          if (brace_problems_type !== null) {
+            const braceProblemsTypes = brace_problems_type.split(' ');
+            braceProblemsTypes.forEach(brace_problems_type =>
+              alertsToDisable.push(treatmentMap[brace_problems_type])
+            );
+          }
+        }
+      }
+      // c. delete reminders
+      alertsToDisable.push(treatmentMap['reminder_before']);
+      alertsToDisable.push(treatmentMap['reminder_after']);
+    }
+    if (send_sms === 'on') {
+      // 2. send_sms = "on" AND sms_opt_in_educational = "no" then the patient opted out of educational SMS alerts.
+
+      if (sms_opt_in_educational === 'no') {
+        // a. delete sms for treatment
+        // YELLOW CONDITIONS =====================================================
+        if (form['@name'] === 'Register New Patient') {
+          alertsToDisable.push(treatmentMap['registration']);
+          alertsToDisable.push(treatmentMap['treatmentIntro']);
+        }
+        // =======================================================================
+        // RED CONDITIONS=========================================================
+        alertsValueMap[treatment].forEach(value => {
+          alertsToDisable.push(treatmentMap[value]);
+        });
+        // =======================================================================
+
+        // b. delete sms for alerts 14, 15, 16
+        if (treatment === 'bracing_day' || treatment === 'bracing_night') {
+          if (calcs.save && calcs.save.brace_problems_type !== '') {
+            const { brace_problems_type } = calcs.save;
+            if (
+              brace_problems_type !== null &&
+              brace_problems_type !== 'none'
+            ) {
+              const braceProblemsTypes = brace_problems_type.split(' ');
+              braceProblemsTypes.forEach(brace_problems_type =>
+                alertsToDisable.push(treatmentMap[brace_problems_type])
+              );
+            }
+          }
+        }
+      }
+      // 3. send_sms = "on" AND sms_opt_in = "no" then the patient opted out of appointment reminder SMS alerts.
+      // a. delete reminders
+      if (sms_opt_in === 'no') {
+        alertsToDisable.push(treatmentMap['reminder_before']);
+        alertsToDisable.push(treatmentMap['reminder_after']);
+      }
+    }
+    if (sms_opt_in === 'yes' && send_sms === 'on') {
+      if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
+      if (treatment === 'suspended')
+        alertsToSend.push(treatmentMap['suspended']);
+
+      if (original_treatment) {
+        if (
+          treatment === 'suspended' ||
+          treatment === 'complete' ||
+          (close_reason && close_reason !== '')
+        ) {
+          alertsValueMap[original_treatment].forEach(value => {
+            alertsToDisable.push(treatmentMap[value]);
+          });
+
+          // REMINDERS ===============================================================
+          alertsToDisable.push(treatmentMap['reminder_before']);
+          alertsToDisable.push(treatmentMap['reminder_after']);
+          // =========================================================================
+        }
+      }
+
+      if (sms_opt_in_educational === 'yes') {
+        // YELLOW CONDITIONS =====================================================
+        if (form['@name'] === 'Register New Patient') {
+          alertsToSend.push(treatmentMap['registration']);
+          alertsToSend.push(treatmentMap['treatmentIntro']);
+        }
+        // =======================================================================
+        // RED CONDITIONS ========================================================
+        if (treatment && treatment !== 'stopped')
+          alertsValueMap[treatment].forEach(value => {
+            alertsToSend.push(treatmentMap[value]);
+          });
+
+        if (original_treatment || properties) {
+          alertsValueMap[original_treatment].forEach(value => {
+            alertsToDisable.push(treatmentMap[value]);
+          });
+        }
+        // =======================================================================
+      }
+
+      // REMINDERS ===============================================================
+      const next_visit_date_path =
+        'form.calcs.general.next_visit_date || form.calcs.save.next_visit_date || form.calcs.next_visit_date.next_visit_date';
+      const last_visit_date_path =
+        'form.calcs.save.last_visit_date || form.calcs.original_next_visit_date';
+      let paths = [];
+      const path_arrays = next_visit_date_path.split(' || ');
+      const last_visit_path_arrays = last_visit_date_path.split(' || ');
+
+      paths = path_arrays.filter(path => {
+        return dataValue(`${path}`)(state) !== undefined;
+      });
+      last_visit_paths = last_visit_path_arrays.filter(path => {
+        return dataValue(`${path}`)(state) !== undefined;
+      });
+      if (paths[0] !== undefined) {
+        const date_value = dataValue(`${paths[0]}`)(state);
+        if (new Date(date_value).getDate() - new Date().getDate() > 2) {
+          alertsToSend.push(treatmentMap['reminder_before']);
+        }
+        alertsToSend.push(treatmentMap['reminder_after']);
+      }
+      if (last_visit_paths[0] !== undefined) {
+        alertsToSend.push(treatmentMap['reminder_after']);
+      }
+      // =========================================================================
+
+      // TEAL CONDITIONS =========================================================
+      if (calcs.save && calcs.save.brace_problems_type !== '') {
+        const { brace_problems_type } = calcs.save;
+        if (brace_problems_type !== null && brace_problems_type !== 'none') {
+          const braceProblemsTypes = brace_problems_type.split(' ');
+          braceProblemsTypes.forEach(brace_problems_type =>
+            alertsToSend.push(treatmentMap[brace_problems_type])
+          );
+        }
+      }
+      if (
+        original_treatment &&
+        (original_treatment === 'bracing_day' ||
+          original_treatment === 'bracing_night')
+      ) {
         if (calcs.save && calcs.save.brace_problems_type !== '') {
           const { brace_problems_type } = calcs.save;
           if (brace_problems_type !== null && brace_problems_type !== 'none') {
@@ -215,113 +324,12 @@ alterState(state => {
           }
         }
       }
+      // =========================================================================
     }
-    // 3. send_sms = "on" AND sms_opt_in = "no" then the patient opted out of appointment reminder SMS alerts.
-    // a. delete reminders
-    if (sms_opt_in === 'no') {
-      alertsToDisable.push(treatmentMap['reminder_before']);
-      alertsToDisable.push(treatmentMap['reminder_after']);
-    }
+
+    console.log('alerts to send', alertsToSend);
+    console.log('alerts to disable', alertsToDisable);
   }
-  if (sms_opt_in === 'yes' && send_sms === 'on') {
-    if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
-    if (treatment === 'suspended') alertsToSend.push(treatmentMap['suspended']);
-
-    if (original_treatment) {
-      if (
-        treatment === 'suspended' ||
-        treatment === 'complete' ||
-        (close_reason && close_reason !== '')
-      ) {
-        alertsValueMap[original_treatment].forEach(value => {
-          alertsToDisable.push(treatmentMap[value]);
-        });
-
-        // REMINDERS ===============================================================
-        alertsToDisable.push(treatmentMap['reminder_before']);
-        alertsToDisable.push(treatmentMap['reminder_after']);
-        // =========================================================================
-      }
-    }
-
-    if (sms_opt_in_educational === 'yes') {
-      // YELLOW CONDITIONS =====================================================
-      if (form['@name'] === 'Register New Patient') {
-        alertsToSend.push(treatmentMap['registration']);
-        alertsToSend.push(treatmentMap['treatmentIntro']);
-      }
-      // =======================================================================
-      // RED CONDITIONS ========================================================
-      if (treatment && treatment !== 'stopped')
-        alertsValueMap[treatment].forEach(value => {
-          alertsToSend.push(treatmentMap[value]);
-        });
-
-      if (original_treatment || properties) {
-        alertsValueMap[original_treatment].forEach(value => {
-          alertsToDisable.push(treatmentMap[value]);
-        });
-      }
-      // =======================================================================
-    }
-
-    // REMINDERS ===============================================================
-    const next_visit_date_path =
-      'form.calcs.general.next_visit_date || form.calcs.save.next_visit_date || form.calcs.next_visit_date.next_visit_date';
-    const last_visit_date_path =
-      'form.calcs.save.last_visit_date || form.calcs.original_next_visit_date';
-    let paths = [];
-    const path_arrays = next_visit_date_path.split(' || ');
-    const last_visit_path_arrays = last_visit_date_path.split(' || ');
-
-    paths = path_arrays.filter(path => {
-      return dataValue(`${path}`)(state) !== undefined;
-    });
-    last_visit_paths = last_visit_path_arrays.filter(path => {
-      return dataValue(`${path}`)(state) !== undefined;
-    });
-    if (paths[0] !== undefined) {
-      const date_value = dataValue(`${paths[0]}`)(state);
-      if (new Date(date_value).getDate() - new Date().getDate() > 2) {
-        alertsToSend.push(treatmentMap['reminder_before']);
-      }
-      alertsToSend.push(treatmentMap['reminder_after']);
-    }
-    if (last_visit_paths[0] !== undefined) {
-      alertsToSend.push(treatmentMap['reminder_after']);
-    }
-    // =========================================================================
-
-    // TEAL CONDITIONS =========================================================
-    if (calcs.save && calcs.save.brace_problems_type !== '') {
-      const { brace_problems_type } = calcs.save;
-      if (brace_problems_type !== null && brace_problems_type !== 'none') {
-        const braceProblemsTypes = brace_problems_type.split(' ');
-        braceProblemsTypes.forEach(brace_problems_type =>
-          alertsToSend.push(treatmentMap[brace_problems_type])
-        );
-      }
-    }
-    if (
-      original_treatment &&
-      (original_treatment === 'bracing_day' ||
-        original_treatment === 'bracing_night')
-    ) {
-      if (calcs.save && calcs.save.brace_problems_type !== '') {
-        const { brace_problems_type } = calcs.save;
-        if (brace_problems_type !== null && brace_problems_type !== 'none') {
-          const braceProblemsTypes = brace_problems_type.split(' ');
-          braceProblemsTypes.forEach(brace_problems_type =>
-            alertsToDisable.push(treatmentMap[brace_problems_type])
-          );
-        }
-      }
-    }
-    // =========================================================================
-  }
-
-  console.log('alerts to send', alertsToSend);
-  console.log('alerts to disable', alertsToDisable);
   return {
     ...state,
     alertsToSend,
@@ -398,27 +406,6 @@ alterState(state => {
       },
     })(state);
   }
-
-  /* function sendSMS(bulkId, message) {
-    console.log(`Check for existing scheduled SMS for ${bulkId}...`);
-    getSMS(bulkId).then(res => {
-      const { form } = state.data;
-      const { calcs } = form;
-      if (res.requestError) {
-        console.log(
-          `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
-        );
-
-        scheduleSMS(bulkId, message);
-      } else {
-        const { next_visit_date } = calcs.general;
-        console.log(
-          `SMS already scheduled. Rescheduling for ${next_visit_date}...`
-        );
-        rescheduleSMS(bulkId, next_visit_date);
-      }
-    });
-  }*/
 
   const { alertsToSend, alertsToDisable, mapping, data } = state;
   const { form } = data;
@@ -524,7 +511,7 @@ alterState(state => {
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
           );
 
-          scheduleSMS(bulkId, message);
+          // scheduleSMS(bulkId, message);
         } else {
           const reschedule_date = fetch_data_from_multiple_path(
             rule['Schedule Start Date (SSD)']
@@ -557,13 +544,13 @@ alterState(state => {
           // c. if a sms is found for visitAfter we delete it (cancel) and schedule a new one
 
           if (bulkPrefix === 'visitAfter-') {
-            deleteSMS(bulkId);
+            // deleteSMS(bulkId);
             bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
           }
           console.log(
             `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
           );
-          rescheduleSMS(bulkId, sendAt);
+          // rescheduleSMS(bulkId, sendAt);
         }
       });
       // END Send SMS ================================================
@@ -591,7 +578,7 @@ alterState(state => {
       getSMS(bulkId).then(res => {
         const { form } = state.data;
         if (!res.requestError) {
-          deleteSMS(bulkId);
+          // deleteSMS(bulkId);
         }
       });
     });
