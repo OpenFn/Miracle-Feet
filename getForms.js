@@ -30,7 +30,7 @@ alterState(state => {
     'https://www.commcarehq.org/a/miraclefeet/api/v0.5/form/',
     {
       query: {
-        limit: 1, // To update for fetching a specific number of forms
+        limit: 1000, // To update for fetching a specific number of forms
         offset:
           state.meta && state.meta.next
             ? state.meta.limit + state.meta.offset
