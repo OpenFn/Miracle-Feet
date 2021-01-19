@@ -201,9 +201,10 @@ alterState(state => {
         }
         // =======================================================================
         // RED CONDITIONS=========================================================
-        alertsValueMap[treatment].forEach(value => {
-          alertsToDisable.push(treatmentMap[value]);
-        });
+        if (treatment)
+          alertsValueMap[treatment].forEach(value => {
+            alertsToDisable.push(treatmentMap[value]);
+          });
         // =======================================================================
 
         // b. delete sms for alerts 14, 15, 16
