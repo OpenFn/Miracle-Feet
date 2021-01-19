@@ -496,8 +496,6 @@ alterState(state => {
       };
 
       console.log('Sending message:', message);
-      /* console.log('With bulkId:', bulkId); */
-      /* sendSMS(bulkId, message); */
       // Send SMS ====================================================
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
       getSMS(bulkId).then(res => {
@@ -511,7 +509,7 @@ alterState(state => {
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
           );
 
-          // scheduleSMS(bulkId, message);
+          scheduleSMS(bulkId, message);
         } else {
           const reschedule_date = fetch_data_from_multiple_path(
             rule['Schedule Start Date (SSD)']
@@ -544,13 +542,13 @@ alterState(state => {
           // c. if a sms is found for visitAfter we delete it (cancel) and schedule a new one
 
           if (bulkPrefix === 'visitAfter-') {
-            // deleteSMS(bulkId);
+            deleteSMS(bulkId);
             bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
           }
           console.log(
             `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
           );
-          // rescheduleSMS(bulkId, sendAt);
+          rescheduleSMS(bulkId, sendAt);
         }
       });
       // END Send SMS ================================================
@@ -578,7 +576,7 @@ alterState(state => {
       getSMS(bulkId).then(res => {
         const { form } = state.data;
         if (!res.requestError) {
-          // deleteSMS(bulkId);
+          deleteSMS(bulkId);
         }
       });
     });
