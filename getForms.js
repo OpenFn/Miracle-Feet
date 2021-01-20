@@ -14,9 +14,9 @@ alterState(state => {
   // ================================================================
 
   // const cursorStart = month_prior_start || received_on_start; // Remove 'month_prior_start ||' to use manualCursor
-  const cursorStart = received_on_start
+  const cursorStart = received_on_start;
   // const cursorEnd = month_prior_end || received_on_end; // Remove 'month_prior_end ||' to use manualCursor
-  const cursorEnd = received_on_end
+  const cursorEnd = received_on_end;
 
   return {
     ...state,
@@ -52,10 +52,20 @@ alterState(state => {
         const { received_on, server_modified_on } = form;
         const receivedOnDate = new Date(received_on);
         const serverModifiedOnDate = new Date(server_modified_on);
-        receivedOnDate.setHours(0, 0, 0, 0);
-        serverModifiedOnDate.setHours(0, 0, 0, 0);
+        receivedOnDate.setHours(
+          receivedOnDate.getHours(),
+          receivedOnDate.getMinutes(),
+          0,
+          0
+        );
+        serverModifiedOnDate.setHours(
+          serverModifiedOnDate.getHours(),
+          serverModifiedOnDate.getMinutes(),
+          0,
+          0
+        );
         return (
-          receivedOnDate.toISOString() === serverModifiedOnDate.toISOString()
+          receivedOnDate.toISOString() !== serverModifiedOnDate.toISOString()
         );
       });
       console.log(body.length, 'cleaned forms fetched...');
@@ -102,10 +112,20 @@ alterState(state => {
         const { received_on, server_modified_on } = form;
         const receivedOnDate = new Date(received_on);
         const serverModifiedOnDate = new Date(server_modified_on);
-        receivedOnDate.setHours(0, 0, 0, 0);
-        serverModifiedOnDate.setHours(0, 0, 0, 0);
+        receivedOnDate.setHours(
+          receivedOnDate.getHours(),
+          receivedOnDate.getMinutes(),
+          0,
+          0
+        );
+        serverModifiedOnDate.setHours(
+          serverModifiedOnDate.getHours(),
+          serverModifiedOnDate.getMinutes(),
+          0,
+          0
+        );
         return (
-          receivedOnDate.toISOString() === serverModifiedOnDate.toISOString()
+          receivedOnDate.toISOString() !== serverModifiedOnDate.toISOString()
         );
       });
       console.log(body.length, 'cleaned forms fetched...');
