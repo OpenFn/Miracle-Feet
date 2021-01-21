@@ -96,6 +96,15 @@ alterState(state => {
     en: 'EN',
     fr: 'FRA',
     es: 'ES',
+    mlg: 'MLG',
+    mya: 'MYA',
+    khm: 'KHM',
+    nep: 'NEP',
+    sw: 'SW',
+    tgl: 'TGL',
+    wol: 'WOL',
+    phi: 'PHI',
+    bn: 'BN',
   };
 
   const PhoneMapping = {
