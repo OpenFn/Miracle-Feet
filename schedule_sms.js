@@ -91,6 +91,7 @@ alterState(state => {
     ],
   };
 
+  // Add more to schedule different languages
   const languageCodeMap = {
     en: 'EN',
     fr: 'FR',
@@ -411,7 +412,7 @@ alterState(state => {
   const { alertsToSend, alertsToDisable, mapping, data } = state;
   const { form } = data;
   const { calcs } = form;
-  const language_code = calcs.sms.language_code || 'EN';
+  const language_code = calcs.sms.language_code || 'en';
 
   function fetch_data_from_multiple_path(value) {
     let paths = [];
