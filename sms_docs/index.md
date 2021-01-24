@@ -14,11 +14,10 @@ Next_visit_date <> null → schedule before next_visit_date → Reminder: 2 days
 
 # (3) Data flows
 
-2 jobs have implemented to 
+2 jobs have implemented to automatically schedule SMS alerts in Infobip and to fetch manually updated forms from CommCare.
 
-Flow 1. Schedule/reschedule/cancel SMS-s based on incoming CommCare form submissions (data flow diagram)
+Flow 1. Schedule/reschedule/cancel SMS-s in Infobip based on incoming CommCare form submissions (see [data flow diagram](https://lucid.app/lucidchart/invitations/accept/147f73b6-b863-45da-afe9-7ca220381676))
 1. scheduleSMS.js analyses the incoming form submission from CommCare and connects to the Infobip API to schedule/reschedule/cancel relevant SMS alerts.
-
 
 Flow 2. Periodically bulk fetch cleaned CommCare form submissions and send them to OpenFn inbox to run Flow 1 on.
 `getForms.js` connects to the CommCare API to fetch submissions from CAST, analyses them to determine whether they were cleaned (determined by whether there is a difference in YYYY-MM-DD-mm between `receieved_date` and `server_modified_date`)
@@ -31,8 +30,7 @@ Flow 2. Trigger type: Cron Timer. `getForms.js` bulk fetches form submissions at
 
 # (5) Solution details
 
-SMS timing
-translations
+[See this document](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing) for the list of SMS alerts, scheduling conditions, timings and translations.
 
 # (6) Administration
 
