@@ -12,6 +12,13 @@ Next_visit_date <> null → schedule before next_visit_date → Reminder: 2 days
 
 # (2) Integrations with Systems
 
+Flow 1 CommCare form submission -> message scheduling on Infobip API
+1. CommCare CAST form submissions forwarded to OpenFn inbox
+2. Infobip API
+
+Flow 2. Bulk fetch from CommCare API
+1. CommCare forms API
+
 # (3) Data flows
 
 2 jobs have implemented to automatically schedule SMS alerts in Infobip and to fetch manually updated forms from CommCare.
@@ -25,6 +32,7 @@ Flow 2. Periodically bulk fetch cleaned CommCare form submissions and send them 
 # (4) Automation triggers
 
 Flow 1. Trigger type: Message Filter. Each time a form submission that includes `form.calcs.sms` arrives to the OpenFn inbox, we run scheduleSMS.js
+Every time a message containing `form.calcs.sms` arrives, [detail requests]
 
 Flow 2. Trigger type: Cron Timer. `getForms.js` bulk fetches form submissions at 10PM UTC on the first day of every month.
 
