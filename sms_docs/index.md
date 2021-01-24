@@ -17,7 +17,7 @@ Flow 1 CommCare form submission -> message scheduling on Infobip API
 2. Infobip API
 
 Flow 2. Bulk fetch from CommCare API
-1. CommCare forms API
+1. [CommCare API v0.5](https://www.commcarehq.org/a/miraclefeet/api/v0.5/form/)
 
 # (3) Data flows
 
