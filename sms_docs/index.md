@@ -14,7 +14,7 @@ Next_visit_date <> null → schedule before next_visit_date → Reminder: 2 days
 
 Flow 1 CommCare form submission -> message scheduling on Infobip API
 1. CommCare CAST form submissions forwarded to OpenFn inbox
-2. Infobip API
+2. [Infobip API](http://portal.infobip.com)
 
 Flow 2. Bulk fetch from CommCare API
 1. [CommCare API v0.5](https://www.commcarehq.org/a/miraclefeet/api/v0.5/form/)
