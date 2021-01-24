@@ -45,7 +45,7 @@ Flow 2. Trigger type: Cron Timer. `getForms.js` bulk fetches form submissions at
 Adding/changing message text and translations can be done by:
 1. Editing the message text in the translations document
 2. Copying and pasting the sheet to https://csvjson.com/csv2json
-3. Use the `json` output from the above applicaton to update the [`schedule_sms.js` job](https://github.com/OpenFn/Miracle-Feet/blob/7e03d51ac07fa097f21bbaa8c3575a90a2f8f917/schedule_sms.js#L3)
+3. Use the `json` output from the above applicaton to update the [`schedule_sms.js`] job(https://github.com/OpenFn/Miracle-Feet/blob/7e03d51ac07fa097f21bbaa8c3575a90a2f8f917/schedule_sms.js#L3)
 
 
 
