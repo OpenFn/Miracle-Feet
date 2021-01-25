@@ -6,7 +6,7 @@ OpenFn integrates CommCare and the Infobip SMS Gateway so that when a CommCare f
 
 Two workflows have been implemented to allow for automated SMS scheduling.
 
-Flow 1: A CommCare form submission sends a notification to OpenFn which triggers relevant SMS-s to be scheduled in Infobip. 
+_**Flow 1**_: A CommCare form submission sends a notification to OpenFn which triggers relevant SMS-s to be scheduled in Infobip. 
 
 **Example scenario**
 
@@ -15,6 +15,10 @@ Flow 1: A CommCare form submission sends a notification to OpenFn which triggers
 treatment: “bracing_day”; send_sms: “on”, sms_opt_in: “yes”, sms_opt_in_educational: "yes" -> schedule "06 - Bracing Introduction" SMS alerts 
 treatment: “bracing_day”; send_sms: “on”, sms_opt_in: “yes”, sms_opt_in_educational: "yes" -> schedule "07 - Bracing All Day Campaign" SMS alerts
 next_visit_date <> null → schedule before next_visit_date → schedule "14 - Reminder: 2 days before visit" SMS alerts
+
+_**Flow 2**_:
+
+OpenFn bulk fetches manually cleaned CommCare form submissions and sends them to the OpenFn inbox.
 
 # (2) Integrations with Systems
 
@@ -30,10 +34,10 @@ Flow 2. Bulk fetch from CommCare API
 2 jobs have been implemented to automatically schedule SMS alerts in Infobip and to fetch manually updated forms from CommCare.
 
 Flow 1. Schedule/reschedule/cancel SMS-s in Infobip based on incoming CommCare form submissions (see [data flow diagram](https://lucid.app/lucidchart/invitations/accept/147f73b6-b863-45da-afe9-7ca220381676))
-1. scheduleSMS.js analyses the incoming form submission from CommCare and connects to the Infobip API to schedule/reschedule/cancel relevant SMS alerts.
+1. `scheduleSMS.js` analyses the incoming form submission from CommCare and connects to the Infobip API to schedule/reschedule/cancel relevant SMS alerts.
 
 Flow 2. Periodically bulk fetch cleaned CommCare form submissions and send them to OpenFn inbox to run Flow 1 on.
-`getForms.js` connects to the CommCare API to fetch submissions from CAST, analyses them to determine whether they were cleaned (determined by whether there is a difference in YYYY-MM-DD-mm between `receieved_date` and `server_modified_date`)
+`getForms.js` connects to the CommCare API to fetch submissions from CAST, analyses them to determine whether they were cleaned (determined by whether there is a difference in YYYY-MM-DD-mm between `received_date` and `server_modified_date`)
 
 # (4) Automation triggers
 
