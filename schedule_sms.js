@@ -94,7 +94,7 @@ alterState(state => {
   // Add more to schedule different languages
   const languageCodeMap = {
     en: 'EN',
-    fr: 'FRA',
+    fra: 'FRA',
     es: 'ES',
     mlg: 'MLG',
     mya: 'MYA',
