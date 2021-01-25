@@ -1,18 +1,24 @@
 ## Automated SMS scheduling
 
-OpenFn integrates CommCare and the Infobip SMS Gateway so that when a CommCare form update is received in OpenFn the solution schedules in Infobip relevant SMS alerts to be sent or canceled.
+OpenFn integrates CommCare and the Infobip SMS Gateway so that when a CommCare form update is received in OpenFn the solution schedules in Infobip relevant SMS alerts to be sent or canceled for patients.
 
 # (1) Overview
 
-[This](https://github.com/OpenFn/Miracle-Feet/blob/master/sample_data/log_visit_details_original_treatment.json) sample CommCare 'casting' treatment case update sends a notification to OpenFn (see example here). This would trigger OpenFn to to schedule the following SMSs for this scenario: 
+Two workflows have been implemented to allow for automated SMS scheduling.
+
+Flow 1: A CommCare form submission sends a notification to OpenFn which triggers relevant SMS-s to be scheduled in Infobip. 
+
+**Example scenario**
+
+[This](https://github.com/OpenFn/Miracle-Feet/blob/master/sample_data/log_visit_details_original_treatment.json) sample CommCare 'casting' treatment case update sends a notification to OpenFn (see example here). This would trigger OpenFn to schedule the following SMSs for this scenario: 
+
 treatment: “bracing_day”; send_sms: “on”, sms_opt_in: “yes”, sms_opt_in_educational: "yes" -> schedule "06 - Bracing Introduction" SMS alerts 
-treatment: “bracing_day”; send_sms: “on”, sms_opt_in: “yes” -> schedule "07 - Bracing All Day Campaign" SMS alerts
-Next_visit_date <> null → schedule before next_visit_date → Reminder: 1 day before visit SMS
-Next_visit_date <> null → schedule before next_visit_date → Reminder: 2 days before visit SMS
+treatment: “bracing_day”; send_sms: “on”, sms_opt_in: “yes”, sms_opt_in_educational: "yes" -> schedule "07 - Bracing All Day Campaign" SMS alerts
+next_visit_date <> null → schedule before next_visit_date → schedule "14 - Reminder: 2 days before visit" SMS alerts
 
 # (2) Integrations with Systems
 
-Flow 1 CommCare form submission -> message scheduling on Infobip API
+Flow 1. CommCare form submission -> message scheduling on Infobip API
 1. CommCare CAST form submissions forwarded to OpenFn inbox
 2. [Infobip API](http://portal.infobip.com)
 
