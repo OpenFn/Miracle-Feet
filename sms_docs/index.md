@@ -4,9 +4,9 @@ OpenFn integrates CommCare and the Infobip SMS Gateway so that when a CommCare f
 
 # (1) Overview
 
-This CommCare 'casting' treatment case update sends a notification to OpenFn (see example here). This would trigger OpenFn to update data in Salesforce, as well as trigger 4 SMSs for this scenario: 
-treatment: “casting”; send_sms: “on”, sms_opt_in: “yes” -> schedule Casting Introduction SMS 
-treatment: “casting”; send_sms: “on”, sms_opt_in: “yes” -> schedule Casting Campaign SMS
+[This](https://github.com/OpenFn/Miracle-Feet/blob/master/sample_data/log_visit_details_original_treatment.json) sample CommCare 'casting' treatment case update sends a notification to OpenFn (see example here). This would trigger OpenFn to to schedule the following SMSs for this scenario: 
+treatment: “bracing_day”; send_sms: “on”, sms_opt_in: “yes”, sms_opt_in_educational: "yes" -> schedule "06 - Bracing Introduction" SMS alerts 
+treatment: “bracing_day”; send_sms: “on”, sms_opt_in: “yes” -> schedule "07 - Bracing All Day Campaign" SMS alerts
 Next_visit_date <> null → schedule before next_visit_date → Reminder: 1 day before visit SMS
 Next_visit_date <> null → schedule before next_visit_date → Reminder: 2 days before visit SMS
 
@@ -21,7 +21,7 @@ Flow 2. Bulk fetch from CommCare API
 
 # (3) Data flows
 
-2 jobs have implemented to automatically schedule SMS alerts in Infobip and to fetch manually updated forms from CommCare.
+2 jobs have been implemented to automatically schedule SMS alerts in Infobip and to fetch manually updated forms from CommCare.
 
 Flow 1. Schedule/reschedule/cancel SMS-s in Infobip based on incoming CommCare form submissions (see [data flow diagram](https://lucid.app/lucidchart/invitations/accept/147f73b6-b863-45da-afe9-7ca220381676))
 1. scheduleSMS.js analyses the incoming form submission from CommCare and connects to the Infobip API to schedule/reschedule/cancel relevant SMS alerts.
@@ -46,6 +46,8 @@ Adding/changing message text and translations can be done by:
 1. Editing the message text in the translations document
 2. Copying and pasting the sheet to https://csvjson.com/csv2json
 3. Use the `json` output from the above applicaton to update the [`schedule_sms.js`] job(https://github.com/OpenFn/Miracle-Feet/blob/7e03d51ac07fa097f21bbaa8c3575a90a2f8f917/schedule_sms.js#L3)
+
+If you have question or need troubleshooting support contact **support@openfn.org**.
 
 
 
