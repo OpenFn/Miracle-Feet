@@ -131,11 +131,16 @@ alterState(state => {
       upsert(
         'Person__c',
         'CommCare_Case_ID__c',
-        field('Name', dataValue('form.subcase_0.case.update.patient_name')),
-        field('CommCare_Case_ID__c', dataValue('form.subcase_0.case.@case_id')),
-        field(
-          'Date_of_First_Visit__c',
-          dataValue('form.calcs.save.date_first_visit')
+        fields(
+          field('Name', dataValue('form.subcase_0.case.update.patient_name')),
+          field(
+            'CommCare_Case_ID__c',
+            dataValue('form.subcase_0.case.@case_id')
+          ),
+          field(
+            'Date_of_First_Visit__c',
+            dataValue('form.calcs.save.date_first_visit')
+          )
         )
       ),
       upsert(
