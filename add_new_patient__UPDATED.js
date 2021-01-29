@@ -163,12 +163,12 @@ alterState(state => {
             state.data.form.case.update.date_first_brace
           );
         }),
-        field('Date_of_First_Visit__c', state => {
+        /*field('Date_of_First_Visit__c', state => { //not present in patient form, only visit forms
           return state.dateConverter(
             state,
             state.data.form.case.update.date_first_visit
           );
-        }),
+        }),*/
         field('Date_of_Tenotomy__c', state => {
           return state.dateConverter(
             state,
