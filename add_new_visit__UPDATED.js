@@ -127,11 +127,17 @@ alterState(state => {
     );
     return state;
   } else {
-    return upsert('Person__c', 'CommCare_Case_ID__c',
-      field('Name', dataValue('form.subcase_0.case.update.patient_name')),
-      field('CommCare_Case_ID__c', dataValue('form.subcase_0.case.@case_id')),
-      field('Date_of_First_Visit__c', dataValue('form.calcs.save.date_first_visit'))
-    )(state),
+    return combine(
+      upsert(
+        'Person__c',
+        'CommCare_Case_ID__c',
+        field('Name', dataValue('form.subcase_0.case.update.patient_name')),
+        field('CommCare_Case_ID__c', dataValue('form.subcase_0.case.@case_id')),
+        field(
+          'Date_of_First_Visit__c',
+          dataValue('form.calcs.save.date_first_visit')
+        )
+      ),
       upsert(
         'Visit_new__c',
         'gciclubfootommcare_case_id__c',
@@ -447,7 +453,9 @@ alterState(state => {
           }),
 
           field('Remote_Visit__c', state => {
-            var type = dataValue('form.subcase_0.case.update.visit_type')(state); // if visit type is on_site, needs to check box in salesforce
+            var type = dataValue('form.subcase_0.case.update.visit_type')(
+              state
+            ); // if visit type is on_site, needs to check box in salesforce
             return type === 'remote' ? true : false;
           }),
           field('Home_exercise_program__c', state => {
@@ -508,7 +516,8 @@ alterState(state => {
               'form.subcase_0.case.update.why_did_relapse_occur'
             )(state); // this is a picklist
             return reason
-              ? reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' ')
+              ? reason.charAt(0).toUpperCase() +
+                  reason.slice(1).replace('_', ' ')
               : '';
           }),
           field('Relapse_Action_Taken__c', state => {
@@ -617,6 +626,7 @@ alterState(state => {
             return state.handlePhoto(state, 'photo_3');
           })
         )
-      )(state);
+      )
+    )(state);
   }
 });
