@@ -357,7 +357,7 @@ alterState(state => {
 
   function getSMS(bulkId) {
     return get(
-      `${host}/1/bulks?bulkId=${bulkId}`,
+      `${host}/1/bulks/status?bulkId=${bulkId}`,
       {
         header: {
           'Content-Type': 'application/json',
@@ -586,8 +586,7 @@ alterState(state => {
       // GET SMS then DISABLE =========================================
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
       getSMS(bulkId).then(res => {
-        const { form } = state.data;
-        if (!res.requestError) {
+        if (!res.requestError && res.status !== 'FINISHED') {
           deleteSMS(bulkId);
         }
       });
