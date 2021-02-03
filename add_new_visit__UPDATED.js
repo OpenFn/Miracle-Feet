@@ -300,8 +300,11 @@ alterState(state => {
               : false; // sf checkbox
           }),
           field(
-            'ICR_ID__c',
-            dataValue('form.subcase_0.case.update.visit_original_id')
+            'ICR_ID__c', state =>{
+              var icrId = dataValue('form.subcase_0.case.update.visit_original_id')(state);
+              var caseId = dataValue('form.subcase_0.case.@case_id')(state);
+              return icrId && icrId!=='' ? icrId : caseId; 
+            }
           ),
           field(
             'Left_Angle_of_Abduction__c',

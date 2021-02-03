@@ -235,7 +235,11 @@ alterState(state => {
         field('First_Brace__c', state => {
           return state.data.properties.is_first_brace == '1' ? true : false; // sf checkbox
         }),
-        field('ICR_ID__c', dataValue('properties.visit_original_id')),
+        field('ICR_ID__c', state => {
+          var icrId = dataValue('properties.visit_original_id')(state); 
+          var caseId = dataValue('case_id')(state);
+          return icrId && icrId!=='' ? icrId : caseId;
+        }),
         field(
           'Last_Modified_By_Username_CommCare__c',
           dataValue('last_modified_by_user_username')
