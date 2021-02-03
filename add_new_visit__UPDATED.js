@@ -135,14 +135,17 @@ alterState(state => {
           field('Name', dataValue('form.subcase_0.case.update.patient_name')),
           field(
             'CommCare_Case_ID__c',
-            dataValue('form.subcase_0.case.@case_id')
+            dataValue('form.case.@case_id') //patient case_id
+            //dataValue('form.subcase_0.case.@case_id') //appointment case_id --> replace mapping with above
           ),
           field(
-            'Date_of_First_Visit__c',
-            dataValue('form.calcs.save.date_first_visit')
+            'Date_of_First_Visit__c', state =>{
+              var date = dataValue('form.calcs.save.date_first_visit')(state); 
+              return date ? date : ''; 
+            }
           )
         )
-      ),
+      )(state),
       upsert(
         'Visit_new__c',
         'gciclubfootommcare_case_id__c',
@@ -297,8 +300,11 @@ alterState(state => {
               : false; // sf checkbox
           }),
           field(
-            'ICR_ID__c',
-            dataValue('form.subcase_0.case.update.visit_original_id')
+            'ICR_ID__c', state => {
+              var icrId = dataValue('form.subcase_0.case.update.visit_original_id')(state); 
+              var caseId = dataValue('form.subcase_0.case.@case_id')(state); 
+            }
+            
           ),
           field(
             'Left_Angle_of_Abduction__c',
