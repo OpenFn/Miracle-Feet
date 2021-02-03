@@ -148,8 +148,9 @@ alterState(state => {
       ),
       upsert(
         'Visit_new__c',
-        'gciclubfootommcare_case_id__c',
+        'New_Visit_UID__c',
         fields(
+          field('New_Visit_UID__c', dataValue('form.subcase_0.case.@case_id')), 
           //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
           field(
             'gciclubfootommcare_case_id__c',
