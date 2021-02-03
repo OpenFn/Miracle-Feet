@@ -122,8 +122,9 @@ alterState(state => {
     return upsertIf(
       state.data.date_modified != state.data.properties.date_opened + '000Z',
       'Visit_new__c',
-      'gciclubfootommcare_case_id__c',
+      'New_Visit_UID_c',
       fields(
+        field('New_Visit_UID__c', dataValue('case_id')),
         field('gciclubfootommcare_case_id__c', dataValue('case_id')), //changed from gciclubfoot__commcare_case_id__c
         // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
         relationship(
