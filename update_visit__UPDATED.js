@@ -125,7 +125,7 @@ alterState(state => {
       'New_Visit_UID__c',
       fields(
         field('New_Visit_UID__c', state =>{
-              var icrId = dataValue('form.subcase_0.case.update.visit_original_id')(state);
+              var icrId = dataValue('properties.visit_original_id')(state);
               var caseId = dataValue('case_id')(state);
               return icrId && icrId!=='' ? icrId : caseId; 
             }),
