@@ -124,7 +124,11 @@ alterState(state => {
       'Visit_new__c',
       'New_Visit_UID__c',
       fields(
-        field('New_Visit_UID__c', dataValue('case_id')),
+        field('New_Visit_UID__c', state =>{
+              var icrId = dataValue('form.subcase_0.case.update.visit_original_id')(state);
+              var caseId = dataValue('case_id')(state);
+              return icrId && icrId!=='' ? icrId : caseId; 
+            }),
         field('gciclubfootommcare_case_id__c', dataValue('case_id')), //changed from gciclubfoot__commcare_case_id__c
         // relationship('Hospital__r', "uuid__c", dataValue('properties.hospital_code')),
         relationship(
