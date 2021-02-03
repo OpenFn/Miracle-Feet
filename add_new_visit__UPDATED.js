@@ -150,7 +150,11 @@ alterState(state => {
         'Visit_new__c',
         'New_Visit_UID__c',
         fields(
-          field('New_Visit_UID__c', dataValue('form.subcase_0.case.@case_id')), 
+          field('New_Visit_UID__c', state =>{
+              var icrId = dataValue('form.subcase_0.case.update.visit_original_id')(state);
+              var caseId = dataValue('form.subcase_0.case.@case_id')(state);
+              return icrId && icrId!=='' ? icrId : caseId; 
+            }), 
           //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
           field(
             'gciclubfootommcare_case_id__c',
