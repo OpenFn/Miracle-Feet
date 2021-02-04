@@ -142,18 +142,26 @@ alterState(state => {
           ),
           field(
             'CommCare_Case_ID__c',
-            dataValue('form.subcase_0.case.@case_id')
+            dataValue('form.case.@case_id') //patient case_id
+            //dataValue('form.subcase_0.case.@case_id') //appointment case_id --> replace
           ),
-          field(
-            'Date_of_First_Visit__c',
-            dataValue('form.case.update.date_first_visit')
-          )
+          field('Date_of_First_Visit__c', state => {
+            var date = dataValue('form.calcs.save.date_first_visit')(state);
+            return date ? date : '';
+          })
         )
       ),
       upsert(
         'Visit_new__c',
-        'gciclubfootommcare_case_id__c',
+        'New_Visit_UID__c',
         fields(
+          field('New_Visit_UID__c', state => {
+            var icrId = dataValue(
+              'form.subcase_0.case.update.visit_original_id'
+            )(state);
+            var caseId = dataValue('form.subcase_0.case.@case_id')(state);
+            return icrId && icrId !== '' ? icrId : caseId;
+          }),
           //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
           field(
             'gciclubfootommcare_case_id__c',
@@ -303,10 +311,13 @@ alterState(state => {
               ? true
               : false; // sf checkbox
           }),
-          field(
-            'ICR_ID__c',
-            dataValue('form.subcase_0.case.update.visit_original_id')
-          ),
+          field('ICR_ID__c', state => {
+            var icrId = dataValue(
+              'form.subcase_0.case.update.visit_original_id'
+            )(state);
+            var caseId = dataValue('form.subcase_0.case.@case_id')(state);
+            return icrId && icrId !== '' ? icrId : caseId;
+          }),
           field(
             'Left_Angle_of_Abduction__c',
             dataValue('form.subcase_0.case.update.l_angle_abduction')
