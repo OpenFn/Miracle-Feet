@@ -129,17 +129,24 @@ alterState(state => {
   } else {
     return combine(
       upsert(
-        'Person__c',
+        'Contact',
         'CommCare_Case_ID__c',
         fields(
-          field('Name', dataValue('form.subcase_0.case.update.patient_name')),
+          field(
+            'FirstName',
+            dataValue('form.calcs.case_properties.patient_first_name')
+          ),
+          field(
+            'LastName',
+            dataValue('form.calcs.case_properties.patient_last_name')
+          ),
           field(
             'CommCare_Case_ID__c',
             dataValue('form.subcase_0.case.@case_id')
           ),
           field(
             'Date_of_First_Visit__c',
-            dataValue('form.calcs.save.date_first_visit')
+            dataValue('form.case.update.date_first_visit')
           )
         )
       ),
