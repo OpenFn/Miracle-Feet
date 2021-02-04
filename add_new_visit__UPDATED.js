@@ -145,10 +145,10 @@ alterState(state => {
             dataValue('form.case.@case_id') //patient case_id
             //dataValue('form.subcase_0.case.@case_id') //appointment case_id --> replace
           ),
-          field('Date_of_First_Visit__c', state => {
-            var date = dataValue('form.calcs.save.date_first_visit')(state);
-            return date ? date : '';
-          })
+          field(
+            'Date_of_First_Visit__c',
+            dataValue('form.case.update.date_first_visit')
+          )
         )
       ),
       upsert(
