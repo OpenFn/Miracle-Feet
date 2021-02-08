@@ -28,17 +28,23 @@ How it works...
 MiracleFeet global administrators are responsible for integration monitoring & reprocessing of any failed runs. [See here]() for MF's troubleshooting guide. For additional OpenFn support, users may contact support@openfn.org. 
 
 ## 2. CommCare-Infobip Integration for Automated SMS Alerts
-[See here]() for the project concept. 
+Watch the [solution overview video](https://drive.google.com/file/d/1Ne7sHJ8BR1I3Emqf01jiyFI1kp1WArnM/view?usp=sharing) for the CommCare-Infobip SMS integration for patient visit reminders and educational SMSs. 
+
+And [see here](https://docs.google.com/document/d/1FHJIW8bAQYk-4WP3uosoCCVvXVTTPPIej64N7_L-lSY/edit?usp=sharing) for the original project concept. 
 
 ### Technical Overview
 How it works...
 1. Users submit new `forms` or modify `cases` in CommCare
 2. A webhook configured in the CommCareHQ project automatically forwards this data to MiracleFeet's OpenFn project `Inbox` as `Messages`
-3. OpenFn job will be triggered...
+3. OpenFn job [`Schedule SMS Alerts`](https://www.openfn.org/projects/pdbznd/jobs/jypnkm) will be triggered to schedule relevant SMS alerts in the Infobip Portal
+
+### Ongoing Management
+[See here - ADD LINK]() for the SMS Alert template for reviewing the SMS specifications for alert scheduling & message templates. 
+...
 
 ### SMS Implementation Next Steps 
-- [ ] Finish testing across countries to sign-off on alert scheduling logic & content
+- [ ] Finish testing across countries to sign-off on alert scheduling logic & content. [See Test Suite](https://docs.google.com/spreadsheets/d/1ZR60vDaejfWva5lkLXn2o362vpqLX0RWwW31Na3l9hg/edit?usp=drive_web&ouid=101430720901034004945) for detailed unit tests. 
 - [ ] Remove code in OpenFn job that executes flow only for test users
 - [ ] Confirm all Infobip sender IDs are correct
-- [ ] System admin training on solution management
+- [ ] System admin training on solution management 
 - [ ] ...
