@@ -1,5 +1,5 @@
 # MiracleFeet OpenFn Integrations
-Jobs for Miracle Feet's CommCare to Salesforce integration, using the Open Function platform.
+Jobs for Miracle Feet's CommCare to Salesforce integration, using the Open Function platform. [See the MiracleFeet India](https://github.com/OpenFn/miraclefeet-india) repository for more on the India CAST app integration. 
 
 **N.B., all changes to the `master` branch will be automatically deployed to Open Function.**
 
@@ -13,7 +13,11 @@ How it works...
 1. Users submit new `forms` or modify `cases` in CommCare
 2. A webhook configured in the CommCareHQ project automatically forwards this data to MiracleFeet's OpenFn project `Inbox` as `Messages`
 3. OpenFn jobs are triggered to process & upload this CommCare data to Salesforce
-- 
+- [Add New Patient_V2](https://www.openfn.org/projects/pdbznd/jobs/jyxr79)
+- [Update Patient_V2](https://www.openfn.org/projects/pdbznd/jobs/jyjaqq)
+- [Add New Visit_V2](https://www.openfn.org/projects/pdbznd/jobs/jv8m7n)
+- [Update Visit_V2](https://www.openfn.org/projects/pdbznd/jobs/jvrz7p)
+- [Upsert Clinic_V2](https://www.openfn.org/projects/pdbznd/jobs/jv9bmk)
 
 ### Job Notes
 1. These jobs receive case, location, and form data from CommCare and perform upserts on related business objects in Salesforce in real time.
