@@ -148,6 +148,10 @@ alterState(state => {
           field(
             'Date_of_First_Visit__c',
             dataValue('form.case.update.date_first_visit')
+          ),
+          field(
+            'SMS_Opt_In_II__c',
+            dataValue('form.calcs.save.sms_interest_educational')
           )
         )
       ),
