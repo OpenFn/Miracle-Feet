@@ -120,6 +120,10 @@ alterState(state => {
           'CAST_Location_ID__c',
           dataValue('form.case.create.owner_id')
         ),
+        field(
+            'SMS_Opt_In_II__c',
+            dataValue('form.case.update.sms_interest_educational')
+          ),
         field('Patient_Name__c', dataValue('form.case.update.patient_name')),
         field('FirstName', dataValue('form.case.update.patient_first_name')),
         field('LastName', dataValue('form.case.update.patient_last_name')),
