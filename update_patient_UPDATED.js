@@ -472,6 +472,10 @@ alterState(state => {
         field(
           'L_Pirani_Score_at_Tenotomy__c',
           dataValue('properties.l_tenotomy_pirani_score')
+        ),
+        field(
+            'SMS_Opt_In_II__c',
+            dataValue('properties.sms_interest_educational')
         )
       )
     )(state);
