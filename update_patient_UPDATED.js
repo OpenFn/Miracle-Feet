@@ -474,9 +474,11 @@ alterState(state => {
           dataValue('properties.l_tenotomy_pirani_score')
         ),
         field(
-            'SMS_Opt_In_II__c',
-            dataValue('properties.sms_interest_educational')
-        )
+            'SMS_Opt_In_II__c', state => {
+            var sms = dataValue('properties.sms_interest_educational')(state);
+            var opt = (sms && sms = 'yes') ? true : (sms && sms = 'no') ? false : undefined; 
+          return opt; 
+          })
       )
     )(state);
   }
