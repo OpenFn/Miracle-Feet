@@ -181,6 +181,10 @@ alterState(state => {
             state.data.form.case.update.date_tenotomy
           );
         }),
+        field(
+          'Tenotomy_Reason_Not_Given_Other__c',
+          dataValue('form.case.update.tenotomy_reason_not_given_other')
+          ),
         field('Date_Stopped_Treatment__c', state => {
           return state.dateConverter(
             state,
