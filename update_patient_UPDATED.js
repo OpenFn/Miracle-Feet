@@ -52,6 +52,7 @@ alterState(state => {
     'test',
     'liberia_test_clinic',
     'madagascar_test_clinic',
+    'madagascar_test',
     'majunga_test_clinic',
     'morocco_test',
     'mya_test',
