@@ -63,6 +63,7 @@ alterState(state => {
     'majunga_test_clinic',
     'madagascar_test',
     'morocco_test',
+    'morocco_test_clinic',
     'mya_test',
     'nepal_test',
     'nica_prueba',
