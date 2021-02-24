@@ -44,6 +44,7 @@ alterState(state => {
     'brazzaville_test',
     'ecu_test',
     'Facorc_test',
+    'FCRC',
     'gambia_test',
     'gambia_test_clinic',
     'guat_test',
