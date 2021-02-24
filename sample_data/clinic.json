@@ -1,0 +1,20 @@
+{
+  "site_code": "chdd",
+  "parent_location_id": "844f4359f82383ee7d6938227fa4cea0",
+  "name": "Coronation Hospital, Dehradun",
+  "metadata": {},
+  "longitude": -71.1029,
+  "location_type_code": "hospital",
+  "location_type": "Hospital",
+  "location_id": "844f4359f82383ee7d6938227fa4c3a3",
+  "lineage": [
+    "844f4359f82383ee7d6938227fa4cea0"
+  ],
+  "latitude": 42.3652,
+  "last_modified": "2017-07-20T17:20:31.556407",
+  "is_archived": false,
+  "external_id": "",
+  "domain": "clubfoot",
+  "doc_type": "Location",
+  "_id": "844f4359f82383ee7d6938227fa4c3a3"
+}

@@ -1,0 +1,104 @@
+{
+  "__query_params": {
+    "app_id": "cedf746aedd34c8fa559da17df52e20d"
+  },
+  "app_id": "cedf746aedd34c8fa559da17df52e20d",
+  "archived": false,
+  "attachments": {
+    "form.xml": {
+      "content_type": "text/xml",
+      "length": 2183,
+      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/73917770-d8ae-42ea-af8e-91f2f812b43b/form.xml"
+    }
+  },
+  "build_id": "f551629cce514279834639833d3496a8",
+  "domain": "miraclefeet",
+  "edited_by_user_id": null,
+  "edited_on": null,
+  "form": {
+    "#type": "data",
+    "@name": "Mark Patient Stopped Treatment",
+    "@uiVersion": "1",
+    "@version": "917",
+    "@xmlns": "http://openrosa.org/formdesigner/8ba743a61f123fe6a3bf5cf573edbdd80986c806",
+    "calcs": {
+      "close_case": "1",
+      "dropout": {
+        "flag_dropout": "dropout",
+        "instant_dropout": "0"
+      },
+      "duplicate_patient": null,
+      "hide_case": "0",
+      "last_visit_date": "2020-12-28",
+      "last_visit_date_formatted": "Dec 28, 2020",
+      "last_visit_date_formatted_day": "Mon, Dec 28, 2020",
+      "next_visit_date": null,
+      "registration_date": "2020-12-16",
+      "registration_date_formatted": "Dec 16, 2020",
+      "registration_date_formatted_day": "Wed, Dec 16, 2020",
+      "treatment_completed": "0"
+    },
+    "case": {
+      "@case_id": "72e48313-1912-402a-9912-03f24287c9f4",
+      "@date_modified": "2021-01-07T10:33:32.719000Z",
+      "@user_id": "41e0e8f1a137469b9b5c15725f9a8117",
+      "@xmlns": "http://commcarehq.org/case/transaction/v2",
+      "close": null,
+      "update": {
+        "close_case": "1",
+        "close_confirmation": "yes",
+        "close_reason": "moved",
+        "dropout": "dropout",
+        "duplicate_patient": null,
+        "hide_case": "0",
+        "next_visit_date": null,
+        "treatment_completed": "0"
+      }
+    },
+    "close_confirmation": "yes",
+    "close_reason": "moved",
+    "info": {
+      "last_visit_date_label": "OK",
+      "registration_date_label": "OK"
+    },
+    "meta": {
+      "@xmlns": "http://openrosa.org/jr/xforms",
+      "appVersion": "CommCare Android, version \"2.48.7\"(461473). App v917. CommCare Version 2.48. Build 461473, built on: 2020-05-20",
+      "app_build_version": 917,
+      "commcare_version": "2.48.7",
+      "deviceID": "commcare_0e915c9c-4ae6-4bf6-9593-3c87a621774f",
+      "drift": "0",
+      "geo_point": null,
+      "instanceID": "73917770-d8ae-42ea-af8e-91f2f812b43b",
+      "timeEnd": "2021-01-07T10:33:32.719000Z",
+      "timeStart": "2021-01-07T10:33:22.350000Z",
+      "userID": "41e0e8f1a137469b9b5c15725f9a8117",
+      "username": "nigeria_test"
+    }
+  },
+  "id": "73917770-d8ae-42ea-af8e-91f2f812b43b",
+  "indexed_on": "2021-01-07T10:33:36.075130",
+  "initial_processing_complete": true,
+  "is_phone_submission": true,
+  "metadata": {
+    "appVersion": "CommCare Android, version \"2.48.7\"(461473). App v917. CommCare Version 2.48. Build 461473, built on: 2020-05-20",
+    "app_build_version": 917,
+    "commcare_version": "2.48.7",
+    "deviceID": "commcare_0e915c9c-4ae6-4bf6-9593-3c87a621774f",
+    "drift": "0",
+    "geo_point": null,
+    "instanceID": "73917770-d8ae-42ea-af8e-91f2f812b43b",
+    "location": null,
+    "timeEnd": "2021-01-07T10:33:32.719000Z",
+    "timeStart": "2021-01-07T10:33:22.350000Z",
+    "userID": "41e0e8f1a137469b9b5c15725f9a8117",
+    "username": "nigeria_test"
+  },
+  "problem": null,
+  "received_on": "2021-01-07T10:33:35.756616Z",
+  "resource_uri": null,
+  "server_modified_on": "2021-01-07T10:33:35.851767Z",
+  "type": "sms_test",
+  "uiversion": "1",
+  "version": "917"
+}

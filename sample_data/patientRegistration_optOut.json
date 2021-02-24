@@ -1,0 +1,419 @@
+{
+  "__query_params": {
+    "app_id": "cedf746aedd34c8fa559da17df52e20d"
+  },
+  "app_id": "cedf746aedd34c8fa559da17df52e20d",
+  "archived": false,
+  "attachments": {
+    "1607105426244.jpg": {
+      "content_type": "image/jpeg",
+      "length": 8070,
+      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/3a6e04f0-bf0f-4b19-88c6-d4140a1d9db8/1607105426244.jpg"
+    },
+    "form.xml": {
+      "content_type": "text/xml",
+      "length": 13315,
+      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/3a6e04f0-bf0f-4b19-88c6-d4140a1d9db8/form.xml"
+    }
+  },
+  "build_id": "64d27a675e544de99d1ac54870922d91",
+  "domain": "miraclefeet",
+  "edited_by_user_id": null,
+  "edited_on": null,
+  "form": {
+    "#type": "data",
+    "@name": "Register New Patient",
+    "@uiVersion": "1",
+    "@version": "842",
+    "@xmlns": "http://openrosa.org/formdesigner/34532e2a938003aae150198e2613ed2b54c410fb",
+    "calcs": {
+      "age": {
+        "age_at_registration_days": "59",
+        "age_at_registration_months": "1",
+        "age_display": "0y 2m",
+        "age_months_rounded": "2",
+        "age_months_rounded_mod": "2",
+        "age_years_rounded": "0",
+        "calcs": {
+          "reverse_dob_calc_months": "",
+          "reverse_dob_calc_years": ""
+        },
+        "patient_dob": "2020-10-04",
+        "patient_dob_formatted": "4/10/20"
+      },
+      "duplicates": {
+        "duplicate_patient": ""
+      },
+      "general": {
+        "case_name": "Aleksa SMS (NIG-nigeria_test-0009-02)",
+        "consent_photo": "yes",
+        "go_to_visit_form": "1",
+        "is_present": "1",
+        "next_visit_date": "2020-12-04",
+        "next_visit_date_formatted": "4/12/20",
+        "next_visit_date_formatted_day": "Fri, Dec 4, 2020",
+        "test_data": "1"
+      },
+      "locations": {
+        "city": "Digital",
+        "clinic_code": "nigeria_test",
+        "clinic_name": "Nigeria Test (nigeria_test)",
+        "country": "Nigeria",
+        "location_level1_name": "North West",
+        "location_level2_name": "Kaduna",
+        "location_level3_name": "Chikun",
+        "patient_address": "Mobile Spot",
+        "patient_neighborhood": "",
+        "pin_code": ""
+      },
+      "patient_id": {
+        "id_creation": {
+          "get_clinic_code": "nigeria_test",
+          "get_country_code": "NIG",
+          "get_user_id": "01",
+          "prev_sequence_number": "7",
+          "sequence_number": "8",
+          "sequence_number_formatted": "0008"
+        },
+        "id_output": {
+          "patient_id": "NIG-nigeria_test-0008-01",
+          "patient_id_display": "0008-01"
+        },
+        "patient_original_id": ""
+      },
+      "phone_numbers": {
+        "guardian1_phone1_full": "2346254793666",
+        "guardian2_phone1_full": "23406254793666",
+        "phone_country_code": "234"
+      },
+      "remove_zero": {
+        "remove_zero": "6254793666",
+        "starts_with_zero": "yes"
+      },
+      "sms": {
+        "contact_backend_id": "MOBILE_BACKEND_MACH",
+        "contact_phone_number": "2346254793666",
+        "language_code": "en",
+        "pronoun_he_she": "she",
+        "pronoun_him_her": "her",
+        "pronoun_his_her": "her",
+        "send_sms": "no",
+        "sms_opt_in": "no",
+        "sms_opt_in_educational": "no",
+        "time_zone": "Africa/Lagos",
+        "treatment": ""
+      }
+    },
+    "case": {
+      "@case_id": "606562d6-c972-4f17-ad9c-7451ca920a1c",
+      "@date_modified": "2020-12-04T18:13:00.843000Z",
+      "@user_id": "41e0e8f1a137469b9b5c15725f9a8117",
+      "@xmlns": "http://commcarehq.org/case/transaction/v2",
+      "create": {
+        "case_name": "Aleksa SMS (NIG-nigeria_test-0009-02)",
+        "case_type": "patient",
+        "owner_id": "866476001e17498bae203dcf7bab4e0d"
+      },
+      "update": {
+        "consent_included": "yes",
+        "guardian3_last_name": "",
+        "location_level2_name": "Kaduna",
+        "patient_id": "NIG-nigeria_test-0008-01",
+        "age_months_rounded": "2",
+        "language_code": "en",
+        "phone_number_has_11digits": "yes",
+        "guardian1_phone1": "06254793666",
+        "phone_number_has_10digits": "no",
+        "patient_dob_known": "yes",
+        "sms_opt_in": "no",
+        "guardian2_name": "daddy mobile",
+        "guardian2_relationship_choice": "father",
+        "sms_interest": "no",
+        "referral_source_doctor": "",
+        "location_level1_name": "North West",
+        "is_present": "1",
+        "consent_photo": "yes",
+        "phone_number_has_7digits": "no",
+        "guardian1_relationship_choice": "mother",
+        "show_tribe_ethnicity_lookup_table": "no",
+        "patient_dob": "2020-10-04",
+        "age_years_rounded": "0",
+        "consent_treatment": "yes",
+        "location_level3_name": "Chikun",
+        "guardian2_phone1_full": "23406254793666",
+        "show_diagnosis_in_visit_form": "yes",
+        "contact_phone_number": "2346254793666",
+        "guardian2_last_name": "mobile",
+        "next_visit_date": "2020-12-04",
+        "guardian1_relationship": "mother",
+        "show_location_level2": "yes",
+        "pin_code": "",
+        "guardian3_first_name": "",
+        "show_secondary_id": "no",
+        "guardian3_name": " ",
+        "send_sms": "off",
+        "phone_number_has_12digits": "no",
+        "patient_original_id": "",
+        "guardian2_phone1": "06254793666",
+        "referral_source": "health_facility",
+        "duplicate_patient": "",
+        "pronoun_his_her": "her",
+        "phone_number_has_9_or_11_digits": "no",
+        "sms_interest_educational": "no",
+        "phone_number_has_8_or_9_or_10_digits": "no",
+        "location_level2": "kaduna",
+        "guardian2_phone2": "",
+        "consent_photograph_marketing": "yes",
+        "show_referral_questions": "1",
+        "clinic_code": "nigeria_test",
+        "guardian1_phone2": "",
+        "show_pin_code": "no",
+        "location_level3": "chikun",
+        "guardian2_first_name": "daddy",
+        "use_treatment_provider_lookup_table": "no",
+        "age_at_registration_days": "59",
+        "guardian1_name": "Mama Mobile",
+        "city": "Digital",
+        "age_display": "0y 2m",
+        "patient_address": "Mobile Spot",
+        "phone_number_has_8digits": "no",
+        "patient_first_name": "Aleksa",
+        "age_at_registration_months": "1",
+        "patient_name": "Aleksa SMS",
+        "phone_number_has_9_or_10_digits": "no",
+        "patient_neighborhood": "",
+        "guardian1_last_name": "Mobile",
+        "contact_backend_id": "MOBILE_BACKEND_MACH",
+        "registration_date": "2020-12-02",
+        "show_diagnosis_in_registration_form": "",
+        "patient_last_name": "SMS",
+        "guardian1_phone1_full": "2346254793666",
+        "next_visit_date_formatted_day": "Fri, Dec 4, 2020",
+        "phone_number_has_9digits": "no",
+        "guardian1_first_name": "Mama",
+        "patient_gender": "female",
+        "pronoun_he_she": "she",
+        "patient_id_display": "0008-01",
+        "guardian3_relationship": "",
+        "clinic_name": "Nigeria Test (nigeria_test)",
+        "guardian2_relationship": "father",
+        "location_level1": "north_west",
+        "next_visit_date_formatted": "4/12/20",
+        "pronoun_him_her": "her",
+        "time_zone": "Africa/Lagos",
+        "go_to_visit_form": "1",
+        "treatment": "",
+        "referral_source_hf": "",
+        "patient_country": "Nigeria"
+      }
+    },
+    "commcare_usercase": {
+      "case": {
+        "@case_id": "8dc1359b80634a418696fdcd1969b51b",
+        "@date_modified": "2020-12-04T18:13:00.843000Z",
+        "@user_id": "41e0e8f1a137469b9b5c15725f9a8117",
+        "@xmlns": "http://commcarehq.org/case/transaction/v2",
+        "update": {
+          "sequence_number": "8"
+        }
+      }
+    },
+    "consent": {
+      "consent": {
+        "consent_included": "yes",
+        "consent_treatment": "yes"
+      },
+      "photo_consent_2": {
+        "photo_consent_instructions": "OK",
+        "photo_release_form": "OK"
+      },
+      "photo_consent_3": {
+        "consent_photograph_marketing": "yes",
+        "document_consent": "signature_in_cast"
+      },
+      "photo_consent_4": "",
+      "photo_consent_5": {
+        "guardian_signature": "1607105426244.jpg"
+      }
+    },
+    "country_configurations": {
+      "phone_number_has_10-13_digits": "no",
+      "phone_number_has_10digits": "no",
+      "phone_number_has_11_or_14digits": "no",
+      "phone_number_has_11digits": "yes",
+      "phone_number_has_12digits": "no",
+      "phone_number_has_7digits": "no",
+      "phone_number_has_8_or_9_or_10_digits": "no",
+      "phone_number_has_8digits": "no",
+      "phone_number_has_9_or_10_digits": "no",
+      "phone_number_has_9_or_11_digits": "no",
+      "phone_number_has_9digits": "no",
+      "show_diagnosis_in_registration_form": "",
+      "show_diagnosis_in_visit_form": "yes",
+      "show_guardian_id": "no",
+      "show_location_level2": "yes",
+      "show_location_level3": "yes",
+      "show_pin_code": "no",
+      "show_referral_questions": "1",
+      "show_secondary_id": "no",
+      "show_tribe_ethnicity_lookup_table": "no",
+      "use_treatment_provider_lookup_table": "no"
+    },
+    "guardians": {
+      "guardian1": {
+        "guardian1_names": {
+          "guardian1_first": "Mama",
+          "guardian1_last": "Mobile",
+          "guardian1_name": "Mama Mobile"
+        },
+        "guardian1_relationship": "mother",
+        "guardian1_relationship_choice": "mother",
+        "guardian1_sms_label": "OK",
+        "phone_numbers": {
+          "phone_numbers_11digits": {
+            "guardian1_phone1_11": "06254793666",
+            "guardian1_phone2_11": "",
+            "label": "OK"
+          },
+          "phone_numbers_final": {
+            "guardian1_phone1": "06254793666",
+            "guardian1_phone2": ""
+          }
+        },
+        "sms_interest": "no",
+        "sms_interest_educational": "no"
+      },
+      "guardian2": {
+        "guardian2_names": {
+          "guardian2_first": "daddy",
+          "guardian2_last": "mobile",
+          "guardian2_name": "daddy mobile"
+        },
+        "guardian2_relationship": "father",
+        "guardian2_relationship_choice": "father",
+        "phone_numbers": {
+          "phone_numbers_11digits": {
+            "guardian2_phone1_11": "06254793666",
+            "guardian2_phone2_11": ""
+          },
+          "phone_numbers_final": {
+            "guardian2_phone1": "06254793666",
+            "guardian2_phone2": ""
+          }
+        }
+      },
+      "guardian3": {
+        "guardian3_names": {
+          "guardian3_first": "",
+          "guardian3_last": "",
+          "guardian3_name": " "
+        },
+        "guardian3_relationship": ""
+      },
+      "guardian_label": {
+        "label": "OK"
+      }
+    },
+    "meta": {
+      "@xmlns": "http://openrosa.org/jr/xforms",
+      "appVersion": "CommCare Android, version \"2.50.3\"(463807). App v842. CommCare Version 2.50.3. Build 463807, built on: 2020-12-03",
+      "app_build_version": 842,
+      "commcare_version": "2.50.3",
+      "deviceID": "commcare_2a827552-257d-408d-8b0f-1304783f3e3c",
+      "drift": "0",
+      "geo_point": null,
+      "instanceID": "3a6e04f0-bf0f-4b19-88c6-d4140a1d9db8",
+      "timeEnd": "2020-12-04T18:13:00.843000Z",
+      "timeStart": "2020-12-04T18:09:57.457000Z",
+      "userID": "41e0e8f1a137469b9b5c15725f9a8117",
+      "username": "nigeria_test"
+    },
+    "patient_address": {
+      "address": {
+        "city": "Digital",
+        "patient_address": "Mobile Spot",
+        "patient_neighborhood": ""
+      },
+      "location_level1": {
+        "location_level1": "north_west",
+        "location_level1_is_other": "0"
+      },
+      "location_level2": {
+        "location_level2": "kaduna"
+      },
+      "location_level3": {
+        "location_level3": "chikun"
+      }
+    },
+    "patient_info": {
+      "patient_dob": "2020-10-04",
+      "patient_dob_known": "yes",
+      "patient_info": {
+        "patient_age_label": "OK",
+        "patient_gender": "female"
+      },
+      "patient_name": {
+        "patient_first_name": "Aleksa",
+        "patient_last_name": "SMS",
+        "patient_name": "Aleksa SMS"
+      }
+    },
+    "photos": {
+      "photo1": "",
+      "photo1_text": "OK",
+      "photo2": "",
+      "photo2_text": "OK",
+      "photo3": "",
+      "photo3_text": "OK"
+    },
+    "referral_source": {
+      "referral_source": "health_facility",
+      "referral_source_hf": {
+        "referral_source_doctor": "",
+        "referral_source_hf": ""
+      }
+    },
+    "registration_info": {
+      "patient_id": {
+        "label": {
+          "patient_id_label": "OK"
+        }
+      },
+      "registration_date": "2020-12-02"
+    },
+    "summary": {
+      "action": {
+        "proceed_to_visit_form": "yes"
+      },
+      "final_label": "OK",
+      "summary": {
+        "registration_info_label": "OK"
+      }
+    }
+  },
+  "id": "3a6e04f0-bf0f-4b19-88c6-d4140a1d9db8",
+  "indexed_on": "2020-12-04T18:13:05.563184",
+  "initial_processing_complete": true,
+  "is_phone_submission": true,
+  "metadata": {
+    "appVersion": "CommCare Android, version \"2.50.3\"(463807). App v842. CommCare Version 2.50.3. Build 463807, built on: 2020-12-03",
+    "app_build_version": 842,
+    "commcare_version": "2.50.3",
+    "deviceID": "commcare_2a827552-257d-408d-8b0f-1304783f3e3c",
+    "drift": "0",
+    "geo_point": null,
+    "instanceID": "3a6e04f0-bf0f-4b19-88c6-d4140a1d9db8",
+    "location": null,
+    "timeEnd": "2020-12-04T18:13:00.843000Z",
+    "timeStart": "2020-12-04T18:09:57.457000Z",
+    "userID": "41e0e8f1a137469b9b5c15725f9a8117",
+    "username": "nigeria_test"
+  },
+  "problem": null,
+  "received_on": "2020-12-04T18:13:04.900020Z",
+  "resource_uri": "",
+  "server_modified_on": "2020-12-04T18:13:05.155331Z",
+  "type": "data",
+  "uiversion": "1",
+  "version": "842"
+}
