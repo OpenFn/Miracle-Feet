@@ -75,6 +75,20 @@ alterState(state => {
     },
   };
 
+  const timeZoneMap = {
+    'Africa/Kinshasa': '+01:00',
+    'Africa/Lagos': '+01:00',
+    'Africa/Casablanca': '+00:00',
+    'Africa/Bamako': '+00:00',
+    'Africa/Monrovia': '+00:00',
+    'Africa/Conakry': '+00:00',
+    'Africa/Banjul': '+00:00',
+    'Africa/Harare': '+02:00',
+    'Africa/Nairobi': '+03:00',
+    'America/Panama': '-05:00',
+    'US/Central': '-06:00',
+  };
+
   // only for red alerts but extendable
   const alertsValueMap = {
     complete: ['complete'],
@@ -349,6 +363,7 @@ alterState(state => {
     mapping,
     PhoneMapping,
     languageCodeMap,
+    timeZoneMap,
   };
 });
 
@@ -484,6 +499,18 @@ alterState(state => {
       sendAtDate.setMinutes(
         parseInt(minutes) + (rule['Min From SSD'] ? rule['Min From SSD'] : 0)
       );
+      console.log('send date', sendAtDate.toISOString());
+      // Adding timezone offset
+      const timezone = calcs.sms.time_zone;
+      if (timezone !== '') {
+        sendAtDateTimeZone =
+          sendAtDate
+            .toISOString()
+            .substring(0, sendAtDate.toISOString().length - 1) +
+          `${state.timeZoneMap[timezone]}`;
+        sendAtDate = new Date(sendAtDateTimeZone);
+      }
+      // end time zone add
 
       const sendAt = sendAtDate.toISOString();
       const to = form.calcs.sms.contact_phone_number;
