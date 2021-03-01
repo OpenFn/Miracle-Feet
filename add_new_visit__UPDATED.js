@@ -221,6 +221,8 @@ alterState(state => {
               bracetype = 'Steenbeek';
             } else if (ref == 'other') {
               bracetype = 'Other';
+            } else if (ref == 'ankle_foot_orthosis_afo') {
+              bracetype = 'Ankle Foot Orthosis (AFO)';
             } else {
               bracetype = 'Not Defined';
             }
