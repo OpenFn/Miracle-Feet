@@ -482,7 +482,24 @@ alterState(state => {
         field(
           'L_Pirani_Score_at_Tenotomy__c',
           dataValue('form.case.update.l_tenotomy_pirani_score')
-        )
+        ),
+        field(
+          'Patient_Pay_Status__c', state => {
+            var status = dataValue('form.registration_info.patient_pay_status')(state); 
+            return status=='charity_or_ultra_poor' ? 'Charity or Ultra Poor' : 
+              status=='self_paying' ? 'Self Paying' : status; 
+          }),
+        field(
+          'Patient_Donor__c',state => {
+            var donor = dataValue('form.registration_info.patient_donor')(state); 
+            return donor=='miraclefeet' ? 'MF' : 
+              donor=='cbm' ? 'CBM' : 
+              donor=='other' ? 'Others' : donor; 
+          }),
+        field(
+          'Other_Type_Donor_Name__c.',
+          dataValue('form.registration_info.other_donor')
+        ),
       )
     )(state);
   }
