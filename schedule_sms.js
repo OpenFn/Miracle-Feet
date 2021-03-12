@@ -451,6 +451,11 @@ alterState(state => {
     return value;
   }
 
+  function checkCaseId() {
+    if (form.case['@case_id']) return form.case['@case_id'];
+    else return form.commcare_usercase.case['@case_id'];
+  }
+
   // SCHEDULE SMS PROCESS =======================================================
   alertsToSend.forEach((alert, i) => {
     const { key, bulkPrefix } = alert;
@@ -465,7 +470,8 @@ alterState(state => {
       let sendAtDate = new Date(date);
 
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
-      let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
+      // let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
+      let bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}`;
 
       // a. if alert is for visitAfter we add last_visit_date to bulkId
       if (bulkPrefix === 'visitAfter-') {
@@ -542,7 +548,8 @@ alterState(state => {
         if (res.requestError) {
           // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
           if (bulkPrefix === 'visitAfter-') {
-            bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${date}`;
+            // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${date}`;
+            bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${date}`;
           }
           console.log(
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
@@ -582,7 +589,8 @@ alterState(state => {
 
           if (bulkPrefix === 'visitAfter-') {
             deleteSMS(bulkId);
-            bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
+            // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
+            bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${next_visit_date}`;
           }
           console.log(
             `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
@@ -599,7 +607,8 @@ alterState(state => {
     const { key, bulkPrefix } = alert;
     mapping[key].map(rule => {
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
-      let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
+      // let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
+      let bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}`;
 
       // a. if alert is for visitAfter we add next_visit_date to bulkId
       if (bulkPrefix === 'visitAfter-') {
