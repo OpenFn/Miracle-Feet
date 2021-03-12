@@ -452,7 +452,7 @@ alterState(state => {
   }
 
   function checkCaseId() {
-    if (form.case['@case_id']) return form.case['@case_id'];
+    if (form.case) return form.case['@case_id'];
     else return form.commcare_usercase.case['@case_id'];
   }
 
@@ -590,7 +590,9 @@ alterState(state => {
           if (bulkPrefix === 'visitAfter-') {
             deleteSMS(bulkId);
             // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
-            bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${next_visit_date}`;
+            bulkId = `${bulkPrefix}${
+              rule['# SMS']
+            }-${checkCaseId()}-${next_visit_date}`;
           }
           console.log(
             `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
