@@ -130,35 +130,35 @@ alterState(state => {
     );
     return state;
   } else {
-    return combine(
-      upsert(
-        'Contact',
-        'CommCare_Case_ID__c',
-        fields(
-          field(
-            'FirstName',
-            dataValue('form.calcs.case_properties.patient_first_name')
-          ),
-          field(
-            'LastName',
-            dataValue('form.calcs.case_properties.patient_last_name')
-          ),
-          field(
-            'CommCare_Case_ID__c',
-            dataValue('form.case.@case_id') //patient case_id
-            //dataValue('form.subcase_0.case.@case_id') //appointment case_id --> replace
-          ),
-          field(
-            'Date_of_First_Visit__c',
-            dataValue('form.case.update.date_first_visit')
-          ),
-          field(
-            'SMS_Opt_In_II__c',
-            dataValue('form.calcs.save.sms_interest_educational')
-          )
+    // return combine( // Replacing combine with .then()
+    return upsert(
+      'Contact',
+      'CommCare_Case_ID__c',
+      fields(
+        field(
+          'FirstName',
+          dataValue('form.calcs.case_properties.patient_first_name')
+        ),
+        field(
+          'LastName',
+          dataValue('form.calcs.case_properties.patient_last_name')
+        ),
+        field(
+          'CommCare_Case_ID__c',
+          dataValue('form.case.@case_id') //patient case_id
+          //dataValue('form.subcase_0.case.@case_id') //appointment case_id --> replace
+        ),
+        field(
+          'Date_of_First_Visit__c',
+          dataValue('form.case.update.date_first_visit')
+        ),
+        field(
+          'SMS_Opt_In_II__c',
+          dataValue('form.calcs.save.sms_interest_educational')
         )
-      ),
-      upsert(
+      )
+    )(state).then(state => {
+      return upsert(
         'Visit_new__c',
         'New_Visit_UID__c',
         fields(
@@ -658,7 +658,8 @@ alterState(state => {
             return state.handlePhoto(state, 'photo_3');
           })
         )
-      )
-    )(state);
+      )(state);
+    });
+    // )(state);
   }
 });
