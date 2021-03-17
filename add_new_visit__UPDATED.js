@@ -153,8 +153,10 @@ alterState(state => {
           dataValue('form.case.update.date_first_visit')
         ),
         field(
-          'SMS_Opt_In_II__c',
-          dataValue('form.calcs.save.sms_interest_educational')
+          'SMS_Opt_In_II__c', state => {
+            var sms = dataValue('form.calcs.save.sms_interest_educational'); 
+            return sms==='yes' ? true : sms==='no' ? false : undefined; 
+            }
         )
       )
     )(state).then(state => {
