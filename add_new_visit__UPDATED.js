@@ -154,8 +154,9 @@ alterState(state => {
         ),
         field(
           'SMS_Opt_In_II__c', state => {
-            var sms = dataValue('form.calcs.save.sms_interest_educational'); 
-            return sms==='yes' ? true : sms==='no' ? false : undefined; 
+            var sms = dataValue('form.calcs.save.sms_interest_educational')(state); 
+            var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : undefined; 
+            return opt; 
             }
         )
       )
