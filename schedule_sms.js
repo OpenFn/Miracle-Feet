@@ -474,9 +474,7 @@ alterState(state => {
             : dataValue(`${fetch_data_from_multiple_path(item)}`)(state)
         )
         .join('');
-        console.log(sms)
 
-      //console.log('sms', sms);
       sendAtDate.setDate(sendAtDate.getDate() + rule['Days from SSD']);
 
       const hours = rule['Clock Time']
