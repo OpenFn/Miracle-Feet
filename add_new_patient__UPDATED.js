@@ -124,7 +124,7 @@ alterState(state => {
         field(
             'SMS_Opt_In_II__c', state => {
             var sms = dataValue('properties.sms_interest_educational')(state);
-            var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : undefined; 
+            var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
           return opt; 
           }),
         field('Patient_Name__c', dataValue('form.case.update.patient_name')),
