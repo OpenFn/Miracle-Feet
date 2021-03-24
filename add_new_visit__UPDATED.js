@@ -43,6 +43,15 @@ alterState(state => {
     }
   };
 
+  const braceMap = {
+    dobbs_or_mitchell: 'Dobbs or Mitchell',
+    iowa: 'Iowa',
+    miraclefeet: 'MiracleFeet',
+    steenbeek: 'Steenbeek',
+    other: 'Other',
+    ankle_foot_orthosis_afo: 'Ankle Foot Orthosis (AFO)',
+  };
+
   const discardedClinics = [
     'test_bangladesh',
     'bol_test',
@@ -119,7 +128,7 @@ alterState(state => {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
-  return { ...state, discardedClinics };
+  return { ...state, discardedClinics, braceMap };
 });
 
 alterState(state => {
@@ -154,11 +163,15 @@ alterState(state => {
         ),
         field(
           'SMS_Opt_In_II__c', state => {
-            var sms = dataValue('form.calcs.save.sms_interest_educational')(state); 
-            var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : undefined; 
-            return opt; 
-            }
-        )
+            var sms = dataValue('form.calcs.save.sms_interest_educational')(state);
+            var opt = sms && sms == 'yes' ? true : sms && sms == 'no' ? false : undefined;
+            return opt;
+          }
+        ),
+        field('Brace_Type__c', state => {
+          const ref = state.data.form.subcase_0.case.update.brace_type;
+          return !ref ? state.data.form.brace.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
+        })
       )
     )(state).then(state => {
       return upsert(
@@ -211,25 +224,7 @@ alterState(state => {
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.form.subcase_0.case.update.brace_type;
-            var bracetype = '';
-            if (ref == undefined) {
-              bracetype = state.data.form.brace.brace_type_india;
-            } else if (ref == 'dobbs_or_mitchell') {
-              bracetype = 'Dobbs or Mitchell';
-            } else if (ref == 'iowa') {
-              bracetype = 'Iowa';
-            } else if (ref == 'miraclefeet') {
-              bracetype = 'MiracleFeet';
-            } else if (ref == 'steenbeek') {
-              bracetype = 'Steenbeek';
-            } else if (ref == 'other') {
-              bracetype = 'Other';
-            } else if (ref == 'ankle_foot_orthosis_afo') {
-              bracetype = 'Ankle Foot Orthosis (AFO)';
-            } else {
-              bracetype = 'Not Defined';
-            }
-            return bracetype;
+            return !ref ? state.data.form.brace.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
           }),
           field(
             'Brace_Condition_Non_MiracleFeet_Brace__c',
@@ -552,7 +547,7 @@ alterState(state => {
             )(state); // this is a picklist
             return reason
               ? reason.charAt(0).toUpperCase() +
-                  reason.slice(1).replace('_', ' ')
+              reason.slice(1).replace('_', ' ')
               : '';
           }),
           field('Relapse_Action_Taken__c', state => {
