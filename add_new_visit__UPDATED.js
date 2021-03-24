@@ -158,9 +158,10 @@ alterState(state => {
           //dataValue('form.subcase_0.case.@case_id') //appointment case_id --> replace
         ),
         field(
-          'Date_of_First_Visit__c',
-          dataValue('form.case.update.date_first_visit')
-        ),
+          'Date_of_First_Visit__c', state => {
+            var date = dataValue('form.case.update.date_first_visit')(state);
+            return date ? date : undefined;
+          }),
         field(
           'SMS_Opt_In_II__c', state => {
             var sms = dataValue('form.calcs.save.sms_interest_educational')(state);
