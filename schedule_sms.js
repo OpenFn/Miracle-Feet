@@ -181,8 +181,8 @@ alterState(state => {
 
   const { username } = state.data.metadata;
   if (username.includes('test') || username.includes('practica')) {
-    // 1. If send_sms = 'no' then the patient opted out of all SMS alerts.
-    if (send_sms === 'no') {
+    // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
+    if (send_sms === 'off') {
       console.log('Patient opted out of all SMS alerts.');
       // a. delete sms for treatment
       // YELLOW CONDITIONS =====================================================
