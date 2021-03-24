@@ -201,8 +201,8 @@ alterState(state => {
             return state.handleMultiSelect(state, 'brace_problems_type');
           }),
           field('Brace_Type__c', state => {
-            const ref = state.data.form.subcase_0.case.update.brace_type;
-            return !ref ? state.data.form.brace.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
+            const ref = state.data.properties.brace_type;
+            return !ref ? state.data.properties.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
           }),
           field(
             'Brace_Condition_Non_MiracleFeet_Brace__c',
