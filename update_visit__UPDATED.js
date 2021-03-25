@@ -136,14 +136,14 @@ alterState(state => {
       'Contact',
       'CommCare_Case_ID__c',
       fields(
-        /*field(
+        field(
           'FirstName',
           dataValue('properties.patient_first_name')
         ),
         field(
           'LastName',
           dataValue('properties.patient_last_name')
-        ),*/
+        ),
         field(
           'CommCare_Case_ID__c',
           dataValue('case_id') //patient case_id
