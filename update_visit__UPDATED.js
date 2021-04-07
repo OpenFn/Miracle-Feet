@@ -125,39 +125,39 @@ alterState(state => {
 });
 
 alterState(state => {
-  const { clinic_code } = state.data.properties;
+  const { clinic_code, patient_id } = state.data.properties;
   if (state.discardedClinics.includes(clinic_code)) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
+    return state;
+  } else if (patient_id.startsWith('IND')) {
+    console.log('Salesforce update skipped for historical India case.');
     return state;
   } else {
     return upsert(
       'Contact',
       'CommCare_Case_ID__c',
       fields(
-        field(
-          'FirstName',
-          dataValue('properties.patient_first_name')
-        ),
-        field(
-          'LastName',
-          dataValue('properties.patient_last_name')
-        ),
+        field('FirstName', dataValue('properties.patient_first_name')),
+        field('LastName', dataValue('properties.patient_last_name')),
         field(
           'CommCare_Case_ID__c',
           dataValue('case_id') //patient case_id
         ),
-        field(
-          'SMS_Opt_In_II__c', state => {
-            var sms = dataValue('properties.sms_interest_educational')(state);
-            var opt = sms && sms == 'yes' ? true : sms && sms == 'no' ? false : undefined;
-            return opt;
-          }
-        ),
+        field('SMS_Opt_In_II__c', state => {
+          var sms = dataValue('properties.sms_interest_educational')(state);
+          var opt =
+            sms && sms == 'yes' ? true : sms && sms == 'no' ? false : undefined;
+          return opt;
+        }),
         field('Brace_Type__c', state => {
           const ref = state.data.properties.brace_type;
-          return !ref ? state.data.properties.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
+          return !ref
+            ? state.data.properties.brace_type_india
+            : ref
+            ? state.braceMap[ref]
+            : 'Not Defined';
         })
       )
     )(state).then(state => {
@@ -202,7 +202,11 @@ alterState(state => {
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.properties.brace_type;
-            return !ref ? state.data.properties.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
+            return !ref
+              ? state.data.properties.brace_type_india
+              : ref
+              ? state.braceMap[ref]
+              : 'Not Defined';
           }),
           field(
             'Brace_Condition_Non_MiracleFeet_Brace__c',
@@ -240,7 +244,10 @@ alterState(state => {
             return state.data.properties.closed == '1' ? true : false; // sf checkbox
           }),
           field('Case_Closed_Date__c', state => {
-            return state.dateConverter(state, state.data.properties.date_closed);
+            return state.dateConverter(
+              state,
+              state.data.properties.date_closed
+            );
           }),
           field('Cast_Count__c', dataValue('properties.cast_count')),
           field('Casting_Complications_Type__c', state => {
@@ -288,19 +295,28 @@ alterState(state => {
             'Left_Angle_of_Dorsiflexion__c',
             dataValue('properties.l_angle_dorsiflexion')
           ),
-          field('Left_Medial_Crease__c', dataValue('properties.l_medial_crease')),
+          field(
+            'Left_Medial_Crease__c',
+            dataValue('properties.l_medial_crease')
+          ),
           field('Left_Talar_Head__c', dataValue('properties.l_talar_head')),
           field(
             'Left_Curved_Lateral_Border__c',
             dataValue('properties.l_curved_lateral_border')
           ),
-          field('Left_Midfoot_Score__c', dataValue('properties.l_midfoot_score')),
+          field(
+            'Left_Midfoot_Score__c',
+            dataValue('properties.l_midfoot_score')
+          ),
           field(
             'Left_Posterior_Crease__c',
             dataValue('properties.l_posterior_crease')
           ),
           field('Left_Empty_Heel__c', dataValue('properties.l_empty_heel')),
-          field('Left_Rigid_Equinus__c', dataValue('properties.l_rigid_equinus')),
+          field(
+            'Left_Rigid_Equinus__c',
+            dataValue('properties.l_rigid_equinus')
+          ),
           field(
             'Left_Hindfoot_Score__c',
             dataValue('properties.l_hindfoot_score')
@@ -405,7 +421,10 @@ alterState(state => {
           ),
           field('New_Brace__c', dataValue('properties.is_new_brace')),
           field('Opened_Date_CommCare__c', state => {
-            return state.dateConverter(state, state.data.properties.date_opened);
+            return state.dateConverter(
+              state,
+              state.data.properties.date_opened
+            );
           }),
           field('Owner_Name_CommCare__c', dataValue('properties.owner_name')),
 
@@ -460,7 +479,8 @@ alterState(state => {
           field('Relapse_Reason__c', state => {
             var reason = dataValue('properties.why_did_relapse_occur')(state); // this is a picklist
             return reason
-              ? reason.charAt(0).toUpperCase() + reason.slice(1).replace('_', ' ')
+              ? reason.charAt(0).toUpperCase() +
+                  reason.slice(1).replace('_', ' ')
               : '';
           }),
           field('Relapse_Action_Taken__c', state => {
