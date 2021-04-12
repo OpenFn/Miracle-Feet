@@ -140,7 +140,11 @@ alterState(state => {
       'CommCare_Case_ID__c',
       fields(
         field('FirstName', dataValue('properties.patient_first_name')),
-        field('LastName', dataValue('properties.patient_last_name')),
+        field('LastName', state => {
+          var name1 = dataValue('properties.patient_last_name')(state);
+          var name2 = dataValue('properties.patient_name')(state);
+          return name1 ? name1 : name2; 
+        }),
         field(
           'CommCare_Case_ID__c',
           dataValue('case_id') //patient case_id
