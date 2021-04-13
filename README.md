@@ -28,7 +28,7 @@ How it works...
 MiracleFeet global administrators are responsible for integration monitoring & reprocessing of any failed runs. [See here]() for MF's troubleshooting guide. For additional OpenFn support, users may contact support@openfn.org. 
 
 ## 2. CommCare-Infobip Integration for Automated SMS Alerts
-Watch the [solution overview video](https://drive.google.com/file/d/1Ne7sHJ8BR1I3Emqf01jiyFI1kp1WArnM/view?usp=sharing) for the CommCare-Infobip SMS integration for patient visit reminders and educational SMSs. 
+Watch the [solution overview video](https://drive.google.com/file/d/1Ne7sHJ8BR1I3Emqf01jiyFI1kp1WArnM/view?usp=sharing) for the CommCare-Infobip SMS integration for patient visit reminders and educational SMSs. [See here](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?page=0_0#) for the data flow diagrams. 
 
 And [see here](https://docs.google.com/document/d/1FHJIW8bAQYk-4WP3uosoCCVvXVTTPPIej64N7_L-lSY/edit?usp=sharing) for the original project concept. 
 
