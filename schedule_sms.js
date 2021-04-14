@@ -192,7 +192,8 @@ alterState(state => {
       }
       // =======================================================================
       // RED CONDITIONS=========================================================
-      if (treatment)
+      if (treatment && treatment !== 'stopped')
+        // Check if treament !== stopped
         alertsValueMap[treatment].forEach(value => {
           alertsToDisable.push(treatmentMap[value]);
         });
@@ -226,7 +227,8 @@ alterState(state => {
         }
         // =======================================================================
         // RED CONDITIONS=========================================================
-        if (treatment)
+        if (treatment && treatment !== 'stopped')
+          // Check if treament !== stopped
           alertsValueMap[treatment].forEach(value => {
             alertsToDisable.push(treatmentMap[value]);
           });
