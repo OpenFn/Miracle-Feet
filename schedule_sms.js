@@ -420,7 +420,7 @@ alterState(state => {
   const { alertsToSend, alertsToDisable, mapping, data } = state;
   const { form } = data;
   const { calcs } = form;
-  const language_code = calcs.sms.sms_language || calcs.sms.language_code || 'en';
+  const language_code = calcs.sms.sms_language || calcs.sms.language_code || 'English';
 
   function fetch_data_from_multiple_path(value) {
     let paths = [];
