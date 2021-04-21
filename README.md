@@ -38,6 +38,24 @@ How it works...
 2. A webhook configured in the CommCareHQ project automatically forwards this data to MiracleFeet's OpenFn project `Inbox` as `Messages`
 3. OpenFn job [`Schedule SMS Alerts`](https://www.openfn.org/projects/pdbznd/jobs/jypnkm) will be triggered to schedule relevant SMS alerts in the Infobip Portal
 
+### Notes on Scheduling Logic
+
+**Logic for setting visitAfter reminders**
+SMS reminders are scheduled to be sent if a patient misses an appointment they scheduled for. This is set when a new `next_visit_date` is added. If there were alerts set for previous visits, those are canceled in Infobip.
+
+Used values: `last_visit_date/original_next_visit_date` for previous scheduled visits, `next visit date` for next visit
+
+*Steps*
+1. Check if there’s a last visit date. If so, check if these bulkIDs have been scheduled
+`visitAfter1-{form.case.@case_id}-{last_visit_date}`
+`visitAfter2-{form.case.@case_id}-{last_visit_date}`
+If yes, delete them.
+
+2. Schedule the reminders with the current next visit date
+`visitAfter1-{form.case.@case_id}-{next_visit_date}`
+`visitAfter2-{form.case.@case_id}-{next_visit_date}`
+
+
 ### Ongoing Management
 [See here - ADD LINK]() for the SMS Alert template for reviewing the SMS specifications for alert scheduling & message templates. 
 ...
