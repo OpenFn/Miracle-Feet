@@ -307,7 +307,8 @@ alterState(state => {
         alertsToSend.push(treatmentMap['reminder_after']);
       }
       if (last_visit_paths[0] !== undefined) {
-        alertsToSend.push(treatmentMap['reminder_after']);
+        if (!alertsToSend.some(alert => alert.bulkPrefix === 'visitAfter-'))
+          alertsToSend.push(treatmentMap['reminder_after']);
       }
       // =========================================================================
 
@@ -422,7 +423,8 @@ alterState(state => {
   const { alertsToSend, alertsToDisable, mapping, data } = state;
   const { form } = data;
   const { calcs } = form;
-  const language_code = calcs.sms.sms_language || calcs.sms.language_code || 'English';
+  const language_code =
+    calcs.sms.sms_language || calcs.sms.language_code || 'English';
 
   function fetch_data_from_multiple_path(value) {
     let paths = [];
