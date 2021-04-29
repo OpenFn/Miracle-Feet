@@ -243,8 +243,8 @@ alterState(state => {
     }
     if (sms_opt_in === 'yes' && send_sms === 'on') {
       if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
-      if (treatment === 'suspended')
-        alertsToSend.push(treatmentMap['suspended']);
+      // if (treatment === 'suspended')
+      //   alertsToSend.push(treatmentMap['suspended']);
 
       if (original_treatment) {
         if (
@@ -252,9 +252,11 @@ alterState(state => {
           treatment === 'complete' ||
           (close_reason && close_reason !== '')
         ) {
-          alertsValueMap[original_treatment].forEach(value => {
-            alertsToDisable.push(treatmentMap[value]);
-          });
+          // This condition does not need to be repeated here because ==
+          // it is done in any case in line 281 if original_treatment exist
+          // alertsValueMap[original_treatment].forEach(value => {
+          //   alertsToDisable.push(treatmentMap[value]);
+          // });
 
           // REMINDERS ===============================================================
           alertsToDisable.push(treatmentMap['reminder_before']);
@@ -353,7 +355,7 @@ alterState(state => {
   };
 });
 
-alterState(state => {
+alterState(async state => {
   const { host, token } = state.configuration;
 
   function getSMS(bulkId) {
@@ -378,13 +380,13 @@ alterState(state => {
         ) {
           return response;
         }
-        throw new Error(response);
+        return new Error(response);
       }
     )(state);
   }
 
   function scheduleSMS(bulkId, message) {
-    post(`${host}/2/text/advanced`, {
+    return post(`${host}/2/text/advanced`, {
       header: {
         'Content-Type': 'application/json',
         Authorization: `Basic ${token}`,
@@ -397,7 +399,7 @@ alterState(state => {
   }
 
   function rescheduleSMS(bulkId, sendAt) {
-    put(`${host}/1/bulks?bulkId=${bulkId}`, {
+    return put(`${host}/1/bulks?bulkId=${bulkId}`, {
       header: {
         'Content-Type': 'application/json',
         Authorization: `Basic ${token}`,
@@ -409,7 +411,7 @@ alterState(state => {
   }
 
   function deleteSMS(bulkId) {
-    put(`${host}/1/bulks/status?bulkId=${bulkId}`, {
+    return put(`${host}/1/bulks/status?bulkId=${bulkId}`, {
       header: {
         'Content-Type': 'application/json',
         Authorization: `Basic ${token}`,
@@ -444,9 +446,11 @@ alterState(state => {
   }
 
   // SCHEDULE SMS PROCESS =======================================================
-  alertsToSend.forEach((alert, i) => {
+  // alertsToSend.forEach( alert => {
+  for (let alert of alertsToSend) {
     const { key, bulkPrefix } = alert;
-    mapping[key].map(rule => {
+    // mapping[key].map(async rule => {
+    for (let rule of mapping[key]) {
       const start_date =
         fetch_data_from_multiple_path(rule['Schedule Start Date (SSD)']) ||
         rule['Schedule Start Date (SSD)'];
@@ -530,8 +534,8 @@ alterState(state => {
       console.log('Sending message:', message);
       // Send SMS ====================================================
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
-      getSMS(bulkId).then(res => {
-        const { form } = state.data;
+      await getSMS(bulkId).then(res => {
+        // const { form } = state.data;
         if (res.requestError) {
           // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
           if (bulkPrefix === 'visitAfter-') {
@@ -542,7 +546,7 @@ alterState(state => {
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
           );
 
-          scheduleSMS(bulkId, message);
+          return scheduleSMS(bulkId, message);
         } else {
           const reschedule_date = fetch_data_from_multiple_path(
             rule['Schedule Start Date (SSD)']
@@ -575,21 +579,24 @@ alterState(state => {
           // c. if a sms is found for visitAfter we delete it (cancel) and schedule a new one
 
           if (bulkPrefix === 'visitAfter-') {
-            deleteSMS(bulkId);
-            // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
-            bulkId = `${bulkPrefix}${
-              rule['# SMS']
-            }-${checkCaseId()}-${next_visit_date}`;
+            return deleteSMS(bulkId).then(res => {
+              // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
+              bulkId = `${bulkPrefix}${
+                rule['# SMS']
+              }-${checkCaseId()}-${next_visit_date}`;
+            });
           }
           console.log(
             `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
           );
-          rescheduleSMS(bulkId, sendAt);
+          return rescheduleSMS(bulkId, sendAt);
         }
       });
       // END Send SMS ================================================
-    });
-  });
+    }
+    // });
+  }
+  // });
 
   // DISABLE SMS PROCESS ========================================================
   alertsToDisable.forEach(alert => {
@@ -612,7 +619,7 @@ alterState(state => {
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
       getSMS(bulkId).then(res => {
         if (!res.requestError && res.status !== 'FINISHED') {
-          deleteSMS(bulkId);
+          return deleteSMS(bulkId);
         }
       });
     });
@@ -620,4 +627,4 @@ alterState(state => {
   // ============================================================================
 
   return state;
-}); 
+});
