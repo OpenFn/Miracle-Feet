@@ -509,6 +509,9 @@ alterState(async state => {
       }
       // end time zone add
 
+      if (sendAtDate.getHours() >= 20 || sendAtDate.getHours() < 8) {
+        sendAtDate.setHours(8);
+      }
       const sendAt = sendAtDate.toISOString();
       const to = form.calcs.sms.contact_phone_number;
 
