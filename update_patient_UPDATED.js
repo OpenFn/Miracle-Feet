@@ -414,10 +414,13 @@ alterState(state => {
         field('Opened_Date_CommCare__c', state => {
           return state.dateConverter(state, state.data.properties.date_opened);
         }),
+        //Hello beth
+        /*  Deleted because it was running an Error in Salesforce 
         field(
           'Opened_By_Username_CommCare__c',
           dataValue('properties.opened_by_username')
-        ),
+        ),*/
+        
         field('Last_Modified_Date_CommCare__c', state => {
           return state.dateConverter(state, state.data.date_modified);
         }),
