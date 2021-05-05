@@ -509,6 +509,8 @@ alterState(async state => {
       }
       // end time zone add
 
+      if (sendAtDate.getHours() >= 20)
+        sendAtDate.setDate(sendAtDate.getDate() + 1);
       if (sendAtDate.getHours() >= 20 || sendAtDate.getHours() < 8) {
         sendAtDate.setHours(8);
       }
