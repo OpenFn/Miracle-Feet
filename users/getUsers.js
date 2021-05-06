@@ -6,6 +6,7 @@ get(
     query: {
       limit: 5, //max limit: 1000
       offset: state.meta && state.meta.next ? state.meta.limit + state.meta.offset : 0,
+      extras: true
     },
   },
   state => {
