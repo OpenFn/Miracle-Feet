@@ -49,6 +49,7 @@ alterState(state => {
     'nepal_test',
     'nica_prueba',
     'nigeria_test',
+    'test_nigeria',
     'par_test',
     'philippines_test',
     'sl_test',
