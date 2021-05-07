@@ -109,6 +109,7 @@ alterState(state => {
     'nepal_test_clinic',
     'nicaraugua_test_clinic',
     'nigeria_test_clinic',
+    'test_nigeria',
     'paraguary_test_clinic',
     'phillipines_test_clinic',
     'senegal_test_clinic',
