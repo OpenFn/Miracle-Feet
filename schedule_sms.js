@@ -246,14 +246,14 @@ alterState(state => {
       // if (treatment === 'suspended')
       //   alertsToSend.push(treatmentMap['suspended']);
 
-      if (original_treatment) {
+      if (original_treatment && original_treatment !== treatment) {
         if (
           treatment === 'suspended' ||
           treatment === 'complete' ||
           (close_reason && close_reason !== '')
         ) {
           // This condition does not need to be repeated here because ==
-          // it is done in any case in line 281 if original_treatment exist
+          // it is always done in line ~281 if original_treatment exist.
           // alertsValueMap[original_treatment].forEach(value => {
           //   alertsToDisable.push(treatmentMap[value]);
           // });
@@ -278,7 +278,10 @@ alterState(state => {
             alertsToSend.push(treatmentMap[value]);
           });
 
-        if (original_treatment || properties) {
+        if (
+          (original_treatment && original_treatment !== treatment) ||
+          properties
+        ) {
           alertsValueMap[original_treatment].forEach(value => {
             alertsToDisable.push(treatmentMap[value]);
           });
@@ -326,6 +329,7 @@ alterState(state => {
       }
       if (
         original_treatment &&
+        original_treatment !== treatment &&
         (original_treatment === 'bracing_day' ||
           original_treatment === 'bracing_night')
       ) {
@@ -474,8 +478,8 @@ alterState(async state => {
         bulkId = `${bulkId}-${last_visit_date}`;
       }
 
+      // console.log(rule[language_code]);
       const sms = rule[language_code]
-
         .map((item, pos) =>
           pos % 2 === 0
             ? item
@@ -604,9 +608,11 @@ alterState(async state => {
   // });
 
   // DISABLE SMS PROCESS ========================================================
-  alertsToDisable.forEach(alert => {
+  for (let alert of alertsToSend) {
+    // alertsToDisable.forEach(alert => {
     const { key, bulkPrefix } = alert;
-    mapping[key].map(rule => {
+    for (let rule of mapping[key]) {
+      // mapping[key].map(rule => {
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
       // let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
       let bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}`;
@@ -622,13 +628,15 @@ alterState(async state => {
 
       // GET SMS then DISABLE =========================================
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
-      getSMS(bulkId).then(res => {
+      await getSMS(bulkId).then(res => {
         if (!res.requestError && res.status !== 'FINISHED') {
           return deleteSMS(bulkId);
         }
       });
-    });
-  });
+    }
+    // });
+  }
+  // });
   // ============================================================================
 
   return state;
