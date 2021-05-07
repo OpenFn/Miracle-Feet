@@ -151,7 +151,7 @@ alterState(state => {
   };
 
   const { form } = state.data;
-  const { calcs, properties, close_reason } = form;
+  const { calcs, properties, close_reason, intro } = form;
   const {
     sms_opt_in,
     send_sms,
@@ -273,10 +273,15 @@ alterState(state => {
         }
         // =======================================================================
         // RED CONDITIONS ========================================================
-        if (treatment && treatment !== 'stopped')
-          alertsValueMap[treatment].forEach(value => {
-            alertsToSend.push(treatmentMap[value]);
-          });
+        if (treatment && treatment !== 'stopped') {
+          if (
+            treatment !== original_treatment ||
+            intro.visit_date === calcs.save.date_first_visit
+          )
+            alertsValueMap[treatment].forEach(value => {
+              alertsToSend.push(treatmentMap[value]);
+            });
+        }
 
         if (
           (original_treatment && original_treatment !== treatment) ||
