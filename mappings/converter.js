@@ -15,22 +15,38 @@ const groupBy = (array, key) => {
 
 const result = groupBy(data, 'Name');
 
+const languageCodeMap = {
+  English: 'EN',
+  French: 'FRA',
+  Spanish: 'ES',
+  Malagasy: 'MLG',
+  Burmese: 'MYA',
+  Khmer: 'KHM',
+  Nepali: 'NEP',
+  Swahili: 'SW',
+  Tagalog: 'TGL',
+  Wolof: 'WOL',
+  PHI: 'PHI',
+};
+
 Object.keys(result).map(type => {
   const cleaned = result[type].map(x => {
     delete x['Name'];
     //delete x['# Alert'];
     Object.keys(x).map(lang => {
-      if (lang.length <= 3) {
+      console.log(languageCodeMap[lang])
+      if (languageCodeMap[lang] && languageCodeMap[lang].length <= 3) {
         // This is how we identify language keys
-        x[lang] = x[lang].split(/[{}]+/).map(bit => {
+        x[languageCodeMap[lang]] = x[lang].split(/[{}]+/).map(bit => {
           if (bit.startsWith('case.')) {
             // These should not be nested inside "case"
             return bit.substring(5);
           }
           return bit;
         });
+        if (lang.length > 3) delete x[lang];
       }
-      return lang;
+      return languageCodeMap[lang];
     });
     return x;
   });
