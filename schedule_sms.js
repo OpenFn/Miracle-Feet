@@ -648,8 +648,14 @@ alterState(async state => {
       // GET SMS then DISABLE =========================================
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
       await getSMS(bulkId).then(res => {
-        if (!res.requestError && res.status !== 'FINISHED') {
+        if (
+          !res.requestError &&
+          res.status !== 'FINISHED' &&
+          res.status !== 'CANCELED'
+        ) {
           return deleteSMS(bulkId);
+        } else {
+          console.log('SMS already canceled or sent!');
         }
       });
     }
