@@ -100,8 +100,10 @@ alterState(state => {
         field('CAST_Patient_ID__c', dataValue('properties.patient_id')),
         field(
           'Age_Months_First_Brace__c',
-          dataValue('properties.age_months_first_brace_rounded')
-        ),
+           state => {
+            var age = dataValue('properties.age_months_first_brace_rounded')(state); 
+            return age==="0" ? null : age; 
+        }),
         field(
           'Age_Months_Started_Treatment__c',
           dataValue('properties.age_months_start_treatment_rounded')
