@@ -102,7 +102,7 @@ alterState(state => {
           'Age_Months_First_Brace__c',
            state => {
             var age = dataValue('properties.age_months_first_brace_rounded')(state); 
-            return age==="0" ? null : age; 
+            return age==="0" ? "" : age; 
         }),
         field(
           'Age_Months_Started_Treatment__c',
