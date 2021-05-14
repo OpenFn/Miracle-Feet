@@ -519,7 +519,6 @@ alterState(async state => {
       sendAtDate.setMinutes(
         parseInt(minutes) + (rule['Min From SSD'] ? rule['Min From SSD'] : 0)
       );
-      console.log('send date', sendAtDate.toISOString());
       // Adding timezone offset
       const timezone = calcs.sms.time_zone;
       if (timezone !== '') {
@@ -559,7 +558,6 @@ alterState(async state => {
         sendAt,
       };
 
-      console.log('Sending message:', message);
       // Send SMS ====================================================
       console.log(`Check for existing scheduled SMS for ${bulkId}...`);
       await getSMS(bulkId).then(res => {
@@ -570,16 +568,19 @@ alterState(async state => {
             // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${date}`;
             bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${date}`;
           }
+          console.log('Sending message:', message);
           console.log(
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
           );
-
           return scheduleSMS(bulkId, message);
         } else {
-          if (res.status === 'FINISHED' && res.status === 'CANCELED') {
-            console.log('SMS already canceled or sent!');
+          if (res.status === 'FINISHED' || res.status === 'CANCELED') {
+            console.log(
+              'SMS already canceled or sent, impossible to reschedule!'
+            );
             return state;
           }
+          console.log('Sending message:', message);
           const reschedule_date = fetch_data_from_multiple_path(
             rule['Schedule Start Date (SSD)']
           );
@@ -654,8 +655,7 @@ alterState(async state => {
       await getSMS(bulkId).then(res => {
         if (
           !res.requestError &&
-          res.status !== 'FINISHED' &&
-          res.status !== 'CANCELED'
+          (res.status !== 'FINISHED' || res.status !== 'CANCELED')
         ) {
           return deleteSMS(bulkId);
         } else {
