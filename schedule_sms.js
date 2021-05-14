@@ -576,6 +576,10 @@ alterState(async state => {
 
           return scheduleSMS(bulkId, message);
         } else {
+          if (res.status === 'FINISHED' && res.status === 'CANCELED') {
+            console.log('SMS already canceled or sent!');
+            return state;
+          }
           const reschedule_date = fetch_data_from_multiple_path(
             rule['Schedule Start Date (SSD)']
           );
@@ -656,6 +660,7 @@ alterState(async state => {
           return deleteSMS(bulkId);
         } else {
           console.log('SMS already canceled or sent!');
+          return state;
         }
       });
     }
