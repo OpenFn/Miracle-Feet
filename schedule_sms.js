@@ -576,7 +576,7 @@ alterState(async state => {
         } else {
           if (res.status === 'FINISHED' || res.status === 'CANCELED') {
             console.log(
-              'SMS already canceled or sent, impossible to reschedule!'
+              'SMS is already canceled or sent, impossible to reschedule!'
             );
             return state;
           }
@@ -655,11 +655,12 @@ alterState(async state => {
       await getSMS(bulkId).then(res => {
         if (
           !res.requestError &&
-          (res.status !== 'FINISHED' || res.status !== 'CANCELED')
+          res.status !== 'FINISHED' &&
+          res.status !== 'CANCELED'
         ) {
           return deleteSMS(bulkId);
         } else {
-          console.log('SMS already canceled or sent!');
+          console.log('SMS is already canceled or sent!');
           return state;
         }
       });
