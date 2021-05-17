@@ -64,6 +64,7 @@ alterState(state => {
     'philippines_test',
     'sl_test',
     'test_som',
+    'test_somalia',
     'ss_test',
     'sri_lanka_test',
     'test_tanzania_clinic',
