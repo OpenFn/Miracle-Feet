@@ -40,7 +40,11 @@ How it works...
 
 ### Notes on Scheduling Logic
 
-**Logic for setting visitAfter reminders**
+**Logic for setting educational messages**
+
+
+
+**Logic for setting visit reminders**
 SMS reminders are scheduled to be sent if a patient misses an appointment they scheduled for. This is set when a new `next_visit_date` is added. If there were alerts set for previous visits, those are canceled in Infobip.
 
 Used values: `last_visit_date/original_next_visit_date` for previous scheduled visits, `next visit date` for next visit
@@ -55,6 +59,13 @@ If yes, delete them.
 `visitAfter1-{form.case.@case_id}-{next_visit_date}`
 `visitAfter2-{form.case.@case_id}-{next_visit_date}`
 
+**Opt-on, opt-out**
+
+- opting in to receiving SMS-s
+- opting in to receive educational messages
+- opting in to receive visit reminders
+
+**Treatment changes, stopping treatment**
 
 ### Ongoing Management
 [See here - ADD LINK]() for the SMS Alert template for reviewing the SMS specifications for alert scheduling & message templates. 
