@@ -67,6 +67,8 @@ If yes, delete them.
 
 **Treatment changes, stopping treatment**
 
+When a patient is marked as stopped, suspended or completed treatment, they will no receive educational messages and visit reminders. If they move from one treatment to a different one, educational messages for the original treatment are stopped and SMS campaign for the new treatment is scheduled.
+
 ### Ongoing Management
 [See here - ADD LINK]() for the SMS Alert template for reviewing the SMS specifications for alert scheduling & message templates. 
 ...
