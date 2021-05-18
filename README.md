@@ -40,6 +40,11 @@ How it works...
 
 ### Notes on Scheduling Logic
 
+**Overview**
+
+1. SMS scheduling in Infobip is done using constructed `bulkId`-s
+2. 
+
 **Logic for setting educational messages**
 
 
