@@ -49,9 +49,6 @@ How it works...
 5. SMS scheduling times are adjusted for local time zones.
 6. SMS-s are only scheduled to be sent between 8am-8pm local time.
 
-**Logic for setting educational messages**
-
-
 
 **Logic for setting missed appointment reminders**
 SMS reminders are scheduled to be sent if a patient misses an appointment they are scheduled for. This is set when a new `next_visit_date` is added. If there were alerts set for previous visits, those are canceled in Infobip.
