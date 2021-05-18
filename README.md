@@ -53,8 +53,8 @@ How it works...
 
 
 
-**Logic for setting visit reminders**
-SMS reminders are scheduled to be sent if a patient misses an appointment they scheduled for. This is set when a new `next_visit_date` is added. If there were alerts set for previous visits, those are canceled in Infobip.
+**Logic for setting missed appointment reminders**
+SMS reminders are scheduled to be sent if a patient misses an appointment they are scheduled for. This is set when a new `next_visit_date` is added. If there were alerts set for previous visits, those are canceled in Infobip.
 
 Used values: `last_visit_date/original_next_visit_date` for previous scheduled visits, `next visit date` for next visit
 
