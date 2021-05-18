@@ -99,11 +99,11 @@ alterState(state => {
           dataValue('properties.owner_id')
         ),
         field('CAST_Patient_ID__c', dataValue('properties.patient_id')),
-        field(
-          'Age_Months_First_Brace__c',
-           state => {
-            var age = dataValue('properties.age_months_first_brace_rounded')(state); 
-            return age==="0" || age=="" ? " " : age; 
+        field('Age_Months_First_Brace__c', state => {
+          var age = dataValue('properties.age_months_first_brace_rounded')(
+            state
+          );
+          return age === '0' || age === '' ? null : age;
         }),
         field(
           'Age_Months_Started_Treatment__c',
@@ -129,9 +129,9 @@ alterState(state => {
           humanProper(state.data.properties.patient_first_name)
         ),
         field('LastName', state => {
-          var name1 = dataValue('properties.patient_last_name')(state); 
-          var name2 = dataValue('properties.patient_name')(state); 
-          return name1 ? name1 : name2; 
+          var name1 = dataValue('properties.patient_last_name')(state);
+          var name2 = dataValue('properties.patient_name')(state);
+          return name1 ? name1 : name2;
         }),
         field('Gender__c', humanProper(state.data.properties.patient_gender)), // picklist
         field(
@@ -238,12 +238,13 @@ alterState(state => {
         //field('Bracing_Stage__c', (state)=>{}dataValue('properties.bracing_stage')), //replaced with below mapping + transformation
         field('Bracing_Stage__c', state => {
           var stage = dataValue('properties.bracing_stage')(state);
-          var newStage = (stage=='bracing_all_day')
-            ? 'All day and night' 
-            : (stage=='bracing_night_naps')
-            ? 'At night and for naps'
-            : null; //transformation that returns formatted CommCare choice values
-          return  newStage;
+          var newStage =
+            stage == 'bracing_all_day'
+              ? 'All day and night'
+              : stage == 'bracing_night_naps'
+              ? 'At night and for naps'
+              : null; //transformation that returns formatted CommCare choice values
+          return newStage;
         }),
         field('Diagnosis_Idiopathic_Specified__c', state => {
           var value = state.data.properties.diagnosis_idiopathic_specified;
@@ -424,7 +425,7 @@ alterState(state => {
           'Opened_By_Username_CommCare__c',
           dataValue('properties.opened_by_username')
         ),*/
-        
+
         field('Last_Modified_Date_CommCare__c', state => {
           return state.dateConverter(state, state.data.date_modified);
         }),
@@ -488,13 +489,13 @@ alterState(state => {
         field(
           'Tenotomy_Reason_Not_Given_Other__c',
           dataValue('tenotomy_reason_not_given_other')
-          ),
-        field(
-            'SMS_Opt_In_II__c', state => {
-            var sms = dataValue('properties.sms_interest_educational')(state);
-            var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : undefined; 
-          return opt; 
-          })
+        ),
+        field('SMS_Opt_In_II__c', state => {
+          var sms = dataValue('properties.sms_interest_educational')(state);
+          var opt =
+            sms && sms == 'yes' ? true : sms && sms == 'no' ? false : undefined;
+          return opt;
+        })
       )
     )(state);
   }
