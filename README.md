@@ -46,6 +46,8 @@ How it works...
 2. Educational SMS alerts are scheduled following the logic outlined [here](https://lucid.app/lucidchart/invitations/accept/inv_1b2fc530-9f5c-4645-a317-618a395eaa06).
 3. Visit reminders and missed appointment reminders are scheduled to be sent according to the next visit date indicated in the form.
 4. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing).
+5. SMS scheduling times are adjusted for local time zones.
+6. SMS-s are only scheduled to be sent between 8am-8pm local time.
 
 **Logic for setting educational messages**
 
