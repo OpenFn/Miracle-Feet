@@ -42,12 +42,14 @@ How it works...
 
 **Overview**
 
-1. SMS-s are scheduled in Infobip using constructed `bulkId`-s
-2. Educational SMS alerts are scheduled following the logic outlined [here](https://lucid.app/lucidchart/invitations/accept/inv_1b2fc530-9f5c-4645-a317-618a395eaa06).
-3. Visit reminders and missed appointment reminders are scheduled to be sent according to the next visit date indicated in the form.
-4. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing).
-5. SMS scheduling times are adjusted for local time zones.
-6. SMS-s are only scheduled to be sent between 8am-8pm local time.
+1. SMS-s are scheduled in Infobip using constructed `bulkId`-s. `bulkId` are constructed from the alert ID (e.g. `casting_intro-1` and the CommCare `case_id`: `casting_intro-1-XXX`. They are used to uniquely identify SMS-s in Infobip. 
+2. SMS-s are scheduled using `upsert` logic in Infobip: when scheduling or deleting an SMS, OpenFn first checks if an SMS with the corresponding `bulkId` has already been scheduled for the future or already sent. If this is the case, no changes are made. If the SMS hasn't been scheduled or sent, it gets scheduled.
+3. In case of deletion, OpenFn checks if an SMS with the corresponding `bulkId` has been scheduled for the future or already sent. If it is scheduled, it gets canceled.
+4. Educational SMS alerts are scheduled following the logic outlined [here](https://lucid.app/lucidchart/invitations/accept/inv_1b2fc530-9f5c-4645-a317-618a395eaa06).
+5. Visit reminders and missed appointment reminders are scheduled to be sent according to the next visit date indicated in the form.
+6. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing).
+7. SMS scheduling times are adjusted for local time zones.
+8. SMS-s are only scheduled to be sent between 8am-8pm local time.
 
 
 **Logic for setting missed appointment reminders**
