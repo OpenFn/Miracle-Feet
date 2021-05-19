@@ -84,6 +84,8 @@ To update SMS scheduling times, SMS templates, SMS language codes, or add new tr
 2. Make your edits in the new sheet.
 3. Notify OpenFn project support to implement the changes.
 
+To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact the OpenFn project support team.
+
 ### SMS Implementation Next Steps 
 - [ ] Finish testing across countries to sign-off on alert scheduling logic & content. [See Test Suite](https://docs.google.com/spreadsheets/d/1ZR60vDaejfWva5lkLXn2o362vpqLX0RWwW31Na3l9hg/edit?usp=drive_web&ouid=101430720901034004945) for detailed unit tests. 
 - [ ] Remove code in OpenFn job that executes flow only for test users
