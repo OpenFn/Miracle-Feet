@@ -78,8 +78,11 @@ If yes, delete them.
 When a patient is marked as stopped, suspended or completed treatment, they will no receive educational messages and visit reminders. If they move from one treatment to a different one, educational messages for the original treatment are stopped and SMS campaign for the new treatment is scheduled.
 
 ### Ongoing Management
-[See here - ADD LINK]() for the SMS Alert template for reviewing the SMS specifications for alert scheduling & message templates. 
-...
+
+To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:
+1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=262234774)
+2. Make your edits in the new sheet.
+3. Notify OpenFn project support to implement the changes.
 
 ### SMS Implementation Next Steps 
 - [ ] Finish testing across countries to sign-off on alert scheduling logic & content. [See Test Suite](https://docs.google.com/spreadsheets/d/1ZR60vDaejfWva5lkLXn2o362vpqLX0RWwW31Na3l9hg/edit?usp=drive_web&ouid=101430720901034004945) for detailed unit tests. 
