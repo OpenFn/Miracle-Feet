@@ -80,7 +80,7 @@ When a patient is marked as stopped, suspended or completed treatment, they will
 ### Ongoing Management
 
 To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:
-1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=262234774)
+1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=262234774) (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688))
 2. Make your edits in the new sheet.
 3. Notify OpenFn project support to implement the changes.
 
