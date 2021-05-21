@@ -137,7 +137,7 @@ alterState(state => {
           'Age_Months_First_Brace__c',
            state => {
             var age = dataValue('form.case.update.age_months_first_brace_rounded')(state); 
-            return age==="0" ? "" : age; 
+            return age === '0' || age === '' ? null : age;
         }),
         field(
           'Age_Months_Started_Treatment__c',
