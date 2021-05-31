@@ -498,6 +498,14 @@ alterState(state => {
           'CAST_Version__c',
           dataValue('metadata.app_build_version')
         ),
+          field(
+          'CommCare_Username__c',
+          dataValue('metadata.username')
+        ),
+        field(
+          'CommCare_User_ID__c',
+          dataValue('metadata.userID')
+        ),
         field('SMS_Opt_In_II__c', state => {
           var sms = dataValue('properties.sms_interest_educational')(state);
           var opt =
