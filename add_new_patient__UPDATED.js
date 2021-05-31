@@ -501,10 +501,16 @@ alterState(state => {
               donor=='other' ? 'Others' : donor; 
           }),
         field(
-          'Other_Type_Donor_Name__c.',
+          'Other_Type_Donor_Name__c.', //extra uncessary dot?
           dataValue('form.registration_info.other_donor')
         ),
-      )
+        field(
+          CommCare_Version__c),
+          dataValue('form.meta.commcare_version')
+      ),
+        field(
+          CAST_Version__c),
+          dataValue('form.meta.app_build_version'),
     )(state);
   }
 });
