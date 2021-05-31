@@ -490,6 +490,14 @@ alterState(state => {
           'Tenotomy_Reason_Not_Given_Other__c',
           dataValue('tenotomy_reason_not_given_other')
         ),
+        field(
+          'CommCare_Version__c',
+          dataValue('metadata.commcare_version')
+        ),
+        field(
+          'CAST_Version__c',
+          dataValue('metadata.app_build_version')
+        ),
         field('SMS_Opt_In_II__c', state => {
           var sms = dataValue('properties.sms_interest_educational')(state);
           var opt =
