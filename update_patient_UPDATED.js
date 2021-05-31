@@ -504,7 +504,7 @@ alterState(state => {
         ),
         field(
           'CommCare_User_ID__c',
-          dataValue('metadata.userID')
+          dataValue('user_id')
         ),
         field('SMS_Opt_In_II__c', state => {
           var sms = dataValue('properties.sms_interest_educational')(state);
