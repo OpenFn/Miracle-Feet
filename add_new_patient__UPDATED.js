@@ -505,11 +505,11 @@ alterState(state => {
           dataValue('form.registration_info.other_donor')
         ),
         field(
-          CommCare_Version__c),
+          'CommCare_Version__c'),
           dataValue('form.meta.commcare_version')
       ),
         field(
-          CAST_Version__c),
+          'CAST_Version__c'),
           dataValue('form.meta.app_build_version'),
     )(state);
   }
