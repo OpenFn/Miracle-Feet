@@ -512,6 +512,14 @@ alterState(state => {
           'CAST_Version__c',
           dataValue('form.meta.app_build_version')
         ),
+        field(
+          'CommCare_Username__c',
+          dataValue('metadata.username')
+        ),
+        field(
+          'CommCare_User_ID__c',
+          dataValue('metadata.userID')
+        ),
               )
     )(state);
   }
