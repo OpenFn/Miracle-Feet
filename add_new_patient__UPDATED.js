@@ -501,10 +501,27 @@ alterState(state => {
               donor=='other' ? 'Others' : donor; 
           }),
         field(
-          'Other_Type_Donor_Name__c.',
+          'Other_Type_Donor_Name__c', //removed extra period after field
           dataValue('form.registration_info.other_donor')
         ),
-      )
+        field(
+          'CommCare_Version__c',
+          dataValue('form.meta.commcare_version')
+        ),
+        field(
+          'CAST_Version__c',
+          dataValue('metadata.app_build_version')
+        ),
+        field(
+          'CommCare_Username__c',
+          dataValue('metadata.username')
+        ),
+        field(
+          'CommCare_User_ID__c',
+          dataValue('metadata.userID')
+        ),
+              )
     )(state);
   }
 });
+
