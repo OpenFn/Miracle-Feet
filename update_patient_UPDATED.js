@@ -29,7 +29,7 @@ alterState(state => {
   };
 
   state.dateConverter = function (state, dateString) {
-    console.log('date', state.Year2digitsTo4digits(dateString));
+    //console.log('date', state.Year2digitsTo4digits(dateString));
     return dateString
       ? new Date(state.Year2digitsTo4digits(dateString)).toISOString()
       : null;
