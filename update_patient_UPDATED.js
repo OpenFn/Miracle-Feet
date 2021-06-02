@@ -20,7 +20,7 @@ alterState(state => {
   };
 
   state.Year2digitsTo4digits = function (dateString) {
-    if (dateString.split('-')[0].length === 2) {
+    if (dateString && dateString.split('-')[0].length === 2) {
       var dateArr = dateString.split('-');
       dateArr[0] = '20' + dateArr[0];
       return dateArr.join('-');
