@@ -519,6 +519,8 @@ alterState(async state => {
       sendAtDate.setMinutes(
         parseInt(minutes) + (rule['Min From SSD'] ? rule['Min From SSD'] : 0)
       );
+
+      console.log('send date', sendAtDate.toISOString());
       // Adding timezone offset
       const timezone = calcs.sms.time_zone;
       if (timezone !== '') {
