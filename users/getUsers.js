@@ -4,7 +4,7 @@ get(
   'https://www.commcarehq.org/a/miraclefeet/api/v0.5/user/',
   {
     query: {
-      limit: 5, //max limit: 1000
+      limit: 20, //max limit: 1000
       offset: state.meta && state.meta.next ? state.meta.limit + state.meta.offset : 0,
       extras: true
     },
