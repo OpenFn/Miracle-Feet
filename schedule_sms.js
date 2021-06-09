@@ -256,7 +256,8 @@ alterState(state => {
       }
     }
     if (sms_opt_in === 'yes' && send_sms === 'on') {
-      if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
+      // Those 2 conditions are implicitely handled in 290-309
+      // if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
       // if (treatment === 'suspended')
       //   alertsToSend.push(treatmentMap['suspended']);
 
@@ -479,9 +480,11 @@ alterState(async state => {
         fetch_data_from_multiple_path(rule['Schedule Start Date (SSD)']) ||
         rule['Schedule Start Date (SSD)'];
 
+      // console.log('start date', start_date);
       const date =
         start_date === 'now' ? Date.now() : dataValue(`${start_date}`)(state);
 
+      // console.log('dat', date);
       let sendAtDate = new Date(date);
 
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
