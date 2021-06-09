@@ -536,11 +536,18 @@ alterState(async state => {
       }
       // end time zone add
 
-      if (sendAtDate.getHours() >= 20)
+      // Delay sending date =========================================
+      if (sendAtDate.getHours() >= 20) {
         sendAtDate.setDate(sendAtDate.getDate() + 1);
+        if (bulkId.split('-')[0] === 'registration') {
+          sendAtDate.setMinutes(0);
+          sendAtDate.setSeconds(0);
+        }
+      }
       if (sendAtDate.getHours() >= 20 || sendAtDate.getHours() < 8) {
         sendAtDate.setHours(8);
       }
+      // ============================================================
       const sendAt = sendAtDate.toISOString();
       const to = form.calcs.sms.contact_phone_number;
 
