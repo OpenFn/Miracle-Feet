@@ -576,14 +576,24 @@ alterState(async state => {
         // const { form } = state.data;
         if (res.requestError) {
           // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
-          if (bulkPrefix === 'visitAfter-') {
-            // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${date}`;
-            bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${date}`;
-          }
           console.log('Sending message:', message);
           console.log(
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
           );
+          if (bulkPrefix === 'visitAfter-') {
+            // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${date}`;
+            bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${date}`;
+            // We check if there is an sms with that new bulkId only for visitAfter
+            return getSMS(bulkId).then(res => {
+              // If there is one, we move forward...
+              if (!res.requestError) {
+                console.log(
+                  'There is already a scheduled sms for that new bulkId.'
+                );
+                return state;
+              }
+            });
+          }
           return scheduleSMS(bulkId, message);
         } else {
           if (res.status === 'FINISHED' || res.status === 'CANCELED') {
@@ -629,6 +639,18 @@ alterState(async state => {
               bulkId = `${bulkPrefix}${
                 rule['# SMS']
               }-${checkCaseId()}-${next_visit_date}`;
+            });
+          }
+          if (bulkPrefix === 'visitAfter-') {
+            // We check if there is an sms with that new bulkId only for visitAfter
+            return getSMS(bulkId).then(res => {
+              // If there is one, we move forward...
+              if (!res.requestError) {
+                console.log(
+                  'There is already a scheduled sms for that new bulkId.'
+                );
+                return state;
+              }
             });
           }
           console.log(
