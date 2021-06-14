@@ -477,6 +477,7 @@ alterState(async state => {
     const { key, bulkPrefix } = alert;
     // mapping[key].map(async rule => {
     for (let rule of mapping[key]) {
+      console.log('=======================================');
       const start_date =
         fetch_data_from_multiple_path(rule['Schedule Start Date (SSD)']) ||
         rule['Schedule Start Date (SSD)'];
@@ -577,9 +578,7 @@ alterState(async state => {
         // const { form } = state.data;
         if (res.requestError) {
           // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
-          console.log(
-            `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
-          );
+          console.log(`Existing SMS not found.`);
           if (bulkPrefix === 'visitAfter-') {
             // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${date}`;
             bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${date}`;
@@ -597,6 +596,7 @@ alterState(async state => {
               }
             });
           }
+          console.log(`Scheduling SMS for ${bulkId} at ${message.sendAt}...`);
           console.log('Sending message:', message);
           return scheduleSMS(bulkId, message);
         } else {
@@ -667,6 +667,7 @@ alterState(async state => {
         }
       });
       // END Send SMS ================================================
+      console.log('=======================================');
     }
     // });
     console.log('============= END SMS SCHEDULE =============');
@@ -679,6 +680,7 @@ alterState(async state => {
     const { key, bulkPrefix } = alert;
     console.log('============= START SMS CANCELATION =============');
     for (let rule of mapping[key]) {
+      console.log('=======================================');
       // mapping[key].map(rule => {
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
       // let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
@@ -708,6 +710,7 @@ alterState(async state => {
           return state;
         }
       });
+      console.log('=======================================');
     }
     console.log('============= END SMS CANCELATION =============');
     // });
