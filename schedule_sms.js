@@ -475,6 +475,7 @@ alterState(async state => {
   for (let alert of alertsToSend) {
     console.log('============= START SMS SCHEDULE =============');
     const { key, bulkPrefix } = alert;
+    delete state.previousSMS;
     // mapping[key].map(async rule => {
     for (let rule of mapping[key]) {
       console.log('=======================================');
@@ -526,6 +527,7 @@ alterState(async state => {
       );
 
       // Adding timezone offset
+      const dateBeforeTZ = sendAtDate;
       const timezone = calcs.sms.time_zone;
       if (timezone !== '') {
         sendAtDateTimeZone =
@@ -536,8 +538,26 @@ alterState(async state => {
         sendAtDate = new Date(sendAtDateTimeZone);
       }
       // end time zone add
+      console.log('before timezone', dateBeforeTZ.toISOString());
 
       // Delay sending date =========================================
+      if (bulkId.split('-')[0] === 'registration') {
+        if (
+          sendAtDate.getDate() === new Date().getDate() &&
+          new Date().getHours() > dateBeforeTZ.getHours()
+        ) {
+          // If the hour of the sms is below current hour, we move tomorrow
+          sendAtDate.setDate(sendAtDate.getDate() + 1);
+        }
+        if (
+          new Date(state.previousSMS).getDate() === sendAtDate.getDate() &&
+          new Date(state.previousSMS).getHours() >= sendAtDate.getHours()
+        ) {
+          // If this sms is about to be send before the previous sms, we move +1 day
+          sendAtDate.setDate(sendAtDate.getDate() + 1);
+        }
+        state.previousSMS = sendAtDate.toISOString();
+      }
       if (sendAtDate.getHours() >= 20) {
         sendAtDate.setDate(sendAtDate.getDate() + 1);
         if (bulkId.split('-')[0] === 'registration') {
@@ -667,10 +687,10 @@ alterState(async state => {
         }
       });
       // END Send SMS ================================================
-      console.log('=======================================');
+      console.log('=======================================\n');
     }
     // });
-    console.log('============= END SMS SCHEDULE =============');
+    console.log('============= END SMS SCHEDULE =============\n');
   }
   // });
 
