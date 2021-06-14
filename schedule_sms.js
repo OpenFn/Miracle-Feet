@@ -584,6 +584,9 @@ alterState(async state => {
             // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${date}`;
             bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}-${date}`;
             // We check if there is an sms with that new bulkId only for visitAfter
+            console.log(
+              `Check for existing scheduled SMS for new bulkId: ${bulkId}...`
+            );
             return getSMS(bulkId).then(res => {
               // If there is one, we move forward...
               if (!res.requestError) {
@@ -643,6 +646,9 @@ alterState(async state => {
           }
           if (bulkPrefix === 'visitAfter-') {
             // We check if there is an sms with that new bulkId only for visitAfter
+            console.log(
+              `Check for existing scheduled SMS for new bulkId: ${bulkId}...`
+            );
             return getSMS(bulkId).then(res => {
               // If there is one, we move forward...
               if (!res.requestError) {
