@@ -473,6 +473,7 @@ alterState(async state => {
   // SCHEDULE SMS PROCESS =======================================================
   // alertsToSend.forEach( alert => {
   for (let alert of alertsToSend) {
+    console.log('============= START SMS SCHEDULE =============');
     const { key, bulkPrefix } = alert;
     // mapping[key].map(async rule => {
     for (let rule of mapping[key]) {
@@ -523,7 +524,6 @@ alterState(async state => {
         parseInt(minutes) + (rule['Min From SSD'] ? rule['Min From SSD'] : 0)
       );
 
-      console.log('send date', sendAtDate.toISOString());
       // Adding timezone offset
       const timezone = calcs.sms.time_zone;
       if (timezone !== '') {
@@ -550,6 +550,7 @@ alterState(async state => {
       // ============================================================
       const sendAt = sendAtDate.toISOString();
       const to = form.calcs.sms.contact_phone_number;
+      console.log('Sending SMS at: ', sendAt);
 
       const dataForTheFromPhoneNumber =
         (form.calcs.phone_numbers_country_code
@@ -576,7 +577,6 @@ alterState(async state => {
         // const { form } = state.data;
         if (res.requestError) {
           // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
-          console.log('Sending message:', message);
           console.log(
             `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
           );
@@ -597,6 +597,7 @@ alterState(async state => {
               }
             });
           }
+          console.log('Sending message:', message);
           return scheduleSMS(bulkId, message);
         } else {
           if (res.status === 'FINISHED' || res.status === 'CANCELED') {
@@ -605,7 +606,6 @@ alterState(async state => {
             );
             return state;
           }
-          console.log('Sending message:', message);
           const reschedule_date = fetch_data_from_multiple_path(
             rule['Schedule Start Date (SSD)']
           );
@@ -662,12 +662,14 @@ alterState(async state => {
           console.log(
             `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
           );
+          console.log('Sending message:', message);
           return rescheduleSMS(bulkId, sendAt);
         }
       });
       // END Send SMS ================================================
     }
     // });
+    console.log('============= END SMS SCHEDULE =============');
   }
   // });
 
@@ -675,6 +677,7 @@ alterState(async state => {
   for (let alert of alertsToDisable) {
     // alertsToDisable.forEach(alert => {
     const { key, bulkPrefix } = alert;
+    console.log('============= START SMS CANCELATION =============');
     for (let rule of mapping[key]) {
       // mapping[key].map(rule => {
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
@@ -698,6 +701,7 @@ alterState(async state => {
           res.status !== 'FINISHED' &&
           res.status !== 'CANCELED'
         ) {
+          console.log('Deleting SMS.');
           return deleteSMS(bulkId);
         } else {
           console.log('SMS is already canceled or sent!');
@@ -705,6 +709,7 @@ alterState(async state => {
         }
       });
     }
+    console.log('============= END SMS CANCELATION =============');
     // });
   }
   // });
