@@ -613,6 +613,12 @@ alterState(async state => {
                   'There is already a scheduled sms for that new bulkId.'
                 );
                 return state;
+              } else {
+                console.log(
+                  `Scheduling SMS for ${bulkId} at ${message.sendAt}...`
+                );
+                console.log('Sending message:', message);
+                return scheduleSMS(bulkId, message);
               }
             });
           }
