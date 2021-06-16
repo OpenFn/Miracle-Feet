@@ -34,7 +34,6 @@ Object.keys(result).map(type => {
     delete x['Name'];
     //delete x['# Alert'];
     Object.keys(x).map(lang => {
-      console.log(languageCodeMap[lang])
       if (languageCodeMap[lang] && languageCodeMap[lang].length <= 3) {
         // This is how we identify language keys
         x[languageCodeMap[lang]] = x[lang].split(/[{}]+/).map(bit => {
