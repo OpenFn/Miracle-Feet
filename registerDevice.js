@@ -1,5 +1,7 @@
 //Job to update Devices based on new Patient records
-upsert('Devices__c', 'Device_ID__c', 
+upsert(
+  'Devices__c',
+  'Device_ID__c', 
  fields(
   field('Device_ID__c',dataValue('metadata.deviceID')),
   relationship(
