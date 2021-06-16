@@ -3,7 +3,7 @@
     {
       "# Alert": 1,
       "# SMS": 1,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -112,10 +112,10 @@
     {
       "# Alert": 2,
       "# SMS": 2,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "form.case.update.registration_date",
-      "Days from SSD": 0,
+      "Days from SSD": 1,
       "Clock Time": "9:00",
       "Min From SSD": "",
       "Country Recipients": "",
@@ -181,10 +181,10 @@
     {
       "# Alert": 2,
       "# SMS": 3,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "form.case.update.registration_date",
-      "Days from SSD": 0,
+      "Days from SSD": 1,
       "Clock Time": "10:00",
       "Min From SSD": "",
       "Country Recipients": "",
@@ -228,10 +228,10 @@
     {
       "# Alert": 2,
       "# SMS": 4,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "form.case.update.registration_date",
-      "Days from SSD": 1,
+      "Days from SSD": 2,
       "Clock Time": "9:00",
       "Min From SSD": "",
       "Country Recipients": "",
@@ -299,7 +299,7 @@
     {
       "# Alert": 3,
       "# SMS": 1,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -368,7 +368,7 @@
     {
       "# Alert": 3,
       "# SMS": 2,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -415,7 +415,7 @@
     {
       "# Alert": 3,
       "# SMS": 3,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -464,10 +464,10 @@
     {
       "# Alert": 4,
       "# SMS": 4,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
-      "Days from SSD": 1,
+      "Days from SSD": 2,
       "Clock Time": "10:00",
       "Min From SSD": "",
       "Country Recipients": "",
@@ -555,10 +555,10 @@
     {
       "# Alert": 4,
       "# SMS": 5,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
-      "Days from SSD": 2,
+      "Days from SSD": 3,
       "Clock Time": "10:00",
       "Min From SSD": "",
       "Country Recipients": "",
@@ -646,7 +646,7 @@
     {
       "# Alert": 4,
       "# SMS": 6,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 7,
@@ -715,7 +715,7 @@
     {
       "# Alert": 4,
       "# SMS": 7,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 7,
@@ -784,7 +784,7 @@
     {
       "# Alert": 4,
       "# SMS": 8,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 14,
@@ -873,7 +873,7 @@
     {
       "# Alert": 4,
       "# SMS": 9,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 21,
@@ -964,7 +964,7 @@
     {
       "# Alert": 4,
       "# SMS": 10,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 28,
@@ -1033,7 +1033,7 @@
     {
       "# Alert": 4,
       "# SMS": 11,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 35,
@@ -1136,7 +1136,7 @@
     {
       "# Alert": 4,
       "# SMS": 12,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 42,
@@ -1227,7 +1227,7 @@
     {
       "# Alert": 4,
       "# SMS": 13,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 49,
@@ -1326,7 +1326,7 @@
     {
       "# Alert": 4,
       "# SMS": 14,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 56,
@@ -1425,7 +1425,7 @@
     {
       "# Alert": 4,
       "# SMS": 15,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 63,
@@ -1526,7 +1526,7 @@
     {
       "# Alert": 4,
       "# SMS": 16,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 70,
@@ -1631,7 +1631,7 @@
     {
       "# Alert": 4,
       "# SMS": 17,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"casting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 77,
@@ -1724,7 +1724,7 @@
     {
       "# Alert": 5,
       "# SMS": 1,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"tenotomy",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes AND treatment = \"tenotomy",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -1835,7 +1835,7 @@
     {
       "# Alert": 6,
       "# SMS": 1,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -1926,7 +1926,7 @@
     {
       "# Alert": 6,
       "# SMS": 2,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -1995,7 +1995,7 @@
     {
       "# Alert": 6,
       "# SMS": 3,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -2044,10 +2044,10 @@
     {
       "# Alert": 7,
       "# SMS": 1,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
-      "Days from SSD": 1,
+      "Days from SSD": 2,
       "Clock Time": "10:00",
       "Min From SSD": "",
       "Country Recipients": "",
@@ -2157,10 +2157,10 @@
     {
       "# Alert": 7,
       "# SMS": 2,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
-      "Days from SSD": 1,
+      "Days from SSD": 2,
       "Clock Time": "11:00",
       "Min From SSD": "",
       "Country Recipients": "",
@@ -2238,7 +2238,7 @@
     {
       "# Alert": 7,
       "# SMS": 3,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 11,
@@ -2335,7 +2335,7 @@
     {
       "# Alert": 7,
       "# SMS": 4,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 11,
@@ -2396,7 +2396,7 @@
     {
       "# Alert": 7,
       "# SMS": 5,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 14,
@@ -2511,7 +2511,7 @@
     {
       "# Alert": 7,
       "# SMS": 6,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 21,
@@ -2602,7 +2602,7 @@
     {
       "# Alert": 7,
       "# SMS": 7,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 21,
@@ -2667,7 +2667,7 @@
     {
       "# Alert": 7,
       "# SMS": 8,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 28,
@@ -2764,7 +2764,7 @@
     {
       "# Alert": 7,
       "# SMS": 9,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 28,
@@ -2833,7 +2833,7 @@
     {
       "# Alert": 7,
       "# SMS": 10,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 35,
@@ -2910,7 +2910,7 @@
     {
       "# Alert": 7,
       "# SMS": 11,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 35,
@@ -2957,7 +2957,7 @@
     {
       "# Alert": 7,
       "# SMS": 12,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 42,
@@ -3048,7 +3048,7 @@
     {
       "# Alert": 7,
       "# SMS": 13,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 77,
@@ -3151,7 +3151,7 @@
     {
       "# Alert": 7,
       "# SMS": 14,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 77,
@@ -3240,7 +3240,7 @@
     {
       "# Alert": 7,
       "# SMS": 15,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 63,
@@ -3339,7 +3339,7 @@
     {
       "# Alert": 7,
       "# SMS": 16,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 70,
@@ -3430,7 +3430,7 @@
     {
       "# Alert": 7,
       "# SMS": 17,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 49,
@@ -3521,7 +3521,7 @@
     {
       "# Alert": 7,
       "# SMS": 18,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 49,
@@ -3590,7 +3590,7 @@
     {
       "# Alert": 7,
       "# SMS": 19,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 84,
@@ -3681,7 +3681,7 @@
     {
       "# Alert": 7,
       "# SMS": 20,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 91,
@@ -3790,7 +3790,7 @@
     {
       "# Alert": 7,
       "# SMS": 21,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_day",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 98,
@@ -3883,7 +3883,7 @@
     {
       "# Alert": 8,
       "# SMS": 1,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -3994,7 +3994,7 @@
     {
       "# Alert": 9,
       "# SMS": 2,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 7,
@@ -4095,7 +4095,7 @@
     {
       "# Alert": 9,
       "# SMS": 3,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 14,
@@ -4164,7 +4164,7 @@
     {
       "# Alert": 9,
       "# SMS": 4,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 14,
@@ -4211,7 +4211,7 @@
     {
       "# Alert": 9,
       "# SMS": 5,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 28,
@@ -4302,7 +4302,7 @@
     {
       "# Alert": 9,
       "# SMS": 6,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 42,
@@ -4393,7 +4393,7 @@
     {
       "# Alert": 9,
       "# SMS": 7,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 56,
@@ -4464,7 +4464,7 @@
     {
       "# Alert": 9,
       "# SMS": 8,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 84,
@@ -4567,7 +4567,7 @@
     {
       "# Alert": 9,
       "# SMS": 9,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 112,
@@ -4668,7 +4668,7 @@
     {
       "# Alert": 9,
       "# SMS": 10,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 140,
@@ -4759,7 +4759,7 @@
     {
       "# Alert": 9,
       "# SMS": 11,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 168,
@@ -4872,7 +4872,7 @@
     {
       "# Alert": 9,
       "# SMS": 12,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 196,
@@ -4979,7 +4979,7 @@
     {
       "# Alert": 9,
       "# SMS": 13,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 224,
@@ -5080,7 +5080,7 @@
     {
       "# Alert": 9,
       "# SMS": 14,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 252,
@@ -5177,7 +5177,7 @@
     {
       "# Alert": 9,
       "# SMS": 15,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 253,
@@ -5246,7 +5246,7 @@
     {
       "# Alert": 9,
       "# SMS": 16,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 280,
@@ -5315,7 +5315,7 @@
     {
       "# Alert": 9,
       "# SMS": 17,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 308,
@@ -5406,7 +5406,7 @@
     {
       "# Alert": 9,
       "# SMS": 18,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 336,
@@ -5509,7 +5509,7 @@
     {
       "# Alert": 9,
       "# SMS": 19,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 364,
@@ -5626,7 +5626,7 @@
     {
       "# Alert": 9,
       "# SMS": 20,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 365,
@@ -5697,7 +5697,7 @@
     {
       "# Alert": 10,
       "# SMS": 21,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 391,
@@ -5766,7 +5766,7 @@
     {
       "# Alert": 10,
       "# SMS": 22,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 419,
@@ -5857,7 +5857,7 @@
     {
       "# Alert": 10,
       "# SMS": 23,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 419,
@@ -5936,7 +5936,7 @@
     {
       "# Alert": 10,
       "# SMS": 24,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 447,
@@ -6027,7 +6027,7 @@
     {
       "# Alert": 10,
       "# SMS": 25,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 475,
@@ -6118,7 +6118,7 @@
     {
       "# Alert": 10,
       "# SMS": 26,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 503,
@@ -6209,7 +6209,7 @@
     {
       "# Alert": 10,
       "# SMS": 27,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 531,
@@ -6300,7 +6300,7 @@
     {
       "# Alert": 10,
       "# SMS": 28,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 573,
@@ -6369,7 +6369,7 @@
     {
       "# Alert": 10,
       "# SMS": 29,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 601,
@@ -6460,7 +6460,7 @@
     {
       "# Alert": 10,
       "# SMS": 30,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 643,
@@ -6555,7 +6555,7 @@
     {
       "# Alert": 10,
       "# SMS": 31,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 671,
@@ -6658,7 +6658,7 @@
     {
       "# Alert": 10,
       "# SMS": 32,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 699,
@@ -6727,7 +6727,7 @@
     {
       "# Alert": 10,
       "# SMS": 33,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 727,
@@ -6818,7 +6818,7 @@
     {
       "# Alert": 11,
       "# SMS": 34,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 755,
@@ -6887,7 +6887,7 @@
     {
       "# Alert": 11,
       "# SMS": 35,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 755,
@@ -6934,7 +6934,7 @@
     {
       "# Alert": 11,
       "# SMS": 36,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 783,
@@ -7025,7 +7025,7 @@
     {
       "# Alert": 11,
       "# SMS": 37,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 811,
@@ -7116,7 +7116,7 @@
     {
       "# Alert": 11,
       "# SMS": 38,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 839,
@@ -7209,7 +7209,7 @@
     {
       "# Alert": 11,
       "# SMS": 39,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 839,
@@ -7288,7 +7288,7 @@
     {
       "# Alert": 11,
       "# SMS": 40,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 867,
@@ -7379,7 +7379,7 @@
     {
       "# Alert": 11,
       "# SMS": 41,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 895,
@@ -7470,7 +7470,7 @@
     {
       "# Alert": 11,
       "# SMS": 42,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 923,
@@ -7573,7 +7573,7 @@
     {
       "# Alert": 11,
       "# SMS": 43,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 951,
@@ -7664,7 +7664,7 @@
     {
       "# Alert": 11,
       "# SMS": 44,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 979,
@@ -7733,7 +7733,7 @@
     {
       "# Alert": 11,
       "# SMS": 45,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1007,
@@ -7830,7 +7830,7 @@
     {
       "# Alert": 11,
       "# SMS": 46,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1035,
@@ -7923,7 +7923,7 @@
     {
       "# Alert": 11,
       "# SMS": 47,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1036,
@@ -8002,7 +8002,7 @@
     {
       "# Alert": 11,
       "# SMS": 48,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1063,
@@ -8071,7 +8071,7 @@
     {
       "# Alert": 11,
       "# SMS": 49,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1091,
@@ -8164,7 +8164,7 @@
     {
       "# Alert": 12,
       "# SMS": 50,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1119,
@@ -8255,7 +8255,7 @@
     {
       "# Alert": 12,
       "# SMS": 51,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1147,
@@ -8346,7 +8346,7 @@
     {
       "# Alert": 12,
       "# SMS": 52,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1175,
@@ -8449,7 +8449,7 @@
     {
       "# Alert": 12,
       "# SMS": 53,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1203,
@@ -8518,7 +8518,7 @@
     {
       "# Alert": 12,
       "# SMS": 54,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1231,
@@ -8609,7 +8609,7 @@
     {
       "# Alert": 12,
       "# SMS": 55,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1259,
@@ -8700,7 +8700,7 @@
     {
       "# Alert": 12,
       "# SMS": 56,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1287,
@@ -8803,7 +8803,7 @@
     {
       "# Alert": 12,
       "# SMS": 57,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1315,
@@ -8913,7 +8913,7 @@
     {
       "# Alert": 12,
       "# SMS": 58,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1343,
@@ -9016,7 +9016,7 @@
     {
       "# Alert": 12,
       "# SMS": 59,
-      "": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
+      "Condition": "send_sms = 'on' AND sms_opt_in_educational = 'yes' AND treatment = \"bracing_night",
       "Recipients": "",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 1371,
@@ -9109,7 +9109,7 @@
     {
       "# Alert": 13,
       "# SMS": 1,
-      "": "send_sms = 'on' AND treatment = \"complete",
+      "Condition": "send_sms = 'on' AND treatment = \"complete",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
@@ -9202,7 +9202,7 @@
     {
       "# Alert": 14,
       "# SMS": 1,
-      "": "sms_opt_in = 'yes' AND send_sms = 'on' AND brace_problems_type = \"not_wearing_enough",
+      "Condition": "sms_opt_in = 'yes' AND send_sms = 'on' AND brace_problems_type = \"not_wearing_enough",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "form.calcs.save.last_visit_date",
       "Days from SSD": 6,
@@ -9273,7 +9273,7 @@
     {
       "# Alert": 15,
       "# SMS": 1,
-      "": "send_sms = 'on' AND brace_problems_type = \"child_not_tolerating",
+      "Condition": "send_sms = 'on' AND brace_problems_type = \"child_not_tolerating",
       "Recipients": "",
       "Schedule Start Date (SSD)": "form.calcs.save.last_visit_date",
       "Days from SSD": 6,
@@ -9368,7 +9368,7 @@
     {
       "# Alert": 15,
       "# SMS": 2,
-      "": "send_sms = 'on' AND brace_problems_type = \"child_not_tolerating",
+      "Condition": "send_sms = 'on' AND brace_problems_type = \"child_not_tolerating",
       "Recipients": "",
       "Schedule Start Date (SSD)": "form.calcs.save.last_visit_date",
       "Days from SSD": 13,
@@ -9479,7 +9479,7 @@
     {
       "# Alert": 16,
       "# SMS": 1,
-      "": "send_sms = 'on' AND brace_problems_type = \"family_not_accepting",
+      "Condition": "send_sms = 'on' AND brace_problems_type = \"family_not_accepting",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "form.calcs.save.last_visit_date",
       "Days from SSD": 0,
@@ -9590,7 +9590,7 @@
     {
       "# Alert": 17,
       "# SMS": 1,
-      "": "sms_opt_in = 'yes' AND send_sms = 'on' AND [ NEW PATH ALERT - 3 options: form.calcs.general.next_visit_date != \"\" || form.calcs.save.next_visit_date != \"\"  || form.calcs.next_visit_date.next_visit_date != \"\"]",
+      "Condition": "sms_opt_in = 'yes' AND send_sms = 'on' AND [form.calcs.general.next_visit_date != \"\" || form.calcs.save.next_visit_date != \"\"  || form.calcs.next_visit_date.next_visit_date != \"\"]",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "form.calcs.general.next_visit_date || form.calcs.save.next_visit_date || form.calcs.next_visit_date.next_visit_date",
       "Days from SSD": -2,
@@ -9739,7 +9739,7 @@
     {
       "# Alert": 18,
       "# SMS": 1,
-      "": "sms_opt_in = 'yes' AND send_sms = 'on' AND [form.calcs.general.next_visit_date != \"\" || form.calcs.next_visit_date.next_visit_date ]",
+      "Condition": "sms_opt_in = 'yes' AND send_sms = 'on' AND [form.calcs.general.next_visit_date != \"\" || form.calcs.next_visit_date.next_visit_date ]",
       "Recipients": "",
       "Schedule Start Date (SSD)": "form.calcs.general.next_visit_date || form.calcs.next_visit_date.next_visit_date",
       "Days from SSD": 1,
@@ -9852,7 +9852,7 @@
     {
       "# Alert": 18,
       "# SMS": 2,
-      "": "sms_opt_in = 'yes' AND send_sms = 'on' AND [form.calcs.general.next_visit_date != \"\" || form.calcs.next_visit_date.next_visit_date != \"\" ]",
+      "Condition": "sms_opt_in = 'yes' AND send_sms = 'on' AND [form.calcs.general.next_visit_date != \"\" || form.calcs.next_visit_date.next_visit_date != \"\" ]",
       "Recipients": "",
       "Schedule Start Date (SSD)": "form.calcs.general.next_visit_date || form.calcs.next_visit_date.next_visit_date",
       "Days from SSD": 1,
@@ -9923,7 +9923,7 @@
     {
       "# Alert": 19,
       "# SMS": 1,
-      "": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"suspended",
+      "Condition": "sms_opt_in = 'yes' AND send_sms = 'on' AND treatment = \"suspended",
       "Recipients": "The Case",
       "Schedule Start Date (SSD)": "now",
       "Days from SSD": 0,
