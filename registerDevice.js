@@ -3,7 +3,7 @@ upsert(
     'Devices__c',
     'Device_ID__c', 
   fields(
-    field('Device_ID__c',dataValue('metadata.deviceID')),
+    field('Device_ID__c',dataValue('form.case.@case_id')),
     relationship(
       'Clinic__r',
       'CAST_Location_ID__c',
