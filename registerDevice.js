@@ -5,7 +5,7 @@ upsert(
   fields(
     field('Device_ID__c',dataValue('metadata.deviceID')),
     relationship(
-      'Clinic__c',
+      'Clinic__r',
       'CAST_Location_ID__c',
       dataValue('form.case.create.owner_id')
     ),
