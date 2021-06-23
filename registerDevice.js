@@ -74,7 +74,7 @@ alterState(state => {
     'test_clinic3',
     'test_clinic4',
   ];
-  const { clinic_code } = dataValue('form.case.update.clinic_code');
+  const { clinic_code } = dataValue('form.case.update');
   console.log(clinic_code)
   if (discardedClinics.includes(clinic_code)) {
     console.log(
