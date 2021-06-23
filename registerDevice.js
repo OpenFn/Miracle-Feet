@@ -1,5 +1,7 @@
 //Job to update Devices based on new Patient records
- const discardedClinics = [
+ 
+ alterState(state => {
+   const discardedClinics = [
     'test_bangladesh',
     'bol_test',
     'brazil_test',
@@ -72,7 +74,6 @@
     'test_clinic3',
     'test_clinic4',
   ];
- alterState(state => {
   const { clinic_code } = state.data.form.case.update;
   if (state.discardedClinics.includes(clinic_code)) {
     console.log(
