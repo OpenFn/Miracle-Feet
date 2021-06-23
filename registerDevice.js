@@ -1,6 +1,6 @@
 //Job to update Devices based on new Patient records
  
- alterState(state => {
+alterState(state => {
    const discardedClinics = [
     'test_bangladesh',
     'bol_test',
@@ -74,7 +74,7 @@
     'test_clinic3',
     'test_clinic4',
   ];
-  const { clinic_code } = dataValue('form.case.update');
+  const { clinic_code } = dataValue('form.case.update.clinic_code');
   if (discardedClinics.includes(clinic_code)) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
@@ -82,20 +82,21 @@
   return state;
 
   } else {
-upsert(
-    'Devices__c',
-    'Device_ID__c', 
-  fields(
-    field('Device_ID__c', dataValue('metadata.deviceID')),
-    relationship(
-      'Clinic__r',
-      'CAST_Location_ID__c',
-      dataValue('form.case.create.owner_id')
-    ),
-    field('CAST_Version__c', dataValue('metadata.app_build_version')),
-    field('CommCare_Version__c', dataValue('metadata.commcare_version')),
-    field('CommCare_Username__c', dataValue('metadata.username')),
-    field('CommCare_User_ID__c', dataValue('metadata.userID')),
-));
-}
-})
+      upsert(
+          'Devices__c',
+          'Device_ID__c', 
+        fields(
+          field('Device_ID__c', dataValue('metadata.deviceID')),
+          relationship(
+            'Clinic__r',
+            'CAST_Location_ID__c',
+            dataValue('form.case.create.owner_id')
+          ),
+          field('CAST_Version__c', dataValue('metadata.app_build_version')),
+          field('CommCare_Version__c', dataValue('metadata.commcare_version')),
+          field('CommCare_Username__c', dataValue('metadata.username')),
+          field('CommCare_User_ID__c', dataValue('metadata.userID')),
+      ));
+    }
+ }
+)
