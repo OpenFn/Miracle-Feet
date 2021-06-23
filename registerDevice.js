@@ -74,7 +74,7 @@
   ];
 
   const { clinic_code } = state.data.form.case.update;
-  if (state.discardedClinics.includes(clinic_code)) {
+  if (discardedClinics.includes(clinic_code)) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
