@@ -72,14 +72,15 @@
     'test_clinic3',
     'test_clinic4',
   ];
-
+ alterState(state => {
   const { clinic_code } = state.data.form.case.update;
   if (state.discardedClinics.includes(clinic_code)) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
+  return state;
+
   } else {
-    
 upsert(
     'Devices__c',
     'Device_ID__c', 
@@ -96,3 +97,4 @@ upsert(
     field('CommCare_User_ID__c', dataValue('metadata.userID')),
 ));
 }
+})
