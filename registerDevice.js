@@ -80,8 +80,9 @@ alterState(state => {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
+  return state;
   } else {
-      upsert(
+      return upsert(
           'Devices__c',
           'Device_ID__c', 
         fields(
