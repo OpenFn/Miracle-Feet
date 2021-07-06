@@ -67,6 +67,7 @@ alterState(state => {
     'test_somalia',
     'south_sudan_test_clinic',
     'sri_lanka_test_clinic',
+    'srilanka_test',
     'tanzania_test_clinic',
     'uganda_test_clinic',
     'test_clinic1',

@@ -450,7 +450,7 @@ alterState(async state => {
   const { form } = data;
   const { calcs } = form;
   const language_code =
-    calcs.sms.sms_language || calcs.sms.language_code || 'English';
+    calcs.sms.sms_language || 'English';
 
   function fetch_data_from_multiple_path(value) {
     let paths = [];
