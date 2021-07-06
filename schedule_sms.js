@@ -201,7 +201,7 @@ alterState(state => {
       if (treatment === 'bracing_day' || treatment === 'bracing_night') {
         if (calcs.save && calcs.save.brace_problems_type !== '') {
           const { brace_problems_type } = calcs.save;
-          if (brace_problems_type !== null) {
+          if (brace_problems_type) {
             const braceProblemsTypes = brace_problems_type.split(' ');
             braceProblemsTypes.forEach(brace_problems_type =>
               alertsToDisable.push(treatmentMap[brace_problems_type])
@@ -317,7 +317,6 @@ alterState(state => {
       let paths = [];
       const path_arrays = next_visit_date_path.split(' || ');
       const last_visit_path_arrays = last_visit_date_path.split(' || ');
-
       paths = path_arrays.filter(path => {
         return dataValue(`${path}`)(state) !== undefined;
       });
@@ -340,7 +339,7 @@ alterState(state => {
       // TEAL CONDITIONS =========================================================
       if (calcs.save && calcs.save.brace_problems_type !== '') {
         const { brace_problems_type } = calcs.save;
-        if (brace_problems_type !== null && brace_problems_type !== 'none') {
+        if (brace_problems_type && brace_problems_type !== 'none') {
           const braceProblemsTypes = brace_problems_type.split(' ');
           braceProblemsTypes.forEach(brace_problems_type =>
             alertsToSend.push(treatmentMap[brace_problems_type])
@@ -355,7 +354,7 @@ alterState(state => {
       ) {
         if (calcs.save && calcs.save.brace_problems_type !== '') {
           const { brace_problems_type } = calcs.save;
-          if (brace_problems_type !== null && brace_problems_type !== 'none') {
+          if (brace_problems_type && brace_problems_type !== 'none') {
             const braceProblemsTypes = brace_problems_type.split(' ');
             braceProblemsTypes.forEach(brace_problems_type =>
               alertsToDisable.push(treatmentMap[brace_problems_type])
