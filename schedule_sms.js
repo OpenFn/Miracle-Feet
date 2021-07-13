@@ -449,8 +449,7 @@ alterState(async state => {
   const { alertsToSend, alertsToDisable, mapping, data } = state;
   const { form } = data;
   const { calcs } = form;
-  const language_code =
-    calcs.sms.sms_language || 'English';
+  const language_code = calcs.sms.sms_language || 'English';
 
   function fetch_data_from_multiple_path(value) {
     let paths = [];
@@ -470,12 +469,10 @@ alterState(async state => {
   }
 
   // SCHEDULE SMS PROCESS =======================================================
-  // alertsToSend.forEach( alert => {
   for (let alert of alertsToSend) {
     console.log('============= START SMS SCHEDULE =============');
     const { key, bulkPrefix } = alert;
     delete state.previousSMS;
-    // mapping[key].map(async rule => {
     for (let rule of mapping[key]) {
       console.log('=======================================');
       const start_date =
@@ -529,11 +526,12 @@ alterState(async state => {
       const dateBeforeTZ = sendAtDate;
       const timezone = calcs.sms.time_zone;
       if (timezone !== '') {
-        sendAtDateTimeZone =
+        sendAtDateTimeZone = [
           sendAtDate
             .toISOString()
-            .substring(0, sendAtDate.toISOString().length - 1) +
-          `${state.timeZoneMap[timezone]}`;
+            .substring(0, sendAtDate.toISOString().length - 1),
+          state.timeZoneMap[timezone],
+        ].join('');
         sendAtDate = new Date(sendAtDateTimeZone);
       }
       // end time zone add
@@ -663,7 +661,6 @@ alterState(async state => {
 
           if (bulkPrefix === 'visitAfter-') {
             return deleteSMS(bulkId).then(res => {
-              // bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}-${next_visit_date}`;
               bulkId = `${bulkPrefix}${
                 rule['# SMS']
               }-${checkCaseId()}-${next_visit_date}`;
@@ -694,19 +691,15 @@ alterState(async state => {
       // END Send SMS ================================================
       console.log('=======================================\n');
     }
-    // });
     console.log('============= END SMS SCHEDULE =============\n');
   }
-  // });
 
   // DISABLE SMS PROCESS ========================================================
   for (let alert of alertsToDisable) {
-    // alertsToDisable.forEach(alert => {
     const { key, bulkPrefix } = alert;
     console.log('============= START SMS CANCELATION =============');
     for (let rule of mapping[key]) {
       console.log('=======================================');
-      // mapping[key].map(rule => {
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
       // let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
       let bulkId = `${bulkPrefix}${rule['# SMS']}-${checkCaseId()}`;
@@ -738,9 +731,7 @@ alterState(async state => {
       console.log('=======================================');
     }
     console.log('============= END SMS CANCELATION =============');
-    // });
   }
-  // });
   // ============================================================================
 
   return state;
