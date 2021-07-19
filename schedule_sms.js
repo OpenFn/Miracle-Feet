@@ -496,11 +496,12 @@ alterState(async state => {
         fetch_data_from_multiple_path(rule['Schedule Start Date (SSD)']) ||
         rule['Schedule Start Date (SSD)'];
 
-      // console.log('start date', start_date);
       const date =
         start_date === 'now' ? Date.now() : dataValue(`${start_date}`)(state);
 
-      // console.log('dat', date);
+      console.log(
+        `For ${alert.key}, we're looking in ${start_date} and finding ${date}`
+      );
       let sendAtDate = new Date(date);
 
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
