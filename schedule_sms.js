@@ -334,14 +334,14 @@ alterState(state => {
       let paths = [];
       const path_arrays = next_visit_date_path.split(' || ');
       const last_visit_path_arrays = last_visit_date_path.split(' || ');
-      paths = path_arrays.filter(path => {
-        return dataValue(`${path}`)(state) !== undefined;
-      });
+      paths = path_arrays.filter(path => dataValue(`${path}`)(state));
       last_visit_paths = last_visit_path_arrays.filter(path => {
         return dataValue(`${path}`)(state) !== undefined;
       });
-      if (paths[0] !== undefined) {
-        const date_value = dataValue(`${paths[0]}`)(state);
+      const date_value = paths[0] && dataValue(`${paths[0]}`)(state);
+      console.log('next_visit_paths:', paths);
+      console.log('first (selected) next_visit_date:', date_value);
+      if (date_value) {
         if (new Date(date_value).getDate() - new Date().getDate() > 2) {
           alertsToSend.push(treatmentMap['reminder_before']);
         }
