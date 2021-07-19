@@ -492,6 +492,10 @@ alterState(async state => {
     delete state.previousSMS;
     for (let rule of mapping[key]) {
       console.log('=======================================');
+      console.log(
+        `rule ${key} 'Schedule Start Date (SSD):`,
+        rule['Schedule Start Date (SSD)']
+      );
       const start_date =
         fetch_data_from_multiple_path(rule['Schedule Start Date (SSD)']) ||
         rule['Schedule Start Date (SSD)'];
@@ -500,8 +504,12 @@ alterState(async state => {
         start_date === 'now' ? Date.now() : dataValue(`${start_date}`)(state);
 
       console.log(
-        `For ${alert.key}, we're looking in ${start_date} and finding ${date}`
+        `For ${alert.key}, we're looking in ${start_date} and finding:`,
+        date
       );
+
+      if (!date) throw "Error... you can't schedule an alert without a date.";
+
       let sendAtDate = new Date(date);
 
       // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
