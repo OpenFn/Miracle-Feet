@@ -335,9 +335,9 @@ alterState(state => {
       const path_arrays = next_visit_date_path.split(' || ');
       const last_visit_path_arrays = last_visit_date_path.split(' || ');
       paths = path_arrays.filter(path => dataValue(`${path}`)(state));
-      last_visit_paths = last_visit_path_arrays.filter(path => {
-        return dataValue(`${path}`)(state) !== undefined;
-      });
+      last_visit_paths = last_visit_path_arrays.filter(path =>
+        dataValue(`${path}`)(state)
+      );
       const date_value = paths[0] && dataValue(`${paths[0]}`)(state);
       console.log('next_visit_paths:', paths);
       console.log('first (selected) next_visit_date:', date_value);
@@ -473,7 +473,7 @@ alterState(async state => {
     if (value.includes('||')) {
       const path_arrays = value.split(' || ');
       paths = path_arrays.filter(path => {
-        return dataValue(`${path}`)(state) !== undefined;
+        return dataValue(`${path}`)(state);
       });
       return paths[0];
     }
