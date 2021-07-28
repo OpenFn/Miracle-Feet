@@ -500,7 +500,7 @@ alterState(async state => {
         fetch_data_from_multiple_path(rule['Schedule Start Date (SSD)']) ||
         rule['Schedule Start Date (SSD)'];
 
-      console.log("Start date fetched: ", start_date)
+      console.log('Start date fetched: ', start_date);
 
       const date =
         start_date === 'now' ? Date.now() : dataValue(`${start_date}`)(state);
@@ -510,7 +510,11 @@ alterState(async state => {
         date
       );
 
-      if (!date) throw "Error... you can't schedule an alert without a date.";
+      // if (!date) throw "Error... you can't schedule an alert without a date.";
+      if (!date) {
+        console.log('Skipping schedule because date is empty');
+        break;
+      }
 
       let sendAtDate = new Date(date);
 
