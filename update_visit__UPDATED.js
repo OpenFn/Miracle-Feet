@@ -566,7 +566,7 @@ alterState(state => {
               state.data.properties.patient_name +
               ' (' +
               state.data.properties.patient_id +
-              ') (' +
+              ')' + '(' +
               state.data.properties.visit_date +
               ')'
             );
