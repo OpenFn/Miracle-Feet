@@ -568,6 +568,7 @@ alterState(async state => {
       }
       // end time zone add
       console.log('before timezone', dateBeforeTZ.toISOString());
+      console.log('after timezone', sendAtDate.toISOString());
 
       // Delay sending date =========================================
       if (bulkId.split('-')[0] === 'registration') {
