@@ -507,7 +507,7 @@ alterState(async state => {
 
       console.log(
         `For ${alert.key}, we're looking in ${start_date} and finding:`,
-        new Date(date)
+        new Date(date).toISOString()
       );
 
       // if (!date) throw "Error... you can't schedule an alert without a date.";
