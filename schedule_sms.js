@@ -195,6 +195,8 @@ alterState(state => {
   let alertsToDisable = [];
 
   const { username } = state.data.metadata;
+  // When Nigeria username received, add it as ${NigeriaUsername} as in example below
+  // if (username.includes('test') || username.includes('practica')) || username === ${NigeriaUsername} {
   if (username.includes('test') || username.includes('practica')) {
     // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
     if (send_sms === 'off') {
