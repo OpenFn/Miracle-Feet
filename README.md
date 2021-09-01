@@ -9,7 +9,7 @@ MiracleFeet has configured CommCare to deliver the "CAST" application to support
 MiracleFeet has implemented OpenFn to automate one-way data integration between CAST (CommCare) and the MF Global System (Salesforce) for real-time monitoring and reporting across CommCare form submissions and case updates. 
 
 ### Technical Overview
-How it works...
+
 1. Users submit new `forms` or modify `cases` in CommCare
 2. A webhook configured in the CommCareHQ project automatically forwards this data to MiracleFeet's OpenFn project `Inbox` as `Messages`
 3. OpenFn jobs are triggered to process & upload this CommCare data to Salesforce
