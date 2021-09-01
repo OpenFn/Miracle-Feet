@@ -181,6 +181,8 @@ alterState(state => {
     PHI: 'PHI',
   };
 
+  const allowedUsernames = ['test', 'practica', 'umuahia01'];
+
   const { form } = state.data;
   const { calcs, properties, close_reason, intro } = form;
   const {
@@ -194,11 +196,21 @@ alterState(state => {
   let alertsToSend = [];
   let alertsToDisable = [];
 
+  const checker = (value, array) => {
+    for (let i = 0; i < array.length; i++) {
+      if (value.includes(array[i])) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const { username } = state.data.metadata;
   // When Nigeria username received, add it as nigeriaUsername below and replace line with commented
-  const nigeriaUsername= "umuahia01" 
-  if (username.includes('test') || username.includes('practica') || username === nigeriaUsername) {
-  // if (username.includes('test') || username.includes('practica')) {
+  const nigeriaUsername = 'umuahia01';
+
+  if (checker(username, allowedUsernames)) {
+    // if (username.includes('test') || username.includes('practica')) {
     // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
     if (send_sms === 'off') {
       console.log('Patient opted out of all SMS alerts.');
