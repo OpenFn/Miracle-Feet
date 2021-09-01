@@ -92,8 +92,8 @@ Administrator Training [Slides](https://docs.google.com/presentation/d/1b00y9VBg
 Change Management Training [Slides](https://docs.google.com/presentation/d/1chirtiqxa2LRrxl5g2o2D6vT8aCAQsWIJ1DoITzI5_A/edit?usp=sharing)
 
 ### SMS Implementation Next Steps 
-- [ ] Finish testing across countries to sign-off on alert scheduling logic & content. [See Test Suite](https://docs.google.com/spreadsheets/d/1ZR60vDaejfWva5lkLXn2o362vpqLX0RWwW31Na3l9hg/edit?usp=drive_web&ouid=101430720901034004945) for detailed unit tests. 
+- [x] Finish testing across countries to sign-off on alert scheduling logic & content. [See Test Suite](https://docs.google.com/spreadsheets/d/1ZR60vDaejfWva5lkLXn2o362vpqLX0RWwW31Na3l9hg/edit?usp=drive_web&ouid=101430720901034004945) for detailed unit tests. 
 - [ ] Remove code in OpenFn job that executes flow only for test users
 - [ ] Confirm all Infobip sender IDs are correct
-- [ ] System admin training on solution management 
+- [x] System admin training on solution management 
 - [ ] ...
