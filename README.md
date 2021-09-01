@@ -88,7 +88,7 @@ To add/remove alerts or reminders, update CommCare field names, change opt-in/op
 
 ### Training
 
-Administrator Training [Slides](https://docs.google.com/presentation/d/1b00y9VBgJ5zDjuRAuwMWBrnrlkypx4Wqvo0TQu6Pfdg/edit?usp=sharing)
+Administrator Training [Slides](https://docs.google.com/presentation/d/1b00y9VBgJ5zDjuRAuwMWBrnrlkypx4Wqvo0TQu6Pfdg/edit?usp=sharing)  
 Change Management Training [Slides](https://docs.google.com/presentation/d/1chirtiqxa2LRrxl5g2o2D6vT8aCAQsWIJ1DoITzI5_A/edit?usp=sharing)
 
 ### SMS Implementation Next Steps 
