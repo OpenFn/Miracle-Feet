@@ -197,8 +197,8 @@ alterState(state => {
   const { username } = state.data.metadata;
   // When Nigeria username received, add it as nigeriaUsername below and replace line with commented
   const nigeriaUsername= "umuahia01" 
-  // if (username.includes('test') || username.includes('practica') || username === nigeriaUsername) {
-  if (username.includes('test') || username.includes('practica')) {
+  if (username.includes('test') || username.includes('practica') || username === nigeriaUsername) {
+  // if (username.includes('test') || username.includes('practica')) {
     // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
     if (send_sms === 'off') {
       console.log('Patient opted out of all SMS alerts.');
