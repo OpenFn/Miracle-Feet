@@ -223,7 +223,7 @@ alterState(state => {
       // =======================================================================
       // RED CONDITIONS=========================================================
       if (treatment && treatment !== 'stopped')
-        // Check if treament !== stopped
+        // Check if treatment !== stopped
         alertsValueMap[treatment].forEach(value => {
           alertsToDisable.push(treatmentMap[value]);
         });
@@ -235,8 +235,10 @@ alterState(state => {
           const { brace_problems_type } = calcs.save;
           if (brace_problems_type) {
             const braceProblemsTypes = brace_problems_type.split(' ');
-            braceProblemsTypes.forEach(brace_problems_type =>
-              alertsToDisable.push(treatmentMap[brace_problems_type])
+            braceProblemsTypes.forEach(
+              brace_problems_type =>
+                brace_problems_type !== 'none' &&
+                alertsToDisable.push(treatmentMap[brace_problems_type])
             );
           }
         }
