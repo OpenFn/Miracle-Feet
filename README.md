@@ -79,12 +79,16 @@ When a patient is marked as stopped, suspended or completed treatment, they will
 
 ### Ongoing Management
 
-To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:
+**To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:**
 1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=262234774)).
 2. Make your edits in the new sheet (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688).
 3. Notify OpenFn support at support@openfn.org to implement the changes.
 
-To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.
+**To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.**
+
+Currently SMS scheduling only happens for CommCare usernames that are explicitly added to the job. **To add a new clinic username to run scheduling for, add it to [`allowedUsernames`](https://github.com/OpenFn/Miracle-Feet/blob/0bfae75ee8986c975085db6005ce17b40e694b0f/schedule_sms.js#L184)**, for example:
+
+ `const allowedUsernames = ['umuahia01', `testClinicGuinea];`
 
 ### Training
 
