@@ -4,7 +4,7 @@ Jobs for Miracle Feet's CommCare to Salesforce integration, using the Open Funct
 **N.B., all changes to the `master` branch will be automatically deployed to Open Function.**
 
 ## 1. CommCare-Salesforce Integration for Automated Data Sync
-MiracleFeet has configured CommCare to deliver the "CAST" application to support partner treatment providers and service delivery across 26 countries. [Read more here](). 
+MiracleFeet has configured CommCare to deliver the "CAST" application to support partner treatment providers and service delivery across 26 countries. 
 
 MiracleFeet has implemented OpenFn to automate one-way data integration between CAST (CommCare) and the MF Global System (Salesforce) for real-time monitoring and reporting across CommCare form submissions and case updates. 
 
@@ -80,8 +80,8 @@ When a patient is marked as stopped, suspended or completed treatment, they will
 ### Ongoing Management
 
 **To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:**
-1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=262234774)).
-2. Make your edits in the new sheet (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688).
+1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=262234774).
+2. Make your edits in the new sheet (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688)).
 3. Notify OpenFn support at support@openfn.org to implement the changes.
 
 **To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.**
