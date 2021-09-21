@@ -206,6 +206,8 @@ alterState(state => {
   };
 
   const { username } = state.data.metadata;
+  const { landline } = state.data.form.case.update
+  console.log(landline)
   
   if (checker(username, allowedUsernames)) {
     // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
@@ -244,7 +246,7 @@ alterState(state => {
       alertsToDisable.push(treatmentMap['reminder_before']);
       alertsToDisable.push(treatmentMap['reminder_after']);
     }
-    if (send_sms === 'on') {
+    if (send_sms === 'on' ) {
       // 2. send_sms = "on" AND sms_opt_in_educational = "no" then the patient opted out of educational SMS alerts.
 
       if (sms_opt_in_educational === 'no') {
@@ -286,7 +288,7 @@ alterState(state => {
         alertsToDisable.push(treatmentMap['reminder_after']);
       }
     }
-    if (sms_opt_in === 'yes' && send_sms === 'on') {
+    if (sms_opt_in === 'yes' && send_sms === 'on' && landline === 'no') {
       // Those 2 conditions are implicitely handled in 290-309
       // if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
       // if (treatment === 'suspended')
