@@ -90,18 +90,20 @@
         "remove_zero": "6254793666",
         "starts_with_zero": "yes"
       },
-      "sms": {
-        "contact_backend_id": "MOBILE_BACKEND_MACH",
-        "contact_phone_number": "2346254793666",
-        "language_code": "en",
-        "pronoun_he_she": "she",
-        "pronoun_him_her": "her",
-        "pronoun_his_her": "her",
-        "send_sms": "on",
+        "sms": {
+        "contact_backend_id": "",
+        "contact_phone_number": "255000000000",
+        "language_code": "",
+        "pronoun_he_she": "",
+        "pronoun_him_her": "",
+        "pronoun_his_her": "",
+        "send_sms": "",
+        "sms_language": "Swahili",
         "sms_opt_in": "yes",
         "sms_opt_in_educational": "yes",
-        "time_zone": "Africa/Lagos",
-        "treatment": ""
+        "time_zone": "Africa/Nairobi",
+        "treatment": "",
+        "use_of_cast": "CAST only"
       }
     },
     "case": {
