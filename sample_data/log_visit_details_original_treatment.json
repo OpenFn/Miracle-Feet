@@ -283,17 +283,20 @@
         "last_visit_date": "2020-12-17"
       },
       "sms": {
-        "contact_backend_id": "MOBILE_BACKEND_MACH",
-        "contact_phone_number": "23411162533333",
-        "language_code": "en",
-        "pronoun_he_she": "she",
-        "pronoun_him_her": "her",
-        "pronoun_his_her": "her",
-        "send_sms": "on",
-        "sms_opt_in": "yes",
-        "sms_opt_in_educational": "yes",
-        "time_zone": "Africa/Lagos",
-        "treatment": "bracing_day"
+        "contact_backend_id": "",
+        "contact_phone_number": "255",
+        "language_code": "",
+        "original_treatment": "bracing_night",
+        "pronoun_he_she": "",
+        "pronoun_him_her": "",
+        "pronoun_his_her": "",
+        "send_sms": "",
+        "sms_language": "Swahili",
+        "sms_opt_in": "no",
+        "sms_opt_in_educational": "no",
+        "time_zone": "Africa/Nairobi",
+        "treatment": "bracing_night",
+        "use_of_cast": "CAST only"
       },
       "tenotomy": {
         "date_tenotomy": null,
