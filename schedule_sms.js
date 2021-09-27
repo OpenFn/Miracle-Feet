@@ -288,7 +288,7 @@ alterState(state => {
         alertsToDisable.push(treatmentMap['reminder_after']);
       }
     }
-    if (sms_opt_in === 'yes' && send_sms === 'on' && landline !== 'yes') {
+    if (sms_opt_in === 'yes' && send_sms === 'on' &&  (landline && landline !== 'yes')) {
       // Those 2 conditions are implicitely handled in 290-309
       // if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
       // if (treatment === 'suspended')
