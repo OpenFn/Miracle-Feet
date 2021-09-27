@@ -181,7 +181,7 @@ alterState(state => {
     PHI: 'PHI',
   };
 
-  const allowedUsernames = ['umuahia01', 'test_south_sudan', 'test_tanzania'];
+  const allowedUsernames = ['umuahia01'];
 
   const { form } = state.data;
   const { calcs, properties, close_reason, intro } = form;
@@ -206,7 +206,7 @@ alterState(state => {
   };
 
   const { username } = state.data.metadata;
-  const { landline } = state.data.form.case.update;
+  const { landline } = state.data.form.case;
 
 
   if (checker(username, allowedUsernames)) {
@@ -288,7 +288,7 @@ alterState(state => {
         alertsToDisable.push(treatmentMap['reminder_after']);
       }
     }
-    if (sms_opt_in === 'yes' && send_sms === 'on' &&  (landline && landline !== 'yes')) {
+    if (sms_opt_in === 'yes' && send_sms === 'on' &&  (update ?? && update.landline && update.landline !== 'yes')) {
       // Those 2 conditions are implicitely handled in 290-309
       // if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
       // if (treatment === 'suspended')
