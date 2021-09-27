@@ -206,8 +206,7 @@ alterState(state => {
   };
 
   const { username } = state.data.metadata;
-  const { landline } = state.data.form.case;
-
+  const { update } = state.data.form.case;
 
   if (checker(username, allowedUsernames)) {
     // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
@@ -288,114 +287,120 @@ alterState(state => {
         alertsToDisable.push(treatmentMap['reminder_after']);
       }
     }
-    if (sms_opt_in === 'yes' && send_sms === 'on' &&  (update ?? && update.landline && update.landline !== 'yes')) {
-      // Those 2 conditions are implicitely handled in 290-309
-      // if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
-      // if (treatment === 'suspended')
-      //   alertsToSend.push(treatmentMap['suspended']);
+    if (
+      !update ||
+      !update.landline ||
+      (update && update.landline && update.landline !== 'yes')
+    ) {
+      if (sms_opt_in === 'yes' && send_sms === 'on') {
+        // Those 2 conditions are implicitely handled in 290-309
+        // if (treatment === 'complete') alertsToSend.push(treatmentMap['complete']);
+        // if (treatment === 'suspended')
+        //   alertsToSend.push(treatmentMap['suspended']);
 
-      if (original_treatment && original_treatment !== treatment) {
-        if (
-          treatment === 'suspended' ||
-          treatment === 'complete' ||
-          (close_reason && close_reason !== '')
-        ) {
-          // This condition does not need to be repeated here because ==
-          // it is always done in line ~281 if original_treatment exist.
-          // alertsValueMap[original_treatment].forEach(value => {
-          //   alertsToDisable.push(treatmentMap[value]);
-          // });
-
-          // REMINDERS ===============================================================
-          alertsToDisable.push(treatmentMap['reminder_before']);
-          alertsToDisable.push(treatmentMap['reminder_after']);
-          // =========================================================================
-        }
-      }
-
-      if (sms_opt_in_educational === 'yes') {
-        // YELLOW CONDITIONS =====================================================
-        if (form['@name'] === 'Register New Patient') {
-          alertsToSend.push(treatmentMap['registration']);
-          alertsToSend.push(treatmentMap['treatmentIntro']);
-        }
-        // =======================================================================
-        // RED CONDITIONS ========================================================
-        if (treatment && treatment !== 'stopped') {
+        if (original_treatment && original_treatment !== treatment) {
           if (
-            treatment !== original_treatment ||
-            intro.visit_date === calcs.save.date_first_visit
-          )
-            alertsValueMap[treatment].forEach(value => {
-              alertsToSend.push(treatmentMap[value]);
+            treatment === 'suspended' ||
+            treatment === 'complete' ||
+            (close_reason && close_reason !== '')
+          ) {
+            // This condition does not need to be repeated here because ==
+            // it is always done in line ~281 if original_treatment exist.
+            // alertsValueMap[original_treatment].forEach(value => {
+            //   alertsToDisable.push(treatmentMap[value]);
+            // });
+
+            // REMINDERS ===============================================================
+            alertsToDisable.push(treatmentMap['reminder_before']);
+            alertsToDisable.push(treatmentMap['reminder_after']);
+            // =========================================================================
+          }
+        }
+
+        if (sms_opt_in_educational === 'yes') {
+          // YELLOW CONDITIONS =====================================================
+          if (form['@name'] === 'Register New Patient') {
+            alertsToSend.push(treatmentMap['registration']);
+            alertsToSend.push(treatmentMap['treatmentIntro']);
+          }
+          // =======================================================================
+          // RED CONDITIONS ========================================================
+          if (treatment && treatment !== 'stopped') {
+            if (
+              treatment !== original_treatment ||
+              intro.visit_date === calcs.save.date_first_visit
+            )
+              alertsValueMap[treatment].forEach(value => {
+                alertsToSend.push(treatmentMap[value]);
+              });
+          }
+
+          if (
+            (original_treatment && original_treatment !== treatment) ||
+            properties
+          ) {
+            alertsValueMap[original_treatment].forEach(value => {
+              alertsToDisable.push(treatmentMap[value]);
             });
+          }
+          // =======================================================================
         }
 
-        if (
-          (original_treatment && original_treatment !== treatment) ||
-          properties
-        ) {
-          alertsValueMap[original_treatment].forEach(value => {
-            alertsToDisable.push(treatmentMap[value]);
-          });
-        }
-        // =======================================================================
-      }
-
-      // REMINDERS ===============================================================
-      const next_visit_date_path =
-        'form.calcs.general.next_visit_date || form.calcs.save.next_visit_date || form.calcs.next_visit_date.next_visit_date';
-      const last_visit_date_path =
-        'form.calcs.save.last_visit_date || form.calcs.original_next_visit_date';
-      let paths = [];
-      const path_arrays = next_visit_date_path.split(' || ');
-      const last_visit_path_arrays = last_visit_date_path.split(' || ');
-      paths = path_arrays.filter(path => dataValue(`${path}`)(state));
-      last_visit_paths = last_visit_path_arrays.filter(path =>
-        dataValue(`${path}`)(state)
-      );
-      const date_value = paths[0] && dataValue(`${paths[0]}`)(state);
-      console.log('next_visit_paths:', paths);
-      console.log('first (selected) next_visit_date:', date_value);
-      if (date_value) {
-        if (new Date(date_value).getDate() - new Date().getDate() > 2) {
-          alertsToSend.push(treatmentMap['reminder_before']);
-        }
-        alertsToSend.push(treatmentMap['reminder_after']);
-      }
-      if (last_visit_paths[0] !== undefined) {
-        if (!alertsToSend.some(alert => alert.bulkPrefix === 'visitAfter-'))
+        // REMINDERS ===============================================================
+        const next_visit_date_path =
+          'form.calcs.general.next_visit_date || form.calcs.save.next_visit_date || form.calcs.next_visit_date.next_visit_date';
+        const last_visit_date_path =
+          'form.calcs.save.last_visit_date || form.calcs.original_next_visit_date';
+        let paths = [];
+        const path_arrays = next_visit_date_path.split(' || ');
+        const last_visit_path_arrays = last_visit_date_path.split(' || ');
+        paths = path_arrays.filter(path => dataValue(`${path}`)(state));
+        last_visit_paths = last_visit_path_arrays.filter(path =>
+          dataValue(`${path}`)(state)
+        );
+        const date_value = paths[0] && dataValue(`${paths[0]}`)(state);
+        console.log('next_visit_paths:', paths);
+        console.log('first (selected) next_visit_date:', date_value);
+        if (date_value) {
+          if (new Date(date_value).getDate() - new Date().getDate() > 2) {
+            alertsToSend.push(treatmentMap['reminder_before']);
+          }
           alertsToSend.push(treatmentMap['reminder_after']);
-      }
-      // =========================================================================
-
-      // TEAL CONDITIONS =========================================================
-      if (calcs.save && calcs.save.brace_problems_type !== '') {
-        const { brace_problems_type } = calcs.save;
-        if (brace_problems_type && brace_problems_type !== 'none') {
-          const braceProblemsTypes = brace_problems_type.split(' ');
-          braceProblemsTypes.forEach(brace_problems_type =>
-            alertsToSend.push(treatmentMap[brace_problems_type])
-          );
         }
-      }
-      if (
-        original_treatment &&
-        original_treatment !== treatment &&
-        (original_treatment === 'bracing_day' ||
-          original_treatment === 'bracing_night')
-      ) {
+        if (last_visit_paths[0] !== undefined) {
+          if (!alertsToSend.some(alert => alert.bulkPrefix === 'visitAfter-'))
+            alertsToSend.push(treatmentMap['reminder_after']);
+        }
+        // =========================================================================
+
+        // TEAL CONDITIONS =========================================================
         if (calcs.save && calcs.save.brace_problems_type !== '') {
           const { brace_problems_type } = calcs.save;
           if (brace_problems_type && brace_problems_type !== 'none') {
             const braceProblemsTypes = brace_problems_type.split(' ');
             braceProblemsTypes.forEach(brace_problems_type =>
-              alertsToDisable.push(treatmentMap[brace_problems_type])
+              alertsToSend.push(treatmentMap[brace_problems_type])
             );
           }
         }
+        if (
+          original_treatment &&
+          original_treatment !== treatment &&
+          (original_treatment === 'bracing_day' ||
+            original_treatment === 'bracing_night')
+        ) {
+          if (calcs.save && calcs.save.brace_problems_type !== '') {
+            const { brace_problems_type } = calcs.save;
+            if (brace_problems_type && brace_problems_type !== 'none') {
+              const braceProblemsTypes = brace_problems_type.split(' ');
+              braceProblemsTypes.forEach(brace_problems_type =>
+                alertsToDisable.push(treatmentMap[brace_problems_type])
+              );
+            }
+          }
+        }
+        // =========================================================================
       }
-      // =========================================================================
     }
 
     console.log('alerts to send', alertsToSend);
