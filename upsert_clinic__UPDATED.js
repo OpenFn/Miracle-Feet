@@ -6,6 +6,6 @@
 upsert("Account", "CAST_Location_ID__c", fields(
   field('CAST_Location_ID__c', dataValue('location_id')),
   field('Name', dataValue('name')), 
-  field('Country1__c', dataValue('country'))
+  field('Country1__c', dataValue('site_code'))
 ));
 // Ensure that correct CommCare ID is set in SF as external ID.
