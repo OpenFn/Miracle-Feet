@@ -206,7 +206,7 @@ alterState(state => {
   };
 
   const { username } = state.data.metadata;
-  const { update } = state.data.form.case;
+  const { update } = state.data.form.case ||state.data.form.commcare_usercase.case;
 
   if (checker(username, allowedUsernames)) {
     // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
