@@ -7,7 +7,10 @@ fn(state => {
     const bulkIds = [];
     Ids.forEach(id => {
       prefixes.forEach(prefix => {
-        bulkIds.push(`${prefix}${id}`);
+        let bulk = [id.CommCare_Case_ID__c, id.Next_Visit_Date__c]
+          .filter(Boolean)
+          .join('-');
+        bulkIds.push(`${prefix}${bulk}`);
       });
     });
     return bulkIds;
