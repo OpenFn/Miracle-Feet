@@ -426,7 +426,7 @@ alterState(async state => {
       {
         header: {
           'Content-Type': 'application/json',
-          Authorization: `Basic ${token}`,
+          Authorization: `App ${token}`,
         },
         options: {
           successCodes: [200, 404],
