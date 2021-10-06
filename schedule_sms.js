@@ -206,7 +206,8 @@ alterState(state => {
   };
 
   const { username } = state.data.metadata;
-  const { update } = state.data.form.case ||state.data.form.commcare_usercase.case;
+  const { update } =
+    state.data.form.case || state.data.form.commcare_usercase.case;
 
   if (checker(username, allowedUsernames)) {
     // 1. If send_sms = 'off' then the patient opted out of all SMS alerts.
@@ -424,7 +425,7 @@ alterState(async state => {
     return get(
       `${host}/1/bulks/status?bulkId=${bulkId}`,
       {
-        header: {
+        headers: {
           'Content-Type': 'application/json',
           Authorization: `App ${token}`,
         },
@@ -449,9 +450,9 @@ alterState(async state => {
 
   function scheduleSMS(bulkId, message) {
     return post(`${host}/2/text/advanced`, {
-      header: {
+      headers: {
         'Content-Type': 'application/json',
-        Authorization: `Basic ${token}`,
+        Authorization: `App ${token}`,
       },
       body: {
         bulkId,
@@ -462,9 +463,9 @@ alterState(async state => {
 
   function rescheduleSMS(bulkId, sendAt) {
     return put(`${host}/1/bulks?bulkId=${bulkId}`, {
-      header: {
+      headers: {
         'Content-Type': 'application/json',
-        Authorization: `Basic ${token}`,
+        Authorization: `App ${token}`,
       },
       body: {
         sendAt,
@@ -474,9 +475,9 @@ alterState(async state => {
 
   function deleteSMS(bulkId) {
     return put(`${host}/1/bulks/status?bulkId=${bulkId}`, {
-      header: {
+      headers: {
         'Content-Type': 'application/json',
-        Authorization: `Basic ${token}`,
+        Authorization: `App ${token}`,
       },
       body: {
         status: 'CANCELED',
