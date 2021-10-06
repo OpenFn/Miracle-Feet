@@ -33,7 +33,7 @@ fn(async state => {
     return get(
       `${host}/1/bulks/status?bulkId=${bulkId}`,
       {
-        header: {
+        headers: {
           'Content-Type': 'application/json',
           Authorization: `App ${token}`,
         },
@@ -58,9 +58,9 @@ fn(async state => {
 
   function deleteSMS(bulkId) {
     return put(`${host}/1/bulks/status?bulkId=${bulkId}`, {
-      header: {
+      headers: {
         'Content-Type': 'application/json',
-        Authorization: `Basic ${token}`,
+        Authorization: `App ${token}`,
       },
       body: {
         status: 'CANCELED',
@@ -84,6 +84,7 @@ fn(async state => {
           );
           return state;
         }
+        console.log(`SMS found for ${alert}. Disabling...`);
         return deleteSMS(alert).then(() => {
           console.log(`SMS disabled for bulkId : ${alert}.`);
         });
@@ -94,7 +95,7 @@ fn(async state => {
   // Flow 2: Disable SMS for accounts with status 'Temporarily Suspended'
   for (let alert of state.buildBulkIds(
     temporarilySuspendedCaseIds,
-    bulkIdsPrefixes
+    alert1718Prefixes
   )) {
     await getSMS(alert).then(res => {
       if (res.requestError) {
@@ -107,6 +108,7 @@ fn(async state => {
           );
           return state;
         }
+        console.log(`SMS found for ${alert}. Disabling...`);
         return deleteSMS(alert).then(() => {
           console.log(`SMS disabled for bulkId : ${alert}.`);
         });
