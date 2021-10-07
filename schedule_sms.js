@@ -623,6 +623,11 @@ alterState(async state => {
       // ============================================================
       const sendAt = sendAtDate.toISOString();
       const to = form.calcs.sms.contact_phone_number;
+      console.log('sending to', to);
+      if (!to) {
+        console.log('No phone number defined! Skipping SMS scheduling.');
+        return state;
+      }
       console.log('Sending SMS at: ', sendAt);
 
       const dataForTheFromPhoneNumber =
