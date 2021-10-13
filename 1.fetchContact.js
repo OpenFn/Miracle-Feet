@@ -14,8 +14,9 @@ fn(state => {
     setDays(today, -540)
   );
   return query(
-    `SELECT Id, CommCare_Case_ID__c FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND
-    SMS_Treatment_Start_Date__c in (${potentialStartDate.join(',')}')`
+    `SELECT Name, Clinic_Country__c, Guardian_1_Phone_Number_1__c, CommCare_Case_ID__c FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
+      ','
+    )}')`
   )(state).then(state => {
     const { records } = state.references[0];
 
@@ -23,6 +24,9 @@ fn(state => {
       return {
         id: record.Id,
         caseId: record.CommCare_Case_ID__c,
+        Name: record.Name,
+        Country: record.Clinic_Country__c,
+        Phone: record.Guardian_1_Phone_Number_1__c,
       };
     });
 
