@@ -110,6 +110,7 @@ fn(state => {
     mapping,
     PhoneMapping,
     timeZoneMap,
+    countryToTimeZone,
     languageCodeMap,
   };
 });
