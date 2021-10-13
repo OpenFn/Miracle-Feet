@@ -40,6 +40,11 @@ fn(state => {
     'US/Central': '-06:00',
   };
 
+  const countryToTimeZone = {
+    Nigeria: 'Africa/Lagos',
+    Senegal: 'Africa/Dakar',
+  };
+
   const PhoneMapping = {
     220: 'GCF',
     'The Gambia': 'GCF',
@@ -173,6 +178,8 @@ fn(async state => {
   const { alertsToSend, mapping, contacts } = state;
 
   await each(contacts, async state => {
+    const { caseId, Name, Country, Phone } = state.data;
+
     const language_code = 'English';
     function fetch_data_from_multiple_path(value) {
       let paths = [];
@@ -229,7 +236,7 @@ fn(async state => {
 
         // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
         // let bulkId = `${bulkPrefix}${rule['# SMS']}-${form.case['@case_id']}`;
-        let bulkId = `${bulkPrefix}${rule['# SMS']}`;
+        let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
         console.log('bulkId: ', bulkId);
 
         const sms = rule[state.languageCodeMap[language_code]]
@@ -250,6 +257,21 @@ fn(async state => {
           parseInt(minutes) + (rule['Min From SSD'] ? rule['Min From SSD'] : 0)
         );
 
+        // Adding timezone offset
+        const dateBeforeTZ = sendAtDate;
+        const timezone = state.countryToTimeZone[Country];
+        if (timezone !== '') {
+          sendAtDateTimeZone = [
+            sendAtDate
+              .toISOString()
+              .substring(0, sendAtDate.toISOString().length - 1),
+            state.timeZoneMap[timezone],
+          ].join('');
+          sendAtDate = new Date(sendAtDateTimeZone);
+        }
+        // end time zone add
+        console.log('before timezone', dateBeforeTZ.toISOString());
+        console.log('after timezone', sendAtDate.toISOString());
         // Delay sending date =========================================
         if (sendAtDate.getHours() >= 20) {
           sendAtDate.setDate(sendAtDate.getDate() + 1);
@@ -260,13 +282,12 @@ fn(async state => {
         // ============================================================
 
         const sendAt = sendAtDate.toISOString();
-        // const to = form.calcs.sms.contact_phone_number; // TODO: get contact_phone_number
-        const to = null;
+        const to = Phone;
         console.log('sending to', to);
-        // if (!to) {
-        //   console.log('No phone number defined! Skipping SMS scheduling.');
-        //   return state;
-        // }
+        if (!to) {
+          console.log('No phone number defined! Skipping SMS scheduling.');
+          return state;
+        }
         console.log('Sending SMS at: ', sendAt);
 
         // const dataForTheFromPhoneNumber =
@@ -298,6 +319,7 @@ fn(async state => {
               `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
             );
             console.log('Sending message:', message);
+            return state;
             return scheduleSMS(bulkId, message);
           } else {
             if (res.status === 'FINISHED' || res.status === 'CANCELED') {
@@ -334,6 +356,7 @@ fn(async state => {
               `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
             );
             console.log('Sending message:', message);
+            return state;
 
             return rescheduleSMS(bulkId, sendAt);
           }
@@ -345,4 +368,5 @@ fn(async state => {
     }
     return state;
   })(state);
+  return state;
 });
