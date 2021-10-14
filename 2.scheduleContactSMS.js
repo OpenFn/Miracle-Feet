@@ -319,7 +319,6 @@ fn(async state => {
               `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
             );
             console.log('Sending message:', message);
-            return state;
             return scheduleSMS(bulkId, message);
           } else {
             if (res.status === 'FINISHED' || res.status === 'CANCELED') {
@@ -356,8 +355,6 @@ fn(async state => {
               `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
             );
             console.log('Sending message:', message);
-            return state;
-
             return rescheduleSMS(bulkId, sendAt);
           }
         });
