@@ -329,7 +329,7 @@ alterState(state => {
           if (treatment && treatment !== 'stopped') {
             if (
               treatment !== original_treatment ||
-              intro.visit_date && (intro.visit_date === calcs.save.date_first_visit)
+              (intro.visit_date && intro.visit_date === calcs.save.date_first_visit)
             )
               alertsValueMap[treatment].forEach(value => {
                 alertsToSend.push(treatmentMap[value]);
