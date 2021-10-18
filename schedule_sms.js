@@ -181,7 +181,7 @@ alterState(state => {
     PHI: 'PHI',
   };
 
-  const allowedUsernames = ['umuahia01', 'test_gambia', 'test_philippines'];
+  const allowedUsernames = ['umuahia01'];
 
   const { form } = state.data;
   const { calcs, properties, close_reason, intro } = form;
