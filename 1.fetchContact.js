@@ -28,12 +28,12 @@ fn(state => {
       return {
         id: record.Id,
         caseId: record.CommCare_Case_ID__c,
+        startDate: record.SMS_Treatment_Start_Date__c,
         Name: record.Name,
         Country: record.Clinic_Country__c,
         Phone: record.Guardian_1_Phone_Number_1__c,
       };
     });
-
     return { ...state, contacts };
   });
 });
