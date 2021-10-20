@@ -11,7 +11,11 @@ fn(state => {
   potentialStartDate.push(
     setDays(today, -180),
     setDays(today, -360),
-    setDays(today, -540)
+    setDays(today, -540),
+    setDays(today, -720),
+    setDays(today, -900),
+    setDays(today, -1080),
+    setDays(today, -1260)
   );
   return query(
     `SELECT Name, Clinic_Country__c, Guardian_1_Phone_Number_1__c, CommCare_Case_ID__c FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
