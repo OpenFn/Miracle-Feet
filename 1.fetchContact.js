@@ -18,7 +18,8 @@ fn(state => {
     setDays(today, -1260)
   );
   return query(
-    `SELECT Name, Clinic_Country__c, Guardian_1_Phone_Number_1__c, CommCare_Case_ID__c FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
+    `SELECT Name, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, CommCare_Case_ID__c 
+    FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
       ','
     )})`
   )(state).then(state => {
@@ -32,6 +33,10 @@ fn(state => {
         Name: record.Name,
         Country: record.Clinic_Country__c,
         Phone: record.Guardian_1_Phone_Number_1__c,
+        pronoun_his_her: record.Pronoun_his_her__c,
+        pronoun_he_she: record.Pronoun_he_she__c,
+        pronoun_him_her: record.Pronoun_him_her__c,
+        guardian1_first_name: record.Guardian_1_First_Name__c,
       };
     });
     return { ...state, contacts };
