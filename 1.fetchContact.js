@@ -19,7 +19,7 @@ fn(state => {
   );
   return query(
     `SELECT Name, SMS_Treatment_Start_Date__c, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, CommCare_Case_ID__c 
-    FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
+    FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND Send_SMS__c = true AND SMS_Opt_In_II__c = true AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
       ','
     )})`
   )(state).then(state => {
