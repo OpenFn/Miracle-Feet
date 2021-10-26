@@ -345,6 +345,9 @@ alterState(state => {
           var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
         return opt; 
         }),
+        field('Pronoun_he_she__c', dataValue('properties.pronoun_he_she')),
+        field('Pronoun_him_her__c', dataValue('properties.pronoun_him_her')),
+        field('Pronoun_his_her__c', dataValue('properties.pronoun_his_her')),
         field(
           'Guardian_2_First_Name__c',
           dataValue('properties.guardian2_first_name')
