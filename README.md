@@ -85,6 +85,16 @@ curl --location --request POST 'https://apidomain.infobip.com/sms/1/text/advance
 
 When a patient is marked as stopped, suspended or completed treatment, they will no receive educational messages and visit reminders. If they move from one treatment to a different one, educational messages for the original treatment are stopped and SMS campaign for the new treatment is scheduled.
 
+**Clinic status and SMS scheduling**
+
+Clinic status is set in Salesforce, in the Status field.
+
+All "Actively supported" clinics are eligible for SMS (although not all have it turned on)
+
+We run the [Deactivation-1] Fetch Inactive Clinics from SF job daily to check for clinics that are inactive and disable SMS-s for associated patients guided by the below logic:
+- "Previously Supported" clinics are inactive, we cancel all SMSs for patients
+- For "Temporarily Suspended" clinics we cancel patients' appointment reminders
+
 ### Ongoing Management
 
 **To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:**
