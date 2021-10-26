@@ -327,8 +327,23 @@ alterState(state => {
           'Guardian_1_Phone_Number_2__c',
           dataValue('properties.guardian1_phone2')
         ),
-        field('SMS_Opt_In__c', state => {
-          return state.data.properties.update_sms_opt_in == '1' ? true : false;
+        field(
+          'Send_SMS__c', state => {
+          var sms = dataValue('properties.send_sms')(state);
+          var opt = sms && sms=='on' ? true : sms && sms=='off' ? false : ''; 
+        return opt; 
+        }),
+        field(
+          'SMS_Opt_In__c', state => {
+          var sms = dataValue('properties.sms_opt_in')(state);
+          var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
+        return opt; 
+        }),
+        field(
+          'SMS_Opt_In_II__c', state => {
+          var sms = dataValue('properties.sms_opt_in_educational')(state);
+          var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
+        return opt; 
         }),
         field(
           'Guardian_2_First_Name__c',
