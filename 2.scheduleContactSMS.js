@@ -13,17 +13,6 @@ fn(state => {
   };
 
   const language_code = 'English';
-  function fetch_data_from_multiple_path(value) {
-    let paths = [];
-    if (value.includes('||')) {
-      const path_arrays = value.split(' || ');
-      paths = path_arrays.filter(path => {
-        return dataValue(`${path}`)(state);
-      });
-      return paths[0];
-    }
-    return value;
-  }
 
   const setHoursFromRule = rule =>
     rule['Clock Time']
