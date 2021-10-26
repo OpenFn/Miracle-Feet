@@ -91,7 +91,7 @@ Clinic status is set in Salesforce, in the Status field.
 
 All "Actively supported" clinics are eligible for SMS (although not all have it turned on)
 
-We run the [Deactivation-1] Fetch Inactive Clinics from SF job daily to check for clinics that are inactive and disable SMS-s for associated patients guided by the below logic:
+We run the [[Deactivation-1] Fetch Inactive Clinics from SF](https://www.openfn.org/projects/pdbznd/jobs/jvn5rk) job daily to check for clinics that are inactive and disable SMS-s for associated patients guided by the below logic:
 - "Previously Supported" clinics are inactive, we cancel all SMSs for patients
 - For "Temporarily Suspended" clinics we cancel patients' appointment reminders
 
