@@ -125,8 +125,20 @@ alterState(state => {
           dataValue('form.case.create.owner_id')
         ),
         field(
+          'Send_SMS__c', state => {
+          var sms = dataValue('form.calcs.sms.send_sms')(state);
+          var opt = sms && sms=='on' ? true : sms && sms=='off' ? false : ''; 
+        return opt; 
+        }),
+        field(
+          'SMS_Opt_In__c', state => {
+          var sms = dataValue('form.calcs.sms.sms_opt_in')(state);
+          var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
+        return opt; 
+        }),
+        field(
             'SMS_Opt_In_II__c', state => {
-            var sms = dataValue('properties.sms_interest_educational')(state);
+            var sms = dataValue('form.calcs.sms.sms_opt_in_educational')(state);
             var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
           return opt; 
           }),
@@ -134,6 +146,9 @@ alterState(state => {
         field('FirstName', dataValue('form.case.update.patient_first_name')),
         field('LastName', dataValue('form.case.update.patient_last_name')),
         field('CAST_Patient_ID__c', dataValue('form.case.update.patient_id')),
+        field('Pronoun_he_she__c', dataValue('form.calcs.sms.pronoun_he_she')),
+        field('Pronoun_him_her__c', dataValue('form.calcs.sms.pronoun_him_her')),
+        field('Pronoun_his_her__c', dataValue('form.calcs.sms.pronoun_his_her')),
         field(
           'Age_Months_First_Brace__c',
            state => {
@@ -392,6 +407,12 @@ alterState(state => {
           'Guardian_3_Phone_Number_2__c',
           dataValue('form.case.update.guardian3_phone2')
         ),
+        field(
+          'Guardian_1_Phone_Landline__c', state => {
+          var landline = dataValue('form.case.update.landline')(state);
+          var land = landline && landline =='yes' ? true : landline && landline =='no' ? false : ''; 
+        return land; 
+        }),
         field(
           'Tenotomy_Given__c',
           dataValue('form.case.update.tenotomy_given')

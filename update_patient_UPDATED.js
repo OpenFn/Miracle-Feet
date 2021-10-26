@@ -327,9 +327,27 @@ alterState(state => {
           'Guardian_1_Phone_Number_2__c',
           dataValue('properties.guardian1_phone2')
         ),
-        field('SMS_Opt_In__c', state => {
-          return state.data.properties.update_sms_opt_in == '1' ? true : false;
+        field(
+          'Send_SMS__c', state => {
+          var sms = dataValue('properties.send_sms')(state);
+          var opt = sms && sms=='on' ? true : sms && sms=='off' ? false : ''; 
+        return opt; 
         }),
+        field(
+          'SMS_Opt_In__c', state => {
+          var sms = dataValue('properties.sms_opt_in')(state);
+          var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
+        return opt; 
+        }),
+        field(
+          'SMS_Opt_In_II__c', state => {
+          var sms = dataValue('properties.sms_opt_in_educational')(state);
+          var opt = sms && sms=='yes' ? true : sms && sms=='no' ? false : ''; 
+        return opt; 
+        }),
+        field('Pronoun_he_she__c', dataValue('properties.pronoun_he_she')),
+        field('Pronoun_him_her__c', dataValue('properties.pronoun_him_her')),
+        field('Pronoun_his_her__c', dataValue('properties.pronoun_his_her')),
         field(
           'Guardian_2_First_Name__c',
           dataValue('properties.guardian2_first_name')
@@ -508,13 +526,7 @@ alterState(state => {
         field(
           'CommCare_User_ID__c',
           dataValue('user_id')
-        ),
-        field('SMS_Opt_In_II__c', state => {
-          var sms = dataValue('properties.sms_interest_educational')(state);
-          var opt =
-            sms && sms == 'yes' ? true : sms && sms == 'no' ? false : undefined;
-          return opt;
-        })
+        )
       )
     )(state);
   }
