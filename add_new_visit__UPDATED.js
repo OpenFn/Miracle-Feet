@@ -181,16 +181,14 @@ alterState(state => {
         'New_Visit_UID__c',
         fields(
           field('New_Visit_UID__c', state => {
-            var icrId = dataValue(
-              'form.subcase_0.case.update.visit_original_id'
-            )(state);
-            var caseId = dataValue('form.subcase_0.case.@case_id')(state);
+            var icrId = state.data.form.subcase_0.case.update.visit_original_id;
+            var caseId = state.data.form.subcase_0.case['@case_id'];
             return icrId && icrId !== '' ? icrId : caseId;
           }),
           //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
           field(
             'gciclubfootommcare_case_id__c',
-            dataValue('form.subcase_0.case.@case_id')
+            state.data.form.subcase_0.case['@case_id']
           ), //changed from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
           relationship(
             'Patient__r',
@@ -321,10 +319,8 @@ alterState(state => {
               : false; // sf checkbox
           }),
           field('ICR_ID__c', state => {
-            var icrId = dataValue(
-              'form.subcase_0.case.update.visit_original_id'
-            )(state);
-            var caseId = dataValue('form.subcase_0.case.@case_id')(state);
+            var icrId = state.data.form.subcase_0.case.update.visit_original_id
+            var caseId = state.data.form.subcase_0.case['@case_id'];
             return icrId && icrId !== '' ? icrId : caseId;
           }),
           field(
