@@ -347,10 +347,10 @@ fn(async state => {
         }
 
         console.log(
-          `SMS already scheduled. Rescheduling for ${bulkId} at ${sendAt}...`
+          `SMS already scheduled. Rescheduling for ${bulkId} at ${message.sendAt}...`
         );
         console.log('Sending message:', message);
-        return rescheduleSMS(bulkId, sendAt);
+        return rescheduleSMS(bulkId, message.sendAt);
       }
     });
     // END Send SMS ================================================
