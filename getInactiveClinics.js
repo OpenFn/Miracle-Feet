@@ -1,5 +1,5 @@
 query(
-  `Select Id, CommCare_Case_ID__c from Contact WHERE Account.Status__c = 'Previously Supported'`
+  `Select Id, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c = 'Previously Supported'`
 );
 
 fn(state => ({
@@ -25,7 +25,7 @@ fn(state => {
 
   return query(
     state => `Select Id, Patient__r.CommCare_Case_ID__c, Next_Visit_Date__c from Visit_new__c
-    WHERE Patient__r.CommCare_Case_ID__c in ('${temporarilySuspendedCaseIds.join(
+    WHERE Patient__r.Send_SMS__c = true AND Patient__r.CommCare_Case_ID__c in ('${temporarilySuspendedCaseIds.join(
       "','"
     )}') AND Next_Visit_Date__c != null`
   )(state).then(state => ({
