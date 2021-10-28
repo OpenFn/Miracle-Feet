@@ -1,5 +1,5 @@
 //New job for upserting Visits post SF migration
-alterState(state => {
+fn(state => {
   state.handlePhoto = function handlePhoto(state, photoField) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
@@ -132,47 +132,44 @@ alterState(state => {
   return { ...state, discardedClinics, braceMap };
 });
 
-alterState(state => {
+fn(state => {
   const { clinic_code } = state.data.form.calcs.case_properties;
-  if (state.discardedClinics.includes(clinic_code)) {
+  if (!state.discardedClinics.includes(clinic_code)) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
     return state;
   } else {
+    const truth = { yes: true, no: false };
+    const sms = state.data.form.calcs.save.sms_interest_educational;
+    const SMS_Opt_In_II__c =
+      sms && ['yes', 'no'].includes(sms) ? truth[sms] : undefined;
+
+    const ref = state.data.form.subcase_0.case.update.brace_type;
+    const Brace_Type__c = !ref
+      ? state.data.form.brace.brace_type_india
+      : ref
+      ? state.braceMap[ref]
+      : 'Not Defined';
+
     let contact = {
       FirstName: state.data.form.calcs.case_properties.patient_first_name,
       LastName: state.data.form.calcs.case_properties.patient_last_name,
       CommCare_Case_ID__c: state.data.form.case['@case_id'],
-      Date_of_First_Visit__c: (state => {
-        const date = state.data.form.case.update.date_first_visit;
-        return date ? date : undefined;
-      })(state),
-      SMS_Opt_In_II__c: (state => {
-        const sms = state.data.form.calcs.save.sms_interest_educational;
-        const truth = { yes: true, no: false };
-        return sms && ['yes', 'no'].includes(sms) ? truth[sms] : undefined;
-      })(state),
-      Brace_Type__c: (state => {
-        const ref = state.data.form.subcase_0.case.update.brace_type;
-        return !ref
-          ? state.data.form.brace.brace_type_india
-          : ref
-          ? state.braceMap[ref]
-          : 'Not Defined';
-      })(state),
+      Date_of_First_Visit__c: state.data.form.case.update.date_first_visit,
+      SMS_Opt_In_II__c: SMS_Opt_In_II__c,
+      Brace_Type__c: Brace_Type__c,
     };
 
-    const treatment = state.data.form.calcs.sms.treatment;
-    const original_treatment = state.data.form.calcs.sms.original_treatment;
-
-    if (treatment == original_treatment) {
+    const { treatment, original_treatment } = state.data.form.calcs.sms;
+    if (treatment !== original_treatment) {
       contact = {
         ...contact,
-        SMS_Treatment__c: state.data.form.calcs.sms.treatment,
-        Treatment_Start_Date__c: state.data.form.received_on,
+        SMS_Treatment__c: treatment,
+        Treatment_Start_Date__c: state.data.received_on,
       };
     }
+    console.log('Contact to upsert', contact);
 
     return upsert(
       'Contact',
