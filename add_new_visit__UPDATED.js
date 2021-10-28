@@ -140,41 +140,44 @@ alterState(state => {
     );
     return state;
   } else {
-    // return combine( // Replacing combine with .then()
+    let contact = {
+      FirstName: state.data.form.calcs.case_properties.patient_first_name,
+      LastName: state.data.form.calcs.case_properties.patient_last_name,
+      CommCare_Case_ID__c: state.data.form.case['@case_id'],
+      Date_of_First_Visit__c: (state => {
+        const date = state.data.form.case.update.date_first_visit;
+        return date ? date : undefined;
+      })(state),
+      SMS_Opt_In_II__c: (state => {
+        const sms = state.data.form.calcs.save.sms_interest_educational;
+        const truth = { yes: true, no: false };
+        return sms && ['yes', 'no'].includes(sms) ? truth[sms] : undefined;
+      })(state),
+      Brace_Type__c: (state => {
+        const ref = state.data.form.subcase_0.case.update.brace_type;
+        return !ref
+          ? state.data.form.brace.brace_type_india
+          : ref
+          ? state.braceMap[ref]
+          : 'Not Defined';
+      })(state),
+    };
+
+    const treatment = state.data.form.calcs.sms.treatment;
+    const original_treatment = state.data.form.calcs.sms.original_treatment;
+
+    if (treatment == original_treatment) {
+      contact = {
+        ...contact,
+        SMS_Treatment__c: state.data.form.calcs.sms.treatment,
+        Treatment_Start_Date__c: state.data.form.received_on,
+      };
+    }
+
     return upsert(
       'Contact',
       'CommCare_Case_ID__c',
-      fields(
-        field(
-          'FirstName',
-          dataValue('form.calcs.case_properties.patient_first_name')
-        ),
-        field(
-          'LastName',
-          dataValue('form.calcs.case_properties.patient_last_name')
-        ),
-        field(
-          'CommCare_Case_ID__c',
-          dataValue('form.case.@case_id') //patient case_id
-          //dataValue('form.subcase_0.case.@case_id') //appointment case_id --> replace
-        ),
-        field(
-          'Date_of_First_Visit__c', state => {
-            var date = dataValue('form.case.update.date_first_visit')(state);
-            return date ? date : undefined;
-          }),
-        field(
-          'SMS_Opt_In_II__c', state => {
-            var sms = dataValue('form.calcs.save.sms_interest_educational')(state);
-            var opt = sms && sms == 'yes' ? true : sms && sms == 'no' ? false : undefined;
-            return opt;
-          }
-        ),
-        field('Brace_Type__c', state => {
-          const ref = state.data.form.subcase_0.case.update.brace_type;
-          return !ref ? state.data.form.brace.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
-        })
-      )
+      contact
     )(state).then(state => {
       return upsert(
         'Visit_new__c',
@@ -224,7 +227,11 @@ alterState(state => {
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.form.subcase_0.case.update.brace_type;
-            return !ref ? state.data.form.brace.brace_type_india : ref ? state.braceMap[ref] : 'Not Defined';
+            return !ref
+              ? state.data.form.brace.brace_type_india
+              : ref
+              ? state.braceMap[ref]
+              : 'Not Defined';
           }),
           field(
             'Brace_Condition_Non_MiracleFeet_Brace__c',
@@ -319,7 +326,7 @@ alterState(state => {
               : false; // sf checkbox
           }),
           field('ICR_ID__c', state => {
-            var icrId = state.data.form.subcase_0.case.update.visit_original_id
+            var icrId = state.data.form.subcase_0.case.update.visit_original_id;
             var caseId = state.data.form.subcase_0.case['@case_id'];
             return icrId && icrId !== '' ? icrId : caseId;
           }),
@@ -545,7 +552,7 @@ alterState(state => {
             )(state); // this is a picklist
             return reason
               ? reason.charAt(0).toUpperCase() +
-              reason.slice(1).replace('_', ' ')
+                  reason.slice(1).replace('_', ' ')
               : '';
           }),
           field('Relapse_Action_Taken__c', state => {
