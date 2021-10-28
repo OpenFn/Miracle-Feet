@@ -133,6 +133,12 @@ fn(state => {
 });
 
 fn(state => {
+  const treatmentMap = {
+    casting: 'Casting',
+    tenotomy: 'Tenotomy',
+    bracing_night: 'Bracing Night',
+    bracing_day: 'Bracing Day',
+  };
   const { clinic_code } = state.data.form.calcs.case_properties;
   if (!state.discardedClinics.includes(clinic_code)) {
     console.log(
@@ -165,8 +171,8 @@ fn(state => {
     if (treatment !== original_treatment) {
       contact = {
         ...contact,
-        SMS_Treatment__c: treatment,
-        Treatment_Start_Date__c: state.data.received_on,
+        SMS_Treatment__c: treatmentMap[treatment],
+        SMS_Treatment_Start_Date__c: state.data.received_on,
       };
     }
     console.log('Contact to upsert', contact);
