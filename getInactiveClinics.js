@@ -10,7 +10,7 @@ fn(state => ({
 }));
 
 query(
-  `Select Id, CommCare_Case_ID__c from Contact WHERE Account.Status__c = 'Temporarily Suspended'`
+  `Select Id, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c = 'Temporarily Suspended'`
 );
 
 fn(state => ({
