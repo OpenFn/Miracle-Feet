@@ -148,20 +148,15 @@ fn(state => {
   } else {
     const getSMS = (state, type) => {
       if (type === 'Send_SMS__c') {
-        console.log('IN FIRST IF');
         const sms = state.data.form.calcs.sms.send_sms;
         return sms && sms == 'on' ? true : sms && sms == 'off' ? false : '';
       }
       if (type === 'SMS_Opt_In__c') {
-        console.log('IN SECOND IF');
         const sms = state.data.form.calcs.sms.sms_opt_in;
-        console.log('SMS', sms);
         return sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
       }
       if (type === 'SMS_Opt_In_II__c') {
-        console.log('IN THIRD IF');
         const sms = state.data.form.calcs.sms.sms_opt_in_educational;
-        console.log('SMS', sms);
         return sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
       }
       return null;
@@ -193,7 +188,6 @@ fn(state => {
         SMS_Treatment_Start_Date__c: state.data.received_on,
       };
     }
-    console.log('Contact to upsert', contact);
 
     return upsert(
       'Contact',
