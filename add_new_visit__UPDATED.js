@@ -140,7 +140,7 @@ fn(state => {
     bracing_day: 'Bracing Day',
   };
   const { clinic_code } = state.data.form.calcs.case_properties;
-  if (!state.discardedClinics.includes(clinic_code)) {
+  if (state.discardedClinics.includes(clinic_code)) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
