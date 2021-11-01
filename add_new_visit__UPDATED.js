@@ -146,10 +146,21 @@ fn(state => {
     );
     return state;
   } else {
-    const truth = { yes: true, no: false };
-    const sms = state.data.form.calcs.save.sms_interest_educational;
-    const SMS_Opt_In_II__c =
-      sms && ['yes', 'no'].includes(sms) ? truth[sms] : undefined;
+    const getSMS = (state, type) => {
+      if (type === 'Send_SMS__c') {
+        const sms = state.data.form.calcs.send_sms;
+        return sms && sms == 'on' ? true : sms && sms == 'off' ? false : '';
+      }
+      if (type === 'SMS_Opt_In__c') {
+        const sms = state.data.form.calcs.sms_opt_in;
+        return sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
+      }
+      if (type === 'SMS_Opt_In_II__c') {
+        const sms = state.data.form.calcs.sms_opt_in_educational;
+        return sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
+      }
+      return null;
+    };
 
     const ref = state.data.form.subcase_0.case.update.brace_type;
     const Brace_Type__c = !ref
@@ -163,8 +174,10 @@ fn(state => {
       LastName: state.data.form.calcs.case_properties.patient_last_name,
       CommCare_Case_ID__c: state.data.form.case['@case_id'],
       Date_of_First_Visit__c: state.data.form.case.update.date_first_visit,
-      SMS_Opt_In_II__c: SMS_Opt_In_II__c,
       Brace_Type__c: Brace_Type__c,
+      Send_SMS__c: getSMS(state, 'Send_SMS__c'),
+      SMS_Opt_In__c: getSMS(state, 'SMS_Opt_In__c'),
+      SMS_Opt_In_II__c: getSMS(state, 'SMS_Opt_In_II__c'),
     };
 
     const { treatment, original_treatment } = state.data.form.calcs.sms;
