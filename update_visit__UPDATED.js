@@ -152,12 +152,6 @@ alterState(state => {
           'CommCare_Case_ID__c',
           dataValue('case_id') //patient case_id
         ),
-        field('SMS_Opt_In_II__c', state => {
-          var sms = dataValue('properties.sms_interest_educational')(state);
-          var opt =
-            sms && sms == 'yes' ? true : sms && sms == 'no' ? false : undefined;
-          return opt;
-        }),
         field('Brace_Type__c', state => {
           const ref = state.data.properties.brace_type;
           return !ref
