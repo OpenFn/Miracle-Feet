@@ -85,6 +85,16 @@ curl --location --request POST 'https://apidomain.infobip.com/sms/1/text/advance
 
 When a patient is marked as stopped, suspended or completed treatment, they will no receive educational messages and visit reminders. If they move from one treatment to a different one, educational messages for the original treatment are stopped and SMS campaign for the new treatment is scheduled.
 
+**Scheduling SMSs for more than 6 months ahead**
+
+Since September 2021 it's not possible to schedule messages on the Infobip API for more than 6 month ahead. 
+
+The `Bracing Night` SMS campaign runs for more than 3.5 years. We use the following process to schedule these messages:
+
+We run the  Run the [[Bracing-night 1] Fetch bracing night contacts from SF](https://www.openfn.org/projects/pdbznd/jobs/jv9qn9) job to check on SF if there's any contact that has Bracing Night set as SMS Treatment. 
+
+The [[Bracing-night 2] Schedule bracing night SMSs](https://www.openfn.org/projects/pdbznd/jobs/jvn5jk) will then automatically launch to schedule any necessary SMSs for the next 6 months.
+
 **Clinic status and SMS scheduling**
 
 Clinic status is set in Salesforce, in the Status field.
