@@ -106,7 +106,7 @@ We run the [[Deactivation-1] Fetch Inactive Clinics from SF](https://www.openfn.
 
 Currently SMS scheduling only happens for CommCare usernames that are explicitly added to the job. **To add a new clinic username to run scheduling for, add it to [`allowedUsernames` list](https://github.com/OpenFn/Miracle-Feet/blob/0bfae75ee8986c975085db6005ce17b40e694b0f/schedule_sms.js#L184)**, for example:
 
- `const allowedUsernames = ['umuahia01', 'testClinicGuinea'];`
+ `const allowedUsernames = ['testClinic1'];`
 
 ### Training
 
