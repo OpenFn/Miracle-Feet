@@ -50,6 +50,7 @@ How it works...
 6. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing).
 7. SMS scheduling times are adjusted for local time zones.
 8. SMS-s are only scheduled to be sent between 8am-8pm local time.
+9. We don't schedule any SMS if the destination phone number is marked as `landline=yes` or is empty.
 
 
 **Logic for setting missed appointment reminders**
