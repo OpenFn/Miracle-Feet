@@ -138,6 +138,8 @@ fn(state => {
     tenotomy: 'Tenotomy',
     bracing_night: 'Bracing Night',
     bracing_day: 'Bracing Day',
+    suspended: 'Suspended',
+    complete: 'Complete'
   };
   const { clinic_code } = state.data.form.calcs.case_properties;
   if (state.discardedClinics.includes(clinic_code)) {
