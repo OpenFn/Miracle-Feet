@@ -123,7 +123,7 @@ fn(state => {
     'test_clinic2',
     'test_clinic3',
     'test_clinic4',
-    'Haiti Test Clinic'
+    'haiti_test_clinic'
   ];
 
   state.dateConverter = function (state, dateString) {
