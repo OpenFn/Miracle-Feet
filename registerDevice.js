@@ -73,7 +73,8 @@ alterState(state => {
     'test_clinic1',
     'test_clinic2',
     'test_clinic3',
-    'test_clinic4'
+    'test_clinic4',
+    'haiti_test_clinic'
   ];
   const { clinic_code } = state.data.form.case.update;
   if (discardedClinics.includes(clinic_code)) {
