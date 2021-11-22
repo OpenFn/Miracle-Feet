@@ -13,6 +13,20 @@ query(
   `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c = 'Temporarily Suspended'`
 );
 
+fn(state => {
+  // logging all 'Account.Status__c' values
+  console.log("===logging all 'Account.Status__c' values===");
+  state.references.forEach(ref => {
+    ref.records.forEach(record => {
+      console.log(
+        `Account ${record.Account.Name}, Status: ${record.Account.Status__c}`
+      );
+    });
+  });
+  console.log('===========================================');
+  return state;
+});
+
 fn(state => ({
   ...state,
   temporarilySuspendedCaseIds: state.references[0].records.map(
