@@ -75,9 +75,59 @@ alterState(state => {
   };
 
   const treatmentMapSchedule = {
+    registration: {
+      key: '01 - Patient Registration',
+      bulkPrefix: 'registration-',
+    },
+    treatmentIntro: {
+      key: '02 - Treatment Introduction',
+      bulkPrefix: 'registration-',
+    },
+    casting: { key: '03 - Casting Introduction', bulkPrefix: 'casting_intro-' },
+    casting_campaign: {
+      key: '04 - Casting Campaign',
+      bulkPrefix: 'casting_intro-',
+    },
+    tenotomy: { key: '05 - Tenotomy', bulkPrefix: 'tenotomy' },
+    bracing_intro: {
+      key: '06 - Bracing Introduction',
+      bulkPrefix: 'bracing_intro-',
+    },
+    bracing_day: {
+      key: '07 - Bracing All Day Campaign',
+      bulkPrefix: 'bracing_day-',
+    },
     bracing_night_y1: {
       key: '09A - Bracing Night Campaign Y1',
       bulkPrefix: 'bracing_night_campaign-',
+    },
+    complete: {
+      key: '10 - Treatment Complete',
+      bulkPrefix: 'treatment_complete-',
+    },
+    suspended: {
+      key: '16 - Treatment Suspended',
+      bulkPrefix: 'treatment_suspended-',
+    },
+    not_wearing_enough: {
+      key: '11 - Not Wearing Brace Enough',
+      bulkPrefix: 'not_wearing_brace-',
+    },
+    child_not_tolerating: {
+      key: '12 - Not Tolerating Brace',
+      bulkPrefix: 'not_tolerating_brace-',
+    },
+    family_not_accepting: {
+      key: '13 - Not Accepting Brace',
+      bulkPrefix: 'not_accepting_brace-',
+    },
+    reminder_before: {
+      key: '14 - Reminder: 2 days before visit',
+      bulkPrefix: 'visitBefore-',
+    },
+    reminder_after: {
+      key: '15 - Reminder: 1 day after missed visit',
+      bulkPrefix: 'visitAfter-',
     },
   };
 
@@ -371,7 +421,11 @@ alterState(state => {
           alertsToSend.push(treatmentMapSchedule['reminder_after']);
         }
         if (last_visit_paths[0] !== undefined) {
-          if (!alertsToSend.some(alert => alert.bulkPrefix === 'visitAfter-'))
+          if (
+            !alertsToSend.some(
+              alert => alert && alert.bulkPrefix === 'visitAfter-'
+            )
+          )
             alertsToSend.push(treatmentMapSchedule['reminder_after']);
         }
         // =========================================================================
