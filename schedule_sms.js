@@ -384,7 +384,8 @@ alterState(state => {
               (intro && intro.visit_date === calcs.save.date_first_visit)
             )
               alertsValueMap[treatment].forEach(value => {
-                alertsToSend.push(treatmentMapSchedule[value]);
+                if (treatmentMapSchedule[value])
+                  alertsToSend.push(treatmentMapSchedule[value]);
               });
           }
 
