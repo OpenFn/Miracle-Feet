@@ -333,6 +333,7 @@ alterState(state => {
           if (calcs.save && calcs.save.brace_problems_type !== '') {
             const { brace_problems_type } = calcs.save;
             if (
+              brace_problems_type &&
               brace_problems_type !== null &&
               brace_problems_type !== 'none'
             ) {
