@@ -142,6 +142,10 @@ alterState(state => {
           'Date_of_Birth_Known__c',
           humanProper(state.data.properties.patient_dob_known)
         ), // picklist
+        field(
+          'Next_Visit_Date_New__c',
+          dataValue('properties.next_visit_date')
+        ),
         field('Birthdate', state => {
           return state.dateConverter(state, state.data.properties.patient_dob);
         }),
