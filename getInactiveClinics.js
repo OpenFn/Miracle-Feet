@@ -18,9 +18,10 @@ fn(state => {
   console.log("===logging all 'Account.Status__c' values===");
   state.references.forEach(ref => {
     ref.records.forEach(record => {
-      console.log(
-        `Account ${record.Account.Name}, Status: ${record.Account.Status__c}`
-      );
+      if (record.Account)
+        console.log(
+          `Account ${record.Account.Name}, Status: ${record.Account.Status__c}`
+        );
     });
   });
   console.log('===========================================');
