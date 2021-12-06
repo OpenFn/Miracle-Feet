@@ -19,7 +19,8 @@ alterState(state => {
     }
   };
 
-  state.dateConverter = str => {
+  //NOTE: Assumes date format YYYY-MM-DD
+  state.dateConverter = str => { 
     const Year2digitsTo4digits = dateString => {
       if (dateString && dateString.split('-')[0].length === 2) {
         var dateArr = dateString.split('-');
