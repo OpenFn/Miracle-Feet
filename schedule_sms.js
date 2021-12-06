@@ -74,6 +74,12 @@ alterState(state => {
     },
   };
 
+  const braceProblemsTypesList = [
+    'not_wearing_enough',
+    'child_not_tolerating',
+    'family_not_accepting',
+  ];
+
   const treatmentMapSchedule = {
     registration: {
       key: '01 - Patient Registration',
@@ -300,6 +306,7 @@ alterState(state => {
             braceProblemsTypes.forEach(
               brace_problems_type =>
                 brace_problems_type !== 'none' &&
+                braceProblemsTypesList.includes(brace_problems_type) &&
                 alertsToDisable.push(treatmentMapDisable[brace_problems_type])
             );
           }
@@ -338,8 +345,10 @@ alterState(state => {
               brace_problems_type !== 'none'
             ) {
               const braceProblemsTypes = brace_problems_type.split(' ');
-              braceProblemsTypes.forEach(brace_problems_type =>
-                alertsToDisable.push(treatmentMapDisable[brace_problems_type])
+              braceProblemsTypes.forEach(
+                brace_problems_type =>
+                  braceProblemsTypesList.includes(brace_problems_type) &&
+                  alertsToDisable.push(treatmentMapDisable[brace_problems_type])
               );
             }
           }
@@ -437,8 +446,10 @@ alterState(state => {
           const { brace_problems_type } = calcs.save;
           if (brace_problems_type && brace_problems_type !== 'none') {
             const braceProblemsTypes = brace_problems_type.split(' ');
-            braceProblemsTypes.forEach(brace_problems_type =>
-              alertsToSend.push(treatmentMapSchedule[brace_problems_type])
+            braceProblemsTypes.forEach(
+              brace_problems_type =>
+                braceProblemsTypesList.includes(brace_problems_type) &&
+                alertsToSend.push(treatmentMapSchedule[brace_problems_type])
             );
           }
         }
@@ -452,8 +463,10 @@ alterState(state => {
             const { brace_problems_type } = calcs.save;
             if (brace_problems_type && brace_problems_type !== 'none') {
               const braceProblemsTypes = brace_problems_type.split(' ');
-              braceProblemsTypes.forEach(brace_problems_type =>
-                alertsToDisable.push(treatmentMapDisable[brace_problems_type])
+              braceProblemsTypes.forEach(
+                brace_problems_type =>
+                  braceProblemsTypesList.includes(brace_problems_type) &&
+                  alertsToDisable.push(treatmentMapDisable[brace_problems_type])
               );
             }
           }
