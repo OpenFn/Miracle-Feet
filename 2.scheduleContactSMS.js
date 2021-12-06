@@ -308,95 +308,95 @@ fn(state => {
   };
 });
 
-// fn(async state => {
-//   const { host, token } = state.configuration;
+fn(async state => {
+  const { host, token } = state.configuration;
 
-//   function getSMS(bulkId) {
-//     return get(
-//       `${host}/1/bulks/status?bulkId=${bulkId}`,
-//       {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Authorization: `App ${token}`,
-//         },
-//         options: {
-//           successCodes: [200, 404],
-//         },
-//       },
-//       state => {
-//         const response = state.data;
-//         if (
-//           response.bulkId ||
-//           (response.requestError &&
-//             response.requestError.serviceException &&
-//             response.requestError.serviceException.messageId === 'NOT_FOUND')
-//         ) {
-//           return response;
-//         }
-//         return new Error(response);
-//       }
-//     )(state);
-//   }
+  function getSMS(bulkId) {
+    return get(
+      `${host}/1/bulks/status?bulkId=${bulkId}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `App ${token}`,
+        },
+        options: {
+          successCodes: [200, 404],
+        },
+      },
+      state => {
+        const response = state.data;
+        if (
+          response.bulkId ||
+          (response.requestError &&
+            response.requestError.serviceException &&
+            response.requestError.serviceException.messageId === 'NOT_FOUND')
+        ) {
+          return response;
+        }
+        return new Error(response);
+      }
+    )(state);
+  }
 
-//   function scheduleSMS(bulkId, message) {
-//     return post(`${host}/2/text/advanced`, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `App ${token}`,
-//       },
-//       body: {
-//         bulkId,
-//         messages: [message],
-//       },
-//     })(state);
-//   }
+  function scheduleSMS(bulkId, message) {
+    return post(`${host}/2/text/advanced`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `App ${token}`,
+      },
+      body: {
+        bulkId,
+        messages: [message],
+      },
+    })(state);
+  }
 
-//   function rescheduleSMS(bulkId, sendAt) {
-//     return put(`${host}/1/bulks?bulkId=${bulkId}`, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `App ${token}`,
-//       },
-//       body: {
-//         sendAt,
-//       },
-//     })(state);
-//   }
+  function rescheduleSMS(bulkId, sendAt) {
+    return put(`${host}/1/bulks?bulkId=${bulkId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `App ${token}`,
+      },
+      body: {
+        sendAt,
+      },
+    })(state);
+  }
 
-//   const { messagesToSend } = state;
+  const { messagesToSend } = state;
 
-//   // SCHEDULE SMS PROCESS =======================================================
-//   for (let messageToSend of messagesToSend) {
-//     const { bulkId, message, sendAt } = messageToSend;
-//     console.log('============= START SMS SCHEDULE =============');
-//     // Send SMS ====================================================
-//     console.log(`Check for existing scheduled SMS for ${bulkId}...`);
-//     await getSMS(bulkId).then(res => {
-//       if (res.requestError) {
-//         // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
-//         console.log(
-//           `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
-//         );
-//         console.log('Sending message:', message);
-//         return scheduleSMS(bulkId, message);
-//       } else {
-//         if (res.status === 'FINISHED' || res.status === 'CANCELED') {
-//           console.log(
-//             'SMS is already canceled or sent, impossible to reschedule!'
-//           );
-//           return state;
-//         }
+  // SCHEDULE SMS PROCESS =======================================================
+  for (let messageToSend of messagesToSend) {
+    const { bulkId, message, sendAt } = messageToSend;
+    console.log('============= START SMS SCHEDULE =============');
+    // Send SMS ====================================================
+    console.log(`Check for existing scheduled SMS for ${bulkId}...`);
+    await getSMS(bulkId).then(res => {
+      if (res.requestError) {
+        // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
+        console.log(
+          `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
+        );
+        console.log('Sending message:', message);
+        return scheduleSMS(bulkId, message);
+      } else {
+        if (res.status === 'FINISHED' || res.status === 'CANCELED') {
+          console.log(
+            'SMS is already canceled or sent, impossible to reschedule!'
+          );
+          return state;
+        }
 
-//         console.log(
-//           `SMS already scheduled. Rescheduling for ${bulkId} at ${message.sendAt}...`
-//         );
-//         console.log('Sending message:', message);
-//         return rescheduleSMS(bulkId, message.sendAt);
-//       }
-//     });
-//     // END Send SMS ================================================
-//     console.log('=======================================\n');
-//   }
+        console.log(
+          `SMS already scheduled. Rescheduling for ${bulkId} at ${message.sendAt}...`
+        );
+        console.log('Sending message:', message);
+        return rescheduleSMS(bulkId, message.sendAt);
+      }
+    });
+    // END Send SMS ================================================
+    console.log('=======================================\n');
+  }
 
-//   return state;
-// });
+  return state;
+});
