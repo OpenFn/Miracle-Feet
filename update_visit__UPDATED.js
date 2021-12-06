@@ -151,7 +151,8 @@ alterState(state => {
         }),
         field(
           'CommCare_Case_ID__c',
-          dataValue('case_id') //patient case_id
+          dataValue('indices.parent.case_id') 
+          //dataValue('case_id') //this is appoint case_id, not patient... did something change in CommCare? 
         ),
         field('Brace_Type__c', state => {
           const ref = state.data.properties.brace_type;
