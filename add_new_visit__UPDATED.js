@@ -124,10 +124,10 @@ fn(state => {
     'test_clinic3',
     'test_clinic4',
     'haiti_test_clinic',
-    'sierra_leone_test_clinic'
+    'sierra_leone_test_clinic',
   ];
 
-  state.dateConverter = function (state, dateString) {
+  state.dateConverter = function (dateString) {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
@@ -141,7 +141,7 @@ fn(state => {
     bracing_night: 'Bracing Night',
     bracing_day: 'Bracing Day',
     suspended: 'Suspended',
-    complete: 'Complete'
+    complete: 'Complete',
   };
   const { clinic_code } = state.data.form.calcs.case_properties;
   if (state.discardedClinics.includes(clinic_code)) {
@@ -177,7 +177,9 @@ fn(state => {
       FirstName: state.data.form.calcs.case_properties.patient_first_name,
       LastName: state.data.form.calcs.case_properties.patient_last_name,
       CommCare_Case_ID__c: state.data.form.case['@case_id'],
-      Date_of_First_Visit__c: state.data.form.case.update.date_first_visit,
+      Date_of_First_Visit__c: state.dateConverter(
+        state.data.form.case.update.date_first_visit
+      ),
       Brace_Type__c: Brace_Type__c,
       Send_SMS__c: getSMS(state, 'Send_SMS__c'),
       SMS_Opt_In__c: getSMS(state, 'SMS_Opt_In__c'),
@@ -219,13 +221,11 @@ fn(state => {
           ), //Changed from Contact to Patient__r
           field('Visit_Date__c', state => {
             return state.dateConverter(
-              state,
               state.data.form.subcase_0.case.update.visit_date
             );
           }),
           field('Next_Visit_Date__c', state => {
             return state.dateConverter(
-              state,
               state.data.form.subcase_0.case.update.next_visit_date
             );
           }),
@@ -329,13 +329,11 @@ fn(state => {
           ),
           field('Date_Referral_Made__c', state => {
             return state.dateConverter(
-              state,
               state.data.form.subcase_0.case.update.date_referral_made
             );
           }),
           field('Date_of_Tenotomy__c', state => {
             return state.dateConverter(
-              state,
               state.data.form.subcase_0.case.update.date_tenotomy
             );
           }),
@@ -503,7 +501,7 @@ fn(state => {
           ),
           field('Opened_Date_CommCare__c', state => {
             const validDate = state.data.form.subcase_0.case['@date_modified'];
-            return state.dateConverter(state, validDate);
+            return state.dateConverter(validDate);
           }),
 
           field('Remote_Visit__c', state => {
@@ -583,7 +581,6 @@ fn(state => {
           // Referral Questions ========================================================
           field('Date_Referral_Made__c', state => {
             return state.dateConverter(
-              state,
               state.data.form.subcase_0.case.update.date_referral_made
             );
           }),
@@ -607,7 +604,6 @@ fn(state => {
           ),
           field('Referral_Treatment_Date__c', state => {
             return state.dateConverter(
-              state,
               state.data.form.subcase_0.case.referral_treatment_date
             );
           }),
@@ -624,7 +620,6 @@ fn(state => {
           // Tenotomy Questions ========================================================
           field('Date_of_Tenotomy__c', state => {
             return state.dateConverter(
-              state,
               state.data.form.subcase_0.case.update.date_tenotomy
             );
           }),
@@ -682,6 +677,5 @@ fn(state => {
         )
       )(state);
     });
-    // )(state);
   }
 });
