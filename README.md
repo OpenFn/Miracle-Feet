@@ -104,7 +104,7 @@ All "Actively supported" clinics are eligible for SMS (although not all have it 
 
 We run the [[Deactivation-1] Fetch Inactive Clinics from SF](https://www.openfn.org/projects/pdbznd/jobs/jvn5rk) job daily to check for clinics that are inactive and disable SMS-s for associated patients guided by the below logic:
 - "Previously Supported" and "Active - CAST Guest User Only" clinics are inactive, we cancel all SMSs for patients
-- For "Temporarily Suspended" clinics we cancel patients' appointment reminders
+- For "Temporarily Suspended" clinics we cancel patients' appointment reminders.
 If clinic Status changed back to actively supported, the admin will need to re-enroll each individual in reminders.
 
 ### Ongoing Management
