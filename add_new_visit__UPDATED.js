@@ -184,6 +184,8 @@ fn(state => {
       Send_SMS__c: getSMS(state, 'Send_SMS__c'),
       SMS_Opt_In__c: getSMS(state, 'SMS_Opt_In__c'),
       SMS_Opt_In_II__c: getSMS(state, 'SMS_Opt_In_II__c'),
+      SMS_Original_Treatment__c:
+        treatmentMap[state.data.form.calcs.sms.original_treatment],
     };
 
     const { treatment, original_treatment } = state.data.form.calcs.sms;
