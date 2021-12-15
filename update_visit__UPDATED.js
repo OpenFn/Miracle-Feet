@@ -215,11 +215,14 @@ alterState(state => {
           ),
           field('Brace_Problems_Type__c', state => {
             const typesString = state.data.properties.brace_problems_type;
-            const types = typesString ? typesString.split(' ') : typesString;
-            const braceProblems = types.map(
-              type => state.braceProblemsTypeMap[type]
-            );
-            return braceProblems.join(';');
+            if (typeof typesString === 'string') {
+              const types = typesString.split(' ');
+              const braceProblems = types.map(
+                type => state.braceProblemsTypeMap[type]
+              );
+              return braceProblems.join(';');
+            }
+            return typesString;
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.properties.brace_type;

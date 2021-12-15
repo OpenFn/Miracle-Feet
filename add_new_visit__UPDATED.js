@@ -259,11 +259,14 @@ fn(state => {
           field('Brace_Problems_Type__c', state => {
             const typesString =
               state.data.form.brace.brace_problems.brace_problems_type;
-            const types = typesString ? typesString.split(' ') : undefined;
-            const braceProblems = types.map(
-              type => state.braceProblemsTypeMap[type]
-            );
-            return braceProblems.join(';');
+            if (typeof typesString === 'string') {
+              const types = typesString.split(' ');
+              const braceProblems = types.map(
+                type => state.braceProblemsTypeMap[type]
+              );
+              return braceProblems.join(';');
+            }
+            return typesString;
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.form.subcase_0.case.update.brace_type;
