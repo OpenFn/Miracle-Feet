@@ -44,6 +44,19 @@ alterState(state => {
     ankle_foot_orthosis_afo: 'Ankle Foot Orthosis (AFO)',
   };
 
+  const braceProblemsTypeMap = {
+    feet_slipping: 'Feet Slipping',
+    none: 'None',
+    motion_range: 'Motion Range',
+    not_wearing_enough: 'Not Wearing Enough',
+    child_not_tolerating: 'Child Not Tolerating',
+    family_not_accepting: 'Family Not Accepting',
+    incorrect_shoe_size: 'Incorrect Shoe Size',
+    skin_irritation: 'Skin Irritation',
+    broken_defective_brace: 'Broken Defective Brace',
+    other: 'Other',
+  };
+
   const discardedClinics = [
     'test_bangladesh',
     'bol_test',
@@ -118,14 +131,14 @@ alterState(state => {
     'test_clinic3',
     'test_clinic4',
     'sierra_leone_test_clinic',
-    'haiti_test_clinic'
+    'haiti_test_clinic',
   ];
 
   state.dateConverter = function (state, dateString) {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
-  return { ...state, discardedClinics, braceMap };
+  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap };
 });
 
 alterState(state => {
@@ -147,12 +160,12 @@ alterState(state => {
         field('LastName', state => {
           var name1 = dataValue('properties.patient_last_name')(state);
           var name2 = dataValue('properties.patient_name')(state);
-          return name1 ? name1 : name2; 
+          return name1 ? name1 : name2;
         }),
         field(
           'CommCare_Case_ID__c',
-          dataValue('indices.parent.case_id') 
-          //dataValue('case_id') //this is appoint case_id, not patient... did something change in CommCare? 
+          dataValue('indices.parent.case_id')
+          //dataValue('case_id') //this is appoint case_id, not patient... did something change in CommCare?
         ),
         field('Brace_Type__c', state => {
           const ref = state.data.properties.brace_type;
@@ -201,7 +214,11 @@ alterState(state => {
             dataValue('properties.brace_problems_specified')
           ),
           field('Brace_Problems_Type__c', state => {
-            return state.handleMultiSelect(state, 'brace_problems_type');
+            const types = state.data.properties.brace_problems_type.split(' ');
+            const braceProblems = types.map(
+              type => state.braceProblemsTypeMap[type]
+            );
+            return braceProblems.join(';');
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.properties.brace_type;
@@ -563,7 +580,8 @@ alterState(state => {
               state.data.properties.patient_name +
               ' (' +
               state.data.properties.patient_id +
-              ')' + '(' +
+              ')' +
+              '(' +
               state.data.properties.visit_date +
               ')'
             );

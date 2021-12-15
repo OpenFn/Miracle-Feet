@@ -52,6 +52,19 @@ fn(state => {
     ankle_foot_orthosis_afo: 'Ankle Foot Orthosis (AFO)',
   };
 
+  const braceProblemsTypeMap = {
+    feet_slipping: 'Feet Slipping',
+    none: 'None',
+    motion_range: 'Motion Range',
+    not_wearing_enough: 'Not Wearing Enough',
+    child_not_tolerating: 'Child Not Tolerating',
+    family_not_accepting: 'Family Not Accepting',
+    incorrect_shoe_size: 'Incorrect Shoe Size',
+    skin_irritation: 'Skin Irritation',
+    broken_defective_brace: 'Broken Defective Brace',
+    other: 'Other',
+  };
+
   const discardedClinics = [
     'test_bangladesh',
     'bol_test',
@@ -131,7 +144,7 @@ fn(state => {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
-  return { ...state, discardedClinics, braceMap };
+  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap };
 });
 
 fn(state => {
@@ -244,7 +257,14 @@ fn(state => {
             dataValue('form.subcase_0.case.update.brace_problems_specified')
           ),
           field('Brace_Problems_Type__c', state => {
-            return state.handleMultiSelect(state, 'brace_problems_type');
+            const types =
+              state.data.form.brace.brace_problems.brace_problems_type.split(
+                ' '
+              );
+            const braceProblems = types.map(
+              type => state.braceProblemsTypeMap[type]
+            );
+            return braceProblems.join(';');
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.form.subcase_0.case.update.brace_type;
