@@ -214,7 +214,8 @@ alterState(state => {
             dataValue('properties.brace_problems_specified')
           ),
           field('Brace_Problems_Type__c', state => {
-            const types = state.data.properties.brace_problems_type.split(' ');
+            const typesString = state.data.properties.brace_problems_type;
+            const types = typesString ? typesString.split(' ') : typesString;
             const braceProblems = types.map(
               type => state.braceProblemsTypeMap[type]
             );

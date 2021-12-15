@@ -257,10 +257,9 @@ fn(state => {
             dataValue('form.subcase_0.case.update.brace_problems_specified')
           ),
           field('Brace_Problems_Type__c', state => {
-            const types =
-              state.data.form.brace.brace_problems.brace_problems_type.split(
-                ' '
-              );
+            const typesString =
+              state.data.form.brace.brace_problems.brace_problems_type;
+            const types = typesString ? typesString.split(' ') : undefined;
             const braceProblems = types.map(
               type => state.braceProblemsTypeMap[type]
             );
