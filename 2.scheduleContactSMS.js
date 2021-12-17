@@ -373,7 +373,6 @@ fn(async state => {
     console.log(`Check for existing scheduled SMS for ${bulkId}...`);
     await getSMS(bulkId).then(res => {
       if (res.requestError) {
-        // b. if no sms found for visitAfter we set the new bulkId with next_visit_date
         console.log(
           `Existing SMS not found. Scheduling SMS for ${bulkId} at ${message.sendAt}...`
         );
