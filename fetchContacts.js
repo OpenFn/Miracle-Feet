@@ -1,5 +1,5 @@
 fn(state => {
-  // Here we a complex fetch query that should return:
+  // Here we have a complex fetch query that should return:
   // 1. info on patients and guardian (Name, guardian_1_First_Name__c, ...)
   // 2. info on scheduling dates
   // 3. info on sms opt-in details
