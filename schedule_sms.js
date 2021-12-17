@@ -724,6 +724,8 @@ fn(async state => {
       // Check if sendAt is in the past
       if (new Date(sendAt) < new Date()) {
         state.errors.push(sms);
+        console.log('Not scheduling because sendAt date is in the past.');
+        return state;
       }
 
       console.log('Sending SMS at: ', sendAt);
@@ -879,6 +881,6 @@ fn(async state => {
 fn(state => {
   // Logging sms where sendAt is in the past
   console.log('Not scheduling those messages; sendAt is in the past!');
-  console.log(JSON.stringify(state.error, null, 4));
+  console.log(JSON.stringify(state.errors, null, 4));
   return state;
 });
