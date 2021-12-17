@@ -84,17 +84,17 @@ fn(state => {
     not_wearing_enough: {
       key: '11 - Not Wearing Brace Enough',
       bulkPrefix: 'not_wearing_brace-',
-      braceProblemsType: 'Not Wearing Brace Enough',
+      braceProblemsType: 'not_wearing_enough',
     },
     child_not_tolerating: {
       key: '12 - Not Tolerating Brace',
       bulkPrefix: 'not_tolerating_brace-',
-      braceProblemsType: 'Child Not Tolerating',
+      braceProblemsType: 'child_not_tolerating',
     },
     family_not_accepting: {
       key: '13 - Not Accepting Brace',
       bulkPrefix: 'not_accepting_brace-',
-      braceProblemsType: 'Family Not Accepting',
+      braceProblemsType: 'family_not_accepting',
     },
     reminder_before: {
       key: '14 - Reminder: 2 days before visit',
@@ -232,7 +232,7 @@ fn(state => {
 
     const { smsOptInII, smsOptIn } = contact;
     const { status, caseId, Name, Country, Phone } = contact;
-    const { treatment, originalTreatment } = contact;
+    const { treatment, originalTreatment, braceProblemType } = contact;
     const {
       startDate,
       nextVisitDate,
@@ -255,15 +255,22 @@ fn(state => {
         status === 'Temporarily Suspended') &&
       smsOptInII
     ) {
-      // Schedule blue tiles (alert 1, 2)
+      // Schedule blue conditions (alert 1, 2)
       if (registrationDate === setDays(new Date(), 0)) {
         alertsToSend.push(treatmentMapSchedule['registration']);
         alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
       }
-      // Schedule red tiles
       if (treatment !== originalTreatment || firstVisitDate !== lastVisitDate) {
-        const alert = Object.values(treatmentMapSchedule).filter(
+        let alert = [];
+        // Schedule red conditions
+        alert = Object.values(treatmentMapSchedule).filter(
           obj => obj.treatment === treatment
+        );
+        alertsToSend.push(...alert);
+
+        // Schedule teal conditions
+        alert = Object.values(treatmentMapSchedule).filter(
+          obj => obj.braceProblemsType === braceProblemType
         );
         alertsToSend.push(...alert);
       }
