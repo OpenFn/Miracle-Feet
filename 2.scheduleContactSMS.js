@@ -367,7 +367,7 @@ fn(async state => {
 
   // SCHEDULE SMS PROCESS =======================================================
   for (let messageToSend of messagesToSend) {
-    const { bulkId, message, sendAt } = messageToSend;
+    const { bulkId, message } = messageToSend;
     console.log('============= START SMS SCHEDULE =============');
     // Send SMS ====================================================
     console.log(`Check for existing scheduled SMS for ${bulkId}...`);
