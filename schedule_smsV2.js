@@ -254,8 +254,16 @@ fn(state => {
 
           // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
           let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
+          if (bulkPrefix === 'visitAfter-') {
+            bulkId = `${bulkId}-${nextVisitDate}`;
+            sendAtDate = new Date(nextVisitDate);
+          }
+          if (bulkPrefix === 'visitBefore-') {
+            bulkId = `${bulkId}-${start_date}`;
+            sendAtDate = new Date(nextVisitDate);
+          }
           console.log('bulkId: ', bulkId);
-          console.log('rule', rule[languageCodeMap[language_code]]);
+          // console.log('rule', rule[languageCodeMap[language_code]]);
 
           // We build the sms from the rule and the information from the contact
           const sms = rule[languageCodeMap[language_code]]
