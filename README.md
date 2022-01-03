@@ -37,7 +37,7 @@ How it works...
 1. An OpenFn job [`[SMS-Flow-1] Fetch contacts from SF`](https://openfn.org/projects/miraclefeet/jobs/eZiygD) runs daily to query contacts from Salesforce and fetch their treatment and appointment information.
 2. A second OpenFn job [[SMS-Flow-2] Schedule SMSs](https://openfn.org/projects/miraclefeet/jobs/QjbQti)  will be triggered to schedule relevant SMS alerts in the Infobip Portal
 
-We have separate jobs to schedule ["Bracing Night"]((bracing-night)) messages and to handle changes in [clinic status]((clinic-status)).
+We have separate jobs to schedule ["Bracing Night"](#bracing-night) messages and to handle changes in [clinic status](#clinic-status).
 
 ### Notes on Scheduling Logic
 
@@ -87,7 +87,7 @@ curl --location --request POST 'https://apidomain.infobip.com/sms/1/text/advance
 
 When a patient is marked as stopped, suspended or completed treatment, they will no receive educational messages and visit reminders. If they move from one treatment to a different one, educational messages for the original treatment are stopped and SMS campaign for the new treatment is scheduled.
 
-<a id="bracing-night"></a> **Scheduling "Bracing Night" SMSs*
+<a id="bracing-night"></a> **Scheduling "Bracing Night" SMSs**
 
 Since September 2021 it's not possible to schedule messages on the Infobip API for more than 6 month ahead. 
 
@@ -97,7 +97,7 @@ We run the  Run the [[Bracing-night 1] Fetch bracing night contacts from SF](htt
 
 The [[Bracing-night 2] Schedule bracing night SMSs](https://www.openfn.org/projects/pdbznd/jobs/jvn5jk) will then automatically launch to schedule any necessary SMSs for the next 3 months, based on the `SMS_Treatment_Start_Date__c` field.
 
-[**Clinic status and SMS scheduling**](#clinic-status)
+<a id="clinic-status"></a> Clinic status and SMS scheduling**
 
 Clinic status is set in Salesforce, in the Status field.
 
