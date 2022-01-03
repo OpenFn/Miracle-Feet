@@ -132,7 +132,7 @@ Change Management Training [Slides](https://docs.google.com/presentation/d/1chir
 
 ### SMS Implementation Next Steps 
 - [x] Finish testing across countries to sign-off on alert scheduling logic & content. [See Test Suite](https://docs.google.com/spreadsheets/d/1ZR60vDaejfWva5lkLXn2o362vpqLX0RWwW31Na3l9hg/edit?usp=drive_web&ouid=101430720901034004945) for detailed unit tests. 
-- [ ] Remove code in OpenFn job that executes flow only for test users
-- [ ] Confirm all Infobip sender IDs are correct
+- [x] Remove code in OpenFn job that executes flow only for test users
+- [x] Confirm all Infobip sender IDs are correct
 - [x] System admin training on solution management 
 - [ ] ...
