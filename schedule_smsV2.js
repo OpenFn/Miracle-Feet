@@ -4,6 +4,7 @@ fn(state => {
 
   const { contacts } = state;
   const messagesToSend = []; // This will holds all the messages to send
+  const messagesToCancel = []; // This will holds all the messages to send
 
   // HELPER FUNCTIONS ===========================================
   const setDays = (date, x) => {
@@ -183,7 +184,8 @@ fn(state => {
   };
 
   for (let contact of contacts) {
-    const alertsToSend = []; // this will holds the list of alerts found for this contact.
+    const alertsToSend = []; // this will hold the list of alerts to send for this contact.
+    const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
     console.log('contact', contact);
 
     // We organize destructuring by concern.
@@ -201,6 +203,9 @@ fn(state => {
     // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
     if (status === 'Actively Supported' && smsOptIn && nextVisitDate !== null) {
       alertsToSend.push(treatmentMapSchedule['reminder_before']);
+      if (lastVisitDate) {
+        alertsToDisable.push(treatmentMapSchedule['reminder_after']);
+      }
       alertsToSend.push(treatmentMapSchedule['reminder_after']);
     }
     if (
@@ -240,11 +245,6 @@ fn(state => {
 
           const start_date = startDate;
           console.log('Start date fetched: ', start_date);
-
-          console.log(
-            `For ${alert.key}, we're looking in ${start_date} and finding:`,
-            new Date(start_date).toISOString()
-          );
 
           if (!start_date) {
             console.log('Skipping schedule because date is empty');
@@ -333,15 +333,33 @@ fn(state => {
           // END Send SMS ================================================
         }
       }
+
+      // for each alert to cancel
+      for (let alert of alertsToDisable) {
+        console.log('============= START SMS CANCELATION =============');
+        const { key, bulkPrefix } = alert;
+        for (let rule of mapping[key]) {
+          let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
+
+          if (bulkPrefix === 'visitAfter-') {
+            bulkId = `${bulkId}-${lastVisitDate}`;
+          }
+
+          messagesToCancel.push(bulkId);
+          console.log('bulkId to delete: ', bulkId);
+        }
+      }
     }
   }
 
-  // This log all the messages for all contacts
+  // This log all the messages (to send and to bulkIds to delete) for all contacts
   console.log('messages to send', JSON.stringify(messagesToSend, null, 2));
+  console.log('messages to delete', JSON.stringify(messagesToCancel, null, 2));
 
   return {
     ...state,
     messagesToSend,
+    messagesToCancel,
   };
 });
 
@@ -445,6 +463,28 @@ fn(async state => {
     // END Send SMS ================================================
     console.log('=======================================\n');
   }
+  // ============================================================================
+
+  // DISABLE SMS PROCESS ========================================================
+  for (let bulkId of messagesToCancel) {
+    console.log('============= START SMS CANCELATION =============');
+    console.log(`Check for existing scheduled SMS for ${bulkId}`);
+    await getSMS(bulkId).then(res => {
+      if (
+        !res.requestError &&
+        res.status !== 'FINISHED' &&
+        res.status !== 'CANCELED'
+      ) {
+        console.log('Deleting SMS.');
+        return deleteSMS(bulkId);
+      } else {
+        console.log('SMS is already canceled or sent!');
+        return state;
+      }
+    });
+    console.log('============= END SMS CANCELATION =============');
+  }
+  // ============================================================================
 
   return state;
 });
