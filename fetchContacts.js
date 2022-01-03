@@ -8,10 +8,9 @@ fn(state => {
   return query(
     `SELECT Name, Account.Status__c, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, CommCare_Case_ID__c, 
     SMS_Treatment_Start_Date__c, Next_Visit_Date__c, Registration_Date__c, Date_of_First_Visit__c, Last_Visit_Date__c, Last_Modified_Date_CommCare__c
-    SMS_Opt_In_II__c, SMS_Opt_In__c, 
+    SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c,
     SMS_Treatment__c, SMS_Original_Treatment__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c
-      FROM Contact 
-      WHERE Send_SMS__c = true`
+      FROM Contact`
   )(state).then(state => {
     const { records } = state.references[0];
 
@@ -42,6 +41,8 @@ fn(state => {
         originalTreatment: record.SMS_Original_Treatment__c,
         reasonStoppedTreatment: record.Reason_Stopped_Treatment__c,
         braceProblemType: record.Brace_Problems_Type__c,
+
+        sendSms: record.Send_SMS__c,
       };
     });
     return { ...state, contacts };
