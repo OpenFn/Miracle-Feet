@@ -97,7 +97,7 @@ Since September 2021 it's not possible to schedule messages on the Infobip API f
 
 The `Bracing Night` SMS campaign runs for more than 3.5 years. We use the following process to schedule these messages:
 
-We run the  Run the [[Bracing-night 1] Fetch bracing night contacts from SF](https://www.openfn.org/projects/pdbznd/jobs/jv9qn9) job to check on SF if there's any contact that has Bracing Night set as SMS Treatment. 
+We run the [[Bracing-night 1] Fetch bracing night contacts from SF](https://www.openfn.org/projects/pdbznd/jobs/jv9qn9) job to check on SF if there's any contact that has Bracing Night set as SMS Treatment. 
 
 The [[Bracing-night 2] Schedule bracing night SMSs](https://www.openfn.org/projects/pdbznd/jobs/jvn5jk) will then automatically launch to schedule any necessary SMSs for the next 3 months, based on the `SMS_Treatment_Start_Date__c` field.
 
