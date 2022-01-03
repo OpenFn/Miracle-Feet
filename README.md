@@ -37,7 +37,7 @@ How it works...
 1. An OpenFn job [`[SMS-Flow-1] Fetch contacts from SF`](https://openfn.org/projects/miraclefeet/jobs/eZiygD) runs daily to query contacts from Salesforce and fetch their treatment and appointment information.
 2. A second OpenFn job [[SMS-Flow-2] Schedule SMSs](https://openfn.org/projects/miraclefeet/jobs/QjbQti)  will be triggered to schedule relevant SMS alerts in the Infobip Portal
 
-We have separate jobs to schedule ["Bracing Night"]((#bracing-night)) messages and to handle changes in [clinic status]((#clinic-status)).
+We have separate jobs to schedule ["Bracing Night"]((bracing-night)) messages and to handle changes in [clinic status]((clinic-status)).
 
 ### Notes on Scheduling Logic
 
