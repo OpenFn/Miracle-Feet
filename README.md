@@ -34,9 +34,8 @@ And [see here](https://docs.google.com/document/d/1FHJIW8bAQYk-4WP3uosoCCVvXVTTP
 
 ### Technical Overview
 How it works...
-1. Users submit new `forms` or modify `cases` in CommCare
-2. A webhook configured in the CommCareHQ project automatically forwards this data to MiracleFeet's OpenFn project `Inbox` as `Messages`
-3. OpenFn job [`Schedule SMS Alerts`](https://www.openfn.org/projects/pdbznd/jobs/jypnkm) will be triggered to schedule relevant SMS alerts in the Infobip Portal
+1. An OpenFn job [`[SMS-Flow-1] Fetch contacts from SF`](https://openfn.org/projects/miraclefeet/jobs/eZiygD) runs daily to query contacts from Salesforce and fetch their treatment and appointment information.
+2. A second OpenFn job [[SMS-Flow-2] Schedule SMSs](https://openfn.org/projects/miraclefeet/jobs/QjbQti)  will be triggered to schedule relevant SMS alerts in the Infobip Portal
 
 ### Notes on Scheduling Logic
 
