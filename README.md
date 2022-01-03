@@ -27,7 +27,7 @@ MiracleFeet has implemented OpenFn to automate one-way data integration between 
 ### Support 
 MiracleFeet global administrators are responsible for integration monitoring & reprocessing of any failed runs. [See here]() for MF's troubleshooting guide. For additional OpenFn support, users may contact support@openfn.org. 
 
-[## 2. Salesforce-Infobip Integration for Automated SMS Alerts](#sms-integration)
+<a id="sms-integration"></a> ## 2. Salesforce-Infobip Integration for Automated SMS Alerts
 Originally the SMS scheduling solution relied on CommCare form updates received in the OpenFn inbox to schedule messages.
 Watch the [solution overview video](https://drive.google.com/file/d/1Ne7sHJ8BR1I3Emqf01jiyFI1kp1WArnM/view?usp=sharing) for the original CommCare-Infobip SMS integration for patient visit reminders and educational SMSs. 
 It has been re-designed to achieve the same functionality based on patient details fetched from Salesforce.
