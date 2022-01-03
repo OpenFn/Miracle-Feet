@@ -87,7 +87,7 @@ curl --location --request POST 'https://apidomain.infobip.com/sms/1/text/advance
 
 When a patient is marked as stopped, suspended or completed treatment, they will no receive educational messages and visit reminders. If they move from one treatment to a different one, educational messages for the original treatment are stopped and SMS campaign for the new treatment is scheduled.
 
-[**Scheduling "Bracing Night" SMSs**](#bracing-night)
+<a id="bracing-night"></a> **Scheduling "Bracing Night" SMSs*
 
 Since September 2021 it's not possible to schedule messages on the Infobip API for more than 6 month ahead. 
 
