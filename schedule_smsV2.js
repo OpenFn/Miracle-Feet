@@ -108,6 +108,15 @@ fn(state => {
     },
   };
 
+  const treatmentsList = [
+    'Casting',
+    'Tenotomy',
+    'Bracing Day',
+    'Bracing Night',
+    'Complete',
+    'Suspended',
+  ];
+
   const timeZoneMap = {
     'Africa/Kinshasa': '+01:00',
     'America/Managua': '-06:00',
@@ -191,13 +200,19 @@ fn(state => {
     // We organize destructuring by concern.
     const { smsOptInII, smsOptIn } = contact; // destructuring sms options
     const { status, caseId, Name, Country, Phone } = contact; // destructuring contact info
-    const { treatment, originalTreatment, braceProblemType } = contact; // destructuring treatment info
+    const {
+      treatment,
+      originalTreatment,
+      reasonStoppedTreatment,
+      braceProblemType,
+    } = contact; // destructuring treatment info
     const {
       startDate,
       nextVisitDate,
       registrationDate,
       firstVisitDate,
       lastVisitDate,
+      lastModifiedDateCommCare,
     } = contact; // destructuring dates
 
     // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
@@ -232,6 +247,36 @@ fn(state => {
         alertsToSend.push(...alert);
       }
     }
+    // DELETION FINAL =========================================================
+    // If Last_Modified_Date_CommCare__c > today() - 1...
+    if (
+      new Date(lastModifiedDateCommCare) > new Date(setDays(new Date(), -1))
+    ) {
+      // ...and treatment included in treatmentsList then delete originalTreatment...
+      // ...and brace problems type.
+      if (treatmentsList.includes(treatment) || reasonStoppedTreatment !== '') {
+        console.log('treatment', originalTreatment);
+        let alert = [];
+        alert = Object.values(treatmentMapSchedule).filter(
+          obj => obj.treatment === originalTreatment
+        );
+        alertsToDisable.push(...alert);
+        alertsToDisable.push(
+          treatmentMapSchedule['not_wearing_enough'],
+          treatmentMapSchedule['child_not_tolerating'],
+          treatmentMapSchedule['family_not_accepting']
+        );
+      }
+      if (
+        treatment === 'Complete' ||
+        treatment === 'Suspended' ||
+        reasonStoppedTreatment !== ''
+      ) {
+        alertsToDisable.push(treatmentMapSchedule['reminder_before']);
+        alertsToDisable.push(treatmentMapSchedule['reminder_after']);
+      }
+    }
+    // ========================================================================
     console.log('treatment', alertsToSend);
 
     if (alertsToSend.length > 0) {
@@ -333,7 +378,8 @@ fn(state => {
           // END Send SMS ================================================
         }
       }
-
+    }
+    if (alertsToDisable.length > 0) {
       // for each alert to cancel
       for (let alert of alertsToDisable) {
         console.log('============= START SMS CANCELATION =============');
@@ -343,6 +389,9 @@ fn(state => {
 
           if (bulkPrefix === 'visitAfter-') {
             bulkId = `${bulkId}-${lastVisitDate}`;
+          }
+          if (bulkPrefix === 'visitBefore-') {
+            bulkId = `${bulkId}-${startDate}`;
           }
 
           messagesToCancel.push(bulkId);
