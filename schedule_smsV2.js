@@ -392,7 +392,19 @@ fn(async state => {
     })(state);
   }
 
-  const { messagesToSend } = state;
+  function deleteSMS(bulkId) {
+    return put(`${host}/1/bulks/status?bulkId=${bulkId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `App ${token}`,
+      },
+      body: {
+        status: 'CANCELED',
+      },
+    })(state);
+  }
+
+  const { messagesToSend, messagesToCancel } = state;
 
   // SCHEDULE SMS PROCESS =======================================================
   for (let messageToSend of messagesToSend) {
