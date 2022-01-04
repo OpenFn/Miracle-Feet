@@ -56,6 +56,8 @@ The following diagrams describe the SMS scheduling/cancelation logic for the dif
 6. [Deactivated clinic](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=3kldohKkc3rC#): Logic for canceling all SMSs in case a clinic is deactivated, handled in the [deactivation](#clinic-status) flow.
 7. [Suspended clinic](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=-vZdQ7bQkd0_#): Canceling appointment reminders for suspended clinic in the [deactivation](#clinic-status) flow.
 
+Alert IDs in the diagrams (e.g. `Alert 8`) refer to [# Alert](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?pli=1#gid=379768061&range=A:A) in the Master Mapping Table. Admins can check all information on the alert (scheduling time, condition for scheduling, SMS text and translations) in the sheet by Alert ID.
+
 ### Notes on Scheduling Logic
 
 **Overview**
