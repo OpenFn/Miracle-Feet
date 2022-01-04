@@ -144,6 +144,13 @@ Administrator Training [Slides](https://docs.google.com/presentation/d/1b00y9VBg
 Change Management Training [Slides](https://docs.google.com/presentation/d/1chirtiqxa2LRrxl5g2o2D6vT8aCAQsWIJ1DoITzI5_A/edit?usp=sharing)
 
 ### SMS Implementation Next Steps 
+**Salesforce-based flow roll-out**
+- [] Finish testing to sign-off on alert scheduling logic. [See new test suite](https://docs.google.com/spreadsheets/d/1iWV06FjPrc2CFyoWvWr7ZVA5K8mQVWUNqNLAwJZnQ8Q/edit?pli=1#gid=121594139).
+- [] Sync `Brace Problems Type` data to patients in Salesforce
+- [] Deactivate original [Schedule SMS job](https://openfn.org/projects/miraclefeet/jobs/jypnkm)
+
+
+**Original flow roll-out**
 - [x] Finish testing across countries to sign-off on alert scheduling logic & content. [See Test Suite](https://docs.google.com/spreadsheets/d/1ZR60vDaejfWva5lkLXn2o362vpqLX0RWwW31Na3l9hg/edit?usp=drive_web&ouid=101430720901034004945) for detailed unit tests. 
 and the [updated test suite](https://docs.google.com/spreadsheets/d/1iWV06FjPrc2CFyoWvWr7ZVA5K8mQVWUNqNLAwJZnQ8Q/edit?pli=1#gid=121594139) for the Salesforce-Infobop integration.
 - [x] Remove code in OpenFn job that executes flow only for test users
