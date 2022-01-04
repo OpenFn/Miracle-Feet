@@ -37,6 +37,9 @@ Watch the [solution overview video](https://drive.google.com/file/d/1Ne7sHJ8BR1I
 And [see here](https://docs.google.com/document/d/1FHJIW8bAQYk-4WP3uosoCCVvXVTTPPIej64N7_L-lSY/edit?usp=sharing) for the original project concept. 
 
 ### Technical Overview
+Prerequisites
+Patients' Salesforce information necessary for SMS scheduling is now being synced from CommCare via the existing [Add new patient](https://github.com/OpenFn/Miracle-Feet/blob/master/add_new_patient__UPDATED.js), [Update Patient](https://github.com/OpenFn/Miracle-Feet/blob/master/update_patient_UPDATED.js), [Add new visit](https://github.com/OpenFn/Miracle-Feet/blob/master/add_new_visit__UPDATED.js) and [Update visit](https://github.com/OpenFn/Miracle-Feet/blob/master/update_visit__UPDATED.js) jobs. These update the new Salesforce fields: SMS Treatment, SMS Original Treatment, SMS Treatment Start Date, and the Pronoun fields. We also make use of the Patient First Name, Guardian First Name, Brace Problems Type, Last and Next Visit dates, and the Send SMS and SMS Opt In fields to create messages and verify consent. 
+
 How it works...
 1. An OpenFn job [[SMS-Flow-1] Fetch contacts from SF](https://openfn.org/projects/miraclefeet/jobs/eZiygD) runs daily to query contacts from Salesforce and fetch their treatment and appointment information.
 2. A second OpenFn job [[SMS-Flow-2] Schedule SMSs](https://openfn.org/projects/miraclefeet/jobs/QjbQti)  will be triggered to schedule relevant SMS alerts in the Infobip Portal
