@@ -136,9 +136,7 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 
 **To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.**
 
-Currently SMS scheduling only happens for CommCare usernames that are explicitly added to the job. **To add a new clinic username to run scheduling for, add it to [`allowedUsernames` list](https://github.com/OpenFn/Miracle-Feet/blob/0bfae75ee8986c975085db6005ce17b40e694b0f/schedule_sms.js#L184)**, for example:
-
- `const allowedUsernames = ['testClinic1'];`
+SMS scheduling only happens for patients whose Clinic in Salesforce is either in "Actively Supported" or "Temporarily Suspended" status. In order to add or remove clinic from the scheduling flow, change the Clinic Status accordingly.
 
 ### Training
 
