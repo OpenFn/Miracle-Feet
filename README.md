@@ -46,6 +46,16 @@ How it works...
 
 We have separate jobs to schedule ["Bracing Night"](#bracing-night) messages and to handle changes in [clinic status](#clinic-status).
 
+### Data flow diagrams
+The following diagrams describe the SMS scheduling/cancelation logic for the different flows.
+1. [Alerts](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=1DAwPIVNM1be#): scheduling logic for educational messages in the [[SMS-Flow-1] Fetch contacts from SF](https://openfn.org/projects/miraclefeet/jobs/eZiygD) flow. 
+2. [Reminders](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=lnCwXzrVWkm-#): Appointment reminder scheduling logic in the same SMS Flow.
+3. [Opt-out](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=ofMGMeZYd5CR#): SMS cancelation logic when a patient opts out of some or all of the SMS-s, handled in the same SMS flow.
+4. [Deletion]([url](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=m_LGgr65KSdJ#)): Deleting SMSs for previous treatment in case the treatment has changed or stopped in the same flow.
+5. [Bracing night](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=SQpcRv~M.sEX#): Logic for scheduling ["Bracing night"]((#bracing-night)) messages in the ["Bracing Night"](#bracing-night) flow. 
+6. [Deactivated clinic](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=3kldohKkc3rC#): Logic for canceling all SMSs in case a clinic is deactivated, handled in the [deactivation](#clinic-status) flow.
+7. [Suspended clinic](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=-vZdQ7bQkd0_#): Canceling appointment reminders for suspended clinic in the [deactivation](#clinic-status) flow.
+
 ### Notes on Scheduling Logic
 
 **Overview**
@@ -104,7 +114,7 @@ We run the [[Bracing-night 1] Fetch bracing night contacts from SF](https://www.
 
 The [[Bracing-night 2] Schedule bracing night SMSs](https://www.openfn.org/projects/pdbznd/jobs/jvn5jk) will then automatically launch to schedule any necessary SMSs for the next 3 months, based on the `SMS_Treatment_Start_Date__c` field.
 
-<a id="clinic-status"></a> Clinic status and SMS scheduling**
+<a id="clinic-status"></a> **Clinic status and SMS scheduling**
 
 Clinic status is set in Salesforce, in the Status field.
 
