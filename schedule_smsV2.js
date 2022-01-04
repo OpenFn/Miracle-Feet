@@ -86,17 +86,17 @@ fn(state => {
     not_wearing_enough: {
       key: '11 - Not Wearing Brace Enough',
       bulkPrefix: 'not_wearing_brace-',
-      braceProblemsType: 'not_wearing_enough',
+      braceProblemsType: 'Not Wearing Enough',
     },
     child_not_tolerating: {
       key: '12 - Not Tolerating Brace',
       bulkPrefix: 'not_tolerating_brace-',
-      braceProblemsType: 'child_not_tolerating',
+      braceProblemsType: 'Child Not Tolerating',
     },
     family_not_accepting: {
       key: '13 - Not Accepting Brace',
       bulkPrefix: 'not_accepting_brace-',
-      braceProblemsType: 'family_not_accepting',
+      braceProblemsType: 'Family Not Accepting',
     },
     reminder_before: {
       key: '14 - Reminder: 2 days before visit',
