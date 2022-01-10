@@ -178,6 +178,51 @@ fn(state => {
     'US/Central': '-06:00',
   };
 
+  const PhoneMapping = {
+    220: 'GCF',
+    'The Gambia': 'GCF',
+    224: 'PONSETIGN',
+    Guinea: 'PONSETIGN',
+    231: 'LIBclubfoot',
+    Liberia: 'LIBclubfoot',
+    261: 'GASYPIEDBOT',
+    Madagascar: 'GASYPIEDBOT',
+    223: 'PiedBotMali',
+    Mali: 'PiedBotMali',
+    212: 'MarocPBVE',
+    Morocco: 'MarocPBVE',
+    234: 'TSCFFOOT',
+    Nigeria: 'TSCFFOOT',
+    242: 'PiedbotCG',
+    'Republic of the Congo': 'PiedbotCG',
+    221: 'laagotankSN',
+    Senegal: 'laagotankSN',
+    232: 'SALONKLUFUT',
+    'Sierra Leone': 'SALONKLUFUT',
+    252: 'BISHACAS',
+    Somalia: 'BISHACAS',
+    211: 'CLUBFOOT',
+    'South Sudan': 'CLUBFOOT',
+    255: 'MGUUKIFUNDO',
+    Tanzania: 'MGUUKIFUNDO',
+    256: 'CLUBFOOT',
+    Uganda: 'CLUBFOOT',
+    505: 'EQUINOVARO',
+    Nicaragua: 'EQUINOVARO',
+    880: 'WALKFORLIFE',
+    Bangladesh: 'WALKFORLIFE',
+    62: 'YAYASAN-SSB',
+    Indonesia: 'YAYASAN-SSB',
+    95: 'WALKFORLIFE',
+    Myanmar: 'WALKFORLIFE',
+    977: 'YAYASAN-SSB',
+    Nepal: 'YAYASAN-SSB',
+    63: 'PNGOC',
+    Philippines: 'PNGOC',
+    94: 'HICLUBFOOT',
+    'Sri Lanka': 'HICLUBFOOT',
+  };
+
   const languageCodeMap = {
     English: 'EN',
     French: 'FRA',
@@ -200,7 +245,7 @@ fn(state => {
 
       // We organize destructuring by concern.
       const { smsOptInII, smsOptIn } = contact; // destructuring sms options
-      const { status, caseId, Name, Country, Phone } = contact; // destructuring contact info
+      const { status, caseId, patientCountry, Country, Phone } = contact; // destructuring contact info
       const {
         treatment,
         originalTreatment,
@@ -393,7 +438,7 @@ fn(state => {
             }
             console.log('Sending SMS at: ', sendAt);
 
-            const from = null; // TODO: replace with right value
+            const from = PhoneMapping[patientCountry];
             const message = {
               from,
               destinations: [
