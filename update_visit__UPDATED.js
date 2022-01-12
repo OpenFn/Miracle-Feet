@@ -132,6 +132,7 @@ alterState(state => {
     'test_clinic4',
     'sierra_leone_test_clinic',
     'haiti_test_clinic',
+    'mali_test_clinic'
   ];
 
   state.dateConverter = function (state, dateString) {
