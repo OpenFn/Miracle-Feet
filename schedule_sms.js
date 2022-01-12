@@ -400,7 +400,7 @@ fn(state => {
           }
 
           if (
-            (original_treatment && original_treatment !== treatment) ||
+            (original_treatment && original_treatment !== treatment && original_treatment  !== "stopped") ||
             properties
           ) {
             alertsValueMap[original_treatment].forEach(value => {
