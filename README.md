@@ -146,7 +146,7 @@ Change Management Training [Slides](https://docs.google.com/presentation/d/1chir
 ### SMS Implementation Next Steps 
 **Salesforce-based flow roll-out**
 - [ ] Finish testing to sign-off on alert scheduling logic. [See new test suite](https://docs.google.com/spreadsheets/d/1iWV06FjPrc2CFyoWvWr7ZVA5K8mQVWUNqNLAwJZnQ8Q/edit?pli=1#gid=121594139).
-- [ ] Sync `Brace Problems Type` data to patients in Salesforce
+- [x] Sync `Brace Problems Type` data to patients in Salesforce
 - [ ] Deactivate original [Schedule SMS job](https://openfn.org/projects/miraclefeet/jobs/jypnkm)
 
 
