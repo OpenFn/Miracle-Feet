@@ -98,9 +98,9 @@ curl --location --request POST 'https://apidomain.infobip.com/sms/1/text/advance
 
 **Opt-in, opt-out**
 
-- Opting in to receiving SMS-s: `send_sms = 'on'`
-- Opting in to receive educational messages: `sms_opt_in_educational = 'yes'`
-- Opting in to receive visit reminders: `sms_opt_in = 'yes'`
+- Opting in to receiving SMS-s: `Send_SMS__c = true`
+- Opting in to receive educational messages: `SMS_Opt_In_II__c = true`
+- Opting in to receive visit reminders: `SMS_Opt_In__c = true`
 
 **Treatment changes, stopping treatment**
 
