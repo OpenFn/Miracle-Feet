@@ -70,7 +70,7 @@ Alert IDs in the diagrams (e.g. `Alert 8`) refer to [# Alert](https://docs.googl
 6. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing).
 7. SMS scheduling times are adjusted for local time zones.
 8. SMS-s are only scheduled to be sent between 8am-8pm local time.
-9. We only schedule SMS if `Guardian_1_Phone_Landline__c == false` on the Patient's Salesforce account.
+9. We only schedule SMS if `Guardian_1_Phone_Landline__c == false` on the Patient's Salesforce profile.
 
 
 **Logic for setting missed appointment reminders**
