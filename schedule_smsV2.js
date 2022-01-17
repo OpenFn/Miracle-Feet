@@ -238,101 +238,257 @@ fn(state => {
   };
 
   for (let contact of contacts) {
-    if (contact.sendSms) {
-      const alertsToSend = []; // this will hold the list of alerts to send for this contact.
-      const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
-      console.log('contact', contact);
+    if (contact.GuardianPhoneLandline == false) {
+      if (contact.sendSms) {
+        const alertsToSend = []; // this will hold the list of alerts to send for this contact.
+        const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
+        console.log('contact', contact);
 
-      // We organize destructuring by concern.
-      const { smsOptInII, smsOptIn } = contact; // destructuring sms options
-      const { status, caseId, patientCountry, Country, Phone } = contact; // destructuring contact info
-      const {
-        treatment,
-        originalTreatment,
-        reasonStoppedTreatment,
-        braceProblemType,
-      } = contact; // destructuring treatment info
-      const {
-        startDate,
-        nextVisitDate,
-        registrationDate,
-        firstVisitDate,
-        lastVisitDate,
-        lastModifiedDateCommCare,
-      } = contact; // destructuring dates
+        // We organize destructuring by concern.
+        const { smsOptInII, smsOptIn } = contact; // destructuring sms options
+        const { status, caseId, patientCountry, Country, Phone } = contact; // destructuring contact info
+        const {
+          treatment,
+          originalTreatment,
+          reasonStoppedTreatment,
+          braceProblemType,
+        } = contact; // destructuring treatment info
+        const {
+          startDate,
+          nextVisitDate,
+          registrationDate,
+          firstVisitDate,
+          lastVisitDate,
+          lastModifiedDateCommCare,
+        } = contact; // destructuring dates
 
-      // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
-      if (
-        status === 'Actively Supported' &&
-        smsOptIn &&
-        nextVisitDate !== null
-      ) {
-        alertsToSend.push(treatmentMapSchedule['reminder_before']);
-        if (lastVisitDate) {
-          alertsToDisable.push(treatmentMapSchedule['reminder_after']);
+        // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
+        if (
+          status === 'Actively Supported' &&
+          smsOptIn &&
+          nextVisitDate !== null
+        ) {
+          alertsToSend.push(treatmentMapSchedule['reminder_before']);
+          if (lastVisitDate) {
+            alertsToDisable.push(treatmentMapSchedule['reminder_after']);
+          }
+          alertsToSend.push(treatmentMapSchedule['reminder_after']);
         }
-        alertsToSend.push(treatmentMapSchedule['reminder_after']);
+        if (
+          (status === 'Actively Supported' ||
+            status === 'Temporarily Suspended') &&
+          smsOptInII
+        ) {
+          // Schedule blue conditions - alert 1, 2
+          if (registrationDate === setDays(new Date(), 0)) {
+            alertsToSend.push(treatmentMapSchedule['registration']);
+            alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
+          }
+          if (
+            treatment !== originalTreatment ||
+            firstVisitDate !== lastVisitDate
+          ) {
+            let alert = [];
+            // Schedule red conditions
+            alert = Object.values(treatmentMapSchedule).filter(
+              obj => obj.treatment === treatment
+            );
+            alertsToSend.push(...alert);
+
+            // Schedule teal conditions - alert 14, 15, 16
+            alert = Object.values(treatmentMapSchedule).filter(
+              obj => obj.braceProblemsType === braceProblemType
+            );
+            alertsToSend.push(...alert);
+          }
+        }
+        // DELETION FINAL =========================================================
+        // If Last_Modified_Date_CommCare__c > today() - 1...
+        if (
+          new Date(lastModifiedDateCommCare) > new Date(setDays(new Date(), -1))
+        ) {
+          // ...and treatment included in treatmentsList then delete originalTreatment...
+          // ...and brace problems type.
+          if (
+            treatmentsList.includes(treatment) ||
+            reasonStoppedTreatment !== ''
+          ) {
+            console.log('treatment', originalTreatment);
+            let alert = [];
+            alert = Object.values(treatmentMapSchedule).filter(
+              obj => obj.treatment === originalTreatment
+            );
+            alertsToDisable.push(...alert);
+            alertsToDisable.push(
+              treatmentMapSchedule['not_wearing_enough'],
+              treatmentMapSchedule['child_not_tolerating'],
+              treatmentMapSchedule['family_not_accepting']
+            );
+          }
+          if (
+            treatment === 'Complete' ||
+            treatment === 'Suspended' ||
+            reasonStoppedTreatment !== '' ||
+            smsOptIn === false // Opt-out
+          ) {
+            alertsToDisable.push(treatmentMapSchedule['reminder_before']);
+            alertsToDisable.push(treatmentMapSchedule['reminder_after']);
+          }
+
+          if (
+            treatment === 'Casting' ||
+            treatment === 'Tenotomy' ||
+            treatment === 'Bracing Day' ||
+            treatment === 'Bracing Night'
+          ) {
+            let alert = [];
+            alert = Object.values(treatmentMapSchedule).filter(
+              obj => obj.treatment === treatment
+            );
+            alertsToDisable.push(...alert);
+          }
+          if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
+            alertsToDisable.push(
+              treatmentMapSchedule['not_wearing_enough'],
+              treatmentMapSchedule['child_not_tolerating'],
+              treatmentMapSchedule['family_not_accepting']
+            );
+          }
+        }
+        // ========================================================================
+        console.log('treatment', alertsToSend);
+
+        if (alertsToSend.length > 0) {
+          // for each alert to send
+          for (let alert of alertsToSend) {
+            console.log('============= START SMS SCHEDULE =============');
+            const { key, bulkPrefix } = alert;
+            for (let rule of mapping[key]) {
+              console.log('=======================================');
+              console.log(`rule ${key} 'Schedule Start Date (SSD):`, startDate);
+
+              const start_date = startDate;
+              console.log('Start date fetched: ', start_date);
+
+              if (!start_date) {
+                console.log('Skipping schedule because date is empty');
+                break;
+              }
+              let sendAtDate = new Date(start_date);
+
+              // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
+              let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
+              if (bulkPrefix === 'visitAfter-') {
+                bulkId = `${bulkId}-${nextVisitDate}`;
+                sendAtDate = new Date(nextVisitDate);
+              }
+              if (bulkPrefix === 'visitBefore-') {
+                bulkId = `${bulkId}-${start_date}`;
+                sendAtDate = new Date(nextVisitDate);
+              }
+              console.log('bulkId: ', bulkId);
+              // console.log('rule', rule[languageCodeMap[language_code]]);
+
+              // We build the sms from the rule and the information from the contact
+              const sms = rule[languageCodeMap[language_code]]
+                .map((item, pos) => (pos % 2 === 0 ? item : contact[item]))
+                .join('');
+
+              sendAtDate.setDate(sendAtDate.getDate() + rule['Days from SSD']);
+              const hours = setHoursFromRule(rule);
+              const minutes = setMinutesFromRule(rule);
+
+              sendAtDate.setHours(parseInt(hours));
+              sendAtDate.setMinutes(
+                parseInt(minutes) +
+                  (rule['Min From SSD'] ? rule['Min From SSD'] : 0)
+              );
+
+              // Adding timezone offset ====================================
+              const dateBeforeTZ = sendAtDate;
+              const timezone = countryToTimeZone[Country];
+              if (timezone !== '') {
+                sendAtDateTimeZone = [
+                  sendAtDate
+                    .toISOString()
+                    .substring(0, sendAtDate.toISOString().length - 1),
+                  timeZoneMap[timezone],
+                ].join('');
+                sendAtDate = new Date(sendAtDateTimeZone);
+              }
+              console.log('before timezone', dateBeforeTZ.toISOString());
+              console.log('after timezone', sendAtDate.toISOString());
+              // ============================================================
+
+              // Delay sending date =========================================
+              // If message risks to be sent between 8PM and 8AM delay until 8AM the next day.
+              if (sendAtDate.getHours() >= 20) {
+                sendAtDate.setDate(sendAtDate.getDate() + 1);
+              }
+              if (sendAtDate.getHours() >= 20 || sendAtDate.getHours() < 8) {
+                sendAtDate.setHours(8);
+              }
+              // ============================================================
+
+              const sendAt = sendAtDate.toISOString();
+              const to = Phone;
+              console.log('sending to', to);
+              if (!to) {
+                console.log(
+                  'No phone number defined! Skipping SMS scheduling.'
+                );
+                break;
+              }
+              console.log('Sending SMS at: ', sendAt);
+
+              const from = PhoneMapping[patientCountry];
+              const message = {
+                from,
+                destinations: [
+                  {
+                    to,
+                  },
+                ],
+                text: sms,
+                sendAt,
+              };
+              messagesToSend.push({
+                bulkId,
+                message,
+              });
+              // END Send SMS ================================================
+            }
+          }
+        }
+        if (alertsToDisable.length > 0) {
+          // for each alert to cancel
+          for (let alert of alertsToDisable) {
+            console.log('============= START SMS CANCELATION =============');
+            const { key, bulkPrefix } = alert;
+            for (let rule of mapping[key]) {
+              let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
+
+              if (bulkPrefix === 'visitAfter-') {
+                bulkId = `${bulkId}-${lastVisitDate}`;
+              }
+              if (bulkPrefix === 'visitBefore-') {
+                bulkId = `${bulkId}-${startDate}`;
+              }
+
+              messagesToCancel.push(bulkId);
+              console.log('bulkId to delete: ', bulkId);
+            }
+          }
+        }
       }
-      if (
-        (status === 'Actively Supported' ||
-          status === 'Temporarily Suspended') &&
-        smsOptInII
-      ) {
-        // Schedule blue conditions - alert 1, 2
-        if (registrationDate === setDays(new Date(), 0)) {
-          alertsToSend.push(treatmentMapSchedule['registration']);
-          alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
-        }
-        if (
-          treatment !== originalTreatment ||
-          firstVisitDate !== lastVisitDate
-        ) {
-          let alert = [];
-          // Schedule red conditions
-          alert = Object.values(treatmentMapSchedule).filter(
-            obj => obj.treatment === treatment
-          );
-          alertsToSend.push(...alert);
+      if (!contact.sendSms) {
+        const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
+        console.log('contact to delete sms for', contact);
 
-          // Schedule teal conditions - alert 14, 15, 16
-          alert = Object.values(treatmentMapSchedule).filter(
-            obj => obj.braceProblemsType === braceProblemType
-          );
-          alertsToSend.push(...alert);
-        }
-      }
-      // DELETION FINAL =========================================================
-      // If Last_Modified_Date_CommCare__c > today() - 1...
-      if (
-        new Date(lastModifiedDateCommCare) > new Date(setDays(new Date(), -1))
-      ) {
-        // ...and treatment included in treatmentsList then delete originalTreatment...
-        // ...and brace problems type.
-        if (
-          treatmentsList.includes(treatment) ||
-          reasonStoppedTreatment !== ''
-        ) {
-          console.log('treatment', originalTreatment);
-          let alert = [];
-          alert = Object.values(treatmentMapSchedule).filter(
-            obj => obj.treatment === originalTreatment
-          );
-          alertsToDisable.push(...alert);
-          alertsToDisable.push(
-            treatmentMapSchedule['not_wearing_enough'],
-            treatmentMapSchedule['child_not_tolerating'],
-            treatmentMapSchedule['family_not_accepting']
-          );
-        }
-        if (
-          treatment === 'Complete' ||
-          treatment === 'Suspended' ||
-          reasonStoppedTreatment !== '' ||
-          smsOptIn === false // Opt-out
-        ) {
-          alertsToDisable.push(treatmentMapSchedule['reminder_before']);
-          alertsToDisable.push(treatmentMapSchedule['reminder_after']);
-        }
+        // We organize destructuring by concern.
+        const { caseId } = contact; // destructuring contact info
+        const { treatment } = contact; // destructuring treatment info
+        const { startDate, lastVisitDate } = contact; // destructuring dates
 
         if (
           treatment === 'Casting' ||
@@ -345,6 +501,8 @@ fn(state => {
             obj => obj.treatment === treatment
           );
           alertsToDisable.push(...alert);
+          alertsToDisable.push(treatmentMapSchedule['reminder_before']);
+          alertsToDisable.push(treatmentMapSchedule['reminder_after']);
         }
         if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
           alertsToDisable.push(
@@ -353,179 +511,25 @@ fn(state => {
             treatmentMapSchedule['family_not_accepting']
           );
         }
-      }
-      // ========================================================================
-      console.log('treatment', alertsToSend);
 
-      if (alertsToSend.length > 0) {
-        // for each alert to send
-        for (let alert of alertsToSend) {
-          console.log('============= START SMS SCHEDULE =============');
-          const { key, bulkPrefix } = alert;
-          for (let rule of mapping[key]) {
-            console.log('=======================================');
-            console.log(`rule ${key} 'Schedule Start Date (SSD):`, startDate);
+        if (alertsToDisable.length > 0) {
+          // for each alert to cancel
+          for (let alert of alertsToDisable) {
+            console.log('============= START SMS CANCELATION =============');
+            const { key, bulkPrefix } = alert;
+            for (let rule of mapping[key]) {
+              let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
 
-            const start_date = startDate;
-            console.log('Start date fetched: ', start_date);
+              if (bulkPrefix === 'visitAfter-') {
+                bulkId = `${bulkId}-${lastVisitDate}`;
+              }
+              if (bulkPrefix === 'visitBefore-') {
+                bulkId = `${bulkId}-${startDate}`;
+              }
 
-            if (!start_date) {
-              console.log('Skipping schedule because date is empty');
-              break;
+              messagesToCancel.push(bulkId);
+              console.log('bulkId to delete: ', bulkId);
             }
-            let sendAtDate = new Date(start_date);
-
-            // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
-            let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
-            if (bulkPrefix === 'visitAfter-') {
-              bulkId = `${bulkId}-${nextVisitDate}`;
-              sendAtDate = new Date(nextVisitDate);
-            }
-            if (bulkPrefix === 'visitBefore-') {
-              bulkId = `${bulkId}-${start_date}`;
-              sendAtDate = new Date(nextVisitDate);
-            }
-            console.log('bulkId: ', bulkId);
-            // console.log('rule', rule[languageCodeMap[language_code]]);
-
-            // We build the sms from the rule and the information from the contact
-            const sms = rule[languageCodeMap[language_code]]
-              .map((item, pos) => (pos % 2 === 0 ? item : contact[item]))
-              .join('');
-
-            sendAtDate.setDate(sendAtDate.getDate() + rule['Days from SSD']);
-            const hours = setHoursFromRule(rule);
-            const minutes = setMinutesFromRule(rule);
-
-            sendAtDate.setHours(parseInt(hours));
-            sendAtDate.setMinutes(
-              parseInt(minutes) +
-                (rule['Min From SSD'] ? rule['Min From SSD'] : 0)
-            );
-
-            // Adding timezone offset ====================================
-            const dateBeforeTZ = sendAtDate;
-            const timezone = countryToTimeZone[Country];
-            if (timezone !== '') {
-              sendAtDateTimeZone = [
-                sendAtDate
-                  .toISOString()
-                  .substring(0, sendAtDate.toISOString().length - 1),
-                timeZoneMap[timezone],
-              ].join('');
-              sendAtDate = new Date(sendAtDateTimeZone);
-            }
-            console.log('before timezone', dateBeforeTZ.toISOString());
-            console.log('after timezone', sendAtDate.toISOString());
-            // ============================================================
-
-            // Delay sending date =========================================
-            // If message risks to be sent between 8PM and 8AM delay until 8AM the next day.
-            if (sendAtDate.getHours() >= 20) {
-              sendAtDate.setDate(sendAtDate.getDate() + 1);
-            }
-            if (sendAtDate.getHours() >= 20 || sendAtDate.getHours() < 8) {
-              sendAtDate.setHours(8);
-            }
-            // ============================================================
-
-            const sendAt = sendAtDate.toISOString();
-            const to = Phone;
-            console.log('sending to', to);
-            if (!to) {
-              console.log('No phone number defined! Skipping SMS scheduling.');
-              break;
-            }
-            console.log('Sending SMS at: ', sendAt);
-
-            const from = PhoneMapping[patientCountry];
-            const message = {
-              from,
-              destinations: [
-                {
-                  to,
-                },
-              ],
-              text: sms,
-              sendAt,
-            };
-            messagesToSend.push({
-              bulkId,
-              message,
-            });
-            // END Send SMS ================================================
-          }
-        }
-      }
-      if (alertsToDisable.length > 0) {
-        // for each alert to cancel
-        for (let alert of alertsToDisable) {
-          console.log('============= START SMS CANCELATION =============');
-          const { key, bulkPrefix } = alert;
-          for (let rule of mapping[key]) {
-            let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
-
-            if (bulkPrefix === 'visitAfter-') {
-              bulkId = `${bulkId}-${lastVisitDate}`;
-            }
-            if (bulkPrefix === 'visitBefore-') {
-              bulkId = `${bulkId}-${startDate}`;
-            }
-
-            messagesToCancel.push(bulkId);
-            console.log('bulkId to delete: ', bulkId);
-          }
-        }
-      }
-    }
-    if (!contact.sendSms) {
-      const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
-      console.log('contact to delete sms for', contact);
-
-      // We organize destructuring by concern.
-      const { caseId } = contact; // destructuring contact info
-      const { treatment } = contact; // destructuring treatment info
-      const { startDate, lastVisitDate } = contact; // destructuring dates
-
-      if (
-        treatment === 'Casting' ||
-        treatment === 'Tenotomy' ||
-        treatment === 'Bracing Day' ||
-        treatment === 'Bracing Night'
-      ) {
-        let alert = [];
-        alert = Object.values(treatmentMapSchedule).filter(
-          obj => obj.treatment === treatment
-        );
-        alertsToDisable.push(...alert);
-        alertsToDisable.push(treatmentMapSchedule['reminder_before']);
-        alertsToDisable.push(treatmentMapSchedule['reminder_after']);
-      }
-      if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
-        alertsToDisable.push(
-          treatmentMapSchedule['not_wearing_enough'],
-          treatmentMapSchedule['child_not_tolerating'],
-          treatmentMapSchedule['family_not_accepting']
-        );
-      }
-
-      if (alertsToDisable.length > 0) {
-        // for each alert to cancel
-        for (let alert of alertsToDisable) {
-          console.log('============= START SMS CANCELATION =============');
-          const { key, bulkPrefix } = alert;
-          for (let rule of mapping[key]) {
-            let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
-
-            if (bulkPrefix === 'visitAfter-') {
-              bulkId = `${bulkId}-${lastVisitDate}`;
-            }
-            if (bulkPrefix === 'visitBefore-') {
-              bulkId = `${bulkId}-${startDate}`;
-            }
-
-            messagesToCancel.push(bulkId);
-            console.log('bulkId to delete: ', bulkId);
           }
         }
       }
