@@ -113,7 +113,7 @@ fn(state => {
     'Tenotomy',
     'Bracing Day',
     'Bracing Night',
-    'Complete',
+    // 'Complete',
     'Suspended',
   ];
 
@@ -250,6 +250,7 @@ fn(state => {
         const {
           treatment,
           originalTreatment,
+          treatmentCompleted,
           reasonStoppedTreatment,
           braceProblemType,
         } = contact; // destructuring treatment info
@@ -289,17 +290,24 @@ fn(state => {
             firstVisitDate !== lastVisitDate
           ) {
             let alert = [];
-            // Schedule red conditions
-            alert = Object.values(treatmentMapSchedule).filter(
-              obj => obj.treatment === treatment
-            );
-            alertsToSend.push(...alert);
+            // Ignore scheduling for when treatment (SMS_treatment__c) equals 'Complete'
+            if (treatment !== 'Complete') {
+              // Schedule red conditions
+              alert = Object.values(treatmentMapSchedule).filter(
+                obj => obj.treatment === treatment
+              );
+              alertsToSend.push(...alert);
+            }
 
             // Schedule teal conditions - alert 14, 15, 16
             alert = Object.values(treatmentMapSchedule).filter(
               obj => obj.braceProblemsType === braceProblemType
             );
             alertsToSend.push(...alert);
+          }
+          // Scheduling alert #13 for when Treatment_Completed__c is 'true'
+          if (treatmentCompleted == true) {
+            alertsToSend.push(treatmentMapSchedule['Complete']);
           }
         }
         // DELETION FINAL =========================================================
@@ -308,12 +316,13 @@ fn(state => {
           new Date(lastModifiedDateCommCare) > new Date(setDays(new Date(), -1))
         ) {
           // ...and treatment included in treatmentsList then delete originalTreatment...
-          // ...and brace problems type.
+          // ...or brace problems type...
+          // ...or treatment is completed.
           if (
             treatmentsList.includes(treatment) ||
-            reasonStoppedTreatment !== ''
+            reasonStoppedTreatment !== '' ||
+            treatmentCompleted == true
           ) {
-            console.log('treatment', originalTreatment);
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
               obj => obj.treatment === originalTreatment
@@ -326,7 +335,8 @@ fn(state => {
             );
           }
           if (
-            treatment === 'Complete' ||
+            // treatment === 'Complete' || ignore deletion for when treatment (SMS_treatment__c) equals 'Complete'
+            treatmentCompleted == true ||
             treatment === 'Suspended' ||
             reasonStoppedTreatment !== '' ||
             smsOptIn === false // Opt-out
