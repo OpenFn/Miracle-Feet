@@ -307,7 +307,7 @@ fn(state => {
           }
           // Scheduling alert #13 for when Treatment_Completed__c is 'true'
           if (treatmentCompleted == true) {
-            alertsToSend.push(treatmentMapSchedule['Complete']);
+            alertsToSend.push(treatmentMapSchedule['complete']);
           }
         }
         // DELETION FINAL =========================================================
