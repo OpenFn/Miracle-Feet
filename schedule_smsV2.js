@@ -281,7 +281,7 @@ fn(state => {
           smsOptInII
         ) {
           // Schedule blue conditions - alert 1, 2
-          if (registrationDate === setDays(new Date(), 0)) {
+          if (registrationDate === setDays(new Date(), -1)) {
             alertsToSend.push(treatmentMapSchedule['registration']);
             alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
           }
