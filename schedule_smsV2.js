@@ -321,7 +321,7 @@ fn(state => {
           if (
             treatmentsList.includes(treatment) ||
             reasonStoppedTreatment !== '' ||
-            (treatmentCompleted == true && treatment !== 'Complete')
+            treatmentCompleted == true
           ) {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
