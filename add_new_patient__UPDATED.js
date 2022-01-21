@@ -169,6 +169,10 @@ alterState(state => {
           'Secondary_ID_Type__c',
           dataValue('form.case.update.secondary_id_type')
         ),
+        field(
+          'Secondary_ID__c',
+          dataValue('form.case.update.secondary_id')
+        ),
         field('Registration_Date__c', state => {
           return state.dateConverter(
             state,
