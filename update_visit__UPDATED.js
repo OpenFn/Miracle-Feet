@@ -1,6 +1,6 @@
   fn(state => {
     
-    console.log("Does this work ? ", dataValue('xform_ids.0'))
+    console.log("Does this work ? ", dataValue('xform_ids.0')(state))
     
     return state
   })
