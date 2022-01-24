@@ -1,5 +1,6 @@
 query(
-  `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c IN ('Previously Supported', 'Active - CAST Guest User Only')`
+  `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c IN ('Previously Supported', 'Active - CAST Guest User Only') AND 
+  LastModifiedDate = LAST_N_DAYS:1`
 );
 
 fn(state => ({
@@ -10,7 +11,8 @@ fn(state => ({
 }));
 
 query(
-  `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c = 'Temporarily Suspended'`
+  `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c = 'Temporarily Suspended' AND 
+LastModifiedDate = LAST_N_DAYS:1`
 );
 
 fn(state => {
