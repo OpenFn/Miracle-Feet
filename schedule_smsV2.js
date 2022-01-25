@@ -324,13 +324,7 @@ fn(state => {
             treatmentMapSchedule['reminder_after']
           );
 
-          if (
-            (treatmentCompleted == true && treatment !== 'Complete') ||
-            treatment === 'Casting' ||
-            treatment === 'Tenotomy' ||
-            treatment === 'Bracing Day' ||
-            treatment === 'Bracing Night'
-          ) {
+          if (treatmentCompleted == true && treatment !== 'Complete') {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
               obj => obj.treatment === treatment
