@@ -311,11 +311,7 @@ fn(state => {
           }
         }
         // DELETION FINAL =========================================================
-        // If Last_Modified_Date_CommCare__c > today() - 1...
         if (
-          // Testing: we are already only filtering fetching by LastModifiedDate
-          //new Date(lastModifiedDateCommCare) >
-          //  new Date(setDays(new Date(), -1)) &&
           treatment !== originalTreatment
         ) {
           // ...and treatment included in treatmentsList then delete originalTreatment...
