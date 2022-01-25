@@ -1,4 +1,5 @@
 fn(state => {
+  //NOTE: Here we add functions for converting/transformating data
   state.dateConverter = function (state, dateString) {
     return dateString ? new Date(dateString).toISOString() : null;
   };
@@ -14,16 +15,17 @@ fn(state => {
   return { ...state, braceMap };
 });
 
+//NOTE: Here we upsert our target object in Salesforce & define mappings
 upsert(
   'Partner_Brace_Distribution__c',
   'New_Visit_UID__c',
   fields(
+    //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
     field('New_Visit_UID__c', state => {
       var icrId = state.data.form.subcase_0.case.update.visit_original_id;
       var caseId = state.data.form.subcase_0.case['@case_id'];
       return icrId && icrId !== '' ? icrId : caseId;
     }),
-    //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
     field('Brace_Type__c', state => {
       const ref = state.data.form.subcase_0.case.update.brace_type;
       return !ref
