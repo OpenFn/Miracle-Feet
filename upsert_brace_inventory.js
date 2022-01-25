@@ -1,7 +1,7 @@
 //TODO: Add 2 Salesforce questions to get the inventoryId to then later map below
 //The queries should look like this:
 // const parentClincId = `SELECT Account.ParentId FROM Contact WHERE CommCare_Case_ID__c = dataValue('form.case.@case_id')(state)` //finds parent clinic
-// const inventoryId = `SELECT Id FROM Partner_Brace_Inventory__c WHERE Partner__c = ${parentClinicId}`
+// const inventoryId = `SELECT Id FROM Partner_Brace_Inventory__c WHERE Partner__c = ${parentClinicId} ORDER BY CreatedDate DESC LIMIT 1`
 //THEN make sure we can use inventory to map L44
 
 fn(state => {
