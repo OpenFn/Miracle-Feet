@@ -57,6 +57,11 @@ upsert(
     //   var caseId = state.data.form.subcase_0.case['@case_id'];
     //   return icrId && icrId !== '' ? icrId : caseId;
     // }),
+    relationship(
+      'Patient__r',
+      'CommCare_Case_ID__c',
+      dataValue('form.case.@case_id')
+    ),
     field('Brace_Type__c', state => {
       const ref = state.data.form.subcase_0.case.update.brace_type;
       return !ref
