@@ -4,6 +4,32 @@
 // const inventoryId = `SELECT Id FROM Partner_Brace_Inventory__c WHERE Partner__c = ${parentClinicId} ORDER BY CreatedDate DESC LIMIT 1`
 //THEN make sure we can use inventory to map L44
 
+query(
+  `SELECT Account.ParentId FROM Contact 
+  WHERE CommCare_Case_ID__c = '${dataValue('form.case.@case_id')(state)}'`
+);
+
+fn(state => ({
+  ...state,
+  data: {
+    ...state.data,
+    parentClinicId: state.references[0].records[0].Account.ParentId,
+  },
+}));
+
+query(
+  state => `SELECT Id FROM Partner_Brace_Inventory__c 
+  WHERE Partner__c = '${state.data.parentClinicId}'
+  ORDER BY CreatedDate DESC LIMIT 1`
+);
+
+fn(state => ({
+  ...state,
+  data: {
+    ...state.data,
+    inventoryId: state.references[0].records[0].Id,
+  },
+}));
 fn(state => {
   //NOTE: Here we add functions for converting/transformating data
   state.dateConverter = function (state, dateString) {
@@ -41,7 +67,7 @@ upsert(
         ? state.braceMap[ref]
         : 'Not Defined';
     }),
-    //field('Partner_Brace_Inventory__c', state.inventoryId)
+    field('Partner_Brace_Inventory__c', dataValue('inventoryId')),
     field(
       'MiracleFeet_Brace_Given__c',
       dataValue('form.subcase_0.case.update.miraclefeet_brace_given')
