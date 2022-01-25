@@ -260,7 +260,6 @@ fn(state => {
           registrationDate,
           firstVisitDate,
           lastVisitDate,
-          lastModifiedDateCommCare,
         } = contact; // destructuring dates
 
         // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
@@ -311,16 +310,35 @@ fn(state => {
           }
         }
         // DELETION FINAL =========================================================
-        if (
-          treatment !== originalTreatment
-        ) {
+        if (treatmentCompleted == true) {
+          let alert = [];
+          alert = Object.values(treatmentMapSchedule).filter(
+            obj => obj.treatment === originalTreatment
+          );
+          alertsToDisable.push(...alert);
+          alertsToDisable.push(
+            treatmentMapSchedule['not_wearing_enough'],
+            treatmentMapSchedule['child_not_tolerating'],
+            treatmentMapSchedule['family_not_accepting'],
+            treatmentMapSchedule['reminder_before'],
+            treatmentMapSchedule['reminder_after']
+          );
+
+          if (treatmentCompleted == true && treatment !== 'Complete') {
+            let alert = [];
+            alert = Object.values(treatmentMapSchedule).filter(
+              obj => obj.treatment === treatment
+            );
+            alertsToDisable.push(...alert);
+          }
+        }
+        if (treatment !== originalTreatment) {
           // ...and treatment included in treatmentsList then delete originalTreatment...
           // ...or brace problems type...
           // ...or treatment is completed.
           if (
             treatmentsList.includes(treatment) ||
-            reasonStoppedTreatment !== '' ||
-            treatmentCompleted == true
+            reasonStoppedTreatment !== ''
           ) {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
@@ -335,7 +353,6 @@ fn(state => {
           }
           if (
             // treatment === 'Complete' || ignore deletion for when treatment (SMS_treatment__c) equals 'Complete'
-            treatmentCompleted == true ||
             treatment === 'Suspended' ||
             reasonStoppedTreatment !== '' ||
             smsOptIn === false // Opt-out
@@ -345,7 +362,6 @@ fn(state => {
           }
 
           if (
-            (treatmentCompleted == true && treatment !== 'Complete') ||
             treatment === 'Casting' ||
             treatment === 'Tenotomy' ||
             treatment === 'Bracing Day' ||
