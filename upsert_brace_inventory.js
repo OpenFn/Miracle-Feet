@@ -46,7 +46,9 @@ fn(state => {
 });
 
 //NOTE: Here we upsert our target object in Salesforce & define mappings
-upsert(
+upsertIf(
+  state.data.form.subcase_0.case.update.brace_type &&
+    state.data.form.subcase_0.case.update.brace_type !== '', //only upsert if brace_type is defined
   'Partner_Brace_Distribution__c',
   'CommCare_Case_ID__c',
   fields(
