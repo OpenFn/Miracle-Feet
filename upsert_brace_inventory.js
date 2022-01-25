@@ -1,3 +1,9 @@
+//TODO: Add 2 Salesforce questions to get the inventoryId to then later map below
+//The queries should look like this:
+// const parentClincId = `SELECT Account.ParentId FROM Contact WHERE CommCare_Case_ID__c = dataValue('form.case.@case_id')(state)` //finds parent clinic
+// const inventoryId = `SELECT Id FROM Partner_Brace_Inventory__c WHERE Partner__c = ${parentClinicId}`
+//THEN make sure we can use inventory to map L44
+
 fn(state => {
   //NOTE: Here we add functions for converting/transformating data
   state.dateConverter = function (state, dateString) {
@@ -18,14 +24,15 @@ fn(state => {
 //NOTE: Here we upsert our target object in Salesforce & define mappings
 upsert(
   'Partner_Brace_Distribution__c',
-  'New_Visit_UID__c',
+  'CommCare_Case_ID__c',
   fields(
-    //changed EXT ID from gciclubfoot__commcare_case_id__c as this is how it is configured in SF
-    field('New_Visit_UID__c', state => {
-      var icrId = state.data.form.subcase_0.case.update.visit_original_id;
-      var caseId = state.data.form.subcase_0.case['@case_id'];
-      return icrId && icrId !== '' ? icrId : caseId;
-    }),
+    field('CommCare_Case_ID__c', dataValue('id')), //make the form Id the uid for this object
+    // Old uid for Visit upserts
+    // field('New_Visit_UID__c', state => {
+    //   var icrId = state.data.form.subcase_0.case.update.visit_original_id;
+    //   var caseId = state.data.form.subcase_0.case['@case_id'];
+    //   return icrId && icrId !== '' ? icrId : caseId;
+    // }),
     field('Brace_Type__c', state => {
       const ref = state.data.form.subcase_0.case.update.brace_type;
       return !ref
@@ -34,22 +41,23 @@ upsert(
         ? state.braceMap[ref]
         : 'Not Defined';
     }),
+    //field('Partner_Brace_Inventory__c', state.inventoryId)
     field(
       'MiracleFeet_Brace_Given__c',
       dataValue('form.subcase_0.case.update.miraclefeet_brace_given')
-    ), // picklist
+    ),
     field(
       'Bar_Condition__c',
       dataValue('form.subcase_0.case.update.miraclefeet_bar_condition')
-    ), // picklist
+    ),
     field(
       'Shoe_Condition__c',
       dataValue('form.subcase_0.case.update.miraclefeet_shoes_condition')
-    ), // picklist
+    ),
     field(
       'Bar_Size__c',
       dataValue('form.subcase_0.case.update.miraclefeet_bar_size')
-    ), // picklist
+    ),
     field('Shoe_Size__c', state => {
       const mf_shoe =
         state.data.form.subcase_0.case.update.miraclefeet_shoe_size;
