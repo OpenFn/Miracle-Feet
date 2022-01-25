@@ -331,13 +331,6 @@ fn(state => {
             );
             alertsToDisable.push(...alert);
           }
-          if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
-            alertsToDisable.push(
-              treatmentMapSchedule['not_wearing_enough'],
-              treatmentMapSchedule['child_not_tolerating'],
-              treatmentMapSchedule['family_not_accepting']
-            );
-          }
         }
         if (treatment !== originalTreatment) {
           // ...and treatment included in treatmentsList then delete originalTreatment...
