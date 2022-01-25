@@ -1,9 +1,4 @@
-//TODO: Add 2 Salesforce questions to get the inventoryId to then later map below
-//The queries should look like this:
-// const parentClincId = `SELECT Account.ParentId FROM Contact WHERE CommCare_Case_ID__c = dataValue('form.case.@case_id')(state)` //finds parent clinic
-// const inventoryId = `SELECT Id FROM Partner_Brace_Inventory__c WHERE Partner__c = ${parentClinicId} ORDER BY CreatedDate DESC LIMIT 1`
-//THEN make sure we can use inventory to map L44
-
+//Get Partner clinic id from Patient's clinic
 query(
   `SELECT Account.ParentId FROM Contact 
   WHERE CommCare_Case_ID__c = '${dataValue('form.case.@case_id')(state)}'`
@@ -17,10 +12,11 @@ fn(state => ({
   },
 }));
 
+//Then get related Partner Brace Inventory
 query(
   state => `SELECT Id FROM Partner_Brace_Inventory__c 
   WHERE Partner__c = '${state.data.parentClinicId}'
-  ORDER BY CreatedDate DESC LIMIT 1`
+  ORDER BY CreatedDate DESC LIMIT 1` //Returns record most recently created
 );
 
 fn(state => ({
@@ -28,8 +24,10 @@ fn(state => ({
   data: {
     ...state.data,
     inventoryId: state.references[0].records[0].Id,
+    //save id of Partner_Brace_Inventory__c to map later
   },
 }));
+
 fn(state => {
   //NOTE: Here we add functions for converting/transformating data
   state.dateConverter = function (state, dateString) {
