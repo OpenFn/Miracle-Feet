@@ -75,7 +75,7 @@ upsertIf(
     }),
     field('Partner_Brace_Inventory__c', dataValue('inventoryId')),
     field(
-      'MiracleFeet_Brace_Given__c',
+      'Brace_Given__c',
       dataValue('form.subcase_0.case.update.miraclefeet_brace_given')
     ),
     field(
