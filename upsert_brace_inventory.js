@@ -16,7 +16,8 @@ fn(state => ({
 query(
   state => `SELECT Id FROM Partner_Brace_Inventory__c 
   WHERE Partner__c = '${state.data.parentClinicId}'
-  ORDER BY CreatedDate DESC LIMIT 1` //Returns record most recently created
+  AND Active__c = TRUE 
+  LIMIT 1` //Returns active PBI record
 );
 
 fn(state => ({
