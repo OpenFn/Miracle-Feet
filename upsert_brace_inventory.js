@@ -114,7 +114,7 @@ upsertIf(
     }),
     field('visit_date__c', state => {
       return state.dateConverter(
-        state.data.form.case.update.visit_date
+        dataValue('form.case.update.visit_date')(state)
       );
     })
   )
