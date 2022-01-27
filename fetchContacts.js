@@ -24,6 +24,7 @@ fn(state => {
     const { records } = state.references[0];
 
     const contacts = records.map(record => {
+      //Here we assign SF values to variables to reference in the Infobip scheduling job
       return {
         id: record.Id,
         Name: record.Name,
