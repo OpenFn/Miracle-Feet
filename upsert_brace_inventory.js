@@ -113,9 +113,8 @@ upsertIf(
       return shoe;
     }),
     field('visit_date__c', state => {
-      return state.dateConverter(
-        dataValue('form.case.update.visit_date')(state)
-      );
+      var date = dataValue('form.case.update.visit_date')(state);
+      return date && date!=='' ? date.toISOString() : date; 
     })
   )
 );
