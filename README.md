@@ -136,7 +136,7 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 
 **To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.**
 
-SMS scheduling only happens for patients whose Clinic in Salesforce is either in "Actively Supported" or "Temporarily Suspended" status. In order to add or remove clinic from the scheduling flow, change the Clinic Status accordingly.
+SMS scheduling only happens for patients whose Clinic `Status` in Salesforce is either in "Actively Supported" or "Temporarily Suspended". In order to add or remove clinic from the scheduling flow, change the Clinic Status accordingly. **To opt a clinic into SMS alerts, this `Status` should be updated in Salesforce.**
 
 ### Training
 
