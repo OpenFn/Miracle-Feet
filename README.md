@@ -132,7 +132,16 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 **To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:**
 1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=379768061).
 2. Make your edits in the new sheet (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688)).
-3. Notify OpenFn support at support@openfn.org to implement the changes.
+3. Notify OpenFn support at support@openfn.org to implement the changes. 
+
+#### OpenFn Process for converting Mapping sheet to JSON object
+1. copy the whole content of the mapping table
+2. paste on this converter at the left pane https://csvjson.com/csv2json
+3. copy the generated json
+4. paste it into state file `content-input.json`: https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-input.json
+5. locally, execute node `mapping/converter.js` against state `content-input.json` using devtools
+6. get the result from `content-output-minified.js` https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-output-minified.js
+6. paste it in the job in place of mapping variable at line 3
 
 **To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.**
 
