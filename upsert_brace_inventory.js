@@ -31,9 +31,6 @@ fn(state => ({
 
 fn(state => {
   //NOTE: Here we add functions for converting/transformating data
-  state.dateConverter = function (state, dateString) {
-    return dateString ? new Date(dateString).toISOString() : null;
-  };
 
   const braceMap = {
     dobbs_or_mitchell: 'Dobbs or Mitchell',
@@ -114,7 +111,7 @@ upsertIf(
     }),
     field('visit_date__c', state => {
       var date = dataValue('form.case.update.visit_date')(state);
-      return date && date!=='' ? date.toISOString() : date; 
+      return date && date!=='' ? new Date(date).toISOString() : date; 
     })
   )
 );
