@@ -113,7 +113,7 @@ fn(state => {
     'Tenotomy',
     'Bracing Day',
     'Bracing Night',
-    // 'Complete',
+    // 'Complete', //now use treatmentCompleted to check if completed
     'Suspended',
   ];
 
@@ -265,7 +265,7 @@ fn(state => {
         // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
         if (
           status === 'Actively Supported' &&
-          smsOptIn &&
+          smsOptIn && //opt-in for reminder messages
           nextVisitDate !== null
         ) {
           alertsToSend.push(treatmentMapSchedule['reminder_before']);
@@ -277,13 +277,15 @@ fn(state => {
         if (
           (status === 'Actively Supported' ||
             status === 'Temporarily Suspended') &&
-          smsOptInII
+          smsOptInII //opt-in for educational messages
         ) {
           // Schedule blue conditions - alert 1, 2
-          if (registrationDate === setDays(new Date(), -1)) {
+          // only want to send these "register" SMSs 1x for new registrants
+          if (registrationDate === setDays(new Date(), -1)) { 
             alertsToSend.push(treatmentMapSchedule['registration']);
             alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
           }
+          // if treatment changed or a next visit scheduled
           if (
             treatment !== originalTreatment ||
             firstVisitDate !== lastVisitDate
@@ -309,7 +311,9 @@ fn(state => {
             alertsToSend.push(treatmentMapSchedule['complete']);
           }
         }
-        // DELETION FINAL =========================================================
+        // DELETION FINAL FLOW =====================================================
+        // If treatment completed, we go delete previously scheduled SMSs
+        // TODO: To determine if we can simplify this flow and determine WHICH treatment was completed
         if (treatmentCompleted == true) {
           let alert = [];
           alert = Object.values(treatmentMapSchedule).filter(
@@ -332,13 +336,14 @@ fn(state => {
             alertsToDisable.push(...alert);
           }
         }
+        //Now if the treatment has changed...
         if (treatment !== originalTreatment) {
           // ...and treatment included in treatmentsList then delete originalTreatment...
           // ...or brace problems type...
           // ...or treatment is completed.
           if (
             treatmentsList.includes(treatment) ||
-            reasonStoppedTreatment !== ''
+            reasonStoppedTreatment !== '' //we assume if they provided a reason, then they stopped treatment
           ) {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
@@ -352,6 +357,8 @@ fn(state => {
             );
           }
           if (
+            // Now if treatment suspended, stopped or SMS opted out...
+            // Then cancel Visit Reminder and Treatment SMSs
             // treatment === 'Complete' || ignore deletion for when treatment (SMS_treatment__c) equals 'Complete'
             treatment === 'Suspended' ||
             reasonStoppedTreatment !== '' ||
@@ -397,7 +404,7 @@ fn(state => {
               console.log('Start date fetched: ', start_date);
 
               if (!start_date) {
-                console.log('Skipping schedule because date is empty');
+                console.log('Skipping SMS scheduling because alert date is empty');
                 break;
               }
               let sendAtDate = new Date(start_date);
@@ -448,6 +455,7 @@ fn(state => {
 
               // Delay sending date =========================================
               // If message risks to be sent between 8PM and 8AM delay until 8AM the next day.
+              // We do not want to send SMSs outside of normal daytime hours
               if (sendAtDate.getHours() >= 20) {
                 sendAtDate.setDate(sendAtDate.getDate() + 1);
               }
