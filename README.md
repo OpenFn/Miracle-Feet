@@ -130,7 +130,7 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 ### Ongoing Management
 
 **To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:**
-1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=262234774).
+1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=379768061).
 2. Make your edits in the new sheet (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688)).
 3. Notify OpenFn support at support@openfn.org to implement the changes.
 
