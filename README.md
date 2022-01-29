@@ -135,13 +135,13 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 3. Notify OpenFn support at support@openfn.org to implement the changes. 
 
 #### OpenFn Process for converting Mapping sheet to JSON object
-1. copy the whole content of the mapping table
-2. paste on this converter at the left pane https://csvjson.com/csv2json
-3. copy the generated json
-4. paste it into state file `content-input.json`: https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-input.json
-5. locally, execute node `mapping/converter.js` against state `content-input.json` using devtools
-6. get the result from `content-output-minified.js` https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-output-minified.js
-6. paste it in the job in place of mapping variable at line 3
+1. Copy the whole content of the mapping table
+2. Paste on this converter at the left pane https://csvjson.com/csv2json
+3. Get the generated json
+4. Paste it on content-input.jsonhttps://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-input.json
+5. Execute `node mapping/converter.js`
+6. Copy the resulting content from content-output-minified.js https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-output-minified.js
+7. Paste it in the job in place of mapping variable at line 3
 
 **To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.**
 
