@@ -47,6 +47,9 @@ How it works...
 We have separate jobs to schedule ["Bracing Night"](#bracing-night) messages and to handle changes in [clinic status](#clinic-status).
 
 ### Data flow diagrams
+
+A high-level overview of the SMS jobs can be found [here](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=TMAOo6WVCw0L#).
+
 The following diagrams describe the SMS scheduling/cancelation logic for the different flows.
 1. [Alerts](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=1DAwPIVNM1be#): scheduling logic for educational messages in the [[SMS-Flow-1] Fetch contacts from SF](https://openfn.org/projects/miraclefeet/jobs/eZiygD) flow. 
 2. [Reminders](https://lucid.app/lucidchart/9454d9ca-7c35-482d-b9e9-0e41284d1281/edit?invitationId=inv_5ca4e2c4-7c67-456c-8282-40356440173c&page=lnCwXzrVWkm-#): Appointment reminder scheduling logic in the same SMS Flow.
