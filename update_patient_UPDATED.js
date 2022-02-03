@@ -106,7 +106,7 @@ alterState(state => {
         'Age_Months_Started_Treatment__c',
         dataValue('properties.age_months_start_treatment_rounded')
       ),
-      field('Secondary_ID__c', dataValue('properties.patient_file_number')),
+      field('Secondary_ID__c', dataValue('properties.secondary_id')),
       field('Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
       field('Registration_Date__c', state =>
         state.dateConverter(state.data.properties.registration_date)
