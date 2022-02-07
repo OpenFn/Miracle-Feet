@@ -365,6 +365,18 @@ fn(state => {
           ) {
             alertsToDisable.push(treatmentMapSchedule['reminder_before']);
             alertsToDisable.push(treatmentMapSchedule['reminder_after']);
+          if (
+            treatment === 'Casting' ||
+            treatment === 'Tenotomy' ||
+            treatment === 'Bracing Day' ||
+            treatment === 'Bracing Night'
+          ) {
+             let alert = [];
+             alert = Object.values(treatmentMapSchedule).filter(
+               obj => obj.treatment === treatment
+             );
+             alertsToDisable.push(...alert);
+           }
           }
 
           // if (
