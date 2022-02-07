@@ -365,19 +365,26 @@ fn(state => {
           ) {
             alertsToDisable.push(treatmentMapSchedule['reminder_before']);
             alertsToDisable.push(treatmentMapSchedule['reminder_after']);
-          if (
-            treatment === 'Casting' ||
-            treatment === 'Tenotomy' ||
-            treatment === 'Bracing Day' ||
-            treatment === 'Bracing Night'
-          ) {
-             let alert = [];
-             alert = Object.values(treatmentMapSchedule).filter(
-               obj => obj.treatment === treatment
-             );
-             alertsToDisable.push(...alert);
-           }
-          }
+            if (
+              treatment === 'Casting' ||
+              treatment === 'Tenotomy' ||
+              treatment === 'Bracing Day' ||
+              treatment === 'Bracing Night'
+            ) {
+               let alert = [];
+               alert = Object.values(treatmentMapSchedule).filter(
+                 obj => obj.treatment === treatment
+               );
+               alertsToDisable.push(...alert);
+             }
+             if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
+              alertsToDisable.push(
+              treatmentMapSchedule['not_wearing_enough'],
+              treatmentMapSchedule['child_not_tolerating'],
+              treatmentMapSchedule['family_not_accepting']
+              );
+            }
+         }
 
           // if (
           //   treatment === 'Casting' ||
@@ -391,13 +398,13 @@ fn(state => {
           //   );
           //   alertsToDisable.push(...alert);
           // }
-          if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
-            alertsToDisable.push(
-              treatmentMapSchedule['not_wearing_enough'],
-              treatmentMapSchedule['child_not_tolerating'],
-              treatmentMapSchedule['family_not_accepting']
-            );
-          }
+          // if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
+          //   alertsToDisable.push(
+          //     treatmentMapSchedule['not_wearing_enough'],
+          //     treatmentMapSchedule['child_not_tolerating'],
+          //     treatmentMapSchedule['family_not_accepting']
+          //   );
+          // }
         }
         // ========================================================================
         console.log('treatment', alertsToSend);
