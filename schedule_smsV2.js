@@ -361,7 +361,7 @@ fn(state => {
             // Then cancel Visit Reminder and Treatment SMSs
             // treatment === 'Complete' || ignore deletion for when treatment (SMS_treatment__c) equals 'Complete'
             treatment === 'Suspended' ||
-            // reasonStoppedTreatment !== '' ||
+            reasonStoppedTreatment !== null ||
             smsOptIn === false // Opt-out
           ) {
             alertsToDisable.push(treatmentMapSchedule['reminder_before']);
