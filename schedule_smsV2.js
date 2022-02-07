@@ -343,7 +343,7 @@ fn(state => {
           // ...or treatment is completed.
           if (
             treatmentsList.includes(treatment) ||
-            reasonStoppedTreatment !== '' //we assume if they provided a reason, then they stopped treatment
+            reasonStoppedTreatment !== null //we assume if they provided a reason, then they stopped treatment
           ) {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
