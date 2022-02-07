@@ -327,7 +327,8 @@ fn(state => {
             treatmentMapSchedule['reminder_after']
           );
 
-          if (treatmentCompleted == true && treatment !== 'Complete') {
+          // if (treatmentCompleted == true && treatment !== 'Complete') {
+          if (treatment !== 'Complete') {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
               obj => obj.treatment === treatment
