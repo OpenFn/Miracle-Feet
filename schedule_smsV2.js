@@ -341,21 +341,21 @@ fn(state => {
           // ...and treatment included in treatmentsList then delete originalTreatment...
           // ...or brace problems type...
           // ...or treatment is completed.
-          if (
-            treatmentsList.includes(treatment) ||
-            reasonStoppedTreatment !== '' //we assume if they provided a reason, then they stopped treatment
-          ) {
-            let alert = [];
-            alert = Object.values(treatmentMapSchedule).filter(
-              obj => obj.treatment === originalTreatment
-            );
-            alertsToDisable.push(...alert);
-            alertsToDisable.push(
-              treatmentMapSchedule['not_wearing_enough'],
-              treatmentMapSchedule['child_not_tolerating'],
-              treatmentMapSchedule['family_not_accepting']
-            );
-          }
+          // if (
+          //   treatmentsList.includes(treatment) ||
+          //   reasonStoppedTreatment !== '' //we assume if they provided a reason, then they stopped treatment
+          // ) {
+          //   let alert = [];
+          //   alert = Object.values(treatmentMapSchedule).filter(
+          //     obj => obj.treatment === originalTreatment
+          //   );
+          //   alertsToDisable.push(...alert);
+          //   alertsToDisable.push(
+          //     treatmentMapSchedule['not_wearing_enough'],
+          //     treatmentMapSchedule['child_not_tolerating'],
+          //     treatmentMapSchedule['family_not_accepting']
+          //   );
+          // }
           if (
             // Now if treatment suspended, stopped or SMS opted out...
             // Then cancel Visit Reminder and Treatment SMSs
