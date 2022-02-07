@@ -296,7 +296,14 @@ fn(state => {
             humanProper(
               state.data.form.subcase_0.case.update.miraclefeet_bar_size
             )
-          ), // picklist
+          ), 
+          field('Date_of_SMS_Registration__c', state => {
+          return state.dateConverter(
+            state,
+            state.data.form.case.update.date_of_sms_registration
+          );
+        }),
+          // picklist
           field('MiracleFeet_Shoe_Size__c', state => {
             const mf_shoe =
               state.data.form.subcase_0.case.update.miraclefeet_shoe_size;
