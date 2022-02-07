@@ -483,7 +483,12 @@ alterState(state => {
             }
             return advice2;
           }),
-
+          field('Date_of_SMS_Registration__c', state => {
+          return state.dateConverter(
+            state,
+            state.data.form.case.update.date_of_sms_registration
+          );
+        }),
           //Relapse questions ========================================================
           field('Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
           field('Relapse_Count__c', dataValue('properties.recurrence_count')),
