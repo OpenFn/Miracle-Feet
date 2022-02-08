@@ -70,7 +70,7 @@ Alert IDs in the diagrams (e.g. `Alert 8`) refer to [# Alert](https://docs.googl
 3. In case of deletion, OpenFn checks if an SMS with the corresponding `bulkId` has been scheduled for the future or already sent. If it is scheduled, it gets canceled.
 4. Educational SMS alerts are scheduled following the logic outlined [here](https://lucid.app/lucidchart/invitations/accept/inv_1b2fc530-9f5c-4645-a317-618a395eaa06).
 5. Visit reminders and missed appointment reminders are scheduled to be sent according to the next visit date indicated in the form.
-6. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing).
+6. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing). The current Salesforce-based solution uses the [Salesforce mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=379768061). (The previous, [CommCare-based job](https://github.com/OpenFn/Miracle-Feet/blob/master/schedule_sms.js) uses a [different mapping table]([url](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=262234774)).
 7. SMS scheduling times are adjusted for local time zones.
 8. SMS-s are only scheduled to be sent between 8am-8pm local time.
 9. We only schedule SMS if `Guardian_1_Phone_Landline__c == false` on the Patient's Salesforce profile.
@@ -135,7 +135,7 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 **To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:**
 1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=379768061).
 2. Make your edits in the new sheet (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688)).
-3. Notify OpenFn support at support@openfn.org to implement the changes. 
+3. Notify OpenFn support at support@openfn.org to implement the changes.
 
 #### OpenFn Process for converting Mapping sheet to JSON object
 1. Copy the whole content of the mapping table
