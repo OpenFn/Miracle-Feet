@@ -138,7 +138,7 @@ fn(state => {
     'test_clinic4',
     'haiti_test_clinic',
     'sierra_leone_test_clinic',
-    'mali_test_clinic'
+    'mali_test_clinic',
   ];
 
   state.dateConverter = function (dateString) {
@@ -296,13 +296,12 @@ fn(state => {
             humanProper(
               state.data.form.subcase_0.case.update.miraclefeet_bar_size
             )
-          ), 
+          ),
           field('Date_of_SMS_Registration__c', state => {
-          return state.dateConverter(
-            state,
-            state.data.form.case.update.date_of_sms_registration
-          );
-        }),
+            return state.dateConverter(
+              state.data.form.case.update.date_of_sms_registration
+            );
+          }),
           // picklist
           field('MiracleFeet_Shoe_Size__c', state => {
             const mf_shoe =
