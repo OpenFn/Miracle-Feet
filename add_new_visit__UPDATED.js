@@ -299,7 +299,7 @@ fn(state => {
           ),
           // Field does not exist in SF? 
           // field('Date_of_SMS_Registration__c', state => {
-          //   var smsDate = state.data.properties.date_of_sms_registration; 
+          //   var smsDate = state.data.form.subcase_0.case.update.date_of_sms_registration; 
           //   return smsDate && smsDate!==undefined ? 
           //     state.dateConverter(smsDate) : 
           //     smsDate; 
