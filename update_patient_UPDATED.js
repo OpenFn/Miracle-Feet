@@ -318,12 +318,10 @@ alterState(state => {
         var opt = sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
         return opt;
       }),
-      // DOUBLE CHECK PATH FOR THIS FIELD
-      // field('Date_of_SMS_Registration__c', state => {
-      //     return state.dateConverter(
-      //       state.data.form.case.update.date_of_sms_registration
-      //     );
-      //   }),
+      field('Date_of_SMS_Registration__c',state => {
+        var smsDate = state.data.properties.date_of_sms_registration; 
+        return smsDate && smsDate!== undefined ? state.dateConverter(smsDate) : smsDate; 
+      }),
       field('Pronoun_he_she__c', dataValue('properties.pronoun_he_she')),
       field('Pronoun_him_her__c', dataValue('properties.pronoun_him_her')),
       field('Pronoun_his_her__c', dataValue('properties.pronoun_his_her')),
