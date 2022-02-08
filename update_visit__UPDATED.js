@@ -484,11 +484,10 @@ alterState(state => {
             return advice2;
           }),
           // DOUBLE CHECK PATH FOR THIS FIELD
-          // field('Date_of_SMS_Registration__c', state => {
-          //   return state.dateConverter(
-          //     state.data.form.case.update.date_of_sms_registration
-          //   );
-          // }),
+          field('Date_of_SMS_Registration__c', state => {
+            var smsDate = state.data.form.case.update.date_of_sms_registration; 
+            return smsDate ? state.dateConverter(smsDate) : smsDate; 
+          }),
           //Relapse questions ========================================================
           field('Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
           field('Relapse_Count__c', dataValue('properties.recurrence_count')),
