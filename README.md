@@ -119,7 +119,7 @@ We run the [[Bracing-night 1] Fetch bracing night contacts from SF](https://www.
 
 The [[Bracing-night 2] Schedule bracing night SMSs](https://www.openfn.org/projects/pdbznd/jobs/jvn5jk) will then automatically launch to schedule any necessary SMSs for the next 3 months, based on the `SMS_Treatment_Start_Date__c` field.
 
-<a id="clinic-status"></a> **Clinic status and SMS scheduling**
+<a id="clinic-status"></a> [**Clinic status and SMS scheduling**](#clinic-status)
 
 Clinic status is set in Salesforce, in the Status field.
 
