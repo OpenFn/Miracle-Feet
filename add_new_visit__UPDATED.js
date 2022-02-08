@@ -297,12 +297,13 @@ fn(state => {
               state.data.form.subcase_0.case.update.miraclefeet_bar_size
             )
           ),
-          // DOUBLE CHECK PATH FOR THIS FIELD
-          field('Date_of_SMS_Registration__c', state => {
-            return state.dateConverter(
-              state.data.form.case.update.date_of_sms_registration
-            );
-          }),
+          // Field does not exist in SF? 
+          // field('Date_of_SMS_Registration__c', state => {
+          //   var smsDate = state.data.properties.date_of_sms_registration; 
+          //   return smsDate && smsDate!==undefined ? 
+          //     state.dateConverter(smsDate) : 
+          //     smsDate; 
+          // }),
           // picklist
           field('MiracleFeet_Shoe_Size__c', state => {
             const mf_shoe =
