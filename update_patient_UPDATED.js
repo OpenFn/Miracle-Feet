@@ -318,12 +318,12 @@ alterState(state => {
         var opt = sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
         return opt;
       }),
-      field('Date_of_SMS_Registration__c', state => {
-          return state.dateConverter(
-            state,
-            state.data.form.case.update.date_of_sms_registration
-          );
-        }),
+      // field('Date_of_SMS_Registration__c', state => {
+      //     return state.dateConverter(
+      //       state,
+      //       state.data.form.case.update.date_of_sms_registration
+      //     );
+      //   }),
       field('Pronoun_he_she__c', dataValue('properties.pronoun_he_she')),
       field('Pronoun_him_her__c', dataValue('properties.pronoun_him_her')),
       field('Pronoun_his_her__c', dataValue('properties.pronoun_his_her')),
