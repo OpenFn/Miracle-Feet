@@ -485,8 +485,8 @@ alterState(state => {
           }),
           // DOUBLE CHECK PATH FOR THIS FIELD
           field('Date_of_SMS_Registration__c', state => {
-            var smsDate = state.data.form.case.update.date_of_sms_registration; 
-            return smsDate ? state.dateConverter(smsDate) : smsDate; 
+            var smsDate = state.data.properties.date_of_sms_registration; 
+            return smsDate && smsDate!==undefined ? state.dateConverter(smsDate) : smsDate; 
           }),
           //Relapse questions ========================================================
           field('Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
