@@ -20,7 +20,7 @@ alterState(state => {
   };
 
   //NOTE: Assumes date format YYYY-MM-DD
-  state.dateConverter = str => { 
+  state.dateConverter = str => {
     const Year2digitsTo4digits = dateString => {
       if (dateString && dateString.split('-')[0].length === 2) {
         var dateArr = dateString.split('-');
@@ -76,7 +76,7 @@ alterState(state => {
     'morocco_test_clinic',
     'sierra_leone_test_clinic',
     'haiti_test_clinic',
-    'mali_test_clinic'
+    'mali_test_clinic',
   ];
 
   return { ...state, discardedClinics };
@@ -318,9 +318,9 @@ alterState(state => {
         var opt = sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
         return opt;
       }),
+      // DOUBLE CHECK PATH FOR THIS FIELD
       // field('Date_of_SMS_Registration__c', state => {
       //     return state.dateConverter(
-      //       state,
       //       state.data.form.case.update.date_of_sms_registration
       //     );
       //   }),
@@ -475,23 +475,28 @@ alterState(state => {
         'L_Pirani_Score_at_Tenotomy__c',
         dataValue('properties.l_tenotomy_pirani_score')
       ),
+      field('Patient_Pay_Status__c', state => {
+        var status = dataValue('properties.patient_pay_status')(state);
+        return status == 'charity_or_ultra_poor'
+          ? 'Charity or Ultra Poor'
+          : status == 'self_paying'
+          ? 'Self Paying'
+          : status;
+      }),
+      field('Patient_Donor__c', state => {
+        var donor = dataValue('properties.patient_donor')(state);
+        return donor == 'miraclefeet'
+          ? 'MF'
+          : donor == 'cbm'
+          ? 'CBM'
+          : donor == 'other'
+          ? 'Others'
+          : donor;
+      }),
       field(
-          'Patient_Pay_Status__c', state => {
-            var status = dataValue('properties.patient_pay_status')(state); 
-            return status=='charity_or_ultra_poor' ? 'Charity or Ultra Poor' : 
-              status=='self_paying' ? 'Self Paying' : status; 
-          }),
-        field(
-          'Patient_Donor__c',state => {
-            var donor = dataValue('properties.patient_donor')(state); 
-            return donor=='miraclefeet' ? 'MF' : 
-              donor=='cbm' ? 'CBM' : 
-              donor=='other' ? 'Others' : donor; 
-          }),
-        field(
-          'Other_Type_Donor_Name__c', //removed extra period after field
-          dataValue('properties.other_donor')
-        ),
+        'Other_Type_Donor_Name__c', //removed extra period after field
+        dataValue('properties.other_donor')
+      ),
       field(
         'Tenotomy_Reason_Not_Given_Other__c',
         dataValue('tenotomy_reason_not_given_other')

@@ -297,6 +297,7 @@ fn(state => {
               state.data.form.subcase_0.case.update.miraclefeet_bar_size
             )
           ),
+          // DOUBLE CHECK PATH FOR THIS FIELD
           field('Date_of_SMS_Registration__c', state => {
             return state.dateConverter(
               state.data.form.case.update.date_of_sms_registration

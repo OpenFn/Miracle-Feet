@@ -132,7 +132,7 @@ alterState(state => {
     'test_clinic4',
     'sierra_leone_test_clinic',
     'haiti_test_clinic',
-    'mali_test_clinic'
+    'mali_test_clinic',
   ];
 
   state.dateConverter = function (state, dateString) {
@@ -483,12 +483,12 @@ alterState(state => {
             }
             return advice2;
           }),
-          field('Date_of_SMS_Registration__c', state => {
-          return state.dateConverter(
-            state,
-            state.data.form.case.update.date_of_sms_registration
-          );
-        }),
+          // DOUBLE CHECK PATH FOR THIS FIELD
+          // field('Date_of_SMS_Registration__c', state => {
+          //   return state.dateConverter(
+          //     state.data.form.case.update.date_of_sms_registration
+          //   );
+          // }),
           //Relapse questions ========================================================
           field('Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
           field('Relapse_Count__c', dataValue('properties.recurrence_count')),
