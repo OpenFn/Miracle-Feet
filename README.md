@@ -142,7 +142,7 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 1. Copy the whole content of the mapping table
 2. Paste on this converter at the left pane https://csvjson.com/csv2json
 3. Get the generated json
-4. Paste it on content-input.jsonhttps://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-input.json
+4. Paste it on [content-input.json](https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-input.json)
 5. Execute `node mapping/converter.js`
 6. Copy the resulting content from content-output-minified.js https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-output-minified.js
 7. Paste it in the job in place of mapping variable at line 3. If there is code formatting enabled, it might expand the contents. In that case, undo that last change to make sure content is on one line.
