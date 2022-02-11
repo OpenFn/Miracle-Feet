@@ -17,7 +17,7 @@ fn(state => {
     SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c,
     SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c
       FROM Contact
-      WHERE LastModifiedDate = LAST_N_DAYS:1`
+      WHERE LastModifiedDate = LAST_N_DAYS:1 AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
     // WHERE LastModifiedDate > ${new Date(
     //    setDays(new Date(), -1)
     //  ).toISOString()}`
