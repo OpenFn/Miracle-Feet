@@ -157,6 +157,9 @@ alterState(state => {
         field('Pronoun_he_she__c', dataValue('form.calcs.sms.pronoun_he_she')),
         field('Pronoun_him_her__c', dataValue('form.calcs.sms.pronoun_him_her')),
         field('Pronoun_his_her__c', dataValue('form.calcs.sms.pronoun_his_her')),
+        field('SMS_Timezone__c', dataValue('form.calcs.sms.time_zone')),
+        field('SMS_Language__c', dataValue('form.calcs.sms.sms_language')),
+
         field(
           'Age_Months_First_Brace__c',
            state => {
