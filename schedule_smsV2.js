@@ -166,6 +166,7 @@ fn(state => {
     'Africa/Dakar': '+00:00',
     'Africa/Kinshasa': '+01:00',
     'Africa/Lagos': '+01:00',
+    'Nigeria': '+01:00',
     'Africa/Casablanca': '+00:00',
     'Africa/Bamako': '+00:00',
     'Africa/Monrovia': '+00:00',
