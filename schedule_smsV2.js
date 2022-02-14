@@ -143,6 +143,8 @@ fn(state => {
     'Africa/Nairobi': '+03:00',
     'America/Panama': '-05:00',
     'US/Central': '-06:00',
+    'Nigeria':'Africa/Lagos',
+
   };
   const countryToTimeZone = {
     'Africa/Kinshasa': '+01:00',
@@ -244,7 +246,7 @@ fn(state => {
 
         // We organize destructuring by concern.
         const { smsOptInII, smsOptIn } = contact; // destructuring sms options
-        const { status, caseId, patientCountry, Country, Phone, sms_language } = contact; // destructuring contact info //timezone,
+        const { status, caseId, patientCountry, Country, Phone, sms_language, sms_timezone } = contact; // destructuring contact info //timezone,
         const {
           treatment,
           originalTreatment,
