@@ -40,7 +40,7 @@ fn(state => {
         Phone: record.Guardian_1_Phone_Number_1__c,
         GuardianPhoneLandline: record.Guardian_1_Phone_Landline__c,
         caseId: record.CommCare_Case_ID__c,
-        language_code: record.SMS_Language__c, 
+        sms_language: record.SMS_Language__c, 
 
         startDate: record.SMS_Treatment_Start_Date__c,
         nextVisitDate: record.Next_Visit_Date_New__c,
