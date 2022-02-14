@@ -246,7 +246,7 @@ fn(state => {
 
         // We organize destructuring by concern.
         const { smsOptInII, smsOptIn } = contact; // destructuring sms options
-        const { status, caseId, patientCountry, Country, Phone } = contact; // destructuring contact info
+        const { status, caseId, patientCountry, Country, Phone } = contact; // destructuring contact info //timezone,
         const {
           treatment,
           originalTreatment,
@@ -442,6 +442,7 @@ fn(state => {
 
               // Adding timezone offset ====================================
               const dateBeforeTZ = sendAtDate;
+              //const timezone = timezone
               const timezone = countryToTimeZone[Country];
               if (timezone !== '') {
                 sendAtDateTimeZone = [
