@@ -12,8 +12,6 @@ fn(state => {
       .split('T')[0];
   };
 
-  const language_code = 'English';
-
   const setHoursFromRule = rule =>
     rule['Clock Time']
       ? rule['Clock Time'].split(':')[0]
@@ -246,7 +244,7 @@ fn(state => {
 
         // We organize destructuring by concern.
         const { smsOptInII, smsOptIn } = contact; // destructuring sms options
-        const { status, caseId, patientCountry, Country, Phone } = contact; // destructuring contact info //timezone,
+        const { status, caseId, patientCountry, Country, Phone, sms_language } = contact; // destructuring contact info //timezone,
         const {
           treatment,
           originalTreatment,
@@ -261,6 +259,9 @@ fn(state => {
           firstVisitDate,
           lastVisitDate,
         } = contact; // destructuring dates
+        
+        const language_code = sms_language || 'English';
+
 
         // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
         if (
