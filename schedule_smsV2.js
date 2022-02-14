@@ -286,9 +286,9 @@ fn(state => {
             alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
           }
           // if treatment changed or a next visit scheduled
-          if (
-            treatment !== originalTreatment ||
-            firstVisitDate !== lastVisitDate
+          if (startDate === setDays(new Date(), -1) && 
+            (treatment !== originalTreatment ||
+            firstVisitDate !== lastVisitDate)
           ) {
             let alert = [];
             // Ignore scheduling for when treatment (SMS_treatment__c) equals 'Complete'
@@ -337,14 +337,15 @@ fn(state => {
             alertsToDisable.push(...alert);
           }
         }
-        //Now if the treatment has changed...
-        if (treatment !== originalTreatment) {
+        //Now if the treatment has changed since last run..
+        if ((startDate === setDays(new Date(), -1) && treatment !== originalTreatment) ||
+        reasonStoppedTreatment !== null ){ //we assume if they provided a reason, then they stopped treatment
           // ...and treatment included in treatmentsList then delete originalTreatment...
           // ...or brace problems type...
           // ...or treatment is completed.
           if (
-            treatmentsList.includes(treatment) ||
-            reasonStoppedTreatment !== null //we assume if they provided a reason, then they stopped treatment
+            treatmentsList.includes(treatment)
+           // reasonStoppedTreatment !== null 
           ) {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
