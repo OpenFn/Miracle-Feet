@@ -297,13 +297,13 @@ fn(state => {
               state.data.form.subcase_0.case.update.miraclefeet_bar_size
             )
           ),
-          // Field does not exist in SF? 
-          // field('Date_of_SMS_Registration__c', state => {
-          //   var smsDate = state.data.form.subcase_0.case.update.date_of_sms_registration; 
-          //   return smsDate && smsDate!==undefined ? 
-          //     state.dateConverter(smsDate) : 
-          //     smsDate; 
-          // }),
+          // Field does not exist in SF? FIeld has been created. 
+          field('Date_of_SMS_Registration_Visit__c', state => {
+             var smsDate = state.data.form.subcase_0.case.update.date_of_sms_registration; 
+             return smsDate && smsDate!==undefined ? 
+               state.dateConverter(smsDate) : 
+               smsDate; 
+           }),
           // picklist
           field('MiracleFeet_Shoe_Size__c', state => {
             const mf_shoe =
