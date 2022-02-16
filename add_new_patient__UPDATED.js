@@ -146,9 +146,9 @@ alterState(state => {
           }),
         field('Date_of_SMS_Registration__c', state => {
           var smsDate = state.data.form.case.update.date_of_sms_registration; 
-          return smsDate && smsDate!==undefined ? 
+          return smsDate && smsDate!==undefined && smsDate!=='' ? 
             state.dateConverter(smsDate) : 
-            smsDate; 
+            undefined; 
         }),
         field('Patient_Name__c', dataValue('form.case.update.patient_name')),
         field('FirstName', dataValue('form.case.update.patient_first_name')),
