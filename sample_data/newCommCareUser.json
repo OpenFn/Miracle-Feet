@@ -1,0 +1,94 @@
+{
+  "__query_params": {
+    "app_id": "None"
+  },
+  "app_id": null,
+  "archived": false,
+  "attachments": {
+    "form.xml": {
+      "content_type": "text/xml",
+      "length": 1714,
+      "url": "https://www.commcarehq.org/a/miraclefeet/api/form/attachment/af1ad8d30e7441f1997236ddd078ac30/form.xml"
+    }
+  },
+  "build_id": null,
+  "domain": "miraclefeet",
+  "edited_by_user_id": null,
+  "edited_on": null,
+  "form": {
+    "#type": "system",
+    "@uiVersion": "1",
+    "@version": "1",
+    "@xmlns": "http://commcarehq.org/case",
+    "case": {
+      "@case_id": "333",
+      "@date_modified": "2022-02-15T14:39:36.141143Z",
+      "@user_id": "callcenter-system",
+      "@xmlns": "http://commcarehq.org/case/transaction/v2",
+      "create": {
+        "case_name": "Acosta Test",
+        "case_type": "commcare-user",
+        "owner_id": "111"
+      },
+      "update": {
+        "clinic_code": "CNT01",
+        "clinic_name": "Acosta Nu",
+        "commcare_location_id": "555",
+        "commcare_location_ids": "555",
+        "commcare_primary_case_sharing_id": "555",
+        "commcare_project": "miraclefeet",
+        "country": "Paraguay",
+        "country_code": "PAR",
+        "date_opened": "2022-02-15",
+        "email": "",
+        "first_name": "Acosta",
+        "hq_user_id": "222",
+        "language": "",
+        "last_device_id_used": "",
+        "last_name": "Test",
+        "phone_code": "595",
+        "phone_number": "",
+        "role": "view_only",
+        "user_number": "09",
+        "username": "acostatest"
+      }
+    },
+    "meta": {
+      "@xmlns": "http://openrosa.org/jr/xforms",
+      "appVersion": null,
+      "app_build_version": null,
+      "commcare_version": null,
+      "deviceID": "corehq.apps.callcenter.sync_usercase._UserCaseHelper.",
+      "geo_point": null,
+      "instanceID": "111",
+      "timeEnd": "2022-02-15T14:39:36.143402Z",
+      "timeStart": "2022-02-15T14:39:36.143402Z",
+      "userID": "",
+      "username": "system"
+    }
+  },
+  "id": "666",
+  "indexed_on": "2022-02-15T14:39:36.396632",
+  "initial_processing_complete": true,
+  "is_phone_submission": false,
+  "metadata": {
+    "appVersion": null,
+    "app_build_version": null,
+    "commcare_version": null,
+    "deviceID": "corehq.apps.callcenter.sync_usercase._UserCaseHelper.",
+    "geo_point": null,
+    "instanceID": "111",
+    "location": null,
+    "timeEnd": "2022-02-15T14:39:36.143402Z",
+    "timeStart": "2022-02-15T14:39:36.143402Z",
+    "userID": "",
+    "username": "system"
+  },
+  "problem": null,
+  "received_on": "2022-02-15T14:39:36.149071Z",
+  "resource_uri": "",
+  "server_modified_on": "2022-02-15T14:39:36.176026Z",
+  "type": "system",
+  "uiversion": "1",
+  "version": "1"
+}
