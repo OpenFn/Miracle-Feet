@@ -1,0 +1,25 @@
+{
+  "__query_params": {},
+  "default_phone_number": null,
+  "email": "",
+  "first_name": "Acosta",
+  "groups": [],
+  "id": "fac0805697ac43f7b019bc011394ce24",
+  "last_name": "Test",
+  "phone_numbers": [],
+  "resource_uri": "/a/miraclefeet/api/v0.5/user/fac0805697ac43f7b019bc011394ce24/",
+  "user_data": {
+    "clinic_code": "CNT01",
+    "clinic_name": "Acosta Nu",
+    "commcare_location_id": "222",
+    "commcare_location_ids": "222",
+    "commcare_primary_case_sharing_id": "222",
+    "commcare_project": "miraclefeet",
+    "country": "Paraguay",
+    "country_code": "PAR",
+    "phone_code": "595",
+    "role": "view_only",
+    "user_number": "09"
+  },
+  "username": "acostatest@miraclefeet.commcarehq.org"
+}
