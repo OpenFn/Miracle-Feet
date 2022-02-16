@@ -320,7 +320,7 @@ alterState(state => {
       }),
       field('Date_of_SMS_Registration__c',state => {
         var smsDate = state.data.properties.date_of_sms_registration; 
-        return smsDate && smsDate!== undefined ? state.dateConverter(smsDate) : smsDate; 
+        return smsDate && smsDate!== undefined && smsDate!=='' ? state.dateConverter(smsDate) : undefined; 
       }),
       field('Pronoun_he_she__c', dataValue('properties.pronoun_he_she')),
       field('Pronoun_him_her__c', dataValue('properties.pronoun_him_her')),
