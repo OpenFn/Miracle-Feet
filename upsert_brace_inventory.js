@@ -40,9 +40,8 @@ fn(state => {
     other: 'Other',
     ankle_foot_orthosis_afo: 'Ankle Foot Orthosis (AFO)',
   };
-  return { ...state, braceMap };
-});
-//Added By Beth
+  
+  //Added By Beth
   const discardedClinics = [
     'test_bangladesh',
     'bol_test',
@@ -119,6 +118,9 @@ fn(state => {
     'sierra_leone_test_clinic',
     'mali_test_clinic',
   ];
+
+  return { ...state, braceMap };
+});
 
 //NOTE: Here we upsert our target object in Salesforce & define mappings
 upsertIf(
