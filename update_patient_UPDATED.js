@@ -2,7 +2,7 @@
 // New job for SF migration to new objects
 // Upsert Patient records in Salesforce from patient case updates in Commcare.
 // =============================================================================
-alterState(state => {
+fn(state => {
   state.handleMultiSelect = function (state, multiField) {
     const ms = state.data.properties[`${multiField}`];
     if (ms) {
@@ -29,8 +29,7 @@ alterState(state => {
       }
       return dateString;
     };
-
-    return str ? new Date(Year2digitsTo4digits(str)).toISOString() : null;
+    return str && str.trim() !=='' ? new Date(Year2digitsTo4digits(str)).toISOString() : null;
   };
 
   const discardedClinics = [
@@ -83,7 +82,7 @@ alterState(state => {
   return { ...state, discardedClinics };
 });
 
-alterState(state => {
+fn(state => {
   const { clinic_code } = state.data.properties;
   if (state.discardedClinics.includes(clinic_code)) {
     console.log(
@@ -516,3 +515,5 @@ alterState(state => {
     )(state);
   }
 });
+
+
