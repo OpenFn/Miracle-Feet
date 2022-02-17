@@ -17,7 +17,10 @@ fn(state => {
     SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c,
     SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c
       FROM Contact
-      WHERE Last_Modified_Date_CommCare__c = ${(setDays(new Date(), -1))} AND Account.Country__c in ('Nigeria') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
+      WHERE Last_Modified_Date_CommCare__c = ${setDays(
+        new Date(),
+        -1
+      )} AND Account.Country__c in ('Nigeria') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
     // WHERE LastModifiedDate > ${new Date(
     //    setDays(new Date(), -1)
     //  ).toISOString()}`
@@ -40,7 +43,7 @@ fn(state => {
         Phone: record.Guardian_1_Phone_Number_1__c,
         GuardianPhoneLandline: record.Guardian_1_Phone_Landline__c,
         caseId: record.CommCare_Case_ID__c,
-        sms_language: record.SMS_Language__c, 
+        sms_language: record.SMS_Language__c,
         sms_timezone: record.SMS_Timezone__c,
 
         startDate: record.SMS_Treatment_Start_Date__c,
@@ -64,4 +67,37 @@ fn(state => {
     });
     return { ...state, contacts };
   });
+});
+
+fn(async state => {
+  const { configuration, contacts } = state;
+
+  const loop = Math.ceil(contacts.length / 30);
+
+  let countInbox = 0;
+
+  const postToInbox = async data => {
+    countInbox++;
+
+    console.log(`Sending batch ${countInbox} to inbox`);
+    await http.post({
+      url: configuration.openfnInboxUrl,
+      data: data,
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity,
+    })(state);
+  };
+
+  console.log(`Sending ${loop} batches of contacts to inbox`);
+  for (let i = 0; i < loop; i++) {
+    const batch = state.contacts.slice(i * 30, (i + 1) * 30);
+
+    const data = {
+      tag: 'sms_salesforce',
+      contacts: batch,
+    };
+    await postToInbox(data);
+  }
+
+  return { ...state, references: [], data: {} };
 });
