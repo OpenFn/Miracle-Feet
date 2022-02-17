@@ -76,6 +76,7 @@ alterState(state => {
     'morocco_test_clinic',
     'sierra_leone_test_clinic',
     'haiti_test_clinic',
+    'peru_test_clinic',
     'mali_test_clinic',
   ];
 
