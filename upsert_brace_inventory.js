@@ -68,6 +68,7 @@ fn(state => {
     'nepal_test',
     'nica_prueba',
     'nigeria_test',
+    'nigeria_test_clinic',
     'par_test',
     'philippines_test',
     'sl_test',
