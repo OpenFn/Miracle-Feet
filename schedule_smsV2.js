@@ -447,8 +447,8 @@ fn(state => {
 
               // Adding timezone offset ====================================
               const dateBeforeTZ = sendAtDate;
-              //const timezone = timezone
-              const timezone = countryToTimeZone[Country];
+              // const timezone = countryToTimeZone[Country];
+              const timezone = sms_timezone;
               if (timezone !== '') {
                 sendAtDateTimeZone = [
                   sendAtDate
