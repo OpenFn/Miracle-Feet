@@ -260,9 +260,11 @@ fn(state => {
           registrationDate,
           firstVisitDate,
           lastVisitDate,
+          smsRegistrationDate,
         } = contact; // destructuring dates
         
         const language_code = sms_language || 'English';
+        const startDateforRegistration = smsRegistrationDate || registrationDate;
 
 
         // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
@@ -284,7 +286,7 @@ fn(state => {
         ) {
           // Schedule blue conditions - alert 1, 2
           // only want to send these "register" SMSs 1x for new registrants
-          if (registrationDate === setDays(new Date(), -1)) {
+          if (startDateforRegistration === setDays(new Date(), -1)) {
             alertsToSend.push(treatmentMapSchedule['registration']);
             alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
           }
