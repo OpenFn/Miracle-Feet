@@ -97,7 +97,7 @@ fn(state => {
       state.data.form.calcs.case_properties.clinic_code
     )
   ) {
-    console.log('No executing because of discarded clinics');
+    console.log('Test clinic detected; no data uploaded to Salesforce.');
     return state;
   }
   return execute(
