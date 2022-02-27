@@ -7,7 +7,7 @@ fn(state => {
     miraclefeet: 'MiracleFeet',
     steenbeek: 'Steenbeek',
     other: 'Other',
-    ankle_foot_orthosis_afo: 'Ankle Foot Orthosis (AFO)',
+    ankle_foot_orthosis_afo: 'ankle_foot_orthosis_afo',
   };
 
   //Added By Beth
