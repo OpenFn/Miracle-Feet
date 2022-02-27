@@ -2,7 +2,7 @@ fn(state => {
   //NOTE: Here we add functions for converting/transformating data
 
   const braceMap = {
-    dobbs_or_mitchell: 'Dobbs or Mitchell',
+    dobbs_or_mitchell: 'dobbs_or_mitchell',
     iowa: 'Iowa',
     miraclefeet: 'MiracleFeet',
     steenbeek: 'Steenbeek',
