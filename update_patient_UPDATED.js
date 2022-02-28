@@ -297,7 +297,7 @@ fn(state => {
       ),
       field(
         'Guardian_1_Phone_Number_1__c',
-        dataValue('properties.guardian1_phone1_full')
+        dataValue('properties.guardian1_phone1')
       ),
       field(
         'Guardian_1_Phone_Number_2__c',
