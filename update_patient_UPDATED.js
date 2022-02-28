@@ -21,15 +21,18 @@ fn(state => {
 
   //NOTE: Assumes date format YYYY-MM-DD
   state.dateConverter = str => {
-    const Year2digitsTo4digits = dateString => {
-      if (dateString && dateString.split('-')[0].length === 2) {
-        var dateArr = dateString.split('-');
-        dateArr[0] = '20' + dateArr[0];
-        return dateArr.join('-');
-      }
-      return dateString;
+    const dateMapper = dateString => {
+      const dateStringArray = dateString.split('-');
+      const mapper = {
+        2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,
+        4: dateString,
+      };
+      return mapper[dateStringArray[0].length];
     };
-    return str && str.trim() !=='' ? new Date(Year2digitsTo4digits(str)).toISOString() : null;
+
+    return str && str.trim() !== ''
+      ? new Date(dateMapper(str)).toISOString()
+      : null;
   };
 
   const discardedClinics = [
@@ -318,9 +321,11 @@ fn(state => {
         var opt = sms && sms == 'yes' ? true : sms && sms == 'no' ? false : '';
         return opt;
       }),
-      field('Date_of_SMS_Registration__c',state => {
-        var smsDate = state.data.properties.date_of_sms_registration; 
-        return smsDate && smsDate!== undefined && smsDate!=='' ? state.dateConverter(smsDate) : undefined; 
+      field('Date_of_SMS_Registration__c', state => {
+        var smsDate = state.data.properties.date_of_sms_registration;
+        return smsDate && smsDate !== undefined && smsDate !== ''
+          ? state.dateConverter(smsDate)
+          : undefined;
       }),
       field('Pronoun_he_she__c', dataValue('properties.pronoun_he_she')),
       field('Pronoun_him_her__c', dataValue('properties.pronoun_him_her')),
@@ -515,5 +520,3 @@ fn(state => {
     )(state);
   }
 });
-
-

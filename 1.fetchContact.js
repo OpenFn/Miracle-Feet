@@ -50,7 +50,6 @@ fn(state => {
     return { ...state, contacts };
   });
 });
-
 fn(async state => {
   const { configuration, contacts } = state;
 

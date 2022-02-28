@@ -2,12 +2,12 @@ fn(state => {
   //NOTE: Here we add functions for converting/transformating data
 
   const braceMap = {
-    dobbs_or_mitchell: 'Dobbs or Mitchell',
+    dobbs_or_mitchell: 'dobbs_or_mitchell',
     iowa: 'Iowa',
     miraclefeet: 'MiracleFeet',
     steenbeek: 'Steenbeek',
     other: 'Other',
-    ankle_foot_orthosis_afo: 'Ankle Foot Orthosis (AFO)',
+    ankle_foot_orthosis_afo: 'ankle_foot_orthosis_afo',
   };
 
   //Added By Beth
@@ -97,7 +97,7 @@ fn(state => {
       state.data.form.calcs.case_properties.clinic_code
     )
   ) {
-    console.log('No executing because of discarded clinics');
+    console.log('Test clinic detected; no data uploaded to Salesforce.');
     return state;
   }
   return execute(
