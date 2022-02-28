@@ -50,3 +50,36 @@ fn(state => {
     return { ...state, contacts };
   });
 });
+
+fn(async state => {
+  const { configuration, contacts } = state;
+
+  const loop = Math.ceil(contacts.length / 30);
+
+  let countInbox = 0;
+
+  const postToInbox = async data => {
+    countInbox++;
+
+    console.log(`Sending batch ${countInbox} to inbox`);
+    await http.post({
+      url: configuration.openfnInboxUrl,
+      data: data,
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity,
+    })(state);
+  };
+
+  console.log(`Sending ${loop} batches of contacts to inbox`);
+  for (let i = 0; i < loop; i++) {
+    const batch = state.contacts.slice(i * 30, (i + 1) * 30);
+
+    const data = {
+      tag: 'bracing_night_salesforce',
+      contacts: batch,
+    };
+    await postToInbox(data);
+  }
+
+  return { ...state, references: [], data: {} };
+});

@@ -120,9 +120,9 @@ fn(state => {
     //Then get related Partner Brace Inventory
     query(
       state => `SELECT Id FROM Partner_Brace_Inventory__c 
-        WHERE Partner__c = '${state.data.parentClinicId}'
-        AND Active__c = TRUE 
-        LIMIT 1` //Returns active PBI record
+      WHERE Partner__c = '${state.data.parentClinicId}'
+      AND Active__c = TRUE 
+      LIMIT 1` //Returns active PBI record
     ),
 
     fn(state => ({
