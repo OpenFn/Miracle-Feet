@@ -5,17 +5,18 @@
 // =============================================================================
 alterState(state => {
   const test_clinic = state.data.metadata;
-  console.log(test_clinic);
+  console.log(test_clinic == 'Yes');
   if (test_clinic  == 'Yes') {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
     return state;
-  } else { return upsert("Account", "CAST_Location_ID__c", fields(
-    field('CAST_Location_ID__c', dataValue('location_id')),
-    field('Name', dataValue('name')), 
-    field('Country1__c', dataValue('country'))
-   )) (state);
+  } else {
+      return upsert("Account", "CAST_Location_ID__c", fields(
+      field('CAST_Location_ID__c', dataValue('location_id')),
+      field('Name', dataValue('name')), 
+      field('Country1__c', dataValue('country'))
+     ))(state);
     }
   }
 )
