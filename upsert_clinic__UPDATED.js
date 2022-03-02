@@ -3,6 +3,8 @@
 // Upsert Clinic records in Salesforce when Location "Hospital" records are
 // updated in Commcare.
 // =============================================================================
+const testClinic = state.data.metadata;
+console.log.testClinic;
 upsert("Account", "CAST_Location_ID__c", fields(
   field('CAST_Location_ID__c', dataValue('location_id')),
   field('Name', dataValue('name')), 
