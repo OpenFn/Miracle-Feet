@@ -111,7 +111,9 @@ alterState(state => {
 
 alterState(state => {
   const { clinic_code } = state.data.form.case.update;
-  if (state.discardedClinics.includes(clinic_code)) {
+  const { test_clinic } = state.data.metadata;
+  console.log(test_clinic);
+  if (state.discardedClinics.includes(clinic_code) || test_clinic === "Yes" ) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
