@@ -133,14 +133,23 @@ alterState(state => {
     'sierra_leone_test_clinic',
     'haiti_test_clinic',
     'mali_test_clinic',
-    'peru_test_clinic'
+    'peru_test_clinic',
   ];
+
+  const RTmap = {
+    casting: '0123l000001g0XtAAI', //Casting
+    tenotomy: '0123l000001g0Y3AAI', //Tenotomy
+    bracing_night: '0123l000001g0XoAAI', //Bracing
+    bracing_day: '0123l000001g0XoAAI', //Bracing
+    suspended: '0123l000001g0XyAAI',
+    complete: '0123l000001g0XyAAI',
+  };
 
   state.dateConverter = function (state, dateString) {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
-  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap };
+  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap, RTmap };
 });
 
 alterState(state => {
@@ -184,6 +193,12 @@ alterState(state => {
         'Visit_new__c',
         'New_Visit_UID__c',
         fields(
+          field('RecordTypeId', state => {
+            var treatment =
+              state.data.properties.l_treatment ||
+              state.data.properties.r_treatment;
+            return state.RTmap[treatment] || '0123l000001g0XyAAI'; //Return 'Other' if not in RTmap
+          }),
           field('New_Visit_UID__c', state => {
             var icrId = dataValue('properties.visit_original_id')(state);
             var caseId = dataValue('case_id')(state);
@@ -486,8 +501,10 @@ alterState(state => {
           }),
           // DOUBLE CHECK PATH FOR THIS FIELD
           field('Date_of_SMS_Registration__c', state => {
-            var smsDate = state.data.properties.date_of_sms_registration; 
-            return smsDate && smsDate!==undefined ? state.dateConverter(smsDate) : smsDate; 
+            var smsDate = state.data.properties.date_of_sms_registration;
+            return smsDate && smsDate !== undefined
+              ? state.dateConverter(smsDate)
+              : smsDate;
           }),
           //Relapse questions ========================================================
           field('Relapse__c', humanProper(state.data.properties.recurrence)), // picklist
