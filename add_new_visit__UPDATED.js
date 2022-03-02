@@ -139,14 +139,23 @@ fn(state => {
     'haiti_test_clinic',
     'sierra_leone_test_clinic',
     'mali_test_clinic',
-    'peru_test_clinic'
+    'peru_test_clinic',
   ];
+
+  const RTmap = {
+    casting: 'Casting',
+    tenotomy: 'Tenotomy',
+    bracing_night: 'Bracing',
+    bracing_day: 'Bracing',
+    suspended: 'Other',
+    complete: 'Other',
+  };
 
   state.dateConverter = function (dateString) {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
-  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap };
+  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap, RTmap };
 });
 
 fn(state => {
@@ -158,6 +167,7 @@ fn(state => {
     suspended: 'Suspended',
     complete: 'Complete',
   };
+
   const { clinic_code } = state.data.form.calcs.case_properties;
   if (state.discardedClinics.includes(clinic_code)) {
     console.log(
@@ -221,6 +231,10 @@ fn(state => {
         'Visit_new__c',
         'New_Visit_UID__c',
         fields(
+          relationship('RecordType', 'Name', state => {
+            var treatment = state.data.form.calcs.sms.treatment;
+            return state.RTmap[treatment] || 'Other';
+          }),
           field('New_Visit_UID__c', state => {
             var icrId = state.data.form.subcase_0.case.update.visit_original_id;
             var caseId = state.data.form.subcase_0.case['@case_id'];
@@ -298,13 +312,14 @@ fn(state => {
               state.data.form.subcase_0.case.update.miraclefeet_bar_size
             )
           ),
-          // Field does not exist in SF? FIeld has been created. 
+          // Field does not exist in SF? FIeld has been created.
           field('Date_of_SMS_Registration_Visit__c', state => {
-             var smsDate = state.data.form.subcase_0.case.update.date_of_sms_registration; 
-             return smsDate && smsDate!==undefined ? 
-               state.dateConverter(smsDate) : 
-               smsDate; 
-           }),
+            var smsDate =
+              state.data.form.subcase_0.case.update.date_of_sms_registration;
+            return smsDate && smsDate !== undefined
+              ? state.dateConverter(smsDate)
+              : smsDate;
+          }),
           // picklist
           field('MiracleFeet_Shoe_Size__c', state => {
             const mf_shoe =
