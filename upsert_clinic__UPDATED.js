@@ -4,8 +4,8 @@
 // updated in Commcare.
 // =============================================================================
 alterState(state => {
-  const testClinic = state.data.metadata;
-  if (testClinic  == 'Yes') {
+  const test_clinic = state.data.metadata;
+  if (test_clinic  == 'Yes') {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
