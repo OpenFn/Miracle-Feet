@@ -6,7 +6,7 @@
 alterState(state => {
   const testClinic = state.data.metadata;
   console.log(testClinic);
-  if (testClinic  === "Yes") {
+  if (testClinic  === 'Yes') {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
