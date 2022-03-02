@@ -4,7 +4,7 @@
 // updated in Commcare.
 // =============================================================================
 alterState(state => {
-  const test_clinic = state.data.metadata;
+  const { test_clinic } = state.data.metadata;
   console.log(test_clinic);
   console.log(test_clinic  === 'Yes');
   if (test_clinic  == 'Yes') {
