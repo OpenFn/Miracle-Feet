@@ -143,12 +143,12 @@ fn(state => {
   ];
 
   const RTmap = {
-    casting: 'Casting',
-    tenotomy: 'Tenotomy',
-    bracing_night: 'Bracing',
-    bracing_day: 'Bracing',
-    suspended: 'Other',
-    complete: 'Other',
+    casting: '0123l000001g0XtAAI', //Casting
+    tenotomy: '0123l000001g0Y3AAI', //Tenotomy
+    bracing_night: '0123l000001g0XoAAI', //Bracing
+    bracing_day: '0123l000001g0XoAAI', //Bracing
+    suspended: '0123l000001g0XyAAI',
+    complete: '0123l000001g0XyAAI',
   };
 
   state.dateConverter = function (dateString) {
@@ -231,9 +231,9 @@ fn(state => {
         'Visit_new__c',
         'New_Visit_UID__c',
         fields(
-          relationship('RecordType', 'Name', state => {
+          field('RecordTypeId', state => {
             var treatment = state.data.form.calcs.sms.treatment;
-            return state.RTmap[treatment] || 'Other';
+            return state.RTmap[treatment] || '0123l000001g0XyAAI'; //Return 'Other' if not in RTmap
           }),
           field('New_Visit_UID__c', state => {
             var icrId = state.data.form.subcase_0.case.update.visit_original_id;
