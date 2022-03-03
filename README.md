@@ -135,7 +135,7 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 
 ** To enroll a new country to SMS**
 1. Turn on SMS for the CommCare user (`send_sms` field)
-2. Add country to [Fetch contacts](https://www.openfn.org/projects/miraclefeet/jobs/eZiygD) job, e.g.: `Account.Country__c in ('Nigeria', 'Uganda')`
+2. Add country to [Fetch contacts](https://www.openfn.org/projects/miraclefeet/jobs/eZiygD) and [Fetch bracing night contacts](https://openfn.org/projects/miraclefeet/jobs/jv9qn9) jobs, e.g.: `Account.Country__c in ('Nigeria', 'Uganda')`
 
 **To update SMS scheduling times, SMS templates, SMS language codes, or add new translations:**
 1. Make a copy of the [Master Mapping Table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=379768061).
