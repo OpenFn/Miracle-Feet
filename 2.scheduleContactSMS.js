@@ -136,6 +136,7 @@ fn(state => {
   const countryToTimeZone = {
     Nigeria: 'Africa/Lagos',
     Senegal: 'Africa/Dakar',
+    Uganda: 'Africa/Nairobi',
   };
 
   const PhoneMapping = {
