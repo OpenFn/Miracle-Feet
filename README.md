@@ -75,6 +75,7 @@ Alert IDs in the diagrams (e.g. `Alert 8`) refer to [# Alert](https://docs.googl
 8. SMS scheduling times are adjusted for local time zones.
 9. SMS-s are only scheduled to be sent between 8am-8pm local time.
 10. We only schedule SMS if `Guardian_1_Phone_Landline__c == false` on the Patient's Salesforce profile.
+11. Errors returned by the Infobip API for incorrect phone numbers are uploaded regularly to Contacts' SMS Error field. We only schedule SMS to patients where this is empty.
 
 
 **Logic for setting missed appointment reminders**
