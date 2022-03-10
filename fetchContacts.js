@@ -20,7 +20,7 @@ fn(state => {
       WHERE Last_Modified_Date_CommCare__c = ${setDays(
         new Date(),
         -1
-      )} AND Account.Country__c in ('Nigeria', 'Uganda') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended') AND SMS_Error__c is null`
+      )} AND Account.Country__c in ('Nigeria', 'Uganda') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended') AND SMS_Error__c = null`
     // WHERE LastModifiedDate > ${new Date(
     //    setDays(new Date(), -1)
     //  ).toISOString()}`
