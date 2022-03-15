@@ -100,7 +100,7 @@ fn(state => {
       bulkPrefix: 'visitBefore-',
     },
     reminder_after: {
-      key: '15 - Reminder: 1 day after missed visit',
+      key: '15 - Reminder: 5 day after missed visit',
       bulkPrefix: 'visitAfter-',
     },
   };
