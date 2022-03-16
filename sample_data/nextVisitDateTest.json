@@ -1,0 +1,37 @@
+{
+  "__query_params": {},
+  "contacts": [
+    {
+      "AccountId": "test",
+      "Country": "Nigeria",
+      "FirstName": "test",
+      "GuardianPhoneLandline": false,
+      "Guardian_1_First_Name__c": "test",
+      "Phone": "0000",
+      "braceProblemType": "None",
+      "caseId": "000",
+      "firstVisitDate": "2019-11-19",
+      "lastModifiedDateCommCare": "2022-03-15",
+      "lastVisitDate": "2022-03-15",
+      "nextVisitDate": "2022-09-13",
+      "originalTreatment": "Bracing Night",
+      "patientCountry": "Nigeria",
+      "pronoun_he_she": "she",
+      "pronoun_him_her": "her",
+      "pronoun_his_her": "her",
+      "reasonStoppedTreatment": null,
+      "registrationDate": "2019-11-19",
+      "sendSms": true,
+      "smsOptIn": true,
+      "smsOptInII": true,
+      "smsRegistrationDate": null,
+      "sms_language": "English",
+      "sms_timezone": "Africa/Lagos",
+      "startDate": "2021-10-05",
+      "status": "Actively Supported",
+      "treatment": "Bracing Night",
+      "treatmentCompleted": false
+    }
+  ],
+  "tag": "sms_salesforce"
+}
