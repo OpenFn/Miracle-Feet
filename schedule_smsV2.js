@@ -422,6 +422,7 @@ fn(state => {
               if (bulkPrefix === 'visitAfter-') {
                 bulkId = `${bulkId}-${nextVisitDate}`;
                 sendAtDate = new Date(nextVisitDate);
+                console.log(sendAtDate.getDate())
               }
               if (bulkPrefix === 'visitBefore-') {
                 bulkId = `${bulkId}-${start_date}`;
