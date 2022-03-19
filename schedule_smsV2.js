@@ -246,7 +246,7 @@ fn(state => {
 
         // We organize destructuring by concern.
         const { smsOptInII, smsOptIn } = contact; // destructuring sms options
-        const { status, caseId, patientCountry, Country, Phone, sms_language, sms_timezone } = contact; // destructuring contact info //timezone,
+        const { status, caseId, patientCountry, Country, Phone, sms_language, sms_timezone, pronoun_he_she, pronoun_him_her, pronoun_his_her } = contact; // destructuring contact info //timezone,
         const {
           treatment,
           originalTreatment,
