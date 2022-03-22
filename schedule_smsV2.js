@@ -143,8 +143,7 @@ fn(state => {
     'Africa/Nairobi': '+03:00',
     'America/Panama': '-05:00',
     'US/Central': '-06:00',
-    'Nigeria':'Africa/Lagos',
-
+    Nigeria: 'Africa/Lagos',
   };
   const countryToTimeZone = {
     'Africa/Kinshasa': '+01:00',
@@ -160,13 +159,13 @@ fn(state => {
     'Asia/Kathmandu': '+05:45',
     'Asia/Phnom_Penh': '+07:00',
     'Asia/Kolkata': '+05:30',
-    'Asia/Dhaka': '+06:00', 
+    'Asia/Dhaka': '+06:00',
     'Asia/Jakarta': '+07:00',
     'Africa/Freetown': '+00:00',
     'Africa/Dakar': '+00:00',
     'Africa/Kinshasa': '+01:00',
     'Africa/Lagos': '+01:00',
-    'Nigeria':'Africa/Lagos',
+    Nigeria: 'Africa/Lagos',
     'Africa/Casablanca': '+00:00',
     'Africa/Bamako': '+00:00',
     'Africa/Monrovia': '+00:00',
@@ -246,7 +245,18 @@ fn(state => {
 
         // We organize destructuring by concern.
         const { smsOptInII, smsOptIn } = contact; // destructuring sms options
-        const { status, caseId, patientCountry, Country, Phone, sms_language, sms_timezone, pronoun_he_she, pronoun_him_her, pronoun_his_her } = contact; // destructuring contact info //timezone,
+        const {
+          status,
+          caseId,
+          patientCountry,
+          Country,
+          Phone,
+          sms_language,
+          sms_timezone,
+          pronoun_he_she,
+          pronoun_him_her,
+          pronoun_his_her,
+        } = contact; // destructuring contact info //timezone,
         const {
           treatment,
           originalTreatment,
@@ -262,10 +272,10 @@ fn(state => {
           lastVisitDate,
           smsRegistrationDate,
         } = contact; // destructuring dates
-        
-        const language_code = sms_language || 'English';
-        const startDateforRegistration = smsRegistrationDate || registrationDate;
 
+        const language_code = sms_language || 'English';
+        const startDateforRegistration =
+          smsRegistrationDate || registrationDate;
 
         // Schedule reminders ('reminder_before', 'reminder_after') - alert 17, 18
         if (
@@ -291,9 +301,10 @@ fn(state => {
             alertsToSend.push(treatmentMapSchedule['treatmentIntro']);
           }
           // if treatment changed or a next visit scheduled
-          if (startDate === setDays(new Date(), -1) && 
+          if (
+            startDate === setDays(new Date(), -1) &&
             (treatment !== originalTreatment ||
-            firstVisitDate !== lastVisitDate)
+              firstVisitDate !== lastVisitDate)
           ) {
             let alert = [];
             // Ignore scheduling for when treatment (SMS_treatment__c) equals 'Complete'
@@ -343,14 +354,18 @@ fn(state => {
           }
         }
         //Now if the treatment has changed since last run..
-        if ((startDate === setDays(new Date(), -1) && treatment !== originalTreatment) ||
-        reasonStoppedTreatment !== null ){ //we assume if they provided a reason, then they stopped treatment
+        if (
+          (startDate === setDays(new Date(), -1) &&
+            treatment !== originalTreatment) ||
+          reasonStoppedTreatment !== null
+        ) {
+          //we assume if they provided a reason, then they stopped treatment
           // ...and treatment included in treatmentsList then delete originalTreatment...
           // ...or brace problems type...
           // ...or treatment is completed.
           if (
             treatmentsList.includes(treatment)
-           // reasonStoppedTreatment !== null 
+            // reasonStoppedTreatment !== null
           ) {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
@@ -387,9 +402,9 @@ fn(state => {
             }
             if (treatment === 'Bracing Day' || treatment === 'Bracing Night') {
               alertsToDisable.push(
-              treatmentMapSchedule['not_wearing_enough'],
-              treatmentMapSchedule['child_not_tolerating'],
-              treatmentMapSchedule['family_not_accepting']
+                treatmentMapSchedule['not_wearing_enough'],
+                treatmentMapSchedule['child_not_tolerating'],
+                treatmentMapSchedule['family_not_accepting']
               );
             }
           }
@@ -415,6 +430,7 @@ fn(state => {
                 );
                 break;
               }
+
               let sendAtDate = new Date(start_date);
 
               // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
@@ -427,6 +443,7 @@ fn(state => {
                 bulkId = `${bulkId}-${start_date}`;
                 sendAtDate = new Date(nextVisitDate);
               }
+
               console.log('bulkId: ', bulkId);
               // console.log('rule', rule[languageCodeMap[language_code]]);
 
