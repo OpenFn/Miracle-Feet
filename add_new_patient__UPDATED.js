@@ -162,6 +162,7 @@ alterState(state => {
         field('Pronoun_his_her__c', dataValue('form.calcs.sms.pronoun_his_her')),
         field('SMS_Timezone__c', dataValue('form.calcs.sms.time_zone')),
         field('SMS_Language__c', dataValue('form.calcs.sms.sms_language')),
+        field('SMS_Treatment__c',dataValue('properties.treatment')),//added by Beth
 
         field(
           'Age_Months_First_Brace__c',
