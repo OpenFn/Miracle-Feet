@@ -444,6 +444,11 @@ fn(state => {
                 sendAtDate = new Date(nextVisitDate);
               }
 
+              if ((sendAtDate - new Date()) / (1000 * 60 * 60 * 24) > 180) {
+                // If sendAtDate is more than 180 days in the future, skip to the next SMS
+                break;
+              }
+
               console.log('bulkId: ', bulkId);
               // console.log('rule', rule[languageCodeMap[language_code]]);
 
