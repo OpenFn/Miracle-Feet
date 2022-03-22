@@ -331,6 +331,7 @@ fn(state => {
       field('Pronoun_him_her__c', dataValue('properties.pronoun_him_her')),
       field('Pronoun_his_her__c', dataValue('properties.pronoun_his_her')),
       field('SMS_Timezone__c', dataValue('properties.time_zone')),
+      field('SMS_Language__c', dataValue('form.calcs.sms.sms_language')),//added by Beth
 
       field(
         'Guardian_2_First_Name__c',
