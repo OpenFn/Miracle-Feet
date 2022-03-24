@@ -78,9 +78,11 @@ alterState(state => {
     'peru_test_clinic'
   ];
   const { clinic_code } = state.data.form.case.update;
-  if (discardedClinics.includes(clinic_code)) {
+  const { test_clinic } = state.data.form.case.update;
+  const { test_user } = state.data.form.case.update;
+  if (discardedClinics.includes(clinic_code) || test_clinic==='yes' || test_user==='yes') {
     console.log(
-      'This is a CommCare test clinic. Not uploading data to Salesforce.'
+      'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'
     );
   return state;
   } else {
