@@ -80,7 +80,7 @@ alterState(state => {
   const { clinic_code } = state.data.form.case.update;
   const { test_clinic } = state.data.form.case.update;
   const { test_user } = state.data.form.case.update;
-  if (discardedClinics.includes(clinic_code) || test_clinic==='yes' || test_user==='yes') {
+  if (discardedClinics.includes(clinic_code) || test_clinic==='Yes' || test_user==='Yes') {
     console.log(
       'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'
     );
