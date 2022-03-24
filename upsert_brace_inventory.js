@@ -93,12 +93,13 @@ fn(state => {
 });
 
 fn(state => {
+  const { clinic_code } = state.data.form.calcs.case_properties; 
+  const { test_clinic } = state.data.form.calcs.case_properties;
+  const { test_user } = state.data.form.calcs.case_properties;
   if (
-    state.discardedClinics.includes(
-      state.data.form.calcs.case_properties.clinic_code
-    )
-  ) {
-    console.log('Test clinic detected; no data uploaded to Salesforce.');
+    state.discardedClinics.includes(clinic_code) || test_clinic==='yes' || test_user==='yes'
+  ){
+    console.log('Test clinic or test user detected; no data uploaded to Salesforce.');
     return state;
   }
   return execute(
