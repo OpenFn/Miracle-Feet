@@ -89,7 +89,7 @@ fn(state => {
   const { clinic_code } = state.data.properties;
   const { test_clinic } = state.data.properties;
   const { test_user } = state.data.properties;
-  if (state.discardedClinics.includes(clinic_code) || test_clinic==='yes' || test_user==='yes') {
+  if (state.discardedClinics.includes(clinic_code) || test_clinic==='Yes' || test_user==='Yes') {
     console.log(
       'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'
     );
