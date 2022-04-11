@@ -211,6 +211,8 @@ fn(state => {
       SMS_Opt_In_II__c: getSMS(state, 'SMS_Opt_In_II__c'),
       SMS_Original_Treatment__c:
         treatmentMap[state.data.form.calcs.sms.original_treatment],
+      SMS_Language__c: state.data.form.calcs.sms.sms_language,
+      SMS_Timezone__c: state.data.form.calcs.sms.time_zone,
     };
 
     const { treatment, original_treatment } = state.data.form.calcs.sms;
