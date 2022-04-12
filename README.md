@@ -19,7 +19,7 @@ MiracleFeet has implemented OpenFn to automate one-way data integration between 
 - [Update Visit_V2](https://www.openfn.org/projects/pdbznd/jobs/jvrz7p)
 - [Upsert Clinic_V2](https://www.openfn.org/projects/pdbznd/jobs/jv9bmk)
 
-![High level job diagram](./docs/High level job diagram.png)
+![High level job diagram](docs/High level job diagram.png)
 
 
 ### Job Notes
