@@ -19,6 +19,9 @@ MiracleFeet has implemented OpenFn to automate one-way data integration between 
 - [Update Visit_V2](https://www.openfn.org/projects/pdbznd/jobs/jvrz7p)
 - [Upsert Clinic_V2](https://www.openfn.org/projects/pdbznd/jobs/jv9bmk)
 
+![High level job diagram](./docs/High level job diagram.png)
+
+
 ### Job Notes
 1. These jobs receive case, location, and form data from CommCare and perform upserts on related business objects in Salesforce in real time.
 2. We're considering allowing a single job to load data to a variety of different SF instances—making Miracle Feet's OpenFn project effectively a router for various CommCare-Salesforce implementations.
