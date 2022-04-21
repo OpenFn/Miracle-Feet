@@ -515,6 +515,7 @@ fn(state => {
                   },
                 ],
                 text: sms,
+                callbackData: caseId,
                 sendAt,
               };
               messagesToSend.push({
