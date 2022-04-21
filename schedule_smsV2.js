@@ -515,7 +515,7 @@ fn(state => {
                   },
                 ],
                 text: sms,
-                callbackData: caseId,
+                callbackData: caseId,  //For easier analysis in Infobip reports
                 sendAt,
               };
               messagesToSend.push({
