@@ -271,6 +271,7 @@ fn(state => {
           firstVisitDate,
           lastVisitDate,
           smsRegistrationDate,
+          treatmentCompletedDate,
         } = contact; // destructuring dates
 
         const language_code = sms_language || 'English';
@@ -323,7 +324,7 @@ fn(state => {
             alertsToSend.push(...alert);
           }
           // Scheduling alert #13 for when Treatment_Completed__c is 'true'
-          if (treatmentCompleted == true) {
+          if (treatmentCompleted == true && treatmentCompletedDate === setDays(new Date(), -1))  {
             alertsToSend.push(treatmentMapSchedule['complete']);
           }
         }
