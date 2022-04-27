@@ -498,13 +498,11 @@ fn(state => {
               const currentMinutes = sendAtDate.getMinutes();
               
               // If messages was supposed to be sent in the past, send it on day of the run at same time
-              console.log("Original sendAtDate: ", sendAtDate.toISOString())
               if (sendAtDate < new Date()) {
                 sendAtDate.setDate(new Date().getDate());
                 sendAtDate.setHours(currentHours);
                 sendAtDate.setMinutes(currentMinutes);
               }
-              console.log("New sendAtDate: ", sendAtDate.toISOString())
               // ============================================================
 
               const sendAt = sendAtDate.toISOString();
