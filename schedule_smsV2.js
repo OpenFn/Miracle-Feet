@@ -499,7 +499,7 @@ fn(state => {
               
               // If messages was supposed to be sent in the past, send it on day of the run at same time
               if (sendAtDate < new Date()) {
-                sendAtDate.setDate(sendAtDate.getDate() + 1);
+                sendAtDate.setDate(new Date().getDate());
                 sendAtDate.setHours(currentHours);
                 sendAtDate.setMinutes(currentMinutes);
               }
