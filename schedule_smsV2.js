@@ -493,6 +493,16 @@ fn(state => {
               if (sendAtDate.getHours() >= 20 || sendAtDate.getHours() < 8) {
                 sendAtDate.setHours(8);
               }
+              
+              const currentHours = sendAtDate.getHours();
+              const currentMinutes = sendAtDate.getMinutes();
+              
+              // If messages was supposed to be sent in the past, send it on day of the run at same time
+              if (sendAtDate < new Date()) {
+                sendAtDate.setDate(new Date());
+                sendAtDate.setHours(currentHours);
+                sendAtDate.setMinutes(currentMinutes);
+              }
               // ============================================================
 
               const sendAt = sendAtDate.toISOString();
