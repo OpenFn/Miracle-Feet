@@ -76,7 +76,7 @@ fn(state => {
       treatment: 'Complete',
     },
     suspended: {
-      key: '16 - Treatment Suspended',
+      key: '16 Treatment Suspended',
       bulkPrefix: 'treatment_suspended-',
       treatment: 'Suspended',
     },
