@@ -281,7 +281,7 @@ fn(state => {
         if (
           status === 'Actively Supported' &&
           smsOptIn && //opt-in for reminder messages
-          nextVisitDate !== null
+          Next_Visit_Date_New__c !== null
         ) {
           alertsToSend.push(treatmentMapSchedule['reminder_before']);
           if (lastVisitDate) {
@@ -436,12 +436,12 @@ fn(state => {
               // We build the bulkId for this alert from the case type the `# SMS` and the `@case_id`
               let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
               if (bulkPrefix === 'visitAfter-') {
-                bulkId = `${bulkId}-${nextVisitDate}`;
-                sendAtDate = new Date(nextVisitDate);
+                bulkId = `${bulkId}-${Next_Visit_Date_New__c}`;
+                sendAtDate = new Date(Next_Visit_Date_New__c);
               }
               if (bulkPrefix === 'visitBefore-') {
                 bulkId = `${bulkId}-${start_date}`;
-                sendAtDate = new Date(nextVisitDate);
+                sendAtDate = new Date(Next_Visit_Date_New__c);
               }
 
               if ((sendAtDate - new Date()) / (1000 * 60 * 60 * 24) > 180) {
