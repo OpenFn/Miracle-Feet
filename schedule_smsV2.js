@@ -253,9 +253,9 @@ fn(state => {
           Phone,
           sms_language,
           sms_timezone,
-          pronoun_he_she,
-          pronoun_him_her,
-          pronoun_his_her,
+          Pronoun_he_she__c,
+          Pronoun_him_her__c,
+          Pronoun_his_her__c,
         } = contact; // destructuring contact info //timezone,
         const {
           treatment,
@@ -266,7 +266,7 @@ fn(state => {
         } = contact; // destructuring treatment info
         const {
           startDate,
-          nextVisitDate,
+          Next_Visit_Date_New__c,
           registrationDate,
           firstVisitDate,
           lastVisitDate,
