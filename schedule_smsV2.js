@@ -324,7 +324,8 @@ fn(state => {
             alertsToSend.push(...alert);
           }
           // Scheduling alert #13 for when Treatment_Completed__c is 'true'
-          if (treatmentCompleted == true && treatmentCompletedDate === setDays(new Date(), -1))  {
+        //  if (treatmentCompleted == true && treatmentCompletedDate === setDays(new Date(), -1))  {
+        if (treatmentCompleted == true) {
             alertsToSend.push(treatmentMapSchedule['complete']);
           }
         }
