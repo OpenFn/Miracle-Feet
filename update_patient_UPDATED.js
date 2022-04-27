@@ -146,6 +146,9 @@ fn(state => {
       field('Date_Stopped_Treatment__c', state =>
         state.dateConverter(state.data.properties.stop_date)
       ),
+      field('Date_Completed_Treatment__c', state =>
+        state.dateConverter(state.data.properties.treatment_completed_date)
+      ),
       field(
         'Location_Level_1__c',
         dataValue('properties.location_level1_name')
