@@ -324,8 +324,7 @@ fn(state => {
             alertsToSend.push(...alert);
           }
           // Scheduling alert #13 for when Treatment_Completed__c is 'true'
-        //  if (treatmentCompleted == true && treatmentCompletedDate === setDays(new Date(), -1))  {
-        if (treatmentCompleted == true) {
+        if (treatmentCompleted == true && treatmentCompletedDate === setDays(new Date(), -1))  {
             alertsToSend.push(treatmentMapSchedule['complete']);
           }
         }
@@ -346,7 +345,6 @@ fn(state => {
             treatmentMapSchedule['reminder_after']
           );
 
-          // if (treatmentCompleted == true && treatment !== 'Complete') {
           if (treatment !== 'Complete') {
             let alert = [];
             alert = Object.values(treatmentMapSchedule).filter(
