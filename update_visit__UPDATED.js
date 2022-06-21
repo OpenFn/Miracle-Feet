@@ -604,7 +604,6 @@ alterState(state => {
           field('Visit_Count__c', dataValue('properties.visit_count')),
           field('Name', state => {
             return (
-              state.data.properties.patient_name +
               ' (' +
               state.data.properties.patient_id +
               ')' +
