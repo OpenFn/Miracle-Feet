@@ -700,7 +700,6 @@ fn(state => {
           ),
           field('Name', state => {
             return (
-              state.data.form.subcase_0.case.update.patient_name +
               ' (' +
               state.data.form.subcase_0.case.update.patient_id +
               ') (' +
