@@ -165,7 +165,7 @@ alterState(state => {
           'Research_Consent__c', state => {
           var research_consent = dataValue('form.case.update.consent_to_be_contacted_for_future_research_studies')(state);
           var research_consent_var = research_consent && research_consent =='yes' ? true : research_consent && research_consent =='no' ? false : ''; 
-        return emr_consent_var; 
+        return research_consent_var; 
         }),
         field('Patients_Full_Legal_Name__c', dataValue('form.case.update.patients_full_legal_name')),
         field('Parent_s_or_authorized_caregiver_s_Nam__c', dataValue('form.case.update.parents_or_authorized_caregivers_full_legal_name')),
