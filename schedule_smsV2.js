@@ -496,7 +496,7 @@ fn(state => {
               if (bulkPrefix === 'visitAfter-') {
                 if ((new Date() - sendAtDate) / (1000 * 60 * 60 * 24) > 7) {
                   // If sendAtDate is more than 2 days in the past, skip to the next SMS
-                  console.log(sendAtDate.toISOString(), " Visit reminder date in the past, not scheduling")
+                  console.log("Visit reminder date in the past, not scheduling")
                   break;
                 }
               }
@@ -512,8 +512,6 @@ fn(state => {
                 sendAtDate.setHours(currentHours);
                 sendAtDate.setMinutes(currentMinutes);
               }
-
-
               // ============================================================
 
               const sendAt = sendAtDate.toISOString();
