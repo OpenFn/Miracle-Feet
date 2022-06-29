@@ -72,13 +72,14 @@ Alert IDs in the diagrams (e.g. `Alert 8`) refer to [# Alert](https://docs.googl
 2. SMS-s are scheduled using `upsert` logic in Infobip: when scheduling or deleting an SMS, OpenFn first checks if an SMS with the corresponding `bulkId` has already been scheduled for the future or already sent. If this is the case, no changes are made. If the SMS hasn't been scheduled or sent, it gets scheduled.
 3. In case of deletion, OpenFn checks if an SMS with the corresponding `bulkId` has been scheduled for the future or already sent. If it is scheduled, it gets canceled.
 4. Educational SMS alerts are scheduled following the logic outlined [here](https://lucid.app/lucidchart/invitations/accept/inv_1b2fc530-9f5c-4645-a317-618a395eaa06).
-5. Visit reminders and missed appointment reminders are scheduled to be sent according to the next visit date indicated in the form.
+5. Visit reminders and missed appointment reminders are scheduled to be sent according to the next visit date indicated in the form. We don't send missed appointments reminders more than 1 week after the appointment date.
 6. Detailed scheduling conditions and SMS content can be found in the [master mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?usp=sharing). The current Salesforce-based solution uses the [Salesforce mapping table](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=379768061). (The previous, [CommCare-based job](https://github.com/OpenFn/Miracle-Feet/blob/master/schedule_sms.js) uses a [different mapping table]([url](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit#gid=262234774)).
 7. Both scheduleSMSv2 and bracing-night  jobs use the "[CURRENT] Master Mapping Table Salesforce" mapping. ScheduleSMSV2 schedules alert `8` and `9` of the bracing-night messages and all the other (non-bracing-night) alerts. The bracing-night job only schedules alerts `9B` to `9P`.
 8. SMS scheduling times are adjusted for local time zones.
 9. SMS-s are only scheduled to be sent between 8am-8pm local time.
 10. We only schedule SMS if `Guardian_1_Phone_Landline__c == false` on the Patient's Salesforce profile.
-11. Errors returned by the Infobip API for incorrect phone numbers are uploaded regularly to Contacts' SMS Error field. We only schedule SMS to patients where this is empty.
+11. Errors returned by the Infobip API for incorrect phone numbers are uploaded regularly to Contacts' SMS Error field. We only schedule SMS to patients where this is empty, and we delete scheduled alerts for Contacts that have any SMS Errors marked.
+12. Due to limitations of the Infobip API, we don't schedule any messages for more than 6 months ahead.
 
 
 **Logic for setting missed appointment reminders**
