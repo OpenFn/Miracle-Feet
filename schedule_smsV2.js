@@ -503,6 +503,7 @@ fn(state => {
 
               if ((sendAtDate - new Date()) / (1000 * 60 * 60 * 24) > 180) {
                 // If sendAtDate is more than 180 days in the future, skip to the next SMS
+                console.log("Visit reminder date more than 6 months in the future, not scheduling")
                 break;
               }
 
