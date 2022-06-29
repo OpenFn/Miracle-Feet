@@ -256,6 +256,7 @@ fn(state => {
           Pronoun_he_she__c,
           Pronoun_him_her__c,
           Pronoun_his_her__c,
+          sms_error,
         } = contact; // destructuring contact info //timezone,
         const {
           treatment,
@@ -493,7 +494,7 @@ fn(state => {
               const currentHours = sendAtDate.getHours();
               const currentMinutes = sendAtDate.getMinutes();
 
-              if (bulkPrefix === 'visitAfter-') {
+              if (bulkPrefix === 'visitAfter-' || bulkPrefix === 'visitBefore-') {
                 if ((new Date() - sendAtDate) / (1000 * 60 * 60 * 24) > 7) {
                   // If sendAtDate is more than 2 days in the past, skip to the next SMS
                   console.log("Visit reminder date in the past, not scheduling")
@@ -567,7 +568,8 @@ fn(state => {
           }
         }
       }
-      if (!contact.sendSms) {
+      if (!contact.sendSms || contact.sms_error != null) {
+        // If SMS is turned off or there were sms sending errors recorded for the contact, delete all scheduled alerts 
         const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
         console.log('contact to delete sms for', contact);
 
