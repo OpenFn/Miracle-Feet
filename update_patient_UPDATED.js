@@ -36,6 +36,7 @@ fn(state => {
   };
 
   const discardedClinics = [
+    'Hospital_Escuela',
     'test_bangladesh',
     'bol_test',
     'brazil_test',
