@@ -12,6 +12,7 @@ fn(state => {
 
   //Added By Beth
   const discardedClinics = [
+    'FRA01', // 'hospital_escuela',
     'test_bangladesh',
     'bol_test',
     'brazil_test',
