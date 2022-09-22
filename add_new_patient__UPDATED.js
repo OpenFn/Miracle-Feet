@@ -155,12 +155,13 @@ alterState(state => {
             state.dateConverter(smsDate) : 
             undefined; 
         }),
-        field(
+        /*field(
           'EMR_Consent__c', state => {
           var emr_consent = dataValue('form.case.update.consent_to_use_emr_data_for_program_monitoring')(state);
           var emr_consent_var = emr_consent && emr_consent =='yes' ? true : emr_consent && emr_consent =='no' ? false : ''; 
         return emr_consent_var; 
-        }),
+        }),*/
+        field('EMR_Consent__c',dataValue('form.case.update.consent_to_use_emr_data_for_program_monitoring')),
         field(
           'Research_Consent__c', state => {
           var research_consent = dataValue('form.case.update.consent_to_be_contacted_for_future_research_studies')(state);
