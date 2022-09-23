@@ -238,7 +238,7 @@ fn(state => {
 
   for (let contact of contacts) {
     if (contact.GuardianPhoneLandline == false) {
-      if (contact.sendSms) {
+      if (contact.sendSms  && contact.sms_error === null) {
         const alertsToSend = []; // this will hold the list of alerts to send for this contact.
         const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
         console.log('contact', contact);
@@ -568,7 +568,7 @@ fn(state => {
           }
         }
       }
-      if (!contact.sendSms || contact.sms_error != null) {
+      if (!contact.sendSms) {
         // If SMS is turned off or there were sms sending errors recorded for the contact, delete all scheduled alerts 
         const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
         console.log('contact to delete sms for', contact);
