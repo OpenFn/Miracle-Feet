@@ -81,6 +81,7 @@ fn(state => {
     'haiti_test_clinic',
     'peru_test_clinic',
     'mali_test_clinic',
+    'SBA01',
   ];
 
   return { ...state, discardedClinics };
