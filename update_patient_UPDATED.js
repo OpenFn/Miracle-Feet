@@ -332,7 +332,7 @@ fn(state => {
       field('Date_of_SMS_Registration__c', state => {
         var smsDate = state.data.properties.date_of_sms_registration;
         return smsDate && smsDate !== undefined && smsDate !== ''
-          ? state.dateConverter(smsDate)
+          ? state.dateConverter(smsDate, '-')
           : undefined;
       }),
       field('Pronoun_he_she__c', dataValue('properties.pronoun_he_she')),
@@ -401,7 +401,7 @@ fn(state => {
         humanProper(state.data.properties.tenotomy_reason_not_given)
       ), // picklist
       field('Transfer_Date__c', state =>
-        state.dateConverter(state.data.properties.transfer_date)
+        state.dateConverter(state.data.properties.transfer_date, '-')
       ),
       field(
         'Stopped_Treatment_Reason_Other__c',
@@ -423,7 +423,7 @@ fn(state => {
         dataValue('properties.closed_by_username')
       ),
       field('Opened_Date_CommCare__c', state =>
-        state.dateConverter(state.data.properties.date_opened)
+        state.dateConverter(state.data.properties.date_opened.split('T')[0], '-')
       ),
       //Hello beth
       /*  Deleted because it was running an Error in Salesforce 
