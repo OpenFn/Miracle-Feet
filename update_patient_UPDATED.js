@@ -29,7 +29,7 @@ fn(state => {
       };
       return mapper[dateStringArray[0].length];
     };
-
+    console.log(new Date(dateMapper(str)).toISOString())
     return str && str.trim() !== ''
       ? new Date(dateMapper(str)).toISOString()
       : null;
