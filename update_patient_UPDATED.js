@@ -20,9 +20,9 @@ fn(state => {
   };
 
   //NOTE: Assumes date format YYYY-MM-DD
-  state.dateConverter = str => {
+  state.dateConverter = (str, delimiter) => {
     const dateMapper = dateString => {
-      const dateStringArray = dateString.split('-');
+      const dateStringArray = dateString.split(delimiter);
       const mapper = {
         2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,
         4: dateString,
@@ -117,7 +117,7 @@ fn(state => {
       field('Secondary_ID__c', dataValue('properties.secondary_id')),
       field('Secondary_ID_Type__c', dataValue('properties.secondary_id_type')),
       field('Registration_Date__c', state =>
-        state.dateConverter(state.data.properties.registration_date)
+        state.dateConverter(state.data.properties.registration_date, '-')
       ),
       field('Patient_Name__c', humanProper(state.data.properties.patient_name)),
       field('FirstName', humanProper(state.data.properties.patient_first_name)),
@@ -129,28 +129,28 @@ fn(state => {
       field('Gender__c', humanProper(state.data.properties.patient_gender)), // picklist
       field(
         'Date_of_Birth_Known__c',
-        humanProper(state.data.properties.patient_dob_known)
+        humanProper(state.data.properties.patient_dob_known, '-')
       ), // picklist
       field('Next_Visit_Date_New__c', state =>
-        state.dateConverter(state.data.properties.next_visit_date)
+        state.dateConverter(state.data.properties.next_visit_date, '-')
       ),
       field('Birthdate', state =>
-        state.dateConverter(state.data.properties.patient_dob)
+        state.dateConverter(state.data.properties.patient_dob, '-')
       ),
       field('Date_of_First_Brace__c', state =>
-        state.dateConverter(state.data.properties.date_first_brace)
+        state.dateConverter(state.data.properties.date_first_brace, '/')
       ),
       field('Date_of_First_Visit__c', state =>
-        state.dateConverter(state.data.properties.date_first_visit)
+        state.dateConverter(state.data.properties.date_first_visit, '-')
       ),
       field('Date_of_Tenotomy__c', state =>
-        state.dateConverter(state.data.properties.date_tenotomy)
+        state.dateConverter(state.data.properties.date_tenotomy, '-')
       ),
       field('Date_Stopped_Treatment__c', state =>
-        state.dateConverter(state.data.properties.stop_date)
+        state.dateConverter(state.data.properties.stop_date, '-')
       ),
       field('Date_Completed_Treatment__c', state =>
-        state.dateConverter(state.data.properties.treatment_completed_date)
+        state.dateConverter(state.data.properties.treatment_completed_date, '-')
       ),
       field(
         'Location_Level_1__c',
