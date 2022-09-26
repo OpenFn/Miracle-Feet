@@ -500,7 +500,7 @@ fn(state => {
       field('Patient_Donor__c', state => {
         var donor = dataValue('properties.patient_donor')(state);
         return donor == 'miraclefeet'
-          ? 'MF'
+          ? 'miraclefeet'
           : donor == 'cbm'
           ? 'CBM'
           : donor == 'other'
