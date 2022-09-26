@@ -554,7 +554,7 @@ alterState(state => {
         field(
           'Patient_Donor__c',state => {
             var donor = dataValue('form.registration_info.patient_donor')(state); 
-            return donor=='miraclefeet' ? 'MF' : 
+            return donor=='miraclefeet' ? 'miraclefeet' : 
               donor=='cbm' ? 'CBM' : 
               donor=='other' ? 'Others' : donor; 
           }),
