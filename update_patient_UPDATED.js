@@ -20,9 +20,9 @@ fn(state => {
   };
 
   //NOTE: Assumes date format YYYY-MM-DD
-  state.dateConverter = (str, delimiter) => {
+  state.dateConverter = str => {
     const dateMapper = dateString => {
-      const dateStringArray = dateString.split(delimiter);
+      const dateStringArray = dateString.split('-');
       const mapper = {
         2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,
         4: dateString,
@@ -129,28 +129,28 @@ fn(state => {
       field('Gender__c', humanProper(state.data.properties.patient_gender)), // picklist
       field(
         'Date_of_Birth_Known__c',
-        humanProper(state.data.properties.patient_dob_known, '-')
+        humanProper(state.data.properties.patient_dob_known)
       ), // picklist
       field('Next_Visit_Date_New__c', state =>
-        state.dateConverter(state.data.properties.next_visit_date, '-')
+        state.dateConverter(state.data.properties.next_visit_date)
       ),
       field('Birthdate', state =>
-        state.dateConverter(state.data.properties.patient_dob, '-')
+        state.dateConverter(state.data.properties.patient_dob)
       ),
       field('Date_of_First_Brace__c', state =>
-        state.dateConverter(state.data.properties.date_first_brace, '/')
+        state.dateConverter(state.data.properties.date_first_brace)
       ),
       field('Date_of_First_Visit__c', state =>
-        state.dateConverter(state.data.properties.date_first_visit, '-')
+        state.dateConverter(state.data.properties.date_first_visit)
       ),
       field('Date_of_Tenotomy__c', state =>
-        state.dateConverter(state.data.properties.date_tenotomy, '-')
+        state.dateConverter(state.data.properties.date_tenotomy)
       ),
       field('Date_Stopped_Treatment__c', state =>
-        state.dateConverter(state.data.properties.stop_date, '-')
+        state.dateConverter(state.data.properties.stop_date)
       ),
       field('Date_Completed_Treatment__c', state =>
-        state.dateConverter(state.data.properties.treatment_completed_date, '-')
+        state.dateConverter(state.data.properties.treatment_completed_date)
       ),
       field(
         'Location_Level_1__c',
@@ -401,7 +401,7 @@ fn(state => {
         humanProper(state.data.properties.tenotomy_reason_not_given)
       ), // picklist
       field('Transfer_Date__c', state =>
-        state.dateConverter(state.data.properties.transfer_date, '-')
+        state.dateConverter(state.data.properties.transfer_date)
       ),
       field(
         'Stopped_Treatment_Reason_Other__c',
@@ -423,7 +423,7 @@ fn(state => {
         dataValue('properties.closed_by_username')
       ),
       field('Opened_Date_CommCare__c', state =>
-        state.dateConverter(state.data.properties.date_opened.split('T')[0], '-')
+        state.dateConverter(state.data.properties.date_opened.split('T')[0])
       ),
       //Hello beth
       /*  Deleted because it was running an Error in Salesforce 
