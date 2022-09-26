@@ -698,15 +698,15 @@ fn(state => {
             'Visit_Count__c',
             dataValue('form.subcase_0.case.update.visit_count')
           ),
-          field('Name', state => {
-            return (
-              ' (' +
-              state.data.form.subcase_0.case.update.patient_id +
-              ') (' +
-              state.data.form.subcase_0.case.update.visit_date +
-              ')'
-            );
-          }),
+          // field('Name', state => {
+          //   return (
+          //     ' (' +
+          //     state.data.form.subcase_0.case.update.patient_id +
+          //     ') (' +
+          //     state.data.form.subcase_0.case.update.visit_date +
+          //     ')'
+          //   );
+          // }),
           field(
             'Visit_Notes__c',
             dataValue('form.subcase_0.case.update.visit_notes')
