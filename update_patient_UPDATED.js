@@ -21,6 +21,7 @@ fn(state => {
 
   //NOTE: Assumes date format YYYY-MM-DD
   state.dateConverter = str => {
+    if (str) {
     const dateMapper = dateString => {
       const dateStringArray = dateString.split('-');
       const mapper = {
@@ -33,13 +34,14 @@ fn(state => {
     return str && str.trim() !== ''
       ? new Date(dateMapper(str)).toISOString()
       : null;
+    }
   };
   
   state.shortDateConverter = str => {
     //var parts = "04/06/13".split("/"),
     //var parts = str.split("/"),
     //date = new Date(+parts[2]+2000, parts[1]-1, +parts[0]);
-    console.log(new Date(str).toString)
+    console.log(new Date(str).toISOString)
   };
 
   const discardedClinics = [
