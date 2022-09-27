@@ -30,7 +30,6 @@ fn(state => {
       };
       return mapper[dateStringArray[0].length];
     };
-    console.log(new Date(dateMapper(str)).toISOString())
     return str && str.trim() !== ''
       ? new Date(dateMapper(str)).toISOString()
       : null;
@@ -41,7 +40,7 @@ fn(state => {
     //var parts = "04/06/13".split("/"),
     //var parts = str.split("/"),
     //date = new Date(+parts[2]+2000, parts[1]-1, +parts[0]);
-    console.log(new Date(str).toISOString)
+    console.log(new Date(str).toISOString())
   };
 
   const discardedClinics = [
