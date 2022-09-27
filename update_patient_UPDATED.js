@@ -36,13 +36,6 @@ fn(state => {
     }
   };
   
-  state.shortDateConverter = str => {
-    //var parts = "04/06/13".split("/"),
-    //var parts = str.split("/"),
-    //date = new Date(+parts[2]+2000, parts[1]-1, +parts[0]);
-    console.log(new Date(str).toISOString())
-  };
-
   const discardedClinics = [
     'FRA01', // 'hospital_escuela',
     'test_bangladesh',
@@ -146,7 +139,6 @@ fn(state => {
         state.dateConverter(state.data.properties.patient_dob)
       ),
       field('Date_of_First_Brace__c', 
-        //state.shortDateConverter(state.data.properties.date_first_brace)
         new Date(state.data.properties.date_first_brace).toISOString()
       ),
       field('Date_of_First_Visit__c', state =>
