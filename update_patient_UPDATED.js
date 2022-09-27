@@ -145,8 +145,9 @@ fn(state => {
       field('Birthdate', state =>
         state.dateConverter(state.data.properties.patient_dob)
       ),
-      field('Date_of_First_Brace__c', state =>
-        state.shortDateConverter(state.data.properties.date_first_brace)
+      field('Date_of_First_Brace__c', 
+        //state.shortDateConverter(state.data.properties.date_first_brace)
+        new Date(state.data.properties.date_first_brace).toISOString()
       ),
       field('Date_of_First_Visit__c', state =>
         state.dateConverter(state.data.properties.date_first_visit)
