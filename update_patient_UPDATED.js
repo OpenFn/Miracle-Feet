@@ -34,6 +34,13 @@ fn(state => {
       ? new Date(dateMapper(str)).toISOString()
       : null;
   };
+  
+  state.shortDateConverter = str => {
+    //var parts = "04/06/13".split("/"),
+    //var parts = str.split("/"),
+    //date = new Date(+parts[2]+2000, parts[1]-1, +parts[0]);
+    console.log(new Date(str).toString)
+  };
 
   const discardedClinics = [
     'FRA01', // 'hospital_escuela',
