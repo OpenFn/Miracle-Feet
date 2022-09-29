@@ -137,9 +137,9 @@ fn(state => {
       field('Birthdate', state =>
         state.dateConverter(state.data.properties.patient_dob)
       ),
-      field('Date_of_First_Brace__c', 
-        new Date(state.data.properties.date_first_brace).toISOString()
-      ),
+      // field('Date_of_First_Brace__c', 
+      //   new Date(state.data.properties.date_first_brace).toISOString()
+      // ),
       field('Date_of_First_Brace__c', state => {
         var dateFirstBrace = state.data.properties.date_first_brace;
         return dateFirstBrace && dateFirstBrace !== undefined && dateFirstBrace !== ''
