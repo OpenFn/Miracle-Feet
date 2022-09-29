@@ -255,9 +255,8 @@ fn(state => {
           sms_timezone,
           Pronoun_he_she__c,
           Pronoun_him_her__c,
-          Pronoun_his_her__c,
-          sms_error,
-        } = contact; // destructuring contact info //timezone,
+          Pronoun_his_her__c
+          } = contact; // destructuring contact info //timezone,
         const {
           treatment,
           originalTreatment,
@@ -569,7 +568,7 @@ fn(state => {
         }
       }
       if (!contact.sendSms) {
-        // If SMS is turned off or there were sms sending errors recorded for the contact, delete all scheduled alerts 
+        // If SMS is turned off, delete all scheduled alerts 
         const alertsToDisable = []; // this will hold the list of alerts to delete for this contact.
         console.log('contact to delete sms for', contact);
 
