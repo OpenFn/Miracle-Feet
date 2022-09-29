@@ -140,6 +140,12 @@ fn(state => {
       field('Date_of_First_Brace__c', 
         new Date(state.data.properties.date_first_brace).toISOString()
       ),
+      field('Date_of_First_Brace__c', state => {
+        var dateFirstBrace = state.data.properties.date_first_brace;
+        return dateFirstBrace && dateFirstBrace !== undefined && dateFirstBrace !== ''
+          ? new Date(state.data.properties.date_first_brace).toISOString()
+          : undefined;
+      }),
       field('Date_of_First_Visit__c', state =>
         state.dateConverter(state.data.properties.date_first_visit)
       ),
