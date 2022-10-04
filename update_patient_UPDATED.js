@@ -235,6 +235,8 @@ fn(state => {
         'Consent_Photograph_Treatment__c',
         humanProper(state.data.properties.consent_photograph_treatment)
       ), // picklist
+      field('EMR_Consent__c',dataValue('properties.consent_to_use_emr_data_for_program_monitoring')),
+      field('Research_Consent__c',dataValue('properties.consent_to_be_contacted_for_future_research_studies')),
       field('Diagnosis__c', humanProper(state.data.properties.diagnosis)), // picklist
       //field('Bracing_Stage__c', (state)=>{}dataValue('properties.bracing_stage')), //replaced with below mapping + transformation
       field('Bracing_Stage__c', state => {
