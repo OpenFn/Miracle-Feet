@@ -133,24 +133,24 @@ fn(state => {
       field('Next_Visit_Date_New__c', state =>
         state.dateConverter(state.data.properties.next_visit_date)
       ),
-      // field('Birthdate', state =>
-      //   state.dateConverter(state.data.properties.patient_dob)
-      // ),
-      field('Birthdate', state => {
-        var patient_dob = state.data.properties.patient_dob;
-        return patient_dob && patient_dob !== undefined && patient_dob !== ''
-          ? new Date(state.data.properties.patient_dob).toISOString()
-          : undefined;
-      }),
-      // field('Date_of_First_Brace__c', 
-      //   new Date(state.data.properties.date_first_brace).toISOString()
-      // ),
-      field('Date_of_First_Brace__c', state => {
-        var dateFirstBrace = state.data.properties.date_first_brace;
-        return dateFirstBrace && dateFirstBrace !== undefined && dateFirstBrace !== ''
-          ? new Date(state.data.properties.date_first_brace).toISOString()
-          : undefined;
-      }),
+      field('Birthdate', state =>
+        state.dateConverter(state.data.properties.patient_dob)
+      ),
+      // field('Birthdate', state => {
+      //   var patient_dob = state.data.properties.patient_dob;
+      //   return patient_dob && patient_dob !== undefined && patient_dob !== ''
+      //     ? new Date(state.data.properties.patient_dob).toISOString()
+      //     : undefined;
+      // }),
+      field('Date_of_First_Brace__c', 
+        new Date(state.data.properties.date_first_brace).toISOString()
+      ),
+      // field('Date_of_First_Brace__c', state => {
+      //   var dateFirstBrace = state.data.properties.date_first_brace;
+      //   return dateFirstBrace && dateFirstBrace !== undefined && dateFirstBrace !== ''
+      //     ? new Date(state.data.properties.date_first_brace).toISOString()
+      //     : undefined;
+      // }),
       field('Date_of_First_Visit__c', state =>
         state.dateConverter(state.data.properties.date_first_visit)
       ),
