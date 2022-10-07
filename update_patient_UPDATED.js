@@ -142,8 +142,10 @@ fn(state => {
       //     ? new Date(state.data.properties.patient_dob).toISOString()
       //     : undefined;
       // }),
-      field('Date_of_First_Brace__c', 
-        new Date(state.data.properties.date_first_brace).toISOString()
+
+      
+       field('Date_of_First_Brace__c', state =>
+        state.dateConverter(state.data.properties.date_first_brace)
       ),
       // field('Date_of_First_Brace__c', state => {
       //   var dateFirstBrace = state.data.properties.date_first_brace;
