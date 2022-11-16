@@ -7,7 +7,7 @@ alterState(state => {
       : null;
     return image ? `${baseUrl}${uuid}/${image}` : '';
   };
-
+n
   state.handleMultiSelect = function (state, multiField) {
     const ms = state.data.form.case.update[`${multiField}`];
     if (ms) {
@@ -171,8 +171,8 @@ alterState(state => {
         field('Patients_Full_Legal_Name__c', dataValue('form.case.update.patients_full_legal_name')),
         field('Parent_s_or_authorized_caregiver_s_Nam__c', dataValue('form.case.update.parents_or_authorized_caregivers_full_legal_name')),
         field('Patient_Name__c', dataValue('form.case.update.patient_name')),
-        field('FirstName', dataValue('form.case.update.patient_first_name')),
-        field('LastName', dataValue('form.case.update.patient_last_name')),
+        field('FirstName', dataValue('form.case.update.patient_id')),
+        //field('LastName', dataValue('form.case.update.patient_last_name')),
         field('CAST_Patient_ID__c', dataValue('form.case.update.patient_id')),
         field('Pronoun_he_she__c', dataValue('form.calcs.sms.pronoun_he_she')),
         field('Pronoun_him_her__c', dataValue('form.calcs.sms.pronoun_him_her')),
