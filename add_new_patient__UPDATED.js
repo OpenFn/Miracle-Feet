@@ -7,7 +7,7 @@ alterState(state => {
       : null;
     return image ? `${baseUrl}${uuid}/${image}` : '';
   };
-n
+
   state.handleMultiSelect = function (state, multiField) {
     const ms = state.data.form.case.update[`${multiField}`];
     if (ms) {
