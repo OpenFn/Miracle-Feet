@@ -199,8 +199,9 @@ fn(state => {
       : 'Not Defined';
 
     let contact = {
-      FirstName: state.data.form.calcs.case_properties.patient_first_name,
-      LastName: state.data.form.calcs.case_properties.patient_last_name,
+      // FirstName: state.data.form.calcs.case_properties.patient_first_name,
+      // LastName: state.data.form.calcs.case_properties.patient_last_name,
+      LastName: state.data.form.calcs.case_properties.patient_id,
       CommCare_Case_ID__c: state.data.form.case['@case_id'],
       Date_of_First_Visit__c: state.dateConverter(
         state.data.form.case.update.date_first_visit
