@@ -174,7 +174,7 @@ alterState(state => {
         //   var name2 = dataValue('properties.patient_name')(state);
         //   return name1 ? name1 : name2;
         // }),
-        field('LastName', dataValue('properties.patient_id'),
+        field('LastName', dataValue('properties.patient_id')),
         field(
           'CommCare_Case_ID__c',
           dataValue('indices.parent.case_id')
