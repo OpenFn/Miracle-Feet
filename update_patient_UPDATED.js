@@ -21,6 +21,7 @@ fn(state => {
 
   //NOTE: Assumes date format YYYY-MM-DD
   state.dateConverter = str => {
+    console.log(str);
     const dateMapper = dateString => {
       const dateStringArray = dateString.split('-');
       const mapper = {
