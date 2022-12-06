@@ -517,13 +517,11 @@ fn(state => {
       }),
       field('Patient_Donor__c', state => {
         var donor = dataValue('properties.patient_donor')(state);
-        return donor == 'miraclefeet'
-          ? 'miraclefeet'
-          : donor == 'cbm'
-          ? 'CBM'
-          : donor == 'other'
-          ? 'Others'
-          : donor;
+        return donor == 'miraclefeet' ? 'miraclefeet' : 
+          donor == 'cbm' ? 'CBM' :
+          donor=='AoP' ? 'AoP' :
+          donor=='SOFTEX' ? 'SOFTEX' :
+          donor == 'other' ? 'Others' : donor;
       }),
       field(
         'Other_Type_Donor_Name__c', //removed extra period after field
