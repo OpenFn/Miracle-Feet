@@ -287,6 +287,9 @@ fn(state => {
             }
             return typesString;
           }),
+          field('brace_problems_picture__c', function (state) {
+            return state.handlePhoto(state, 'brace_problems_picture');
+          })
           field('Brace_Type__c', state => {
             const ref = state.data.form.subcase_0.case.update.brace_type;
             return !ref
