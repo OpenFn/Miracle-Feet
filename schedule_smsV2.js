@@ -270,6 +270,7 @@ fn(state => {
           registrationDate,
           firstVisitDate,
           lastVisitDate,
+          originalNextVisitDate,
           smsRegistrationDate,
           treatmentCompletedDate,
         } = contact; // destructuring dates
@@ -285,7 +286,7 @@ fn(state => {
           Next_Visit_Date_New__c !== null
         ) {
           alertsToSend.push(treatmentMapSchedule['reminder_before']);
-          if (lastVisitDate) {
+          if (lastVisitDate || originalNextVisitDate) {
             alertsToDisable.push(treatmentMapSchedule['reminder_after']);
           }
           alertsToSend.push(treatmentMapSchedule['reminder_after']);
@@ -556,12 +557,14 @@ fn(state => {
 
               if (bulkPrefix === 'visitAfter-') {
                 bulkId = `${bulkId}-${lastVisitDate}`;
+                alternateBulkId = `${bulkId}-${originalNextVisitDate}`;
               }
               if (bulkPrefix === 'visitBefore-') {
                 bulkId = `${bulkId}-${startDate}`;
               }
 
               messagesToCancel.push(bulkId);
+              messagesToCancel.push(alternateBulkId);
               console.log('bulkId to delete: ', bulkId);
             }
           }
