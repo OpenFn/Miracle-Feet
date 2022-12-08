@@ -135,6 +135,9 @@ fn(state => {
       field('Next_Visit_Date_New__c', state =>
         state.dateConverter(state.data.properties.next_visit_date)
       ),
+      field('Original_Next_Visit_Date__c', state =>
+        state.dateConverter(state.data.properties.original_next_visit_date)
+      ),
       field('Birthdate', state =>
         state.dateConverter(state.data.properties.patient_dob)
       ),
