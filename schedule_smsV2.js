@@ -565,7 +565,7 @@ fn(state => {
 
               messagesToCancel.push(bulkId);
               messagesToCancel.push(alternateBulkId);
-              console.log('bulkId to delete: ', bulkId);
+              console.log('bulkId to delete: ', bulkId, alternateBulkId);
             }
           }
         }
@@ -578,7 +578,7 @@ fn(state => {
         // We organize destructuring by concern.
         const { caseId } = contact; // destructuring contact info
         const { treatment } = contact; // destructuring treatment info
-        const { startDate, lastVisitDate } = contact; // destructuring dates
+        const { startDate, lastVisitDate, originalNextVisitDate } = contact; // destructuring dates
 
         if (
           treatment === 'Casting' ||
@@ -612,13 +612,16 @@ fn(state => {
 
               if (bulkPrefix === 'visitAfter-') {
                 bulkId = `${bulkId}-${lastVisitDate}`;
+                alternateBulkId = `${bulkId}-${originalNextVisitDate}`;
+
               }
               if (bulkPrefix === 'visitBefore-') {
                 bulkId = `${bulkId}-${startDate}`;
               }
 
               messagesToCancel.push(bulkId);
-              console.log('bulkId to delete: ', bulkId);
+              messagesToCancel.push(alternateBulkId);
+              console.log('bulkId to delete: ', bulkId, alternateBulkId);
             }
           }
         }
