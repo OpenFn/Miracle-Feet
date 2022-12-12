@@ -11,7 +11,6 @@ fn(state => {
     return image ? `${baseUrl}${uuid}/${image}` : '';
   };
   
-state => {
   state.handleBracePhoto = function handleBracePhoto(state, photoField) {
     const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
     const uuid = state.data.metadata.instanceID;
