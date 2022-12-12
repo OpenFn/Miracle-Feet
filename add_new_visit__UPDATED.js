@@ -11,7 +11,17 @@ fn(state => {
     return image ? `${baseUrl}${uuid}/${image}` : '';
   };
   
-
+state => {
+  state.handleBracePhoto = function handleBracePhoto(state, photoField) {
+    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
+    const uuid = state.data.metadata.instanceID;
+    const hasPhotos =
+      state.data.form.brace.brace_problems.brace_problems_type == 'broken_defective_brace';
+    const image = hasPhotos
+      ? state.data.form.brace.brace_problems[`${photoField}`]
+      : null;
+    return image ? `${baseUrl}${uuid}/${image}` : '';
+  };
 
   state.handleMultiSelect = function (state, multiField) {
     const ms = state.data.form.subcase_0.case.update[`${multiField}`];
