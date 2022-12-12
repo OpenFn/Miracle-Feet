@@ -10,6 +10,18 @@ fn(state => {
       : null;
     return image ? `${baseUrl}${uuid}/${image}` : '';
   };
+  
+  fn(state => {
+  state.handleBracePhoto = function handleBracePhoto(state, photoField) {
+    const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
+    const uuid = state.data.metadata.instanceID;
+    const hasPhotos =
+      state.data.form.brace.brace_problems.brace_problems_type == 'broken_defective_brace';
+    const image = hasPhotos
+      ? state.data.form.brace.brace_problems[`${photoField}`]
+      : null;
+    return image ? `${baseUrl}${uuid}/${image}` : '';
+  };
 
   state.handleMultiSelect = function (state, multiField) {
     const ms = state.data.form.subcase_0.case.update[`${multiField}`];
@@ -288,7 +300,7 @@ fn(state => {
             return typesString;
           }),
           field('brace_problems_picture__c', function (state) {
-            return state.handlePhoto(state, 'brace_problems_picture');
+            return state.handleBracePhoto(state, 'brace_problems_picture');
           }),
           field('Brace_Type__c', state => {
             const ref = state.data.form.subcase_0.case.update.brace_type;
