@@ -82,7 +82,7 @@ fn(state => {
     'uptest',
     'indonesia_test',
     'test',
-    'majunga_test_clinic',
+    //'majunga_test_clinic',
     'madagascar_test',
     'morocco_test',
     'morocco_test_clinic',
