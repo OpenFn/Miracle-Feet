@@ -11,6 +11,12 @@ fn(state => ({
 }));
 
 query(
+  `Select Id, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Case_Closed_Date_CommCare__c != null AND 
+  LastModifiedDate = LAST_N_DAYS:1`
+);
+
+
+query(
   `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c = 'Temporarily Suspended' AND 
 LastModifiedDate = LAST_N_DAYS:1`
 );
