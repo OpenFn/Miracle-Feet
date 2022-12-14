@@ -554,6 +554,8 @@ fn(state => {
             const { key, bulkPrefix } = alert;
             for (let rule of mapping[key]) {
               let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
+              let alternateBulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
+
 
               if (bulkPrefix === 'visitAfter-') {
                 bulkId = `${bulkId}-${lastVisitDate}`;
@@ -609,6 +611,7 @@ fn(state => {
             const { key, bulkPrefix } = alert;
             for (let rule of mapping[key]) {
               let bulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
+              let alternateBulkId = `${bulkPrefix}${rule['# SMS']}-${caseId}`;
 
               if (bulkPrefix === 'visitAfter-') {
                 bulkId = `${bulkId}-${lastVisitDate}`;
