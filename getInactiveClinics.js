@@ -15,6 +15,13 @@ query(
   LastModifiedDate = LAST_N_DAYS:1`
 );
 
+fn(state => ({
+  ...state,
+  previouslySupportedCaseIds: state.references[0].records.map(record => ({
+    CommCare_Case_ID__c: record.CommCare_Case_ID__c,
+  })),
+}));
+
 
 query(
   `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c = 'Temporarily Suspended' AND 
