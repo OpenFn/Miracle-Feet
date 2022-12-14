@@ -119,7 +119,7 @@ fn(state => {
         state.dateConverter(state.data.properties.registration_date)
       ),
       field('Patient_Name__c', humanProper(state.data.properties.patient_name)),
-      field('LastName', dataValue('properties.patient_id')),
+      //field('LastName', dataValue('properties.patient_id')),
       // field('FirstName', humanProper(state.data.properties.patient_first_name)),
       // field('LastName', humanProper(state.data.properties.patient_last_name)),
       // ('LastName', state => {
