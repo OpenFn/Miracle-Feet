@@ -20,7 +20,9 @@ alterState(state => {
       }
       else { 
         console.log(
-        'This is not a clinic. Not uploading data to Salesforce.'
+        'This is not a clinic. Not uploading data to Salesforce.', 
+        'it is:', 
+        dataValue('location_type_code')
         );
         return state; }
     }
