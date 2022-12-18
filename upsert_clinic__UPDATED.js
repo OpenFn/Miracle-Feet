@@ -5,13 +5,14 @@
 // =============================================================================
 alterState(state => {
     const { test_clinic } = state.data.metadata;
+    const { location_type } = (dataValue('location_type_code');
     if (test_clinic  === 'Yes') {
       console.log(
         'This is a CommCare test clinic. Not uploading data to Salesforce.'
       );
       return state;
     } else {
-      if (dataValue('location_type_code') === 'clinic') {
+      if (location_type === 'clinic') {
         return upsert("Account", "CAST_Location_ID__c", fields(
         field('CAST_Location_ID__c', dataValue('location_id')),
         field('Name', dataValue('name')), 
@@ -22,7 +23,7 @@ alterState(state => {
         console.log(
         'This is not a clinic. Not uploading data to Salesforce.', 
         'it is:', 
-        dataValue('location_type_code')
+        location_type
         );
         return state; }
     }
