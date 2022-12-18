@@ -5,7 +5,7 @@
 // =============================================================================
 alterState(state => {
     const { test_clinic } = state.data.metadata;
-    const { location_type } = state.data.location_type_code;
+    const location_type  = state.data.location_type_code;
     if (test_clinic  === 'Yes') {
       console.log(
         'This is a CommCare test clinic. Not uploading data to Salesforce.'
