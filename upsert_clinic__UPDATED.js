@@ -12,7 +12,7 @@ alterState(state => {
       );
       return state;
     } else {
-      if (location_type_code == 'clinic') {
+      if (location_type_code === 'clinic') {
         return upsert("Account", "CAST_Location_ID__c", fields(
         field('CAST_Location_ID__c', dataValue('location_id')),
         field('Name', dataValue('name')), 
