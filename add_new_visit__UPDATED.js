@@ -77,7 +77,9 @@ fn(state => {
   };
 
   const discardedClinics = [
+    'togo_test_clinic',
     'test_bangladesh',
+    'pakistan_test',
     'bol_test',
     'brazil_test',
     'cam_test',
