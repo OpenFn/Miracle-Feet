@@ -91,7 +91,7 @@ fn(async state => {
 
   console.log(`Sending ${loop} batches of contacts to inbox`);
   for (let i = 0; i < loop; i++) {
-    const batch = state.contacts.slice(i * 30, (i + 1) * 30);
+    const batch = state.contacts.slice(i * 15, (i + 1) * 15);
 
     const data = {
       tag: 'sms_salesforce',
