@@ -142,9 +142,23 @@ alterState(state => {
     tenotomy: '0123l000001g0Y3AAI', //Tenotomy
     bracing_night: '0123l000001g0XoAAI', //Bracing
     bracing_day: '0123l000001g0XoAAI', //Bracing
+    first_brace: '0123l000001g0XoAAI', //Bracing
+    brace_follow_up: '0123l000001g0XoAAI', //Bracing
+    brace_delivery: '0123l000001g0XoAAI', //Bracing
     suspended: '0123l000001g0XyAAI',
     complete: '0123l000001g0XyAAI',
+    treatment_complete: '0123l000001g0XyAAI',
+    other: '0123l000001g0XyAAI' //Other
+   /* 
+   The following options will default to other in the function below: 
+        surgery
+        temporarily_suspend
+        home_exercise_program
+        instruction__advice 
+    */
   };
+  
+
 
   state.dateConverter = function (state, dateString) {
     return dateString ? new Date(dateString).toISOString() : null;
