@@ -163,13 +163,13 @@ fn(state => {
     first_brace: '0123l000001g0XoAAI', //Bracing
     brace_follow_up: '0123l000001g0XoAAI', //Bracing
     brace_delivery: '0123l000001g0XoAAI', //Bracing
+    surgery: '0123l000000r7ja', //Surgery
     suspended: '0123l000001g0XyAAI',
     complete: '0123l000001g0XyAAI',
     treatment_complete: '0123l000001g0XyAAI',
     other: '0123l000001g0XyAAI' //Other
    /* 
    The following options will default to other in the function below: 
-        surgery
         temporarily_suspend
         home_exercise_program
         instruction__advice 
