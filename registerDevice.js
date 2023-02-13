@@ -77,7 +77,8 @@ alterState(state => {
     'test_clinic3',
     'test_clinic4',
     'haiti_test_clinic',
-    'peru_test_clinic'
+    'peru_test_clinic',
+    'clinica_practica_mexico',
   ];
   const { clinic_code } = state.data.form.case.update;
   const { test_clinic } = state.data.form.case.update;
