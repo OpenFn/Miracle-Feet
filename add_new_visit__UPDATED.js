@@ -153,6 +153,7 @@ fn(state => {
     'sierra_leone_test_clinic',
     'mali_test_clinic',
     'peru_test_clinic',
+    'clinica_practica_mexico',
   ];
 
   const RTmap = {
