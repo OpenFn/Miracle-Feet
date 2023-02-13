@@ -134,7 +134,8 @@ alterState(state => {
     'haiti_test_clinic',
     'mali_test_clinic',
     'peru_test_clinic',
-    'Hopital_Sacré-coeur_de_Milot,'
+    'Hopital_Sacré-coeur_de_Milot',
+    'clinica_practica_mexico',
   ];
 
   const RTmap = {
