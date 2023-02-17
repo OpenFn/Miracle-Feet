@@ -34,11 +34,18 @@ fn(state => {
     const { records } = state.references[0];
 
     const contacts = records.map(record => {
+      //Transformation to take first substring of patient name (e.g., "Jane Doe" ==> "Jane")
+      const patientName = record.Patient_Name__c;
+      const firstName =
+        patientName && patientName !== ''
+          ? patientName.split(' ')[0]
+          : undefined;
+
       return {
         id: record.Id,
         caseId: record.CommCare_Case_ID__c,
         startDate: record.SMS_Treatment_Start_Date__c,
-        Name: record.Name,
+        Name: firstName,
         Country: record.Clinic_Country__c,
         Phone: record.Guardian_1_Phone_Number_1__c,
         pronoun_his_her: record.Pronoun_his_her__c,
