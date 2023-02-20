@@ -20,7 +20,7 @@ fn(state => {
     /*  WHERE Last_Modified_Date_CommCare__c = */
      /*  ${setDays(new Date(), -1)} */
       WHERE Last_Modified_Date_CommCare__c >=
-      2023-02-07
+      2023-02-20
       AND Account.Country__c in ('Nigeria', 'Uganda') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
     // WHERE LastModifiedDate > ${new Date(
     //    setDays(new Date(), -1)
