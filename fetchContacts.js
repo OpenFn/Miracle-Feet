@@ -76,7 +76,7 @@ fn(state => {
 fn(async state => {
   const { configuration, contacts } = state;
 
-  const loop = Math.ceil(contacts.length / 30);
+  const loop = Math.ceil(contacts.length / 15);
 
   let countInbox = 0;
 
