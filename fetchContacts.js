@@ -77,9 +77,9 @@ fn(state => {
 fn(async state => {
   const { configuration, contacts } = state;
   
-  const batch = 15;
+  const batchSize = 15;
 
-  const loop = Math.ceil(contacts.length / batch);
+  const loop = Math.ceil(contacts.length / batchSize);
 
   let countInbox = 0;
 
@@ -97,7 +97,7 @@ fn(async state => {
 
   console.log(`Sending ${loop} batches of contacts to inbox`);
   for (let i = 0; i < loop; i++) {
-    const batch = state.contacts.slice(i * batch, (i + 1) * batch);
+    const batch = state.contacts.slice(i * batchSize, (i + 1) * batchSize);
 
     const data = {
       tag: 'sms_salesforce',
