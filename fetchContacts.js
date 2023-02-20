@@ -17,10 +17,11 @@ fn(state => {
     SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c, SMS_Error__c,
     SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c, Date_of_SMS_Registration__c, Date_Completed_Treatment__c
       FROM Contact
-      WHERE Last_Modified_Date_CommCare__c = ${setDays(
-      new Date(),
-      -1
-    )} AND Account.Country__c in ('Nigeria', 'Uganda') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
+    /*  WHERE Last_Modified_Date_CommCare__c = */
+     /*  ${setDays(new Date(), -1)} */
+      WHERE Last_Modified_Date_CommCare__c >=
+      2023-02-07
+      AND Account.Country__c in ('Nigeria', 'Uganda') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
     // WHERE LastModifiedDate > ${new Date(
     //    setDays(new Date(), -1)
     //  ).toISOString()}`
