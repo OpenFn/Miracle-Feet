@@ -12,7 +12,7 @@ fn(state => {
   // 4. info on treatment details
   // 5. depending on a specific list of account's status
   return query(
-    `SELECT Name, FirstName, Account.Status__c, Account.Country__c, Account.Name, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, Guardian_1_Phone_Landline__c, CommCare_Case_ID__c, 
+    `SELECT Name, Patient_Name__c, FirstName, Account.Status__c, Account.Country__c, Account.Name, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, Guardian_1_Phone_Landline__c, CommCare_Case_ID__c, 
     SMS_Treatment_Start_Date__c, Next_Visit_Date_New__c, Registration_Date__c, Date_of_First_Visit__c, Last_Visit_Date__c, Original_Next_Visit_Date__c, Last_Modified_Date_CommCare__c,
     SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c, SMS_Error__c,
     SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c, Date_of_SMS_Registration__c, Date_Completed_Treatment__c
@@ -29,11 +29,18 @@ fn(state => {
     const { records } = state.references[0];
 
     const contacts = records.map(record => {
+        //Transformation to take first substring of patient name (e.g., "Jane Doe" ==> "Jane")
+      const patientName = record.Patient_Name__c;
+      const firstName =
+        patientName && patientName !== ''
+          ? patientName.split(' ')[0]
+          : undefined;
+
       //Here we assign SF values to variables to reference in the Infobip scheduling job
       return {
         id: record.Id,
         AccountId: record.Account.Name,
-        FirstName: record.FirstName,
+        FirstName: firstName,
         Guardian_1_First_Name__c: record.Guardian_1_First_Name__c,
         status: record.Account.Status__c,
         patientCountry: record.Account.Country__c,
