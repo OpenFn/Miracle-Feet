@@ -88,15 +88,21 @@ fn(state => {
     'guyana_test_clinic',
     'togo_test_clinic'
   ];
+  
+  const discardedCountries = [
+    'Honduras', 
+    'Dominican Republic'];
 
-  return { ...state, discardedClinics };
+  return { ...state, discardedClinics, discardedCountries };
 });
 
 fn(state => {
   const { clinic_code } = state.data.properties;
   const { test_clinic } = state.data.properties;
   const { test_user } = state.data.properties;
-  if (state.discardedClinics.includes(clinic_code) || test_clinic==='Yes' || test_user==='Yes') {
+  if (state.discardedClinics.includes(clinic_code) || 
+      state.discardedCountries.includes(dataValue('state.data.properties.patient_country')(state)) ||
+      test_clinic==='Yes' || test_user==='Yes') {
     console.log(
       'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'
     );
