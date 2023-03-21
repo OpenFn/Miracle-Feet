@@ -115,7 +115,7 @@ alterState(state => {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
-  return { ...state, discardedClinics };
+  return { ...state, discardedClinics, discardedCountries };
 });
 
 alterState(state => {
