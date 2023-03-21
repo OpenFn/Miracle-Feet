@@ -162,18 +162,25 @@ alterState(state => {
     */
   };
   
+  const discardedCountries = [
+    'Honduras', 
+    'Dominican Republic'];
+  
 
 
   state.dateConverter = function (state, dateString) {
     return dateString ? new Date(dateString).toISOString() : null;
   };
 
-  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap, RTmap };
+  return { ...state, discardedClinics, braceMap, braceProblemsTypeMap, RTmap, discardedCountries };
 });
 
 alterState(state => {
   const { clinic_code, patient_id } = state.data.properties;
-  if (state.discardedClinics.includes(clinic_code)) {
+  if (
+      state.discardedClinics.includes(clinic_code) ||
+      state.discardedCountries.includes(dataValue('state.data.properties.patient_country')(state))
+      ) {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
