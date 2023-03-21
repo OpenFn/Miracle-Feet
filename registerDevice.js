@@ -82,10 +82,15 @@ alterState(state => {
     'guyana_test_clinic',
     'togo_test_clinic'
   ];
+  const discardedCountries = [
+    'Honduras', 
+    'Dominican Republic'];
   const { clinic_code } = state.data.form.case.update;
   const { test_clinic } = state.data.form.case.update;
   const { test_user } = state.data.form.case.update;
-  if (discardedClinics.includes(clinic_code) || test_clinic==='Yes' || test_user==='Yes') {
+  if (discardedClinics.includes(clinic_code) || 
+      discardedCountries.includes(dataValue('state.data.form.case.update.patient_country')(state)) ||
+      test_clinic==='Yes' || test_user==='Yes') {
     console.log(
       'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'
     );
