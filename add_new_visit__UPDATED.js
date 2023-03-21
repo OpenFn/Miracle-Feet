@@ -154,6 +154,7 @@ fn(state => {
     'mali_test_clinic',
     'peru_test_clinic',
     'clinica_practica_mexico',
+    'mexico_test_clinic',
     'guyana_test_clinic',
     'togo_test_clinic'
   ];
@@ -202,7 +203,8 @@ fn(state => {
 
   const { clinic_code } = state.data.form.calcs.case_properties;
   if (state.discardedClinics.includes(clinic_code) || 
-      state.discardedCountries.includes(dataValue('state.data.form.case.update.patient_country')(state))) {
+      state.discardedCountries.includes(dataValue('state.data.form.case.update.patient_country')(state)) ||
+      dataValue(state.data.form.case.update.test_user) == 'Yes') {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
