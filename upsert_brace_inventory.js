@@ -91,8 +91,11 @@ fn(state => {
     'peru_test_clinic',
     'mali_test_clinic',
   ];
+  const discardedCountries = [
+    'Honduras', 
+    'Dominican Republic'];
 
-  return { ...state, braceMap, discardedClinics };
+  return { ...state, braceMap, discardedClinics, discardedCountries };
 });
 
 fn(state => {
@@ -100,7 +103,9 @@ fn(state => {
   const { test_clinic } = state.data.form.calcs.case_properties;
   const { test_user } = state.data.form.calcs.case_properties;
   if (
-    state.discardedClinics.includes(clinic_code) || test_clinic==='Yes' || test_user==='Yes'
+    state.discardedClinics.includes(clinic_code) || 
+    state.discardedCountries.includes(dataValue('state.data.form.case.update.patient_country')(state)) ||
+    test_clinic==='Yes' || test_user==='Yes'
   ){
     console.log('Test clinic or test user detected; no data uploaded to Salesforce.');
     return state;
