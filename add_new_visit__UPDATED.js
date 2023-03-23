@@ -204,7 +204,7 @@ fn(state => {
   const { clinic_code } = state.data.form.calcs.case_properties;
   if (state.discardedClinics.includes(clinic_code) || 
       state.discardedCountries.includes(dataValue('state.data.form.case.update.patient_country')(state)) ||
-      dataValue(state.data.form.case.update.test_user) == 'Yes') {
+      state.data.form.case.update.test_user == 'Yes') {
     console.log(
       'This is a CommCare test clinic. Not uploading data to Salesforce.'
     );
