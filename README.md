@@ -152,9 +152,11 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 2. Paste on this converter at the left pane https://csvjson.com/csv2json
 3. Get the generated json
 4. Paste it on [content-input.json](https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-input.json)
-5. Execute `node mapping/converter.js`
+5. Execute `node mappings/converter.js`
 6. Copy the resulting content from content-output-minified.js https://github.com/OpenFn/Miracle-Feet/blob/master/mappings/content-output-minified.js
-7. Paste it in the job in place of mapping variable at line 3. If there is code formatting enabled, it might expand the contents. In that case, undo that last change to make sure content is on one line.
+7. Paste it in the job in place of mapping variable at line 3. If there is code formatting enabled, it might expand the contents. In that case, undo that last change to make sure content is on one line. There are 2 jobs to update: 
+1. The entire mapping sheet should be added to: https://github.com/OpenFn/Miracle-Feet/blob/master/schedule_smsV2.js
+2. Only the "Bracing Night" messages to be added to: https://github.com/OpenFn/Miracle-Feet/blob/master/2.scheduleContactSMS.js
 
 **To add/remove alerts or reminders, update CommCare field names, change opt-in/opt-out conditions, add new CommCare forms that trigger SMS-s, or any other change, contact support@openfn.org.**
 
