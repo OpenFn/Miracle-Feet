@@ -272,8 +272,8 @@ fn(state => {
           field('RecordTypeId', state => {
             //var treatment = state.data.form.calcs.sms.treatment;
             var treatment =
-              state.data.properties.l_treatment ||
-              state.data.properties.r_treatment;
+              state.data.form.calcs.save.l_treatment ||
+              state.data.form.calcs.save.r_treatment;
             return state.RTmap[treatment] || '0123l000001g0XyAAI'; //Return 'Other' if not in RTmap
           }),
           field('New_Visit_UID__c', state => {
