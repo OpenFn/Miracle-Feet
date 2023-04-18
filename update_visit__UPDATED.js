@@ -222,12 +222,29 @@ alterState(state => {
         'Visit_new__c',
         'New_Visit_UID__c',
         fields(
-          field('RecordTypeId', state => {
+          /*field('RecordTypeId', state => {
             var treatment =
               state.data.properties.l_treatment ||
               state.data.properties.r_treatment;
             return state.RTmap[treatment] || '0123l000001g0XyAAI'; //Return 'Other' if not in RTmap
+          }),*/
+          
+          field('RecordTypeId', state => {
+            var treatment = state.data.properties.l_treatment  || state.data.properties.r_treatment;
+		        var l_treatment = state.RTmap[state.data.properties.l_treatment];
+            var r_treatment = state.RTmap[state.data.properties.r_treatment];
+            if (l_treatment == '0123l000001g0XtAAI' || r_treatment == '0123l000001g0XtAAI') 
+              { 
+                return '0123l000001g0XtAAI'; //If either left or right foot is Bracing, then returns Casting
+              }
+  				  else if (l_treatment == '0123l000001g0XoAAI' || r_treatment == '0123l000001g0XoAAI')
+	  			  	{
+		  		  	  return '0123l000001g0XoAAI'; //If either left or right foot is Casting, then returns Bracing
+			  		 	}
+				  	 else 
+					   		return state.RTmap[treatment] || '0123l000001g0XyAAI'; //If not the above, then returns values from RTmap and eturn 'Other' if not in RTmap
           }),
+          
           field('New_Visit_UID__c', state => {
             var icrId = dataValue('properties.visit_original_id')(state);
             var caseId = dataValue('case_id')(state);
