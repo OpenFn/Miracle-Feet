@@ -178,7 +178,8 @@ alterState(state => {
 alterState(state => {
   const { clinic_code, patient_id } = state.data.properties;
   if (
-      state.discardedClinics.includes(clinic_code) ||
+      state.discardedClinics.includes(clinic_code) || 
+      state.data.form.case.update.test_user == 'Yes' ||
       state.discardedCountries.includes(dataValue('state.data.properties.patient_country')(state))
       ) {
     console.log(
