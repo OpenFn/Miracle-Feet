@@ -90,6 +90,7 @@ fn(state => {
     'sierra_leone_test_clinic',
     'peru_test_clinic',
     'mali_test_clinic',
+    'bafata_test_clinic',
   ];
   const discardedCountries = [
     'Honduras', 
