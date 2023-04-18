@@ -86,7 +86,8 @@ fn(state => {
     'OLA01',
     'clinica_practica_mexico',
     'guyana_test_clinic',
-    'togo_test_clinic'
+    'togo_test_clinic', 
+    'bafata_test_clinic'
   ];
   
   const discardedCountries = [
