@@ -281,17 +281,16 @@ fn(state => {
           var treatment = state.data.form.calcs.save.l_treatment || state.data.form.calcs.save.r_treatment;
 		      var l_treatment = state.RTmap[state.data.form.calcs.save.l_treatment];
           var r_treatment = state.RTmap[state.data.form.calcs.save.r_treatment];
-          return 
-            if (l_treatment == '0123l000001g0XtAAI' || r_treatment == '0123l000001g0XtAAI') 
-              { 
-                '0123l000001g0XtAAI'; //If either left or right foot is Bracing, then returns Casting
-              }
-					  else if (l_treatment == '0123l000001g0XoAAI' || r_treatment == '0123l000001g0XoAAI')
-					  	{
-					      '0123l000001g0XoAAI'; //If either left or right foot is Casting, then returns Bracing
-					 	  }
-					  else 
-					  		state.RTmap[treatment] || '0123l000001g0XyAAI';//If not the above, then returns values from RTmap and eturn 'Other' if not in RTmap
+          if (l_treatment == '0123l000001g0XtAAI' || r_treatment == '0123l000001g0XtAAI') 
+            { 
+              return '0123l000001g0XtAAI'; //If either left or right foot is Bracing, then returns Casting
+            }
+				  else if (l_treatment == '0123l000001g0XoAAI' || r_treatment == '0123l000001g0XoAAI')
+				  	{
+				  	  return '0123l000001g0XoAAI'; //If either left or right foot is Casting, then returns Bracing
+					 	}
+					 else 
+					 		return state.RTmap[treatment] || '0123l000001g0XyAAI'; //If not the above, then returns values from RTmap and eturn 'Other' if not in RTmap
           }),
           field('New_Visit_UID__c', state => {
             var icrId = state.data.form.subcase_0.case.update.visit_original_id;
