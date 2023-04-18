@@ -156,7 +156,8 @@ fn(state => {
     'clinica_practica_mexico',
     'mexico_test_clinic',
     'guyana_test_clinic',
-    'togo_test_clinic'
+    'togo_test_clinic',
+    'bafata_test_clinic'
   ];
 
   const RTmap = {
