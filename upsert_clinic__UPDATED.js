@@ -17,7 +17,7 @@ alterState(state => {
         field('CAST_Location_ID__c', dataValue('location_id')),
         field('Name', dataValue('name')), 
         field('Country1__c', dataValue('country')), 
-        field('Status__c', 'Future Clinic')
+        //field('Status__c', 'Future Clinic')//
        ))(state);
       }
       else { 
