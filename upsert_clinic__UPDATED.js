@@ -6,18 +6,45 @@
 alterState(state => {
     const { test_clinic } = state.data.metadata;
     const location_type = state.data.location_type_code;
+
+    //Get Partner clinic id from the MiracleFeet Partner field   
+    return execute(
+    query(
+      `SELECT Account.Id FROM Clinic 
+          WHERE Name = '${dataValue('metadata.miraclefeet_partner')(
+            state
+          )}'`
+    ),
+    fn(state => ({
+      ...state,
+      data: {
+        ...state.data,
+        parentClinicId: state.references[0].records[0].Account.Id,
+        //save id of Partner clinic to map later
+      },
+    }))
+    )
+    
+    
     if (test_clinic  === 'Yes') {
       console.log(
-        'This is a CommCare test clinic. Not uploading data to Salesforce.'
+        'This is a CommCare test clinic. Not uploading data to Salesforce.', 
+        'The parent partner ID is:', 
+        parentClinicId
       );
       return state;
     } else {
       if (location_type === 'clinic') {
-        return upsert("Account", "CAST_Location_ID__c", fields(
-        field('CAST_Location_ID__c', dataValue('location_id')),
-        field('Name', dataValue('name')), 
-        field('Country1__c', dataValue('country')), 
-        //field('Status__c', 'Future Clinic')//
+        return upsert("Account", "CAST_Location_ID__c", 
+        fields(
+          relationship(
+          'Account',
+          'Account.ParentId',
+          'parentClinicId'),
+          field('CAST_Location_ID__c', dataValue('location_id')),
+          field('Name', dataValue('name')), 
+          field('Country1__c', dataValue('country')), 
+          //field('Status__c', 'Future Clinic')//
        ))(state);
       }
       else { 
