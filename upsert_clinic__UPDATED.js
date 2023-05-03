@@ -3,6 +3,8 @@
 // Upsert Clinic records in Salesforce when Location "Hospital" records are
 // updated in Commcare.
 // =============================================================================
+
+/*
 fn(state => {
   //Get Partner clinic id from the MiracleFeet Partner field   
     return execute(
@@ -21,29 +23,27 @@ fn(state => {
       },
     }))
     )});
+*/  
   
 alterState(state => {
     const { test_clinic } = state.data.metadata;
     const location_type = state.data.location_type_code;
 
-    
-    
-    
     if (test_clinic  === 'Yes') {
       console.log(
         'This is a CommCare test clinic. Not uploading data to Salesforce.', 
-        'The parent partner ID is:', 
-        parentClinicId
+       /* 'The parent partner ID is:', 
+        parentClinicId*/
       );
       return state;
     } else {
       if (location_type === 'clinic') {
         return upsert("Account", "CAST_Location_ID__c", 
         fields(
-          relationship(
+          /*relationship(
           'Account',
           'Account.ParentId',
-          'parentClinicId'),
+          'parentClinicId'),*/
           field('CAST_Location_ID__c', dataValue('location_id')),
           field('Name', dataValue('name')), 
           field('Country1__c', dataValue('country')), 
