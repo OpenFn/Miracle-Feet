@@ -8,7 +8,7 @@ fn(state => {
     return execute(
     query(
       `SELECT Account.Id FROM Clinic 
-          WHERE Name = '${dataValue('metadata.miraclefeet_partner')(
+          WHERE Name = '${dataValue('state.data.metadata.miraclefeet_partner')(
             state
           )}'`
     ),
