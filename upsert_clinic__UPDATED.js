@@ -3,11 +3,8 @@
 // Upsert Clinic records in Salesforce when Location "Hospital" records are
 // updated in Commcare.
 // =============================================================================
-alterState(state => {
-    const { test_clinic } = state.data.metadata;
-    const location_type = state.data.location_type_code;
-
-    //Get Partner clinic id from the MiracleFeet Partner field   
+fn(state => {
+  //Get Partner clinic id from the MiracleFeet Partner field   
     return execute(
     query(
       `SELECT Account.Id FROM Clinic 
@@ -23,7 +20,13 @@ alterState(state => {
         //save id of Partner clinic to map later
       },
     }))
-    )
+    )});
+  
+alterState(state => {
+    const { test_clinic } = state.data.metadata;
+    const location_type = state.data.location_type_code;
+
+    
     
     
     if (test_clinic  === 'Yes') {
