@@ -4,10 +4,8 @@
 // updated in Commcare.
 // =============================================================================
 
-/*
-fn(state => {
+
   //Get Partner clinic id from the MiracleFeet Partner field   
-    return execute(
     query(
       `SELECT Account.Id FROM Clinic 
           WHERE Name = '${dataValue('metadata.miraclefeet_partner')(
@@ -21,9 +19,8 @@ fn(state => {
         parentClinicId: state.references[0].records[0].Account.Id,
         //save id of Partner clinic to map later
       },
-    }))
-    )});
-*/  
+    }));
+
   
 alterState(state => {
     const { test_clinic } = state.data.metadata;
