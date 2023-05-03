@@ -4,7 +4,7 @@
 // updated in Commcare.
 // =============================================================================
 
-
+/*
   //Get Partner clinic id from the MiracleFeet Partner field   
     query(
       `SELECT Account.Id FROM Clinic 
@@ -20,7 +20,7 @@
         //save id of Partner clinic to map later
       },
     }));
-
+*/
   
 alterState(state => {
     const { test_clinic } = state.data.metadata;
