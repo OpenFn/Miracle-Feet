@@ -30,7 +30,7 @@ alterState(state => {
       console.log(
         'This is a CommCare test clinic. Not uploading data to Salesforce.', 
        'The parent partner ID is:', 
-        parentClinicId
+        date.data.parentClinicId
       );
       return state;
     } else {
