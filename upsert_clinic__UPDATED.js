@@ -39,7 +39,7 @@ alterState(state => {
         fields(
           relationship(
           'Account',
-          'Account.ParentId',
+          'ParentId',
           state.data.parentClinicId),
           field('CAST_Location_ID__c', dataValue('location_id')),
           field('Name', dataValue('name')), 
