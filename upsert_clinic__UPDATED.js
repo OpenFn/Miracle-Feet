@@ -28,8 +28,8 @@ alterState(state => {
 
     if (test_clinic  === 'Yes') {
       console.log(
-        'This is a CommCare test clinic. Not uploading data to Salesforce.', 
-       'The parent partner ID is:', 
+      'This is a CommCare test clinic. Not uploading data to Salesforce.', 
+      'The parent partner ID is:', 
         date.data.parentClinicId
       );
       return state;
@@ -37,10 +37,7 @@ alterState(state => {
       if (location_type === 'clinic') {
         return upsert("Account", "CAST_Location_ID__c", 
         fields(
-          relationship(
-          'Account',
-          'ParentId',
-          state.data.parentClinicId),
+          field('ParentId', state.data.parentClinicId),
           field('CAST_Location_ID__c', dataValue('location_id')),
           field('Name', dataValue('name')), 
           field('Country1__c', dataValue('country')), 
