@@ -4,10 +4,10 @@
 // updated in Commcare.
 // =============================================================================
 
-/*
+
   //Get Partner clinic id from the MiracleFeet Partner field   
     query(
-      `SELECT Account.Id FROM Clinic 
+      `SELECT Account.Id FROM Account 
           WHERE Name = '${dataValue('metadata.miraclefeet_partner')(
             state
           )}'`
@@ -20,7 +20,7 @@
         //save id of Partner clinic to map later
       },
     }));
-*/
+
   
 alterState(state => {
     const { test_clinic } = state.data.metadata;
@@ -29,18 +29,18 @@ alterState(state => {
     if (test_clinic  === 'Yes') {
       console.log(
         'This is a CommCare test clinic. Not uploading data to Salesforce.', 
-       /* 'The parent partner ID is:', 
-        parentClinicId*/
+       'The parent partner ID is:', 
+        parentClinicId
       );
       return state;
     } else {
       if (location_type === 'clinic') {
         return upsert("Account", "CAST_Location_ID__c", 
         fields(
-          /*relationship(
+          relationship(
           'Account',
           'Account.ParentId',
-          'parentClinicId'),*/
+          'parentClinicId'),
           field('CAST_Location_ID__c', dataValue('location_id')),
           field('Name', dataValue('name')), 
           field('Country1__c', dataValue('country')), 
