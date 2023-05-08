@@ -12,6 +12,8 @@
             state
           )}'`
     ),
+    console.log('Reference array:', 
+    state.references[0].records[0]),
     fn(state => ({
       ...state,
       data: {
