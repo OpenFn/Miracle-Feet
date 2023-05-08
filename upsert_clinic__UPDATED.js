@@ -16,7 +16,7 @@
       ...state,
       data: {
         ...state.data,
-        parentClinicId: state.references[0].records[0].Account,
+        parentClinicId: state.references[0].records[0].Id,
         //save id of Partner clinic to map later
       },
     }));
