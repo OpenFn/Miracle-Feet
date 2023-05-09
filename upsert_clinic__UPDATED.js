@@ -7,7 +7,7 @@
 
   //Get Partner clinic id from the MiracleFeet Partner field   
     query(
-      `SELECT Account.Id FROM Account 
+      `SELECT Id FROM Account 
           WHERE Name = '${dataValue('metadata.miraclefeet_partner')(
             state
           )}'`
