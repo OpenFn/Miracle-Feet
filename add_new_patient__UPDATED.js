@@ -192,6 +192,12 @@ alterState(state => {
         field('SMS_Language__c', dataValue('form.calcs.sms.sms_language')),
         field('SMS_Treatment__c',dataValue('properties.treatment')),//added by Beth
 
+//New clinic fields
+        field('child_received_treatment_before__c', dataValue('form.case.update.child_received_treatment_before')),
+        field('previews_treatment_ponseti__c', dataValue('form.case.update.previews_treatment_ponseti')),
+        field('previews_treatment_clinic__c', dataValue('form.case.update.previews_treatment_clinic')),
+        
+        
         field(
           'Age_Months_First_Brace__c',
            state => {
