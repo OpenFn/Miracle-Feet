@@ -549,7 +549,13 @@ fn(state => {
       field('CommCare_Version__c', dataValue('metadata.commcare_version')),
       field('CAST_Version__c', dataValue('metadata.app_build_version')),
       field('CommCare_Username__c', dataValue('metadata.username')),
-      field('CommCare_User_ID__c', dataValue('user_id'))
+      field('CommCare_User_ID__c', dataValue('user_id')),
+
+//New clinic fields
+        field('child_received_treatment_before__c', dataValue('form.case.update.child_received_treatment_before')),
+        field('previews_treatment_ponseti__c', dataValue('form.case.update.previews_treatment_ponseti')),
+        field('previews_treatment_clinic__c', dataValue('form.case.update.previews_treatment_clinic'))
+        
     );
 
     return upsertIf(
