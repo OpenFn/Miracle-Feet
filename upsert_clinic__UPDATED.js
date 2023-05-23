@@ -6,7 +6,7 @@
 
 
   //Get Partner clinic id from the MiracleFeet Partner field   
-  if (dataValue(metadata.miraclefeet_partner)) {
+  if (metadata.miraclefeet_partner) {
     query(
       `SELECT Account.Id FROM Account 
           WHERE Name = '${dataValue('metadata.miraclefeet_partner')(
