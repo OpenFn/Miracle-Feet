@@ -6,7 +6,7 @@
 
 
   //Get Partner clinic id from the MiracleFeet Partner field   
-  if (metadata.miraclefeet_partner) {
+ // if (metadata.miraclefeet_partner) {
     query(
       `SELECT Account.Id FROM Account 
           WHERE Name = '${dataValue('metadata.miraclefeet_partner')(
@@ -21,7 +21,7 @@
         //save id of Partner clinic to map later
       },
     }));
-  } else {
+ /* } else {
     fn({
       ...state,
       data: {
@@ -29,7 +29,7 @@
         parentClinicId: null,
         },
       })
-  }
+  }*/
   
 alterState(state => {
     const { test_clinic } = state.data.metadata;
