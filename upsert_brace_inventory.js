@@ -140,7 +140,10 @@ fn(state => {
       ...state,
       data: {
         ...state.data,
-        inventoryId: state.references[0].records[0].Id,
+        // inventoryId: state.references[0].records[0].Id,
+        inventoryId: state.references[0].records && state.references[0].records.length !== 0
+        ? state.references[0].records[0].Id
+        : undefined,
         //save id of Partner_Brace_Inventory__c to map later
       },
     })),
