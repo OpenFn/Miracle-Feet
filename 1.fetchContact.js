@@ -73,6 +73,8 @@ fn(async state => {
       data: data,
       maxContentLength: Infinity,
       maxBodyLength: Infinity,
+      auth: {username: configuration.openfnUsername, password: configuration.openfnPassword}
+
     })(state);
   };
 
