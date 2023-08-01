@@ -76,7 +76,7 @@ alterState(state => {
         alterState(state => {
           return post(
             `${openfnInboxUrl}`,
-            { body: state => state.data },
+            { body: state => state.data, authentication: {username: state.configuration.openfnUsername, password: state.configuration.openfnPassword} },
             state => ({ ...state, data: {}, references: [] })
           )(state);
         })
@@ -136,7 +136,7 @@ alterState(state => {
         alterState(state => {
           return post(
             `${openfnInboxUrl}`,
-            { body: state => state.data },
+            { body: state => state.data, authentication: {username: state.configuration.openfnUsername, password: state.configuration.openfnPassword} },
             state => ({ ...state, data: {}, references: [] })
           )(state);
         })
