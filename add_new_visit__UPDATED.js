@@ -278,7 +278,8 @@ fn(state => {
             return state.RTmap[treatment] || '0123l000001g0XyAAI'; //Return 'Other' if not in RTmap
           }),*/
         field('RecordTypeId', state => {
-          var treatment = state.data.form.calcs.save.l_treatment || state.data.form.calcs.save.r_treatment;
+          // var treatment = state.data.form.calcs.save.l_treatment || state.data.form.calcs.save.r_treatment;
+             var treatment = state.data.form.case.update.l_treatment || state.data.form.case.update.r_treatment;
 		      // var l_treatment = state.RTmap[state.data.form.calcs.save.l_treatment];
 		      var l_treatment = state.RTmap[state.data.form.case.update.l_treatment];
           // var r_treatment = state.RTmap[state.data.form.calcs.save.r_treatment];
