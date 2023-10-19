@@ -279,8 +279,10 @@ fn(state => {
           }),*/
         field('RecordTypeId', state => {
           var treatment = state.data.form.calcs.save.l_treatment || state.data.form.calcs.save.r_treatment;
-		      var l_treatment = state.RTmap[state.data.form.calcs.save.l_treatment];
-          var r_treatment = state.RTmap[state.data.form.calcs.save.r_treatment];
+		      // var l_treatment = state.RTmap[state.data.form.calcs.save.l_treatment];
+		      var l_treatment = state.RTmap[state.data.form.case.update.l_treatment];
+          // var r_treatment = state.RTmap[state.data.form.calcs.save.r_treatment];
+           var r_treatment = state.RTmap[state.data.form.case.update.r_treatment];
           if (l_treatment == '0123l000001g0XtAAI' || r_treatment == '0123l000001g0XtAAI') 
             { 
               return '0123l000001g0XtAAI'; //If either left or right foot is Bracing, then returns Casting
