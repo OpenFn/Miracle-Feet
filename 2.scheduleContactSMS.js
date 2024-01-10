@@ -207,6 +207,7 @@ const mapping={"undefined":[{"2":3,"7":14,"9":9,"09A - Bracing Night Campaign Y1
 
     if (treatment) {
       const { key, bulkPrefix } = treatment;
+      console.log("key: ", key)
       for (let rule of mapping[key]) {
         console.log('=======================================');
         console.log(`rule ${key} 'Schedule Start Date (SSD):`, startDate);
