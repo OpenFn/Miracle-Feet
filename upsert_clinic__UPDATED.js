@@ -47,7 +47,9 @@ alterState(state => {
       );
       return state;
     } else {
-      if (location_type.toLowerCase() === 'clinic') {
+      // if (location_type.toLowerCase() === 'clinic') {
+      if (location_type === 'clinic') {
+
         return upsert("Account", "CAST_Location_ID__c", 
         fields(
           field('ParentId', state.data.parentClinicId),
