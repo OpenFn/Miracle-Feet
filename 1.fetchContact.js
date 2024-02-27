@@ -51,8 +51,8 @@ fn(state => {
         pronoun_his_her: record.Pronoun_his_her__c,
         pronoun_he_she: record.Pronoun_he_she__c,
         pronoun_him_her: record.Pronoun_him_her__c,
-        guardian1_first_name: record.Guardian_1_First_Name__c
-        // treatment: record.SMS_Treatment__c,
+        guardian1_first_name: record.Guardian_1_First_Name__c,
+        treatment: "undefined",
       };
     });
     return { ...state, contacts };
