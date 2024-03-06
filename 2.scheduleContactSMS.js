@@ -204,7 +204,8 @@ const mapping={"undefined":[{"2":3,"7":14,"9":9,"09A - Bracing Night Campaign Y1
     let treatment = Object.values(treatmentMap).find(
       obj => obj.scheduleDate === startDate
     );
-
+    
+    console.log(treatment)
     if (treatment) {
       const { key, bulkPrefix } = treatment;
       console.log("Key: ", key)
