@@ -205,7 +205,7 @@ const mapping={"undefined":[{"2":3,"7":14,"9":9,"09A - Bracing Night Campaign Y1
       obj => obj.scheduleDate === startDate
     );
     
-    console.log(treatment)
+    console.log("treatment: ", treatment)
     if (treatment) {
       const { key, bulkPrefix } = treatment;
       console.log("Key: ", key)
