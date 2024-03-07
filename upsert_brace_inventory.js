@@ -127,7 +127,7 @@ fn(state => {
         parentClinicId: state.references[0].records[0].Account.ParentId,
       },
     })),
-    console.log("parentClinicId: ", state.data.parentClinicId),
+    console.log("parentClinicId: ", state.references[0].records[0]),
     //Then get related Partner Brace Inventory
     query(
       state => `SELECT Id FROM Partner_Brace_Inventory__c 
