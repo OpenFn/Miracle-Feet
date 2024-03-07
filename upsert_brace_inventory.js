@@ -127,7 +127,7 @@ fn(state => {
         parentClinicId: state.references[0].records[0].Account.ParentId,
       },
     })),
-    console.log(parentClinicId);
+    console.log(state.parentClinicId),
     //Then get related Partner Brace Inventory
     query(
       state => `SELECT Id FROM Partner_Brace_Inventory__c 
@@ -147,6 +147,7 @@ fn(state => {
         //save id of Partner_Brace_Inventory__c to map later
       },
     })),
+    
 
     //NOTE: Here we upsert our target object in Salesforce & define mappings
     upsertIf(
