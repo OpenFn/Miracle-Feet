@@ -198,14 +198,12 @@ fn(state => {
   };
 
   for (contact of contacts) {
-    console.log('contact', contact);
     const { startDate, caseId, Name, Country, Phone } = contact;
 
     let treatment = Object.values(treatmentMap).find(
       obj => obj.scheduleDate === startDate
     );
     
-    console.log("treatment: ", treatment)
     if (treatment) {
       const { key, bulkPrefix } = treatment;
       console.log("Key: ", key)
