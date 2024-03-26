@@ -149,6 +149,10 @@ If clinic Status changed back to actively supported, the admin will need to re-e
 2. Make your edits in the new sheet (see an example [here](https://docs.google.com/spreadsheets/d/1quhQJgQkVRC8oObDzkwgnnm-Rov5BGOW85I4YqcNV0I/edit?ts=606433e3#gid=179313688)).
 3. Notify OpenFn support at support@openfn.org to implement the changes.
 
+**Migration Checklist**
+
+Access [here](https://docs.google.com/spreadsheets/d/13piqZCaCXUbQxyMthQnaQwfxAZhQZOKOs_79rolzu2s/edit?usp=sharing).
+
 #### OpenFn Process for converting Mapping sheet to JSON object
 1. Copy the whole content of the mapping table
 2. Paste on this converter at the left pane https://csvjson.com/csv2json
@@ -184,3 +188,6 @@ and the [updated test suite](https://docs.google.com/spreadsheets/d/1iWV06FjPrc2
 - [x] Confirm all Infobip sender IDs are correct
 - [x] System admin training on solution management 
 - [ ] ...
+- [ ] 
+
+
