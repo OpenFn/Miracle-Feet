@@ -18,9 +18,8 @@ fn(state => {
     SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c, Date_of_SMS_Registration__c, Date_Completed_Treatment__c
       FROM Contact
        WHERE Last_Modified_Date_CommCare__c = 
-      ${setDays(new Date(), -1)}  AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
-      
-      // AND Account.Country__c in ('Nigeria', 'Uganda') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
+      ${setDays(new Date(), -1)}  
+      AND Account.Country__c in ('Nigeria', 'Uganda') AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`
       
      
     // WHERE LastModifiedDate > ${new Date(
