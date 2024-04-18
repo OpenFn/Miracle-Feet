@@ -13,10 +13,10 @@ alterState(state => {
   const received_on_end = '2021-01-31'; // start date
   // ================================================================
 
-  // const cursorStart = month_prior_start || received_on_start; // Remove 'month_prior_start ||' to use manualCursor
-  const cursorStart = received_on_start;
-  // const cursorEnd = month_prior_end || received_on_end; // Remove 'month_prior_end ||' to use manualCursor
-  const cursorEnd = received_on_end;
+  const cursorStart = month_prior_start || received_on_start; // Remove 'month_prior_start ||' to use manualCursor
+  // const cursorStart = received_on_start;
+  const cursorEnd = month_prior_end || received_on_end; // Remove 'month_prior_end ||' to use manualCursor
+  // const cursorEnd = received_on_end;
 
   return {
     ...state,
