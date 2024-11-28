@@ -244,7 +244,7 @@ fn(state => {
         console.log('contact', contact);
 
         // We organize destructuring by concern.
-        const { smsOptInII, smsOptIn } = contact; // destructuring sms options
+        const { smsOptInII, smsOptIn, cancel_sms } = contact; // destructuring sms options
         const {
           status,
           caseId,
@@ -385,7 +385,8 @@ fn(state => {
             // treatment === 'Complete' || ignore deletion for when treatment (SMS_treatment__c) equals 'Complete'
             treatment === 'Suspended' ||
             reasonStoppedTreatment !== null ||
-            smsOptIn === false // Opt-out
+            smsOptIn === false || // Opt-out
+            cancel_sms === true
           ) {
             alertsToDisable.push(treatmentMapSchedule['reminder_before']);
             alertsToDisable.push(treatmentMapSchedule['reminder_after']);
