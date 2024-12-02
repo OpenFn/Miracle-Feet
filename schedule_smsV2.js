@@ -283,7 +283,8 @@ fn(state => {
         if (
           status === 'Actively Supported' &&
           smsOptIn && //opt-in for reminder messages
-          Next_Visit_Date_New__c !== null
+          Next_Visit_Date_New__c !== null &&
+          cancel_sms !== true
         ) {
           alertsToSend.push(treatmentMapSchedule['reminder_before']);
           if (lastVisitDate || originalNextVisitDate) {
@@ -294,7 +295,8 @@ fn(state => {
         if (
           (status === 'Actively Supported' ||
             status === 'Temporarily Suspended') &&
-          smsOptInII //opt-in for educational messages
+          smsOptInII &&  //opt-in for educational messages
+          cancel_sms !== true
         ) {
           // Schedule blue conditions - alert 1, 2
           // only want to send these "register" SMSs 1x for new registrants
