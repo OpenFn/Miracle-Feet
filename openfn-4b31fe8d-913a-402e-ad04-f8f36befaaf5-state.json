@@ -3,7 +3,11 @@
   "name": "miraclefeet",
   "description": null,
   "inserted_at": "2023-12-21T15:28:53Z",
-  "updated_at": "2024-12-02T13:02:58Z",
+  "updated_at": "2025-01-22T09:09:06Z",
+  "scheduled_deletion": null,
+  "history_retention_period": 365,
+  "dataclip_retention_period": 365,
+  "retention_policy": "retain_all",
   "project_credentials": {
     "rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox": {
       "id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f",
@@ -51,10 +55,6 @@
       "owner": "rita@openfn.org"
     }
   },
-  "scheduled_deletion": null,
-  "history_retention_period": 365,
-  "dataclip_retention_period": 365,
-  "retention_policy": "retain_all",
   "workflows": {
     "Update-Patient-WF": {
       "id": "cffc288f-310c-4808-a455-830a67f7a75e",
@@ -299,7 +299,7 @@
       },
       "concurrency": null,
       "inserted_at": "2024-01-26T10:06:46Z",
-      "updated_at": "2024-11-28T14:20:42Z",
+      "updated_at": "2025-01-22T09:09:06Z",
       "jobs": {
         "Upsert-Clinic": {
           "id": "f8fbf694-af67-4cf8-90a7-107bb7b69845",
@@ -310,7 +310,7 @@
         }
       },
       "deleted_at": null,
-      "lock_version": 3,
+      "lock_version": 6,
       "triggers": {
         "webhook": {
           "enabled": true,
@@ -420,7 +420,7 @@
       },
       "concurrency": null,
       "inserted_at": "2024-01-26T13:23:18Z",
-      "updated_at": "2024-11-28T14:20:42Z",
+      "updated_at": "2025-01-22T09:09:06Z",
       "jobs": {
         "Upsert-Treatment-Providers": {
           "id": "1235f912-8b03-430f-8a3c-f753bfe45721",
@@ -431,7 +431,7 @@
         }
       },
       "deleted_at": null,
-      "lock_version": 8,
+      "lock_version": 11,
       "triggers": {
         "webhook": {
           "enabled": true,
