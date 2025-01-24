@@ -3,7 +3,7 @@
   "name": "miraclefeet",
   "description": null,
   "inserted_at": "2023-12-21T15:28:53Z",
-  "updated_at": "2025-01-22T09:09:06Z",
+  "updated_at": "2025-01-24T12:17:07Z",
   "scheduled_deletion": null,
   "history_retention_period": 365,
   "dataclip_retention_period": 365,
@@ -63,16 +63,16 @@
         "webhook->Update-Patient": {
           "enabled": true,
           "id": "e87992de-868e-4c1a-8624-d9c2b624a74f",
+          "target_job_id": "f54ce700-070f-49e9-9ad4-deafe0dec546",
           "source_trigger_id": "d9b1e9f4-6c96-4824-ac74-69f499b751a6",
-          "condition_expression": "state.data.form.calcs.case_properties.test_user === \"No\"\n",
           "condition_type": "js_expression",
           "condition_label": "Not a test user (Update Patient)",
-          "target_job_id": "f54ce700-070f-49e9-9ad4-deafe0dec546"
+          "condition_expression": "state.data.form.calcs.case_properties.test_user === \"No\"\n"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-01-26T09:31:41Z",
-      "updated_at": "2024-11-28T14:20:42Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Update-Patient": {
           "id": "f54ce700-070f-49e9-9ad4-deafe0dec546",
@@ -82,15 +82,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 6,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "d9b1e9f4-6c96-4824-ac74-69f499b751a6",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 9
     },
     "x-[archive]-Add-New-Patient": {
       "id": "1ddc9920-b164-49ce-8437-add7b787a165",
@@ -99,11 +99,11 @@
         "webhook->x-Add-New-Patient": {
           "enabled": true,
           "id": "395b3a39-2ae1-467b-8b2e-fbc713b294a9",
+          "target_job_id": "a220c48c-107a-447e-b7c5-a0f61893474c",
           "source_trigger_id": "9f458e75-d12f-4796-9825-d1c787e79845",
-          "condition_expression": "state.data.form.summary.summary.registration_info_label === \"OK\" && state.data.form.calcs.general.test_user=== \"No\"\n",
           "condition_type": "js_expression",
           "condition_label": "Patient Registration Form",
-          "target_job_id": "a220c48c-107a-447e-b7c5-a0f61893474c"
+          "condition_expression": "state.data.form.summary.summary.registration_info_label === \"OK\" && state.data.form.calcs.general.test_user=== \"No\"\n"
         }
       },
       "concurrency": null,
@@ -118,15 +118,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 5,
       "triggers": {
         "webhook": {
           "enabled": false,
           "id": "9f458e75-d12f-4796-9825-d1c787e79845",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 5
     },
     "x-[archive]-Add-New-Visit": {
       "id": "a2ad77ae-2d03-4c3b-886d-8732e19aa9a8",
@@ -135,11 +135,11 @@
         "webhook->x-Add-New-Visit": {
           "enabled": true,
           "id": "cdc19a59-c1e6-4b79-affd-9fc4dfe1c80d",
+          "target_job_id": "ce78e5b7-dbc5-41f2-af57-b00537c467ed",
           "source_trigger_id": "f1217da3-a6b2-4a5a-9158-1e29cc590296",
-          "condition_expression": "state.data.form['@name'] === \"Log Visit Details\"  && state.data.form.calcs.case_properties.test_user === \"Yes\"\n",
           "condition_type": "js_expression",
           "condition_label": "Visit Form",
-          "target_job_id": "ce78e5b7-dbc5-41f2-af57-b00537c467ed"
+          "condition_expression": "state.data.form['@name'] === \"Log Visit Details\"  && state.data.form.calcs.case_properties.test_user === \"Yes\"\n"
         }
       },
       "concurrency": null,
@@ -154,15 +154,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 5,
       "triggers": {
         "webhook": {
           "enabled": false,
           "id": "f1217da3-a6b2-4a5a-9158-1e29cc590296",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 5
     },
     "Update-Visit-WF": {
       "id": "a3293587-4b83-4c0e-9818-219d519272fa",
@@ -171,16 +171,16 @@
         "webhook->Update-Visit": {
           "enabled": true,
           "id": "2eac0229-2e36-4e55-a8ba-862ae71d1a0d",
+          "target_job_id": "80ef2eab-5dba-441a-bb38-d2cc01eaee5a",
           "source_trigger_id": "5db16fbf-9386-4999-a41c-b1ed919a080c",
-          "condition_expression": "state.data.properties.visit_from_duplicate_patient !== \"1\" && state.data.properties.test_user !== \"Yes\"\n",
           "condition_type": "js_expression",
           "condition_label": "Appointment case update",
-          "target_job_id": "80ef2eab-5dba-441a-bb38-d2cc01eaee5a"
+          "condition_expression": "state.data.properties.visit_from_duplicate_patient !== \"1\" && state.data.properties.test_user !== \"Yes\"\n"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-01-26T09:54:25Z",
-      "updated_at": "2024-11-28T14:20:42Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Update-Visit": {
           "id": "80ef2eab-5dba-441a-bb38-d2cc01eaee5a",
@@ -190,15 +190,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 11,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "5db16fbf-9386-4999-a41c-b1ed919a080c",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 13
     },
     "[SMS]-Bracing-Night-1-Bracing-Night-Fetch": {
       "id": "450243b0-3fc1-4940-a59c-6ae2a5ab73b8",
@@ -207,16 +207,16 @@
         "cron->Fetch-bracing-night-contacts-from-SF": {
           "enabled": true,
           "id": "29e38d80-b82b-4a05-9a90-c52d22a7f2c8",
+          "target_job_id": "5f7db997-8eba-4c23-9235-dccdcda92f86",
           "source_trigger_id": "89e5dd71-dfbe-4ca4-b59c-8bd2972d1fce",
-          "condition_type": "always",
-          "target_job_id": "5f7db997-8eba-4c23-9235-dccdcda92f86"
+          "condition_type": "always"
         },
         "Fetch-bracing-night-contacts-from-SF->Batch-and-Post-to-Scheduling-WF-2": {
           "enabled": true,
           "id": "20dfc7a7-4372-42fa-a2fc-3c8276ba8af6",
+          "target_job_id": "45b20355-d487-4e4c-8c59-d500d324d947",
           "source_job_id": "5f7db997-8eba-4c23-9235-dccdcda92f86",
-          "condition_type": "on_job_success",
-          "target_job_id": "45b20355-d487-4e4c-8c59-d500d324d947"
+          "condition_type": "on_job_success"
         }
       },
       "concurrency": null,
@@ -238,8 +238,6 @@
           "project_credential_id": "086e922e-892e-4caa-8fe0-4845c70b6d80"
         }
       },
-      "deleted_at": null,
-      "lock_version": 10,
       "triggers": {
         "cron": {
           "enabled": false,
@@ -247,7 +245,9 @@
           "type": "cron",
           "cron_expression": "05 00 * * *"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 10
     },
     "[SMS]-Bracing-Night-2-Bracing-night-schedule": {
       "id": "53d8eddc-cfa5-416f-9d5b-40e50a32ad26",
@@ -256,9 +256,9 @@
         "webhook->Schedule-bracing-night-SMSs": {
           "enabled": true,
           "id": "c8f79581-dac6-41d8-92a7-ae47198fa5dd",
+          "target_job_id": "83f09d38-6d76-4868-922d-a513d90743df",
           "source_trigger_id": "68063602-0216-4e25-9537-f99e2668bcb9",
-          "condition_type": "always",
-          "target_job_id": "83f09d38-6d76-4868-922d-a513d90743df"
+          "condition_type": "always"
         }
       },
       "concurrency": null,
@@ -273,15 +273,15 @@
           "project_credential_id": null
         }
       },
-      "deleted_at": null,
-      "lock_version": 3,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "68063602-0216-4e25-9537-f99e2668bcb9",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 3
     },
     "Upsert-Clinic-WF": {
       "id": "43423d7e-3fbf-4490-890e-1f6653a52c7a",
@@ -290,16 +290,16 @@
         "webhook->Upsert-Clinic": {
           "enabled": true,
           "id": "d9a7ba69-9192-41ac-994e-3ddccd19b0e1",
+          "target_job_id": "f8fbf694-af67-4cf8-90a7-107bb7b69845",
           "source_trigger_id": "bc5419f8-932e-42b0-9322-6c15ccc89345",
-          "condition_expression": "state.data.metadata.test_clinic !== \"Yes\"\n",
           "condition_type": "js_expression",
           "condition_label": "Location Updated",
-          "target_job_id": "f8fbf694-af67-4cf8-90a7-107bb7b69845"
+          "condition_expression": "state.data.metadata.test_clinic !== \"Yes\"\n"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-01-26T10:06:46Z",
-      "updated_at": "2025-01-22T09:09:06Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Upsert-Clinic": {
           "id": "f8fbf694-af67-4cf8-90a7-107bb7b69845",
@@ -309,15 +309,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 6,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "bc5419f8-932e-42b0-9322-6c15ccc89345",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 8
     },
     "[SMS]-Clinic-Deactivation": {
       "id": "580f7362-1e4a-4a58-bfe2-3f04ff43cd67",
@@ -326,16 +326,16 @@
         "cron->Fetch-Inactive-Clinics-from-SF": {
           "enabled": true,
           "id": "1178b5db-3699-40dd-a4c9-5253a1f5ec64",
+          "target_job_id": "34a25895-6742-40fc-8b7a-ba0c1eea6120",
           "source_trigger_id": "d86374e3-5ec5-40ef-ba1a-d690fda4e8c2",
-          "condition_type": "always",
-          "target_job_id": "34a25895-6742-40fc-8b7a-ba0c1eea6120"
+          "condition_type": "always"
         },
         "Fetch-Inactive-Clinics-from-SF->Disable-SMS": {
           "enabled": true,
           "id": "93944c75-de6c-4aa8-afa5-0785d1252f03",
+          "target_job_id": "cbe64a0e-f647-474e-b8da-40e75966ef0b",
           "source_job_id": "34a25895-6742-40fc-8b7a-ba0c1eea6120",
-          "condition_type": "on_job_success",
-          "target_job_id": "cbe64a0e-f647-474e-b8da-40e75966ef0b"
+          "condition_type": "on_job_success"
         }
       },
       "concurrency": null,
@@ -357,8 +357,6 @@
           "project_credential_id": null
         }
       },
-      "deleted_at": null,
-      "lock_version": 8,
       "triggers": {
         "cron": {
           "enabled": false,
@@ -366,7 +364,9 @@
           "type": "cron",
           "cron_expression": "10 00 * * *"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 8
     },
     "x-[archive]-Register-New-Patient-to-Device": {
       "id": "bb2be93a-bb2f-4bf8-b982-c4052d21ab85",
@@ -375,11 +375,11 @@
         "webhook->x-Register-New-Patient-to-Device": {
           "enabled": true,
           "id": "4b3e5fd2-ed02-4b91-8c90-7be9756ef0bd",
+          "target_job_id": "60832bda-924d-4e12-9c6f-c7e0ced0a7f9",
           "source_trigger_id": "7384c05d-4f8c-4b1b-9003-77264cbeeadc",
-          "condition_expression": "state.data.form.summary.summary.registration_info_label === \"OK\" && !state.data.form.calcs.general.test_user === \"Yes\"\n",
           "condition_type": "js_expression",
           "condition_label": "Patient Registration Form",
-          "target_job_id": "60832bda-924d-4e12-9c6f-c7e0ced0a7f9"
+          "condition_expression": "state.data.form.summary.summary.registration_info_label === \"OK\" && !state.data.form.calcs.general.test_user === \"Yes\"\n"
         }
       },
       "concurrency": null,
@@ -394,15 +394,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 5,
       "triggers": {
         "webhook": {
           "enabled": false,
           "id": "7384c05d-4f8c-4b1b-9003-77264cbeeadc",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 5
     },
     "Treatment-Providers": {
       "id": "23abea6d-61fe-472c-8034-b692bfe8e640",
@@ -411,16 +411,16 @@
         "webhook->Upsert-Treatment-Providers": {
           "enabled": true,
           "id": "313ed8c0-4075-4ead-8a36-8a6209dbc8d4",
+          "target_job_id": "1235f912-8b03-430f-8a3c-f753bfe45721",
           "source_trigger_id": "a910e6e3-2321-464e-aa68-1cf08c34a5d7",
-          "condition_expression": "state.data.properties.test_user !== \"Yes\"\n",
           "condition_type": "js_expression",
           "condition_label": "Not a test user",
-          "target_job_id": "1235f912-8b03-430f-8a3c-f753bfe45721"
+          "condition_expression": "state.data.properties.test_user !== \"Yes\"\n"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-01-26T13:23:18Z",
-      "updated_at": "2025-01-22T09:09:06Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Upsert-Treatment-Providers": {
           "id": "1235f912-8b03-430f-8a3c-f753bfe45721",
@@ -430,15 +430,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 11,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "a910e6e3-2321-464e-aa68-1cf08c34a5d7",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 13
     },
     "[SMS]-SMS-2-Schedule-SMSs": {
       "id": "f3bcdf7c-a461-496e-b7ef-1018ec766424",
@@ -447,14 +447,14 @@
         "webhook->Schedule-SMSs": {
           "enabled": true,
           "id": "08a239cd-e940-42b3-85cf-172be27cb700",
+          "target_job_id": "e692ec91-1394-4c37-8add-eb8ab32b895c",
           "source_trigger_id": "3599ef0c-6f02-4df6-9091-185f99ad4fb1",
-          "condition_type": "always",
-          "target_job_id": "e692ec91-1394-4c37-8add-eb8ab32b895c"
+          "condition_type": "always"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-01-26T13:30:12Z",
-      "updated_at": "2024-12-02T13:02:58Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Schedule-SMSs": {
           "id": "e692ec91-1394-4c37-8add-eb8ab32b895c",
@@ -464,15 +464,15 @@
           "project_credential_id": null
         }
       },
-      "deleted_at": null,
-      "lock_version": 6,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "3599ef0c-6f02-4df6-9091-185f99ad4fb1",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 8
     },
     "Fetch-cleaned-forms---Patient-and-Visit": {
       "id": "f5b36860-50ab-49f3-a20f-44573de6a3f0",
@@ -481,9 +481,9 @@
         "cron->Fetch-Patient-and-Visit-Forms-and-Post-to-Workflows": {
           "enabled": true,
           "id": "b986f09f-8646-4f74-88c1-3b7c5eae15c2",
+          "target_job_id": "ec7021a6-7eb4-4be6-bf51-316991fc1ea5",
           "source_trigger_id": "c45e3411-22c9-40c0-ab92-c123e2901c7c",
-          "condition_type": "always",
-          "target_job_id": "ec7021a6-7eb4-4be6-bf51-316991fc1ea5"
+          "condition_type": "always"
         }
       },
       "concurrency": null,
@@ -498,8 +498,6 @@
           "project_credential_id": "2ea9f2e9-1379-48a2-8453-efb3954f6cba"
         }
       },
-      "deleted_at": null,
-      "lock_version": 35,
       "triggers": {
         "cron": {
           "enabled": true,
@@ -507,7 +505,9 @@
           "type": "cron",
           "cron_expression": "00 00 01 * *"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 35
     },
     "Visit-Forms": {
       "id": "83a2998c-fab8-4218-82d3-7550b530abbd",
@@ -516,30 +516,30 @@
         "webhook->Forwarding-job-Visit-Forms": {
           "enabled": true,
           "id": "cdcc7955-8bed-40c7-9963-12aa87b43199",
+          "target_job_id": "177c6150-05be-4303-a035-21c2ecaf76c6",
           "source_trigger_id": "f507a179-790a-4005-a824-c9297496e767",
-          "condition_expression": "state.data.form.calcs.case_properties.test_user !== \"Yes\"\n",
           "condition_type": "js_expression",
           "condition_label": "Not a test user (VF)",
-          "target_job_id": "177c6150-05be-4303-a035-21c2ecaf76c6"
+          "condition_expression": "state.data.form.calcs.case_properties.test_user !== \"Yes\"\n"
         },
         "Forwarding-job-Visit-Forms->Add-New-Visit": {
           "enabled": true,
           "id": "6563c348-69cc-401b-a1bb-f87549126a0e",
+          "target_job_id": "74eff837-b73a-4f09-bfcf-e72249c03582",
           "source_job_id": "177c6150-05be-4303-a035-21c2ecaf76c6",
-          "condition_type": "on_job_success",
-          "target_job_id": "74eff837-b73a-4f09-bfcf-e72249c03582"
+          "condition_type": "on_job_success"
         },
         "Forwarding-job-Visit-Forms->New-Partner-Brace-Distribution": {
           "enabled": true,
           "id": "c0f3e619-003b-4234-9f3a-fb2b2a94aac2",
+          "target_job_id": "c3374aa2-b5f8-4681-8f98-43fa2e10326e",
           "source_job_id": "177c6150-05be-4303-a035-21c2ecaf76c6",
-          "condition_type": "on_job_success",
-          "target_job_id": "c3374aa2-b5f8-4681-8f98-43fa2e10326e"
+          "condition_type": "on_job_success"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-03-06T10:41:56Z",
-      "updated_at": "2024-11-28T14:20:42Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Forwarding-job-Visit-Forms": {
           "id": "177c6150-05be-4303-a035-21c2ecaf76c6",
@@ -563,15 +563,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 8,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "f507a179-790a-4005-a824-c9297496e767",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 10
     },
     "Patient-Registration-Forms": {
       "id": "616e71f0-9704-442b-bc1d-728666323959",
@@ -580,30 +580,30 @@
         "webhook->Forwarding-job-Patient-Registration-Forms": {
           "enabled": true,
           "id": "3a40b908-cea2-44fc-a95c-aab7512110b9",
+          "target_job_id": "b06e678d-7179-47a0-b0b8-dcc39debd056",
           "source_trigger_id": "5baa0eca-aa15-4442-8eff-399d7180c286",
-          "condition_expression": "state.data.form.calcs.general.test_user !== \"Yes\"\n",
           "condition_type": "js_expression",
           "condition_label": "Not a test user (PR)",
-          "target_job_id": "b06e678d-7179-47a0-b0b8-dcc39debd056"
+          "condition_expression": "state.data.form.calcs.general.test_user !== \"Yes\"\n"
         },
         "Forwarding-job-Patient-Registration-Forms->Add-New-Patient": {
           "enabled": true,
           "id": "a81518da-1299-4a40-8fd4-29af0dfcacaa",
+          "target_job_id": "d19af0a0-e6a8-4f57-bafa-f868bdeedb7a",
           "source_job_id": "b06e678d-7179-47a0-b0b8-dcc39debd056",
-          "condition_type": "on_job_success",
-          "target_job_id": "d19af0a0-e6a8-4f57-bafa-f868bdeedb7a"
+          "condition_type": "on_job_success"
         },
         "Forwarding-job-Patient-Registration-Forms->Register-New-Patient-to-Device": {
           "enabled": true,
           "id": "4aa86caf-7b9f-44b4-a60d-0923434e3928",
+          "target_job_id": "7f6ce788-b1f3-426c-adfc-e7d0fa4ab9fc",
           "source_job_id": "b06e678d-7179-47a0-b0b8-dcc39debd056",
-          "condition_type": "on_job_success",
-          "target_job_id": "7f6ce788-b1f3-426c-adfc-e7d0fa4ab9fc"
+          "condition_type": "on_job_success"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-03-06T10:50:00Z",
-      "updated_at": "2024-11-28T14:20:42Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Forwarding-job-Patient-Registration-Forms": {
           "id": "b06e678d-7179-47a0-b0b8-dcc39debd056",
@@ -627,15 +627,15 @@
           "project_credential_id": "c03ec72f-a7c1-4a18-89d5-addbdde5527f"
         }
       },
-      "deleted_at": null,
-      "lock_version": 14,
       "triggers": {
         "webhook": {
           "enabled": true,
           "id": "5baa0eca-aa15-4442-8eff-399d7180c286",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 16
     },
     "[SMS]-SMS-1-Fetch-Contacts-from-SF": {
       "id": "395f9dc5-f990-4594-b909-b8e5e4444e74",
@@ -644,21 +644,21 @@
         "cron->Fetch-Contacts-from-SF": {
           "enabled": true,
           "id": "ad54f15f-2f21-4ad4-a87f-1ba896349cae",
+          "target_job_id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
           "source_trigger_id": "355d7d11-a55d-4e27-88d4-49c9b31021b0",
-          "condition_type": "always",
-          "target_job_id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5"
+          "condition_type": "always"
         },
         "Fetch-Contacts-from-SF->Batch-and-Post-to-Scheduling-WF2": {
           "enabled": true,
           "id": "45820c5c-8608-4285-bbc8-bd46a6a3e083",
+          "target_job_id": "0f730534-4fc7-4473-99a1-caa46607b553",
           "source_job_id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
-          "condition_type": "on_job_success",
-          "target_job_id": "0f730534-4fc7-4473-99a1-caa46607b553"
+          "condition_type": "on_job_success"
         }
       },
       "concurrency": null,
       "inserted_at": "2024-04-08T15:37:55Z",
-      "updated_at": "2024-12-02T13:02:58Z",
+      "updated_at": "2025-01-24T12:17:07Z",
       "jobs": {
         "Fetch-Contacts-from-SF": {
           "id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
@@ -675,8 +675,6 @@
           "project_credential_id": "ee88208f-e641-4435-9c37-df616d076a70"
         }
       },
-      "deleted_at": null,
-      "lock_version": 9,
       "triggers": {
         "cron": {
           "enabled": false,
@@ -684,7 +682,9 @@
           "type": "cron",
           "cron_expression": "0 0 * * *"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 11
     },
     "x-[archive]-0.-Schedule-SMS-alerts": {
       "id": "10f56514-445d-479c-9d12-35085b6c6130",
@@ -693,9 +693,9 @@
         "webhook->Schedule-SMS-alerts-in-Infobip-v0": {
           "enabled": true,
           "id": "a1dd88ee-3166-4083-be1a-02a35ad33c4e",
+          "target_job_id": "8ca5cabd-fd16-4e76-b045-4e26f9a4ccaf",
           "source_trigger_id": "5f0e84ba-48ce-4252-962b-9a7c5445a197",
-          "condition_type": "always",
-          "target_job_id": "8ca5cabd-fd16-4e76-b045-4e26f9a4ccaf"
+          "condition_type": "always"
         }
       },
       "concurrency": null,
@@ -710,15 +710,15 @@
           "project_credential_id": null
         }
       },
-      "deleted_at": null,
-      "lock_version": 3,
       "triggers": {
         "webhook": {
           "enabled": false,
           "id": "5f0e84ba-48ce-4252-962b-9a7c5445a197",
           "type": "webhook"
         }
-      }
+      },
+      "deleted_at": null,
+      "lock_version": 3
     }
   },
   "requires_mfa": false
