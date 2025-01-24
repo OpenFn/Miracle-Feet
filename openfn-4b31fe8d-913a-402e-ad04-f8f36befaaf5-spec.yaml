@@ -1,6 +1,9 @@
 name: miraclefeet
 description: null
 credentials:
+  clifford.hakimi@miraclefeet.org-MiracleFeet-Production:
+    name: MiracleFeet Production
+    owner: clifford.hakimi@miraclefeet.org
   rita@openfn.org-Bracing-Night-Workflow-Webhook:
     name: Bracing Night Workflow Webhook
     owner: rita@openfn.org
@@ -9,6 +12,9 @@ credentials:
     owner: rita@openfn.org
   rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox:
     name: Miraclefeet SMS Salesforce Sandbox
+    owner: rita@openfn.org
+  "rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)":
+    name: 'Miraclefeet Salesforce Production (OpenFn owned)'
     owner: rita@openfn.org
   rita@openfn.org-Salesforce-Sandbox-with-MF-bracing-night-workflow-inbox:
     name: Salesforce Sandbox with MF bracing night workflow inbox
@@ -959,15 +965,16 @@ workflows:
         condition_label: 'Not a test user (PR)'
         condition_expression: |
           state.data.form.calcs.general.test_user !== "Yes"
-        enabled: true
-      Forwarding-job-Patient-Registration-Forms->Register-New-Patient-to-Device:
-        source_job: Forwarding-job-Patient-Registration-Forms
-        target_job: Register-New-Patient-to-Device
-        condition_type: on_job_success
+
         enabled: true
       Forwarding-job-Patient-Registration-Forms->Add-New-Patient:
         source_job: Forwarding-job-Patient-Registration-Forms
         target_job: Add-New-Patient
+        condition_type: on_job_success
+        enabled: true
+      Forwarding-job-Patient-Registration-Forms->Register-New-Patient-to-Device:
+        source_job: Forwarding-job-Patient-Registration-Forms
+        target_job: Register-New-Patient-to-Device
         condition_type: on_job_success
         enabled: true
   Treatment-Providers:
@@ -1192,6 +1199,7 @@ workflows:
         condition_label: Not a test user
         condition_expression: |
           state.data.properties.test_user !== "Yes"
+
         enabled: true
   Update-Patient-WF:
     name: Update Patient WF
@@ -1199,7 +1207,7 @@ workflows:
       Update-Patient:
         name: Update Patient
         adaptor: '@openfn/language-salesforce@2.7.4'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           // =============================================================================
           // New job for SF migration to new objects
@@ -1785,7 +1793,8 @@ workflows:
         condition_type: js_expression
         condition_label: 'Not a test user (Update Patient)'
         condition_expression: |
-          state.data.form.calcs.case_properties.test_user === "No"
+          state.data.properties.test_user === "No"
+
         enabled: true
   Update-Visit-WF:
     name: Update Visit WF
@@ -1793,7 +1802,7 @@ workflows:
       Update-Visit:
         name: Update Visit
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           // =============================================================================
           // New job for SF migratio to new objects
@@ -2478,6 +2487,7 @@ workflows:
         condition_label: Appointment case update
         condition_expression: |
           state.data.properties.visit_from_duplicate_patient !== "1" && state.data.properties.test_user !== "Yes"
+
         enabled: true
   Upsert-Clinic-WF:
     name: Upsert Clinic WF
@@ -2571,6 +2581,7 @@ workflows:
         condition_label: Location Updated
         condition_expression: |
           state.data.metadata.test_clinic !== "Yes"
+
         enabled: true
   Visit-Forms:
     name: Visit Forms
@@ -2588,7 +2599,7 @@ workflows:
       Add-New-Visit:
         name: Add New Visit
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           //New job for upserting Visits post SF migration
           fn(state => {
@@ -3386,7 +3397,7 @@ workflows:
       New-Partner-Brace-Distribution:
         name: New Partner Brace Distribution
         adaptor: '@openfn/language-salesforce@2.7.4'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           fn(state => {
             //NOTE: Here we add functions for converting/transformating data
@@ -3631,6 +3642,7 @@ workflows:
         condition_label: 'Not a test user (VF)'
         condition_expression: |
           state.data.form.calcs.case_properties.test_user !== "Yes"
+
         enabled: true
       Forwarding-job-Visit-Forms->Add-New-Visit:
         source_job: Forwarding-job-Visit-Forms
@@ -6934,6 +6946,7 @@ workflows:
         condition_label: Patient Registration Form
         condition_expression: |
           state.data.form.summary.summary.registration_info_label === "OK" && state.data.form.calcs.general.test_user=== "No"
+
         enabled: true
   "x-[archive]-Add-New-Visit":
     name: 'x [archive] Add New Visit'
@@ -7748,6 +7761,7 @@ workflows:
         condition_label: Visit Form
         condition_expression: |
           state.data.form['@name'] === "Log Visit Details"  && state.data.form.calcs.case_properties.test_user === "Yes"
+
         enabled: true
   "x-[archive]-Register-New-Patient-to-Device":
     name: 'x [archive] Register New Patient to Device'
@@ -7887,4 +7901,5 @@ workflows:
         condition_label: Patient Registration Form
         condition_expression: |
           state.data.form.summary.summary.registration_info_label === "OK" && !state.data.form.calcs.general.test_user === "Yes"
+
         enabled: true
