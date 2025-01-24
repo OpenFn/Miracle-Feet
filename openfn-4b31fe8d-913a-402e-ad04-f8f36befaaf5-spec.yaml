@@ -224,7 +224,7 @@ workflows:
       Register-New-Patient-to-Device:
         name: Register New Patient to Device
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           //Job to update Devices based on new Patient records
            
@@ -347,7 +347,7 @@ workflows:
       Add-New-Patient:
         name: Add New Patient
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           alterState(state => {
             state.handlePhoto = function handlePhoto(state, photoField) {
@@ -967,14 +967,14 @@ workflows:
           state.data.form.calcs.general.test_user !== "Yes"
 
         enabled: true
-      Forwarding-job-Patient-Registration-Forms->Add-New-Patient:
-        source_job: Forwarding-job-Patient-Registration-Forms
-        target_job: Add-New-Patient
-        condition_type: on_job_success
-        enabled: true
       Forwarding-job-Patient-Registration-Forms->Register-New-Patient-to-Device:
         source_job: Forwarding-job-Patient-Registration-Forms
         target_job: Register-New-Patient-to-Device
+        condition_type: on_job_success
+        enabled: true
+      Forwarding-job-Patient-Registration-Forms->Add-New-Patient:
+        source_job: Forwarding-job-Patient-Registration-Forms
+        target_job: Add-New-Patient
         condition_type: on_job_success
         enabled: true
   Treatment-Providers:
