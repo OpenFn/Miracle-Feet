@@ -10,6 +10,9 @@ credentials:
   rita@openfn.org-Infobip-SMS:
     name: Infobip SMS
     owner: rita@openfn.org
+  "rita@openfn.org-Infobip-SMS-(OpenFn-user-New)":
+    name: 'Infobip SMS (OpenFn user New)'
+    owner: rita@openfn.org
   rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox:
     name: Miraclefeet SMS Salesforce Sandbox
     owner: rita@openfn.org
@@ -983,7 +986,7 @@ workflows:
       Upsert-Treatment-Providers:
         name: Upsert Treatment Providers
         adaptor: '@openfn/language-salesforce@2.8.1'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           fn(state => {
             state.handleMultiSelect = function (state, multiField) {
@@ -1302,7 +1305,8 @@ workflows:
               'clinica_practica_mexico',
               'guyana_test_clinic',
               'togo_test_clinic', 
-              'bafata_test_clinic'
+              'bafata_test_clinic',
+              'FACORC Test'
             ];
             
             const discardedCountries = [
@@ -2495,7 +2499,7 @@ workflows:
       Upsert-Clinic:
         name: Upsert Clinic
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           // =============================================================================
           // New job to support SF migration to Account
@@ -3660,7 +3664,7 @@ workflows:
       Fetch-bracing-night-contacts-from-SF:
         name: Fetch bracing night contacts from SF
         adaptor: '@openfn/language-salesforce@2.6.3'
-        credential: rita@openfn.org-Salesforce-Sandbox-with-MF-bracing-night-workflow-inbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           
           // import {http} from '@openfn/language-salesforce'
@@ -3694,7 +3698,7 @@ workflows:
             );
             return query(
               `SELECT Name, Patient_Name__c, SMS_Treatment_Start_Date__c, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, CommCare_Case_ID__c, SMS_Error__c 
-              FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND Send_SMS__c = true AND SMS_Opt_In_II__c = true AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
+              FROM Contact WHERE SMS_Treatment__c = 'Bracing Night' AND Send_SMS__c = true AND SMS_Opt_In_II__c = true  AND Cancel_SMS_Sending__c != true  AND SMS_Treatment_Start_Date__c in (${potentialStartDate.join(
                 ','
               // )}) AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended') AND Account.Country__c in ('Nigeria', 'Uganda') AND SMS_Error__c = null`
               )}) AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')  AND SMS_Error__c = null`
@@ -3762,7 +3766,7 @@ workflows:
 
       Batch-and-Post-to-Scheduling-WF-2:
         name: Batch and Post to Scheduling WF 2
-        adaptor: '@openfn/language-http@latest'
+        adaptor: '@openfn/language-http@6.5.1'
         credential: rita@openfn.org-Bracing-Night-Workflow-Webhook
         body: |
           fn(async state => {
@@ -3810,7 +3814,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '05 00 * * *'
-        enabled: false
+        enabled: true
     edges:
       cron->Fetch-bracing-night-contacts-from-SF:
         source_trigger: cron
@@ -3828,7 +3832,7 @@ workflows:
       Schedule-bracing-night-SMSs:
         name: Schedule bracing night SMSs
         adaptor: '@openfn/language-http@3.1.11'
-        credential: null
+        credential: 'rita@openfn.org-Infobip-SMS-(OpenFn-user-New)'
         body: |
           fn(state => {
             // prettier-ignore
@@ -4247,7 +4251,7 @@ workflows:
       Fetch-Inactive-Clinics-from-SF:
         name: Fetch Inactive Clinics from SF
         adaptor: '@openfn/language-salesforce@2.6.3'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           query(
             `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c IN ('Previously Supported', 'Active - CAST Guest User Only') AND 
@@ -4322,8 +4326,8 @@ workflows:
 
       Disable-SMS:
         name: Disable SMS
-        adaptor: '@openfn/language-http@latest'
-        credential: null
+        adaptor: '@openfn/language-http@3.1.11'
+        credential: 'rita@openfn.org-Infobip-SMS-(OpenFn-user-New)'
         body: |
           fn(state => {
             // prettier-ignore
@@ -4332,7 +4336,7 @@ workflows:
 
             const buildBulkIds = (Ids, prefixes) => {
               const bulkIds = [];
-              Ids.forEach(id => {
+              Ids?.forEach(id => {
                 prefixes.forEach(prefix => {
                   let bulk = [id.CommCare_Case_ID__c, id.Next_Visit_Date__c]
                     .filter(Boolean)
@@ -4450,7 +4454,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '10 00 * * *'
-        enabled: false
+        enabled: true
     edges:
       cron->Fetch-Inactive-Clinics-from-SF:
         source_trigger: cron
@@ -4467,8 +4471,8 @@ workflows:
     jobs:
       Fetch-Contacts-from-SF:
         name: Fetch Contacts from SF
-        adaptor: '@openfn/language-salesforce@latest'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        adaptor: '@openfn/language-salesforce@4.6.5'
+        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
           fn(state => {
             const setDays = (date, x) => {
@@ -4487,7 +4491,7 @@ workflows:
               `SELECT Name, Patient_Name__c, Account.Status__c, Account.Country__c, Account.Name, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, Guardian_1_Phone_Landline__c, CommCare_Case_ID__c, 
               SMS_Treatment_Start_Date__c, Next_Visit_Date_New__c, Registration_Date__c, Date_of_First_Visit__c, Last_Visit_Date__c, Original_Next_Visit_Date__c, Last_Modified_Date_CommCare__c,
               SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c, SMS_Error__c,
-              SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c, Date_of_SMS_Registration__c, Date_Completed_Treatment__c
+              SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c, Date_of_SMS_Registration__c, Date_Completed_Treatment__c, Cancel_SMS_Sending__c
                 FROM Contact
                
                 WHERE Last_Modified_Date_CommCare__c = 
@@ -4539,6 +4543,8 @@ workflows:
                   smsOptIn: record.SMS_Opt_In__c,
                   smsOptInII: record.SMS_Opt_In_II__c,
                   sms_error: record.SMS_Error__c,
+                  cancel_sms: record.Cancel_SMS_Sending__c,
+
 
                   treatment: record.SMS_Treatment__c,
                   originalTreatment: record.SMS_Original_Treatment__c,
@@ -4562,7 +4568,7 @@ workflows:
 
       Batch-and-Post-to-Scheduling-WF2:
         name: Batch and Post to Scheduling WF2
-        adaptor: '@openfn/language-http@latest'
+        adaptor: '@openfn/language-http@6.2.1'
         credential: rita@openfn.org-Standard-SMS-Flow-Webhook
         body: |
           fn(async state => {
@@ -4612,7 +4618,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '0 0 * * *'
-        enabled: false
+        enabled: true
     edges:
       cron->Fetch-Contacts-from-SF:
         source_trigger: cron
@@ -4630,7 +4636,7 @@ workflows:
       Schedule-SMSs:
         name: Schedule SMSs
         adaptor: '@openfn/language-http@3.1.11'
-        credential: null
+        credential: 'rita@openfn.org-Infobip-SMS-(OpenFn-user-New)'
         body: |
           fn(state => {
             // prettier-ignore
@@ -4878,7 +4884,7 @@ workflows:
                   console.log('contact', contact);
 
                   // We organize destructuring by concern.
-                  const { smsOptInII, smsOptIn } = contact; // destructuring sms options
+                  const { smsOptInII, smsOptIn, cancel_sms } = contact; // destructuring sms options
                   const {
                     status,
                     caseId,
@@ -4917,7 +4923,8 @@ workflows:
                   if (
                     status === 'Actively Supported' &&
                     smsOptIn && //opt-in for reminder messages
-                    Next_Visit_Date_New__c !== null
+                    Next_Visit_Date_New__c !== null &&
+                    cancel_sms !== true
                   ) {
                     alertsToSend.push(treatmentMapSchedule['reminder_before']);
                     if (lastVisitDate || originalNextVisitDate) {
@@ -4928,7 +4935,8 @@ workflows:
                   if (
                     (status === 'Actively Supported' ||
                       status === 'Temporarily Suspended') &&
-                    smsOptInII //opt-in for educational messages
+                    smsOptInII &&  //opt-in for educational messages
+                    cancel_sms !== true
                   ) {
                     // Schedule blue conditions - alert 1, 2
                     // only want to send these "register" SMSs 1x for new registrants
@@ -5019,7 +5027,8 @@ workflows:
                       // treatment === 'Complete' || ignore deletion for when treatment (SMS_treatment__c) equals 'Complete'
                       treatment === 'Suspended' ||
                       reasonStoppedTreatment !== null ||
-                      smsOptIn === false // Opt-out
+                      smsOptIn === false || // Opt-out
+                      cancel_sms === true
                     ) {
                       alertsToDisable.push(treatmentMapSchedule['reminder_before']);
                       alertsToDisable.push(treatmentMapSchedule['reminder_after']);
