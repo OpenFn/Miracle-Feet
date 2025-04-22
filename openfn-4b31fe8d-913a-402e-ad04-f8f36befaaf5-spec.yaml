@@ -1,6 +1,10 @@
 name: miraclefeet
 description: null
+collections: null
 credentials:
+  aleksa@openfn.org-MF-CommCare:
+    name: MF CommCare
+    owner: aleksa@openfn.org
   clifford.hakimi@miraclefeet.org-MiracleFeet-Production:
     name: MiracleFeet Production
     owner: clifford.hakimi@miraclefeet.org
@@ -210,6 +214,35 @@ workflows:
       cron->Fetch-Patient-and-Visit-Forms-and-Post-to-Workflows:
         source_trigger: cron
         target_job: Fetch-Patient-and-Visit-Forms-and-Post-to-Workflows
+        condition_type: always
+        enabled: true
+  "Get-cases-(bulk)":
+    name: 'Get cases (bulk)'
+    jobs:
+      Get-CC-cases:
+        name: Get CC cases
+        adaptor: '@openfn/language-commcare@3.2.10'
+        credential: aleksa@openfn.org-MF-CommCare
+        body: |
+          get('case', {
+            limit: 1,
+            indexed_on_start: $.cursor,
+            type: 'patient'
+          });
+
+          fn(state => {
+            console.log(state.data);
+            return state; 
+          })
+    triggers:
+      cron:
+        type: cron
+        cron_expression: '0 0 * * *'
+        enabled: false
+    edges:
+      cron->Get-CC-cases:
+        source_trigger: cron
+        target_job: Get-CC-cases
         condition_type: always
         enabled: true
   Patient-Registration-Forms:
@@ -1771,9 +1804,9 @@ workflows:
                 field('CommCare_User_ID__c', dataValue('user_id')),
 
           //New clinic fields
-                  field('child_received_treatment_before__c', dataValue('form.case.update.child_received_treatment_before')),
-                  field('previews_treatment_ponseti__c', dataValue('form.case.update.previews_treatment_ponseti')),
-                  field('previews_treatment_clinic__c', dataValue('form.case.update.previews_treatment_clinic'))
+                  field('child_received_treatment_before__c', dataValue('properties.child_received_treatment_before')),
+                  field('previews_treatment_ponseti__c', dataValue('properties.previews_treatment_ponseti')),
+                  field('previews_treatment_clinic__c', dataValue('properties.previews_treatment_clinic'))
                   
               );
 
@@ -7777,7 +7810,7 @@ workflows:
     jobs:
       x-Register-New-Patient-to-Device:
         name: x Register New Patient to Device
-        adaptor: '@openfn/language-salesforce@latest'
+        adaptor: '@openfn/language-salesforce@5.0.5'
         credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
         body: |
           //Job to update Devices based on new Patient records
