@@ -5,6 +5,9 @@ credentials:
   aleksa@openfn.org-MF-CommCare:
     name: MF CommCare
     owner: aleksa@openfn.org
+  aleksa@openfn.org-update-patient-wf-webhook-url:
+    name: update-patient-wf-webhook-url
+    owner: aleksa@openfn.org
   clifford.hakimi@miraclefeet.org-MiracleFeet-Production:
     name: MiracleFeet Production
     owner: clifford.hakimi@miraclefeet.org
@@ -216,35 +219,6 @@ workflows:
         target_job: Fetch-Patient-and-Visit-Forms-and-Post-to-Workflows
         condition_type: always
         enabled: true
-  "Get-cases-(bulk)":
-    name: 'Get cases (bulk)'
-    jobs:
-      Get-CC-cases:
-        name: Get CC cases
-        adaptor: '@openfn/language-commcare@3.2.10'
-        credential: aleksa@openfn.org-MF-CommCare
-        body: |
-          get('case', {
-            limit: 1,
-            indexed_on_start: $.cursor,
-            type: 'patient'
-          });
-
-          fn(state => {
-            console.log(state.data);
-            return state; 
-          })
-    triggers:
-      cron:
-        type: cron
-        cron_expression: '0 0 * * *'
-        enabled: false
-    edges:
-      cron->Get-CC-cases:
-        source_trigger: cron
-        target_job: Get-CC-cases
-        condition_type: always
-        enabled: true
   Patient-Registration-Forms:
     name: Patient Registration Forms
     jobs:
@@ -385,6 +359,13 @@ workflows:
         adaptor: '@openfn/language-salesforce@4.0.5'
         credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
+          //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru
+          fn(state => {
+            return new Promise(resolve => {
+              setTimeout(() => resolve(state), 5000); // 5 second delay
+            });
+          });
+
           alterState(state => {
             state.handlePhoto = function handlePhoto(state, photoField) {
               const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
@@ -1013,6 +994,56 @@ workflows:
         target_job: Add-New-Patient
         condition_type: on_job_success
         enabled: true
+  "Reprocess-patient-cases-(bulk)":
+    name: 'Reprocess patient cases (bulk)'
+    jobs:
+      Get-CC-cases:
+        name: Get CC cases
+        adaptor: '@openfn/language-commcare@3.2.10'
+        credential: aleksa@openfn.org-MF-CommCare
+        body: |
+          get('case', {
+            limit: 5000,
+            //offset: 0, //include to return ONLY the records specified in limit
+            indexed_on_start: $.cursor,
+            //indexed_on_end: '2025-05-27',
+            type: 'patient'
+          });
+
+          fn(state => {
+            console.log('# cases returned:: ', state.data.length);
+            return state; 
+          })
+      Post-each-case-to-Update-Patient-WF:
+        name: Post each case to Update Patient WF
+        adaptor: '@openfn/language-http@7.0.6'
+        credential: aleksa@openfn.org-update-patient-wf-webhook-url
+        body: |
+          
+          each(
+            '$.data[*]',
+            post(
+              state.configuration.baseUrl, // webhook url of Update Patient WF
+              state => state.data, // This will be each case item one at a time
+              {} // Optional parameters
+            )
+          );
+    triggers:
+      cron:
+        type: cron
+        cron_expression: '0 0 * * *'
+        enabled: false
+    edges:
+      cron->Get-CC-cases:
+        source_trigger: cron
+        target_job: Get-CC-cases
+        condition_type: always
+        enabled: true
+      Get-CC-cases->Post-each-case-to-Update-Patient-WF:
+        source_job: Get-CC-cases
+        target_job: Post-each-case-to-Update-Patient-WF
+        condition_type: on_job_success
+        enabled: false
   Treatment-Providers:
     name: Treatment Providers
     jobs:
@@ -1021,6 +1052,13 @@ workflows:
         adaptor: '@openfn/language-salesforce@2.8.1'
         credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
+          //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru
+          fn(state => {
+            return new Promise(resolve => {
+              setTimeout(() => resolve(state), 5000); // 5 second delay
+            });
+          });
+
           fn(state => {
             state.handleMultiSelect = function (state, multiField) {
               const ms = state.data.properties[`${multiField}`];
@@ -1830,7 +1868,7 @@ workflows:
         condition_type: js_expression
         condition_label: 'Not a test user (Update Patient)'
         condition_expression: |
-          state.data.properties.test_user === "No"
+          state.data.properties.test_user !== "Yes"
 
         enabled: true
   Update-Visit-WF:
@@ -2638,6 +2676,13 @@ workflows:
         adaptor: '@openfn/language-salesforce@4.0.5'
         credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
         body: |
+          //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru
+          fn(state => {
+            return new Promise(resolve => {
+              setTimeout(() => resolve(state), 5000); // 5 second delay
+            });
+          });
+
           //New job for upserting Visits post SF migration
           fn(state => {
             state.handlePhoto = function handlePhoto(state, photoField) {
