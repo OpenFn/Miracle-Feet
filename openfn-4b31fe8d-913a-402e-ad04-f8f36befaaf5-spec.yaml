@@ -1002,24 +1002,37 @@ workflows:
         adaptor: '@openfn/language-commcare@3.2.10'
         credential: aleksa@openfn.org-MF-CommCare
         body: |
+          fn(state => ({
+            // Finsihed bulk (71280) at 12:48 UTC on Jun 15th, 2025
+            ...state, baseline: 71280
+          }));
+
           get('case', {
-            limit: 5000,
-            //offset: 0, //include to return ONLY the records specified in limit
-            indexed_on_start: $.cursor,
-            //indexed_on_end: '2025-05-27',
+            // looks like we can do about 500 every hour
+            limit: 500,
+            offset: $.cursor ? Math.max($.cursor, $.baseline) : $.baseline,
+            indexed_on_start: '2023-05-24',
             type: 'patient'
           });
 
           fn(state => {
+            console.log('Current offset:', state.cursor || 0);
             console.log('# cases returned:: ', state.data.length);
+            
+            // Increment cursor (offset) for next batch
+            const currentOffset = state.cursor || 0;
+            state.cursor = currentOffset + (state.data ? state.data.length : 0);
+            console.log('Setting offset for next batch:', state.cursor);
+            
+            delete state.references;
+
             return state; 
-          })
+          });
       Post-each-case-to-Update-Patient-WF:
         name: Post each case to Update Patient WF
         adaptor: '@openfn/language-http@7.0.6'
         credential: aleksa@openfn.org-update-patient-wf-webhook-url
         body: |
-          
           each(
             '$.data[*]',
             post(
@@ -1028,10 +1041,12 @@ workflows:
               {} // Optional parameters
             )
           );
+
+          fn(state => ({ cursor: state.cursor }));
     triggers:
       cron:
         type: cron
-        cron_expression: '0 0 * * *'
+        cron_expression: '30 * * * *'
         enabled: false
     edges:
       cron->Get-CC-cases:
@@ -1043,7 +1058,7 @@ workflows:
         source_job: Get-CC-cases
         target_job: Post-each-case-to-Update-Patient-WF
         condition_type: on_job_success
-        enabled: false
+        enabled: true
   Treatment-Providers:
     name: Treatment Providers
     jobs:
@@ -3107,6 +3122,12 @@ workflows:
                       'MiracleFeet_Shoes_Condition__c',
                       humanProper(
                         state.data.form.subcase_0.case.update.miraclefeet_shoes_condition
+                      )
+                    ), // picklist
+                    field(
+                      'Currently_Wearing_Brace_Most_Nights__c',
+                      humanProper(
+                        state.data.form.subcase_0.case.update.currently_wearing_brace_most_nights
                       )
                     ), // picklist
                     field(
