@@ -727,6 +727,12 @@ workflows:
                       source = 'Clubfoot Patient';
                     } else if (ref == 'community_member') {
                       source = 'Community Member';
+                    } else if (ref == 'health_worker_in_a_hospital') {
+                      source = 'Health Worker In Hospital';
+                    } else if (ref == 'health_worker_in_primary_healthcare_facility') {
+                      source = 'Health Worker In Primary Healthcare Facility';
+                    } else if (ref == 'online_or_social_media') {
+                      source = 'Online or Social Media';
                     } else if (ref == 'rbsk_deic') {
                       source = 'RBSK DEIC';
                     } else if (ref == 'other') {
