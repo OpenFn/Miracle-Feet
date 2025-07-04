@@ -2428,10 +2428,15 @@ workflows:
                         'home_exercise_programs_advised'
                       );
                     }),
+                    
                     field(
-                      'Method_of_Visit__c',
-                      humanProper(state.data.properties.visit_type)
-                    ), // picklist
+                    'Method_of_Visit__c',state => {
+                      var method = dataValue('properties.visit_type')(state); 
+                      return method=='remote' ? 'Remote' : 
+                        method=='on_site' ? 'On site' : 
+                        method=='telerehabilitation_-_audio_only' ? '	Telerehabilitation - Audio only' :
+                        method=='telerehabilitation_-_audio_and_visual' ? 'Telerehabilitation - Audio and visua' : method; 
+                    }), // Cliff attempt at mapping telemedicine becasue could not use picklist due to  - in value from CC
 
                     field('Instruction_or_advice__c', state => {
                       // this is a multiselect
