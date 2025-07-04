@@ -3357,7 +3357,7 @@ workflows:
                         method=='on_site' ? 'On site' : 
                         method=='telerehabilitation_-_audio_only' ? '	Telerehabilitation - Audio only' :
                         method=='telerehabilitation_-_audio_and_visual' ? 'Telerehabilitation - Audio and visual' : method; 
-                    }) // picklist - new field in SF added by cliff for Telemedicine
+                    }), // picklist - new field in SF added by cliff for Telemedicine
 
                     field('Instruction_or_advice__c', state => {
                       // this is a multiselect
