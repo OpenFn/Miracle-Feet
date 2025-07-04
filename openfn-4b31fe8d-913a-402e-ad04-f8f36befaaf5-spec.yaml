@@ -2428,6 +2428,10 @@ workflows:
                         'home_exercise_programs_advised'
                       );
                     }),
+                    field(
+                      'Method_of_Visit__c',
+                      humanProper(state.data.properties.visit_type)
+                    ), // picklist
 
                     field('Instruction_or_advice__c', state => {
                       // this is a multiselect
