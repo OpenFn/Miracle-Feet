@@ -2435,7 +2435,7 @@ workflows:
                       return method=='remote' ? 'Remote' : 
                         method=='on_site' ? 'On site' : 
                         method=='telerehabilitation_-_audio_only' ? '	Telerehabilitation - Audio only' :
-                        method=='telerehabilitation_-_audio_and_visual' ? 'Telerehabilitation - Audio and visua' : method; 
+                        method=='telerehabilitation_-_audio_and_visual' ? 'Telerehabilitation - Audio and visual' : method; 
                     }), // Cliff attempt at mapping telemedicine becasue could not use picklist due to  - in value from CC
 
                     field('Instruction_or_advice__c', state => {
