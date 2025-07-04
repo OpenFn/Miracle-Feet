@@ -3350,10 +3350,14 @@ workflows:
                         'home_exercise_programs_advised'
                       );
                     }),
-                    field(
-                      'Method_of_Visit__c',
-                      humanProper(state.data.form.subcase_0.case.update.visit_type)
-                    ), // picklist - new field in SF added by cliff for Telemedicine
+                     field(
+                    'Method_of_Visit__c',state => {
+                      var method = dataValue('form.subcase_0.case.update.visit_type')(state); 
+                      return method=='remote' ? 'Remote' : 
+                        method=='on_site' ? 'On site' : 
+                        method=='telerehabilitation_-_audio_only' ? '	Telerehabilitation - Audio only' :
+                        method=='telerehabilitation_-_audio_and_visual' ? 'Telerehabilitation - Audio and visual' : method; 
+                    }) // picklist - new field in SF added by cliff for Telemedicine
 
                     field('Instruction_or_advice__c', state => {
                       // this is a multiselect
