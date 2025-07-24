@@ -2238,6 +2238,9 @@ workflows:
                         state.data.properties.date_closed
                       );
                     }),
+                    field('Duplicate_Visit__c', state =>
+                  state.data.properties.duplicate_visit == '1' ? true : false
+                  ),
                     field('Cast_Count__c', dataValue('properties.cast_count')),
                     field('Casting_Complications_Type__c', state => {
                       return state.handleMultiSelect(state, 'complication_type');
@@ -3767,7 +3770,7 @@ workflows:
         condition_type: js_expression
         condition_label: 'Not a test user (VF)'
         condition_expression: |
-          state.data.form.calcs.case_properties.test_user !== "Yes"
+          state.data.form.calcs.case_properties.test_user !== "Yes" && state.data.form.duplicate_visit !== "no"
 
         enabled: true
       Forwarding-job-Visit-Forms->Add-New-Visit:
