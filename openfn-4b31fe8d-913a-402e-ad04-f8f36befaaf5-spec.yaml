@@ -3249,7 +3249,7 @@ workflows:
                     ),
                     field(
                       'Left_Surgery_Type__c',
-                      humanProper(state.data.form.subcase_0.case.update.l_surgery_type)
+                      humanProper('state.data.form.subcase_0.case.update.l_surgery_type')
                     ), // picklist
                     field(
                       'Left_Surgery_Type_Other__c',
