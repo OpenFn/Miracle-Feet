@@ -5,53 +5,44 @@ credentials:
   aleksa@openfn.org-MF-CommCare:
     name: MF CommCare
     owner: aleksa@openfn.org
+  aleksa@openfn.org-MF-Salesforce-Prod---openfn-user:
+    name: MF Salesforce Prod - openfn user
+    owner: aleksa@openfn.org
   aleksa@openfn.org-update-patient-wf-webhook-url:
     name: update-patient-wf-webhook-url
     owner: aleksa@openfn.org
   clifford.hakimi@miraclefeet.org-MiracleFeet-Production:
     name: MiracleFeet Production
     owner: clifford.hakimi@miraclefeet.org
-  rita@openfn.org-Bracing-Night-Workflow-Webhook:
-    name: Bracing Night Workflow Webhook
-    owner: rita@openfn.org
-  rita@openfn.org-Infobip-SMS:
-    name: Infobip SMS
-    owner: rita@openfn.org
-  "rita@openfn.org-Infobip-SMS-(OpenFn-user-New)":
-    name: 'Infobip SMS (OpenFn user New)'
-    owner: rita@openfn.org
-  rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox:
-    name: Miraclefeet SMS Salesforce Sandbox
-    owner: rita@openfn.org
-  "rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)":
-    name: 'Miraclefeet Salesforce Production (OpenFn owned)'
-    owner: rita@openfn.org
-  rita@openfn.org-Salesforce-Sandbox-with-MF-bracing-night-workflow-inbox:
-    name: Salesforce Sandbox with MF bracing night workflow inbox
-    owner: rita@openfn.org
-  rita@openfn.org-Standard-SMS-Flow-Webhook:
-    name: Standard SMS Flow Webhook
-    owner: rita@openfn.org
-  rita@openfn.org-Visit-Form-and-Patient-Registration-Form-Workflow-Webhooks:
-    name: Visit Form and Patient Registration Form Workflow Webhooks
-    owner: rita@openfn.org
-  "rita@openfn.org-[Miraclefeet]-CommCare-CAST-API-with-Webhook-URLs":
-    name: '[Miraclefeet] CommCare CAST API with Webhook URLs'
-    owner: rita@openfn.org
-  "rita@openfn.org-[Miraclefeet]-Visit-Form-Workflow-Webhook":
-    name: '[Miraclefeet] Visit Form Workflow Webhook'
-    owner: rita@openfn.org
-  rita@openfn.org-kobo-godata:
-    name: kobo godata
-    owner: rita@openfn.org
 workflows:
+  Event-based-Workflow:
+    name: Event-based Workflow
+    jobs:
+      Transform-data:
+        name: Transform data
+        adaptor: '@openfn/language-common@latest'
+        credential: null
+        body: |
+          // Check out the Job Writing Guide for help getting started:
+          // https://docs.openfn.org/documentation/jobs/job-writing-guide
+
+    triggers:
+      webhook:
+        type: webhook
+        enabled: true
+    edges:
+      webhook->Transform-data:
+        source_trigger: webhook
+        target_job: Transform-data
+        condition_type: always
+        enabled: true
   Fetch-cleaned-forms---Patient-and-Visit:
     name: Fetch cleaned forms - Patient and Visit
     jobs:
       Fetch-Patient-and-Visit-Forms-and-Post-to-Workflows:
         name: Fetch Patient and Visit Forms and Post to Workflows
         adaptor: '@openfn/language-http@3.1.1'
-        credential: 'rita@openfn.org-[Miraclefeet]-CommCare-CAST-API-with-Webhook-URLs'
+        credential: null
         body: |
           alterState(state => {
             // Month prior ====================================================
@@ -234,7 +225,7 @@ workflows:
       Register-New-Patient-to-Device:
         name: Register New Patient to Device
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           //Job to update Devices based on new Patient records
            
@@ -357,7 +348,7 @@ workflows:
       Add-New-Patient:
         name: Add New Patient
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru
           fn(state => {
@@ -1071,7 +1062,7 @@ workflows:
       Upsert-Treatment-Providers:
         name: Upsert Treatment Providers
         adaptor: '@openfn/language-salesforce@2.8.1'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru
           fn(state => {
@@ -1302,7 +1293,7 @@ workflows:
       Update-Patient:
         name: Update Patient
         adaptor: '@openfn/language-salesforce@2.7.4'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           // =============================================================================
           // New job for SF migration to new objects
@@ -1898,7 +1889,7 @@ workflows:
       Update-Visit:
         name: Update Visit
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: clifford.hakimi@miraclefeet.org-MiracleFeet-Production
         body: |
           // =============================================================================
           // New job for SF migratio to new objects
@@ -2603,7 +2594,7 @@ workflows:
       Upsert-Clinic:
         name: Upsert Clinic
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: null
         body: |
           // =============================================================================
           // New job to support SF migration to Account
@@ -2707,7 +2698,7 @@ workflows:
       Add-New-Visit:
         name: Add New Visit
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru
           fn(state => {
@@ -3249,7 +3240,7 @@ workflows:
                     ),
                     field(
                       'Left_Surgery_Type__c',
-                      humanProper('form.subcase_0.case.update.l_surgery_type')
+                      humanProper(state.data.form.subcase_0.case.update.l_surgery_type)
                     ), // picklist
                     field(
                       'Left_Surgery_Type_Other__c',
@@ -3526,7 +3517,7 @@ workflows:
       New-Partner-Brace-Distribution:
         name: New Partner Brace Distribution
         adaptor: '@openfn/language-salesforce@2.7.4'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           fn(state => {
             //NOTE: Here we add functions for converting/transformating data
@@ -3789,7 +3780,7 @@ workflows:
       Fetch-bracing-night-contacts-from-SF:
         name: Fetch bracing night contacts from SF
         adaptor: '@openfn/language-salesforce@2.6.3'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: null
         body: |
           
           // import {http} from '@openfn/language-salesforce'
@@ -3892,7 +3883,7 @@ workflows:
       Batch-and-Post-to-Scheduling-WF-2:
         name: Batch and Post to Scheduling WF 2
         adaptor: '@openfn/language-http@6.5.1'
-        credential: rita@openfn.org-Bracing-Night-Workflow-Webhook
+        credential: null
         body: |
           fn(async state => {
 
@@ -3957,7 +3948,7 @@ workflows:
       Schedule-bracing-night-SMSs:
         name: Schedule bracing night SMSs
         adaptor: '@openfn/language-http@3.1.11'
-        credential: 'rita@openfn.org-Infobip-SMS-(OpenFn-user-New)'
+        credential: null
         body: |
           fn(state => {
             // prettier-ignore
@@ -4376,7 +4367,7 @@ workflows:
       Fetch-Inactive-Clinics-from-SF:
         name: Fetch Inactive Clinics from SF
         adaptor: '@openfn/language-salesforce@2.6.3'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: null
         body: |
           query(
             `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c IN ('Previously Supported', 'Active - CAST Guest User Only') AND 
@@ -4452,7 +4443,7 @@ workflows:
       Disable-SMS:
         name: Disable SMS
         adaptor: '@openfn/language-http@3.1.11'
-        credential: 'rita@openfn.org-Infobip-SMS-(OpenFn-user-New)'
+        credential: null
         body: |
           fn(state => {
             // prettier-ignore
@@ -4597,7 +4588,7 @@ workflows:
       Fetch-Contacts-from-SF:
         name: Fetch Contacts from SF
         adaptor: '@openfn/language-salesforce@4.6.5'
-        credential: 'rita@openfn.org-Miraclefeet-Salesforce-Production-(OpenFn-owned)'
+        credential: null
         body: |
           fn(state => {
             const setDays = (date, x) => {
@@ -4694,7 +4685,7 @@ workflows:
       Batch-and-Post-to-Scheduling-WF2:
         name: Batch and Post to Scheduling WF2
         adaptor: '@openfn/language-http@6.2.1'
-        credential: rita@openfn.org-Standard-SMS-Flow-Webhook
+        credential: null
         body: |
           fn(async state => {
 
@@ -4761,7 +4752,7 @@ workflows:
       Schedule-SMSs:
         name: Schedule SMSs
         adaptor: '@openfn/language-http@3.1.11'
-        credential: 'rita@openfn.org-Infobip-SMS-(OpenFn-user-New)'
+        credential: null
         body: |
           fn(state => {
             // prettier-ignore
@@ -6462,7 +6453,7 @@ workflows:
       x-Add-New-Patient:
         name: x Add New Patient
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: null
         body: |
           alterState(state => {
             state.handlePhoto = function handlePhoto(state, photoField) {
@@ -7088,7 +7079,7 @@ workflows:
       x-Add-New-Visit:
         name: x Add New Visit
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: null
         body: |
           //New job for upserting Visits post SF migration
           fn(state => {
@@ -7903,7 +7894,7 @@ workflows:
       x-Register-New-Patient-to-Device:
         name: x Register New Patient to Device
         adaptor: '@openfn/language-salesforce@5.0.5'
-        credential: rita@openfn.org-Miraclefeet-SMS-Salesforce-Sandbox
+        credential: null
         body: |
           //Job to update Devices based on new Patient records
            
