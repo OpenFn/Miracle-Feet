@@ -2,11 +2,20 @@ name: miraclefeet
 description: null
 collections: null
 credentials:
+  "aleksa@openfn.org-Infobip-SMS-(OpenFn-user-New)":
+    name: 'Infobip SMS (OpenFn user New)'
+    owner: aleksa@openfn.org
   aleksa@openfn.org-MF-CommCare:
     name: MF CommCare
     owner: aleksa@openfn.org
+  aleksa@openfn.org-MF-Salesforce-Prod---Oauth:
+    name: MF Salesforce Prod - Oauth
+    owner: aleksa@openfn.org
   aleksa@openfn.org-MF-Salesforce-Prod---openfn-user:
     name: MF Salesforce Prod - openfn user
+    owner: aleksa@openfn.org
+  aleksa@openfn.org-OLD__Infobip-SMS:
+    name: OLD__Infobip SMS
     owner: aleksa@openfn.org
   aleksa@openfn.org-update-patient-wf-webhook-url:
     name: update-patient-wf-webhook-url
@@ -1889,7 +1898,7 @@ workflows:
       Update-Visit:
         name: Update Visit
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: clifford.hakimi@miraclefeet.org-MiracleFeet-Production
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           // =============================================================================
           // New job for SF migratio to new objects
@@ -2594,7 +2603,7 @@ workflows:
       Upsert-Clinic:
         name: Upsert Clinic
         adaptor: '@openfn/language-salesforce@4.0.5'
-        credential: null
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           // =============================================================================
           // New job to support SF migration to Account
@@ -3780,7 +3789,7 @@ workflows:
       Fetch-bracing-night-contacts-from-SF:
         name: Fetch bracing night contacts from SF
         adaptor: '@openfn/language-salesforce@2.6.3'
-        credential: null
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           
           // import {http} from '@openfn/language-salesforce'
@@ -3883,7 +3892,7 @@ workflows:
       Batch-and-Post-to-Scheduling-WF-2:
         name: Batch and Post to Scheduling WF 2
         adaptor: '@openfn/language-http@6.5.1'
-        credential: null
+        credential: 'aleksa@openfn.org-Infobip-SMS-(OpenFn-user-New)'
         body: |
           fn(async state => {
 
@@ -3948,7 +3957,7 @@ workflows:
       Schedule-bracing-night-SMSs:
         name: Schedule bracing night SMSs
         adaptor: '@openfn/language-http@3.1.11'
-        credential: null
+        credential: 'aleksa@openfn.org-Infobip-SMS-(OpenFn-user-New)'
         body: |
           fn(state => {
             // prettier-ignore
@@ -4367,7 +4376,7 @@ workflows:
       Fetch-Inactive-Clinics-from-SF:
         name: Fetch Inactive Clinics from SF
         adaptor: '@openfn/language-salesforce@2.6.3'
-        credential: null
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           query(
             `Select Id, Account.Name, Account.Status__c, CommCare_Case_ID__c from Contact WHERE Send_SMS__c = true AND Account.Status__c IN ('Previously Supported', 'Active - CAST Guest User Only') AND 
@@ -4443,7 +4452,7 @@ workflows:
       Disable-SMS:
         name: Disable SMS
         adaptor: '@openfn/language-http@3.1.11'
-        credential: null
+        credential: aleksa@openfn.org-OLD__Infobip-SMS
         body: |
           fn(state => {
             // prettier-ignore
@@ -4588,7 +4597,7 @@ workflows:
       Fetch-Contacts-from-SF:
         name: Fetch Contacts from SF
         adaptor: '@openfn/language-salesforce@4.6.5'
-        credential: null
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
         body: |
           fn(state => {
             const setDays = (date, x) => {
@@ -4685,7 +4694,7 @@ workflows:
       Batch-and-Post-to-Scheduling-WF2:
         name: Batch and Post to Scheduling WF2
         adaptor: '@openfn/language-http@6.2.1'
-        credential: null
+        credential: aleksa@openfn.org-OLD__Infobip-SMS
         body: |
           fn(async state => {
 
