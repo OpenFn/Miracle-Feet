@@ -4452,7 +4452,7 @@ workflows:
       Disable-SMS:
         name: Disable SMS
         adaptor: '@openfn/language-http@3.1.11'
-        credential: aleksa@openfn.org-OLD__Infobip-SMS
+        credential: 'aleksa@openfn.org-Infobip-SMS-(OpenFn-user-New)'
         body: |
           fn(state => {
             // prettier-ignore
