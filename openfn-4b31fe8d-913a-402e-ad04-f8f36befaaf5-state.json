@@ -50,7 +50,9 @@
   "dataclip_retention_period": 365,
   "retention_policy": "retain_all",
   "version_history": [],
+  "allow_support_access": true,
   "collections": {},
+  "requires_mfa": false,
   "workflows": {
     "x-[archive]-0.-Schedule-SMS-alerts": {
       "id": "10f56514-445d-479c-9d12-35085b6c6130",
@@ -576,52 +578,6 @@
         }
       }
     },
-    "[SMS]-SMS-1-Fetch-Contacts-from-SF": {
-      "id": "395f9dc5-f990-4594-b909-b8e5e4444e74",
-      "name": "[SMS] SMS-1 Fetch Contacts from SF",
-      "inserted_at": "2025-09-30T13:18:03.068608Z",
-      "lock_version": 19,
-      "triggers": {
-        "cron": {
-          "enabled": true,
-          "id": "355d7d11-a55d-4e27-88d4-49c9b31021b0",
-          "type": "cron",
-          "cron_expression": "0 0 * * *"
-        }
-      },
-      "jobs": {
-        "Fetch-Contacts-from-SF": {
-          "id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
-          "name": "Fetch Contacts from SF",
-          "body": "fn(state => {\n  const setDays = (date, x) => {\n    return new Date(new Date(date).setDate(date.getDate() + x))\n      .toISOString()\n      .split('T')[0];\n  };\n\n  // Here we have a complex fetch query that should return:\n  // 1. info on patients and guardian (Name, guardian_1_First_Name__c, ...)\n  // 2. info on scheduling dates\n  // 3. info on sms opt-in details\n  // 4. info on treatment details\n  // 5. depending on a specific list of account's status\n  return query(\n    `SELECT Name, Patient_Name__c, Account.Status__c, Account.Country__c, Account.Name, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, Guardian_1_Phone_Landline__c, CommCare_Case_ID__c, \n    SMS_Treatment_Start_Date__c, Next_Visit_Date_New__c, Registration_Date__c, Date_of_First_Visit__c, Last_Visit_Date__c, Original_Next_Visit_Date__c, Last_Modified_Date_CommCare__c,\n    SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c, SMS_Error__c,\n    SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c, Date_of_SMS_Registration__c, Date_Completed_Treatment__c, Cancel_SMS_Sending__c\n      FROM Contact\n     \n      WHERE Last_Modified_Date_CommCare__c = \n      ${setDays(new Date(), -1)}\n       AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`\n      // AND Account.Country__c in ('Nigeria', 'Uganda') // removed for testing\n      \n\n  )(state).then(state => {\n    if (state.references[0][0]) {\n    const { records } = state.references[0][0];\n\n    const contacts = records.map(record => {\n        //Transformation to take first substring of patient name (e.g., \"Jane Doe\" ==> \"Jane\")\n      const patientName = record.Patient_Name__c;\n      const firstName =\n        patientName && patientName !== ''\n          ? patientName.split(' ')[0]\n          : undefined;\n\n      //Here we assign SF values to variables to reference in the Infobip scheduling job\n      return {\n        id: record.Id,\n        AccountId: record.Account.Name,\n        FirstName: firstName,\n        Guardian_1_First_Name__c: record.Guardian_1_First_Name__c,\n        status: record.Account.Status__c,\n        patientCountry: record.Account.Country__c,\n        Pronoun_he_she__c: record.Pronoun_he_she__c,\n        Pronoun_him_her__c: record.Pronoun_him_her__c,\n        Pronoun_his_her__c: record.Pronoun_his_her__c,\n        Country: record.Clinic_Country__c,\n        Phone: record.Guardian_1_Phone_Number_1__c,\n        GuardianPhoneLandline: record.Guardian_1_Phone_Landline__c,\n        caseId: record.CommCare_Case_ID__c,\n        sms_language: record.SMS_Language__c,\n        sms_timezone: record.SMS_Timezone__c,\n\n        startDate: record.SMS_Treatment_Start_Date__c,\n        Next_Visit_Date_New__c: record.Next_Visit_Date_New__c,\n        registrationDate: record.Registration_Date__c,\n        firstVisitDate: record.Date_of_First_Visit__c,\n        lastVisitDate: record.Last_Visit_Date__c,\n        originalNextVisitDate: record.Original_Next_Visit_Date__c,\n        lastModifiedDateCommCare: record.Last_Modified_Date_CommCare__c,\n        smsRegistrationDate: record.Date_of_SMS_Registration__c,\n        treatmentCompletedDate: record.Date_Completed_Treatment__c,\n\n        smsOptIn: record.SMS_Opt_In__c,\n        smsOptInII: record.SMS_Opt_In_II__c,\n        sms_error: record.SMS_Error__c,\n        cancel_sms: record.Cancel_SMS_Sending__c,\n\n\n        treatment: record.SMS_Treatment__c,\n        originalTreatment: record.SMS_Original_Treatment__c,\n        treatmentCompleted: record.Treatment_Completed__c,\n        reasonStoppedTreatment: record.Reason_Stopped_Treatment__c,\n        braceProblemType: record.Brace_Problems_Type__c,\n\n        sendSms: record.Send_SMS__c,\n      };\n    });\n    return { ...state, contacts };}\n    else {\n      const contacts = {}\n          return { ...state, contacts };\n\n    }\n    // return { ...state, contacts };\n    \n  });\n});\n",
-          "adaptor": "@openfn/language-salesforce@4.6.5",
-          "project_credential_id": "fb13dc0b-770f-4185-9c91-a5ee7579989e"
-        },
-        "Batch-and-Post-to-Scheduling-WF2": {
-          "id": "0f730534-4fc7-4473-99a1-caa46607b553",
-          "name": "Batch and Post to Scheduling WF2",
-          "body": "fn(async state => {\n\n  const { configuration, contacts } = state;\n\n  \n  const batchSize = 15;\n\n  const loop = Math.ceil(contacts.length / batchSize);\n\n  let countInbox = 0;\n\n  const postToInbox = async data => {\n    countInbox++;\n    console.log(\"postToInbox data: \", data)\n\n    console.log(`Sending batch ${countInbox} to inbox`);\n    await post(configuration.openfnInboxUrl, {\n      body: data,\n      maxContentLength: Infinity,\n      maxBodyLength: Infinity,\n      headers: { 'content-type': 'application/json' },\n\n      // auth: {username: configuration.openfnUsername, password: configuration.openfnPassword}\n\n    })(state);\n  };\n\n  console.log(`Sending ${loop} batches of contacts to inbox`);\n\n  for (let i = 0; i < loop; i++) {\n    const batch = state.contacts.slice(i * batchSize, (i + 1) * batchSize);\n\n    const data = {\n      // tag: 'sms_salesforce',\n      contacts: batch,\n    };\n    \n    await postToInbox(data);\n  }\n  \n  return { ...state, references: [], data: {} };\n});\n",
-          "adaptor": "@openfn/language-http@6.2.1",
-          "project_credential_id": "bb6236c2-f021-49ab-bc98-4d751f0303d0"
-        }
-      },
-      "edges": {
-        "cron->Fetch-Contacts-from-SF": {
-          "enabled": true,
-          "id": "ad54f15f-2f21-4ad4-a87f-1ba896349cae",
-          "target_job_id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
-          "source_trigger_id": "355d7d11-a55d-4e27-88d4-49c9b31021b0",
-          "condition_type": "always"
-        },
-        "Fetch-Contacts-from-SF->Batch-and-Post-to-Scheduling-WF2": {
-          "enabled": true,
-          "id": "45820c5c-8608-4285-bbc8-bd46a6a3e083",
-          "target_job_id": "0f730534-4fc7-4473-99a1-caa46607b553",
-          "source_job_id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
-          "condition_type": "on_job_success"
-        }
-      }
-    },
     "[SMS]-Bracing-Night-1-Bracing-Night-Fetch": {
       "id": "450243b0-3fc1-4940-a59c-6ae2a5ab73b8",
       "name": "[SMS] Bracing-Night-1 Bracing Night Fetch",
@@ -744,8 +700,52 @@
           "condition_type": "on_job_success"
         }
       }
+    },
+    "[SMS]-SMS-1-Fetch-Contacts-from-SF": {
+      "id": "395f9dc5-f990-4594-b909-b8e5e4444e74",
+      "name": "[SMS] SMS-1 Fetch Contacts from SF",
+      "inserted_at": "2025-09-30T13:44:48.066792Z",
+      "lock_version": 20,
+      "triggers": {
+        "cron": {
+          "enabled": true,
+          "id": "355d7d11-a55d-4e27-88d4-49c9b31021b0",
+          "type": "cron",
+          "cron_expression": "0 0 * * *"
+        }
+      },
+      "jobs": {
+        "Fetch-Contacts-from-SF": {
+          "id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
+          "name": "Fetch Contacts from SF",
+          "body": "fn(state => {\n  const setDays = (date, x) => {\n    return new Date(new Date(date).setDate(date.getDate() + x))\n      .toISOString()\n      .split('T')[0];\n  };\n\n  // Here we have a complex fetch query that should return:\n  // 1. info on patients and guardian (Name, guardian_1_First_Name__c, ...)\n  // 2. info on scheduling dates\n  // 3. info on sms opt-in details\n  // 4. info on treatment details\n  // 5. depending on a specific list of account's status\n  return query(\n    `SELECT Name, Patient_Name__c, Account.Status__c, Account.Country__c, Account.Name, Guardian_1_First_Name__c, Pronoun_he_she__c, Pronoun_him_her__c, Pronoun_his_her__c, Clinic_Country__c, Guardian_1_Phone_Number_1__c, Guardian_1_Phone_Landline__c, CommCare_Case_ID__c, \n    SMS_Treatment_Start_Date__c, Next_Visit_Date_New__c, Registration_Date__c, Date_of_First_Visit__c, Last_Visit_Date__c, Original_Next_Visit_Date__c, Last_Modified_Date_CommCare__c,\n    SMS_Opt_In_II__c, SMS_Opt_In__c, Send_SMS__c, SMS_Error__c,\n    SMS_Treatment__c, SMS_Original_Treatment__c, Treatment_Completed__c, Reason_Stopped_Treatment__c, Brace_Problems_Type__c, SMS_Language__c, SMS_Timezone__c, Date_of_SMS_Registration__c, Date_Completed_Treatment__c, Cancel_SMS_Sending__c\n      FROM Contact\n     \n      WHERE Last_Modified_Date_CommCare__c = \n      ${setDays(new Date(), -1)}\n       AND Account.Status__c in ('Actively Supported', 'Temporarily Suspended')`\n      // AND Account.Country__c in ('Nigeria', 'Uganda') // removed for testing\n      \n\n  )(state).then(state => {\n    if (state.references[0][0]) {\n    const { records } = state.references[0][0];\n\n    const contacts = records.map(record => {\n        //Transformation to take first substring of patient name (e.g., \"Jane Doe\" ==> \"Jane\")\n      const patientName = record.Patient_Name__c;\n      const firstName =\n        patientName && patientName !== ''\n          ? patientName.split(' ')[0]\n          : undefined;\n\n      //Here we assign SF values to variables to reference in the Infobip scheduling job\n      return {\n        id: record.Id,\n        AccountId: record.Account.Name,\n        FirstName: firstName,\n        Guardian_1_First_Name__c: record.Guardian_1_First_Name__c,\n        status: record.Account.Status__c,\n        patientCountry: record.Account.Country__c,\n        Pronoun_he_she__c: record.Pronoun_he_she__c,\n        Pronoun_him_her__c: record.Pronoun_him_her__c,\n        Pronoun_his_her__c: record.Pronoun_his_her__c,\n        Country: record.Clinic_Country__c,\n        Phone: record.Guardian_1_Phone_Number_1__c,\n        GuardianPhoneLandline: record.Guardian_1_Phone_Landline__c,\n        caseId: record.CommCare_Case_ID__c,\n        sms_language: record.SMS_Language__c,\n        sms_timezone: record.SMS_Timezone__c,\n\n        startDate: record.SMS_Treatment_Start_Date__c,\n        Next_Visit_Date_New__c: record.Next_Visit_Date_New__c,\n        registrationDate: record.Registration_Date__c,\n        firstVisitDate: record.Date_of_First_Visit__c,\n        lastVisitDate: record.Last_Visit_Date__c,\n        originalNextVisitDate: record.Original_Next_Visit_Date__c,\n        lastModifiedDateCommCare: record.Last_Modified_Date_CommCare__c,\n        smsRegistrationDate: record.Date_of_SMS_Registration__c,\n        treatmentCompletedDate: record.Date_Completed_Treatment__c,\n\n        smsOptIn: record.SMS_Opt_In__c,\n        smsOptInII: record.SMS_Opt_In_II__c,\n        sms_error: record.SMS_Error__c,\n        cancel_sms: record.Cancel_SMS_Sending__c,\n\n\n        treatment: record.SMS_Treatment__c,\n        originalTreatment: record.SMS_Original_Treatment__c,\n        treatmentCompleted: record.Treatment_Completed__c,\n        reasonStoppedTreatment: record.Reason_Stopped_Treatment__c,\n        braceProblemType: record.Brace_Problems_Type__c,\n\n        sendSms: record.Send_SMS__c,\n      };\n    });\n    return { ...state, contacts };}\n    else {\n      const contacts = {}\n          return { ...state, contacts };\n\n    }\n    // return { ...state, contacts };\n    \n  });\n});\n",
+          "adaptor": "@openfn/language-salesforce@4.6.5",
+          "project_credential_id": "fb13dc0b-770f-4185-9c91-a5ee7579989e"
+        },
+        "Batch-and-Post-to-Scheduling-WF2": {
+          "id": "0f730534-4fc7-4473-99a1-caa46607b553",
+          "name": "Batch and Post to Scheduling WF2",
+          "body": "fn(async state => {\n\n  const { configuration, contacts } = state;\n\n  \n  const batchSize = 15;\n\n  const loop = Math.ceil(contacts.length / batchSize);\n\n  let countInbox = 0;\n\n  const postToInbox = async data => {\n    countInbox++;\n    console.log(\"postToInbox data: \", data)\n\n    console.log(`Sending batch ${countInbox} to inbox`);\n    await post(configuration.openfnInboxUrl, {\n      body: data,\n      maxContentLength: Infinity,\n      maxBodyLength: Infinity,\n      headers: { 'content-type': 'application/json' },\n\n      // auth: {username: configuration.openfnUsername, password: configuration.openfnPassword}\n\n    })(state);\n  };\n\n  console.log(`Sending ${loop} batches of contacts to inbox`);\n\n  for (let i = 0; i < loop; i++) {\n    const batch = state.contacts.slice(i * batchSize, (i + 1) * batchSize);\n\n    const data = {\n      // tag: 'sms_salesforce',\n      contacts: batch,\n    };\n    \n    await postToInbox(data);\n  }\n  \n  return { ...state, references: [], data: {} };\n});\n",
+          "adaptor": "@openfn/language-http@6.2.1",
+          "project_credential_id": "6f21d7b2-26ec-4f4e-8469-ba12a03fe0c3"
+        }
+      },
+      "edges": {
+        "cron->Fetch-Contacts-from-SF": {
+          "enabled": true,
+          "id": "ad54f15f-2f21-4ad4-a87f-1ba896349cae",
+          "target_job_id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
+          "source_trigger_id": "355d7d11-a55d-4e27-88d4-49c9b31021b0",
+          "condition_type": "always"
+        },
+        "Fetch-Contacts-from-SF->Batch-and-Post-to-Scheduling-WF2": {
+          "enabled": true,
+          "id": "45820c5c-8608-4285-bbc8-bd46a6a3e083",
+          "target_job_id": "0f730534-4fc7-4473-99a1-caa46607b553",
+          "source_job_id": "e3108a88-cf08-45ed-ab35-e955ac23bfe5",
+          "condition_type": "on_job_success"
+        }
+      }
     }
-  },
-  "allow_support_access": true,
-  "requires_mfa": false
+  }
 }

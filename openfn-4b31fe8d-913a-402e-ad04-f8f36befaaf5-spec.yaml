@@ -4694,7 +4694,7 @@ workflows:
       Batch-and-Post-to-Scheduling-WF2:
         name: Batch and Post to Scheduling WF2
         adaptor: '@openfn/language-http@6.2.1'
-        credential: aleksa@openfn.org-OLD__Infobip-SMS
+        credential: 'aleksa@openfn.org-Infobip-SMS-(OpenFn-user-New)'
         body: |
           fn(async state => {
 
