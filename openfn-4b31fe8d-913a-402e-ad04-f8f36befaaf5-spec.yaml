@@ -1407,7 +1407,7 @@ workflows:
               'Archive Country'];
 
             const discardedOwnerids = [
-              '69557d137a994c5baff3bebe0ffc3665'];
+              'e7aa8cd6eacc40178c86f3908b22b09b'];// CommCare location ID of the Archive clinic where patients with no visits after 1 year are assigned for future deletion
 
             return { ...state, discardedClinics, discardedCountries, discardedOwnerids };
           });
