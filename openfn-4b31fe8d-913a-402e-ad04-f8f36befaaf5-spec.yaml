@@ -1417,7 +1417,7 @@ workflows:
             const { test_clinic } = state.data.properties;
             const { test_user } = state.data.properties;
             const { owner_id } = state.data.properties;
-            if (state.discardedOwnerIds.includes(owner_id)) {
+            if (state.discardedOwnerids.includes(owner_id)) {
               console.log(
                 'This data is from an archived location in CommCare. Not uploading to Salesforce.'
               );
