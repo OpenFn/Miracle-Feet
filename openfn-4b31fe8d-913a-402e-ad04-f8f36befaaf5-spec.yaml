@@ -1403,16 +1403,26 @@ workflows:
             
             const discardedCountries = [
               'Honduras', 
-              'Dominican Republic'];
+              'Dominican Republic', 
+              'Archive Country'];
 
-            return { ...state, discardedClinics, discardedCountries };
+            const discardedOwnerids = [
+              '69557d137a994c5baff3bebe0ffc3665'];
+
+            return { ...state, discardedClinics, discardedCountries, discardedOwnerids };
           });
 
           fn(state => {
             const { clinic_code } = state.data.properties;
             const { test_clinic } = state.data.properties;
             const { test_user } = state.data.properties;
-            if (state.discardedClinics.includes(clinic_code) || 
+            const { owner_id } = state.data.properties;
+            if (state.discardedOwnerIds.includes(owner_id)) {
+              console.log(
+                'This data is from an archived location in CommCare. Not uploading to Salesforce.'
+              );
+              return state;
+            }else if (state.discardedClinics.includes(clinic_code) || 
                 state.discardedCountries.includes(dataValue('state.data.properties.patient_country')(state)) ||
                 test_clinic==='Yes' || test_user==='Yes') {
               console.log(
