@@ -8,10 +8,10 @@
   "inserted_at": "2023-12-21T15:28:53Z",
   "updated_at": "2025-10-03T13:46:35Z",
   "parent_id": null,
+  "scheduled_deletion": null,
   "history_retention_period": 365,
   "dataclip_retention_period": 365,
   "retention_policy": "retain_all",
-  "scheduled_deletion": null,
   "project_credentials": {
     "clifford.hakimi@miraclefeet.org-MiracleFeet-Production": {
       "id": "9dfa1470-feb8-4af3-90fd-03442ce27802",
@@ -383,39 +383,6 @@
         }
       }
     },
-    "Treatment-Providers": {
-      "id": "23abea6d-61fe-472c-8034-b692bfe8e640",
-      "name": "Treatment Providers",
-      "inserted_at": "2025-09-23T16:57:15.021591Z",
-      "lock_version": 19,
-      "triggers": {
-        "webhook": {
-          "enabled": true,
-          "id": "a910e6e3-2321-464e-aa68-1cf08c34a5d7",
-          "type": "webhook"
-        }
-      },
-      "jobs": {
-        "Upsert-Treatment-Providers": {
-          "id": "1235f912-8b03-430f-8a3c-f753bfe45721",
-          "name": "Upsert Treatment Providers",
-          "body": "//Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru\nfn(state => {\n  return new Promise(resolve => {\n    setTimeout(() => resolve(state), 5000); // 5 second delay\n  });\n});\n\nfn(state => {\n  state.handleMultiSelect = function (state, multiField) {\n    const ms = state.data.properties[`${multiField}`];\n    if (ms) {\n      return ms\n        .replace(/ /gi, ';')\n        .toLowerCase()\n        .split(';')\n        .map(value => {\n          return humanProper(value);\n        })\n        .join(';');\n    } else {\n      return '';\n    }\n  };\n  \n//NOTE: Assumes date format YYYY-MM-DD\n  state.dateConverter = str => {\n    const dateMapper = dateString => {\n      const dateStringArray = dateString.split('-');\n      const mapper = {\n        2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,\n        4: dateString,\n      };\n      return mapper[dateStringArray[0].length];\n    };\n    return str && str.trim() !== ''\n      ? new Date(dateMapper(str)).toISOString()\n      : null;\n  };\n  \n   \n\n  return { ...state };\n});\n\nfn(state => {\n  const { clinic } = dataValue('properties.clinic');\n  const discardedClinics = [\n    'bangladesh_test_clinic',\n    'togo_test_clinic',\n    'test_bangladesh',\n    'pakistan_test',\n    'Pakistan_test',\n    'bol_test',\n    'bolivia_test_clinic',\n    'bong_test',\n    'brazil_test_clinic',\n    'brazil_test',\n    'brazzaville_test',\n    'cam_test',\n    'cambodia_test_clinic',\n    'congo_test_clinic',\n    'ecu_test',\n    'ecuador_test_clinic',\n    'gambia_test_clinic',\n    'gambia_test',\n    'gautemala_test_clinic',\n    'guat_test',\n    'guinea_test_clinic',\n    'haiti_test_clinic',\n    'hon_test',\n    'honduras_test_clinic',\n    'india_test_clinic',\n    'indonesia_test_clinic',\n    'indonesia_test',\n    'liberia_test_clinic',\n    'madagascar_test_clinic',\n    'madagascar_test',\n    'Madagascar Test Clinic',\n    'majunga_test_clinic',\n    'mali_test_clinic',\n    'mali_test',\n    'morocco_test_clinic',\n    'morocco_test',\n    'mya_test',\n    'myanmar_test_clinic',\n    'nepal_test_clinic',\n    'nepal_test',\n    'nica_prueba',\n    'nicaraugua_test_clinic',\n    'nigeria_test_clinic',\n    'nigeria_test',\n    'par_test',\n    'paraguary_test_clinic',\n    'peru_test_clinic',\n    'philippines_test',\n    'phillipines_test_clinic',\n    'senegal_test_clinic',\n    'Senegal Test Clinic',\n    'sierra_leone_test_clinic',\n    'sl_test',\n    'somalia_test_clinic',\n    'south_sudan_test_clinic',\n    'sri_lanka_test_clinic',\n    'sri_lanka_test',\n    'ss_test',\n    'tanzania_test_clinic',\n    'test_bangladesh',\n    'test_clinic1',\n    'test_clinic2',\n    'test_clinic3',\n    'test_clinic4',\n    'test_nigeria',\n    'test_som',\n    'test_somalia',\n    'test_tanzania_clinic',\n    'test_uganda_clinic',\n    'test',\n    'TestMAJ01',\n    'uganda_test_clinic',\n    'uptest',\n    'togo_test_clinic',\n    'Togo test clinic',\n    'tanzania_test_clinic',\n    'Pakistan_test', \n    'bafata_test_clinic'\n  ];\n  const { test_clinic } = state.data.properties;\n  const { test_user } = state.data.properties;\n  // if (discardedClinics.includes(state.data.properties.clinic) || \n  if (discardedClinics.includes(dataValue('properties.clinic')(state)) || \n      test_clinic==='Yes' || test_user==='Yes') {\n    console.log(\n      'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'\n    );\n    return state;\n  } else {\n    const patientData = fields(\n      relationship('RecordType', 'Name', 'Staff'),\n      field('CommCare_Case_ID__c', dataValue('case_id')),\n      relationship(\n      'Account',\n      'CAST_Location_ID__c',\n      //'d5024dd9dc05495fa6fd02f15d1c7391'\n      dataValue('properties.owner_id')\n      ),\n      field('Opened_Date_CommCare__c', state =>\n        state.dateConverter(state.data.properties.date_opened)\n      ),\n      field('Last_Modified_Date_CommCare__c', state =>\n        state.dateConverter(state.data.date_modified)\n      ),\n      field('Patient_Name__c', humanProper(state.data.properties.case_name)),\n      field('FirstName', humanProper(state.data.properties.provider_name)),\n      field('LastName', humanProper(state.data.properties.provider_surname)),\n      field('Salutation', dataValue('properties.salutation')),\n      field('Title', dataValue('properties.title')),\n      field('Staff_Type__c', dataValue('properties.staff_type')),\n      field(\n        'Active_Staff_Member__c',\n        state =>\n        state.data.properties.active_staff_member == 'no' ? false : true\n      ),\n      field(\n        'Profession__c',\n        state => {\n            var stage = dataValue('properties.provider_type')(state);\n            var newStage =\n              stage == 'midwife'\t? 'Nurse'\n              : stage == 'nurse' ? 'Nurse'\n              : stage == 'physical_therapist' ? 'Physiotherapist'\n              : stage == 'occupational_therapist' ? 'Other rehabilitation professional'\n              : stage == 'physiotherapist' ? 'Physiotherapist'\n              : stage == 'cast_technician' ? 'CAST Technician'\n              : stage == 'assistant' ? 'Other'\n              : stage == 'counselor' ? 'Other Health Professional'\n              : stage == 'orthopaedic_surgeon' ? 'Othropedic Surgeon'\n              : stage == 'orthopaedic_technician' ? 'Other Health Professional'\n              : stage == 'orthotist__prosthetist' ? 'Other rehabilitation professional'\n              : stage == 'social_worker' ? 'Other Health Professional'\n              : stage == 'volunteer' ? 'Other'\n              : stage == 'doctor' ? 'Other medical doctor'\n              : null;\n            return newStage;\n          }\n      ),\n      field(\n        'Gender__c',\n        state => {\n            var stage = dataValue('properties.sex')(state);\n            var newStage =\n              stage == 'female' ? 'Female'\n              : stage == 'male' ? 'Male'\n              : null;\n            return newStage;\n          }\n      ),\n      field('Email', dataValue('properties.email')),\n      field('Phone', dataValue('properties.phone')),\n      field('MobilePhone', dataValue('properties.mobile'))\n    );\n\n    return upsert(\n      'Contact',\n      'CommCare_Case_ID__c',\n      patientData\n    )(state);\n  }\n});\n",
-          "adaptor": "@openfn/language-salesforce@2.8.1",
-          "project_credential_id": "fb13dc0b-770f-4185-9c91-a5ee7579989e"
-        }
-      },
-      "edges": {
-        "webhook->Upsert-Treatment-Providers": {
-          "enabled": true,
-          "id": "313ed8c0-4075-4ead-8a36-8a6209dbc8d4",
-          "target_job_id": "1235f912-8b03-430f-8a3c-f753bfe45721",
-          "source_trigger_id": "a910e6e3-2321-464e-aa68-1cf08c34a5d7",
-          "condition_type": "js_expression",
-          "condition_label": "Not a test user",
-          "condition_expression": "state.data.properties.test_user !== \"Yes\"\n"
-        }
-      }
-    },
     "Visit-Forms": {
       "id": "83a2998c-fab8-4218-82d3-7550b530abbd",
       "name": "Visit Forms",
@@ -741,6 +708,39 @@
           "source_trigger_id": "d9b1e9f4-6c96-4824-ac74-69f499b751a6",
           "condition_type": "js_expression",
           "condition_label": "Not a test user (Update Patient)",
+          "condition_expression": "state.data.properties.test_user !== \"Yes\"\n"
+        }
+      }
+    },
+    "Treatment-Providers": {
+      "id": "23abea6d-61fe-472c-8034-b692bfe8e640",
+      "name": "Treatment Providers",
+      "inserted_at": "2025-11-13T09:32:45.015130Z",
+      "lock_version": 20,
+      "triggers": {
+        "webhook": {
+          "enabled": true,
+          "id": "a910e6e3-2321-464e-aa68-1cf08c34a5d7",
+          "type": "webhook"
+        }
+      },
+      "jobs": {
+        "Upsert-Treatment-Providers": {
+          "id": "1235f912-8b03-430f-8a3c-f753bfe45721",
+          "name": "Upsert Treatment Providers",
+          "body": "//Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummaru\nfn(state => {\n  return new Promise(resolve => {\n    setTimeout(() => resolve(state), 5000); // 5 second delay\n  });\n});\n\nfn(state => {\n  state.handleMultiSelect = function (state, multiField) {\n    const ms = state.data.properties[`${multiField}`];\n    if (ms) {\n      return ms\n        .replace(/ /gi, ';')\n        .toLowerCase()\n        .split(';')\n        .map(value => {\n          return humanProper(value);\n        })\n        .join(';');\n    } else {\n      return '';\n    }\n  };\n  \n//NOTE: Assumes date format YYYY-MM-DD\n  state.dateConverter = str => {\n    const dateMapper = dateString => {\n      const dateStringArray = dateString.split('-');\n      const mapper = {\n        2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,\n        4: dateString,\n      };\n      return mapper[dateStringArray[0].length];\n    };\n    return str && str.trim() !== ''\n      ? new Date(dateMapper(str)).toISOString()\n      : null;\n  };\n  \n   \n\n  return { ...state };\n});\n\nfn(state => {\n  const { clinic } = dataValue('properties.clinic');\n  const discardedClinics = [\n    'bangladesh_test_clinic',\n    'togo_test_clinic',\n    'test_bangladesh',\n    'pakistan_test',\n    'Pakistan_test',\n    'bol_test',\n    'bolivia_test_clinic',\n    'bong_test',\n    'brazil_test_clinic',\n    'brazil_test',\n    'brazzaville_test',\n    'cam_test',\n    'cambodia_test_clinic',\n    'congo_test_clinic',\n    'ecu_test',\n    'ecuador_test_clinic',\n    'gambia_test_clinic',\n    'gambia_test',\n    'gautemala_test_clinic',\n    'guat_test',\n    'guinea_test_clinic',\n    'haiti_test_clinic',\n    'hon_test',\n    'honduras_test_clinic',\n    'india_test_clinic',\n    'indonesia_test_clinic',\n    'indonesia_test',\n    'liberia_test_clinic',\n    'madagascar_test_clinic',\n    'madagascar_test',\n    'Madagascar Test Clinic',\n    'majunga_test_clinic',\n    'mali_test_clinic',\n    'mali_test',\n    'morocco_test_clinic',\n    'morocco_test',\n    'mya_test',\n    'myanmar_test_clinic',\n    'nepal_test_clinic',\n    'nepal_test',\n    'nica_prueba',\n    'nicaraugua_test_clinic',\n    'nigeria_test_clinic',\n    'nigeria_test',\n    'par_test',\n    'paraguary_test_clinic',\n    'peru_test_clinic',\n    'philippines_test',\n    'phillipines_test_clinic',\n    'senegal_test_clinic',\n    'Senegal Test Clinic',\n    'sierra_leone_test_clinic',\n    'sl_test',\n    'somalia_test_clinic',\n    'south_sudan_test_clinic',\n    'sri_lanka_test_clinic',\n    'sri_lanka_test',\n    'ss_test',\n    'tanzania_test_clinic',\n    'test_bangladesh',\n    'test_clinic1',\n    'test_clinic2',\n    'test_clinic3',\n    'test_clinic4',\n    'test_nigeria',\n    'test_som',\n    'test_somalia',\n    'test_tanzania_clinic',\n    'test_uganda_clinic',\n    'test',\n    'TestMAJ01',\n    'uganda_test_clinic',\n    'uptest',\n    'togo_test_clinic',\n    'Togo test clinic',\n    'tanzania_test_clinic',\n    'Pakistan_test', \n    'bafata_test_clinic',\n    \"c_test_tchad\"\n  ];\n  const { test_clinic } = state.data.properties;\n  const { test_user } = state.data.properties;\n  // if (discardedClinics.includes(state.data.properties.clinic) || \n  if (discardedClinics.includes(dataValue('properties.clinic')(state)) || \n      test_clinic==='Yes' || test_user==='Yes') {\n    console.log(\n      'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'\n    );\n    return state;\n  } else {\n    const patientData = fields(\n      relationship('RecordType', 'Name', 'Staff'),\n      field('CommCare_Case_ID__c', dataValue('case_id')),\n      relationship(\n      'Account',\n      'CAST_Location_ID__c',\n      //'d5024dd9dc05495fa6fd02f15d1c7391'\n      dataValue('properties.owner_id')\n      ),\n      field('Opened_Date_CommCare__c', state =>\n        state.dateConverter(state.data.properties.date_opened)\n      ),\n      field('Last_Modified_Date_CommCare__c', state =>\n        state.dateConverter(state.data.date_modified)\n      ),\n      field('Patient_Name__c', humanProper(state.data.properties.case_name)),\n      field('FirstName', humanProper(state.data.properties.provider_name)),\n      field('LastName', humanProper(state.data.properties.provider_surname)),\n      field('Salutation', dataValue('properties.salutation')),\n      field('Title', dataValue('properties.title')),\n      field('Staff_Type__c', dataValue('properties.staff_type')),\n      field(\n        'Active_Staff_Member__c',\n        state =>\n        state.data.properties.active_staff_member == 'no' ? false : true\n      ),\n      field(\n        'Profession__c',\n        state => {\n            var stage = dataValue('properties.provider_type')(state);\n            var newStage =\n              stage == 'midwife'\t? 'Nurse'\n              : stage == 'nurse' ? 'Nurse'\n              : stage == 'physical_therapist' ? 'Physiotherapist'\n              : stage == 'occupational_therapist' ? 'Other rehabilitation professional'\n              : stage == 'physiotherapist' ? 'Physiotherapist'\n              : stage == 'cast_technician' ? 'CAST Technician'\n              : stage == 'assistant' ? 'Other'\n              : stage == 'counselor' ? 'Other Health Professional'\n              : stage == 'orthopaedic_surgeon' ? 'Othropedic Surgeon'\n              : stage == 'orthopaedic_technician' ? 'Other Health Professional'\n              : stage == 'orthotist__prosthetist' ? 'Other rehabilitation professional'\n              : stage == 'social_worker' ? 'Other Health Professional'\n              : stage == 'volunteer' ? 'Other'\n              : stage == 'doctor' ? 'Other medical doctor'\n              : null;\n            return newStage;\n          }\n      ),\n      field(\n        'Gender__c',\n        state => {\n            var stage = dataValue('properties.sex')(state);\n            var newStage =\n              stage == 'female' ? 'Female'\n              : stage == 'male' ? 'Male'\n              : null;\n            return newStage;\n          }\n      ),\n      field('Email', dataValue('properties.email')),\n      field('Phone', dataValue('properties.phone')),\n      field('MobilePhone', dataValue('properties.mobile'))\n    );\n\n    return upsert(\n      'Contact',\n      'CommCare_Case_ID__c',\n      patientData\n    )(state);\n  }\n});\n",
+          "adaptor": "@openfn/language-salesforce@2.8.1",
+          "project_credential_id": "fb13dc0b-770f-4185-9c91-a5ee7579989e"
+        }
+      },
+      "edges": {
+        "webhook->Upsert-Treatment-Providers": {
+          "enabled": true,
+          "id": "313ed8c0-4075-4ead-8a36-8a6209dbc8d4",
+          "target_job_id": "1235f912-8b03-430f-8a3c-f753bfe45721",
+          "source_trigger_id": "a910e6e3-2321-464e-aa68-1cf08c34a5d7",
+          "condition_type": "js_expression",
+          "condition_label": "Not a test user",
           "condition_expression": "state.data.properties.test_user !== \"Yes\"\n"
         }
       }

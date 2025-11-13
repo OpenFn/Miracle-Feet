@@ -1197,7 +1197,8 @@ workflows:
               'Togo test clinic',
               'tanzania_test_clinic',
               'Pakistan_test', 
-              'bafata_test_clinic'
+              'bafata_test_clinic',
+              "c_test_tchad"
             ];
             const { test_clinic } = state.data.properties;
             const { test_user } = state.data.properties;
