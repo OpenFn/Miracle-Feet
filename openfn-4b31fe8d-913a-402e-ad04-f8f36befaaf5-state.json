@@ -12,7 +12,6 @@
   "history_retention_period": 365,
   "dataclip_retention_period": 365,
   "retention_policy": "retain_all",
-  "version_history": [],
   "project_credentials": {
     "clifford.hakimi@miraclefeet.org-MiracleFeet-Production": {
       "id": "9dfa1470-feb8-4af3-90fd-03442ce27802",
@@ -50,6 +49,7 @@
       "owner": "aleksa@openfn.org"
     }
   },
+  "version_history": [],
   "collections": {},
   "workflows": {
     "x-[archive]-0.-Schedule-SMS-alerts": {
@@ -288,37 +288,6 @@
           "target_job_id": "dc43f0b7-ebc2-403b-8a38-189eba50a26b",
           "source_job_id": "f5ec2b07-d4fd-4d7a-84de-ef65b885675d",
           "condition_type": "on_job_success"
-        }
-      }
-    },
-    "Event-based-Workflow": {
-      "id": "0f69f720-60e0-408b-9609-f41ccff3574a",
-      "name": "Event-based Workflow",
-      "inserted_at": "2025-08-19T19:03:52.669781Z",
-      "lock_version": 1,
-      "triggers": {
-        "webhook": {
-          "enabled": true,
-          "id": "4bb08a0b-2283-48b7-89e2-85641f621856",
-          "type": "webhook"
-        }
-      },
-      "jobs": {
-        "Transform-data": {
-          "id": "5fcea2e1-7bc2-4e59-8eed-5a2d1409dbe7",
-          "name": "Transform data",
-          "body": "// Check out the Job Writing Guide for help getting started:\n// https://docs.openfn.org/documentation/jobs/job-writing-guide\n",
-          "adaptor": "@openfn/language-common@latest",
-          "project_credential_id": null
-        }
-      },
-      "edges": {
-        "webhook->Transform-data": {
-          "enabled": true,
-          "id": "ea51219d-a4a8-4d97-8acb-f7f973bf0d13",
-          "target_job_id": "5fcea2e1-7bc2-4e59-8eed-5a2d1409dbe7",
-          "source_trigger_id": "4bb08a0b-2283-48b7-89e2-85641f621856",
-          "condition_type": "always"
         }
       }
     },
@@ -745,73 +714,11 @@
         }
       }
     },
-    "Event-based-Workflow-1": {
-      "id": "a78154d8-d9a9-41c0-a8bc-779b303a8d89",
-      "name": "Event-based Workflow 1",
-      "inserted_at": "2025-11-17T11:15:19.874897Z",
-      "lock_version": 1,
-      "triggers": {
-        "webhook": {
-          "enabled": true,
-          "id": "960896cb-15e4-4790-8296-b04f9b19ecfe",
-          "type": "webhook"
-        }
-      },
-      "jobs": {
-        "Transform-data": {
-          "id": "c8046cb7-05d7-42e4-8985-9509a5f26fae",
-          "name": "Transform data",
-          "body": "// Check out the Job Writing Guide for help getting started:\n// https://docs.openfn.org/documentation/jobs/job-writing-guide\n",
-          "adaptor": "@openfn/language-common@latest",
-          "project_credential_id": null
-        }
-      },
-      "edges": {
-        "webhook->Transform-data": {
-          "enabled": true,
-          "id": "9cb46fb8-379a-4f64-8885-b20479aa22b8",
-          "target_job_id": "c8046cb7-05d7-42e4-8985-9509a5f26fae",
-          "source_trigger_id": "960896cb-15e4-4790-8296-b04f9b19ecfe",
-          "condition_type": "always"
-        }
-      }
-    },
-    "Event-based-Workflow-2": {
-      "id": "f49c7ad7-6b83-4afc-9edb-383fa97381cc",
-      "name": "Event-based Workflow 2",
-      "inserted_at": "2025-12-01T11:55:10.784889Z",
-      "lock_version": 1,
-      "triggers": {
-        "webhook": {
-          "enabled": true,
-          "id": "224db629-cbd3-4419-84dc-871c813faed9",
-          "type": "webhook"
-        }
-      },
-      "jobs": {
-        "Transform-data": {
-          "id": "d1f978c6-ccc8-4dd3-8790-d2f0851e4f11",
-          "name": "Transform data",
-          "body": "// Check out the Job Writing Guide for help getting started:\n// https://docs.openfn.org/documentation/jobs/job-writing-guide\n",
-          "adaptor": "@openfn/language-common@latest",
-          "project_credential_id": null
-        }
-      },
-      "edges": {
-        "webhook->Transform-data": {
-          "enabled": true,
-          "id": "6bd8a7f6-f77f-47bc-8bc6-261d6cb2588c",
-          "target_job_id": "d1f978c6-ccc8-4dd3-8790-d2f0851e4f11",
-          "source_trigger_id": "224db629-cbd3-4419-84dc-871c813faed9",
-          "condition_type": "always"
-        }
-      }
-    },
-    "Event-based-Workflow-3": {
+    "Update-Treatment-Provider-": {
       "id": "d751825e-b1e3-4d81-808c-025c7c0f3580",
-      "name": "Event-based Workflow 3",
-      "inserted_at": "2025-12-01T12:36:13.135387Z",
-      "lock_version": 3,
+      "name": "Update Treatment Provider ",
+      "inserted_at": "2025-12-01T12:58:13.536416Z",
+      "lock_version": 5,
       "triggers": {
         "webhook": {
           "enabled": true,
@@ -825,7 +732,7 @@
           "name": "Update Treatment Provider",
           "body": "//Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummary\nfn(state => {\n  return new Promise(resolve => {\n    setTimeout(() => resolve(state), 5000); // 5 second delay\n  });\n});\n\nfn(state => {\n  state.handleMultiSelect = function (state, multiField) {\n    const ms = state.data.properties[`${multiField}`];\n    if (ms) {\n      return ms\n        .replace(/ /gi, ';')\n        .toLowerCase()\n        .split(';')\n        .map(value => {\n          return humanProper(value);\n        })\n        .join(';');\n    } else {\n      return '';\n    }\n  };\n  \n//NOTE: Assumes date format YYYY-MM-DD\n  state.dateConverter = str => {\n    const dateMapper = dateString => {\n      const dateStringArray = dateString.split('-');\n      const mapper = {\n        2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,\n        4: dateString,\n      };\n      return mapper[dateStringArray[0].length];\n    };\n    return str && str.trim() !== ''\n      ? new Date(dateMapper(str)).toISOString()\n      : null;\n  };\n\n  return { ...state };\n});\n\nfn(state => {\n  const discardedClinics = [\n    'bangladesh_test_clinic',\n    'togo_test_clinic',\n    'test_bangladesh',\n    'pakistan_test',\n    'Pakistan_test',\n    'bol_test',\n    'bolivia_test_clinic',\n    'bong_test',\n    'brazil_test_clinic',\n    'brazil_test',\n    'brazzaville_test',\n    'cam_test',\n    'cambodia_test_clinic',\n    'congo_test_clinic',\n    'ecu_test',\n    'ecuador_test_clinic',\n    'gambia_test_clinic',\n    'gambia_test',\n    'gautemala_test_clinic',\n    'guat_test',\n    'guinea_test_clinic',\n    'haiti_test_clinic',\n    'hon_test',\n    'honduras_test_clinic',\n    'india_test_clinic',\n    'indonesia_test_clinic',\n    'indonesia_test',\n    'liberia_test_clinic',\n    'madagascar_test_clinic',\n    'madagascar_test',\n    'Madagascar Test Clinic',\n    'majunga_test_clinic',\n    'mali_test_clinic',\n    'mali_test',\n    'morocco_test_clinic',\n    'morocco_test',\n    'mya_test',\n    'myanmar_test_clinic',\n    'nepal_test_clinic',\n    'nepal_test',\n    'nica_prueba',\n    'nicaraugua_test_clinic',\n    'nigeria_test_clinic',\n    'nigeria_test',\n    'par_test',\n    'paraguary_test_clinic',\n    'peru_test_clinic',\n    'philippines_test',\n    'phillipines_test_clinic',\n    'senegal_test_clinic',\n    'Senegal Test Clinic',\n    'sierra_leone_test_clinic',\n    'sl_test',\n    'somalia_test_clinic',\n    'south_sudan_test_clinic',\n    'sri_lanka_test_clinic',\n    'sri_lanka_test',\n    'ss_test',\n    'tanzania_test_clinic',\n    'test_bangladesh',\n    'test_clinic1',\n    'test_clinic2',\n    'test_clinic3',\n    'test_clinic4',\n    'test_nigeria',\n    'test_som',\n    'test_somalia',\n    'test_tanzania_clinic',\n    'test_uganda_clinic',\n    'test',\n    'TestMAJ01',\n    'uganda_test_clinic',\n    'uptest',\n    'togo_test_clinic',\n    'Togo test clinic',\n    'tanzania_test_clinic',\n    'Pakistan_test', \n    'bafata_test_clinic',\n    \"c_test_tchad\"\n  ];\n  \n  const { test_clinic } = state.data.properties;\n  const { test_user } = state.data.properties;\n  \n  if (discardedClinics.includes(dataValue('properties.clinic')(state)) || \n      test_clinic==='Yes' || test_user==='Yes') {\n    console.log(\n      'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'\n    );\n    return state;\n  } else {\n    // First, query to get the Salesforce record ID\n    return query(\n      `SELECT Id FROM Contact WHERE CommCare_Case_ID__c = '${state.data.case_id}'`\n    )(state)\n    .then(state => {\n      if (state.data.records && state.data.records.length > 0) {\n        const salesforceId = state.data.records[0].Id;\n        \n        const patientData = fields(\n          field('Id', salesforceId), // Required for update\n          field('Last_Modified_Date_CommCare__c', state =>\n            state.dateConverter(state.data.date_modified)\n          ),\n          field('Patient_Name__c', humanProper(state.data.properties.case_name)),\n          field('FirstName', humanProper(state.data.properties.provider_name)),\n          field('LastName', humanProper(state.data.properties.provider_surname)),\n          field('Salutation', dataValue('properties.salutation')),\n          field('Title', dataValue('properties.title')),\n          field('Staff_Type__c', dataValue('properties.staff_type')),\n          field(\n            'Active_Staff_Member__c',\n            state => state.data.properties.active_staff_member == 'no' ? false : true\n          ),\n          field(\n            'Profession__c',\n            state => {\n              var stage = dataValue('properties.provider_type')(state);\n              var newStage =\n                stage == 'midwife'  ? 'Nurse'\n                : stage == 'nurse' ? 'Nurse'\n                : stage == 'physical_therapist' ? 'Physiotherapist'\n                : stage == 'occupational_therapist' ? 'Other rehabilitation professional'\n                : stage == 'physiotherapist' ? 'Physiotherapist'\n                : stage == 'cast_technician' ? 'CAST Technician'\n                : stage == 'assistant' ? 'Other'\n                : stage == 'counselor' ? 'Other Health Professional'\n                : stage == 'orthopaedic_surgeon' ? 'Othropedic Surgeon'\n                : stage == 'orthopaedic_technician' ? 'Other Health Professional'\n                : stage == 'orthotist__prosthetist' ? 'Other rehabilitation professional'\n                : stage == 'social_worker' ? 'Other Health Professional'\n                : stage == 'volunteer' ? 'Other'\n                : stage == 'doctor' ? 'Other medical doctor'\n                : null;\n              return newStage;\n            }\n          ),\n          field(\n            'Gender__c',\n            state => {\n              var stage = dataValue('properties.sex')(state);\n              var newStage =\n                stage == 'female' ? 'Female'\n                : stage == 'male' ? 'Male'\n                : null;\n              return newStage;\n            }\n          ),\n          field('Email', dataValue('properties.email')),\n          field('Phone', dataValue('properties.phone')),\n          field('MobilePhone', dataValue('properties.mobile'))\n        );\n\n        return update('Contact', patientData)(state);\n      } else {\n        console.log(\n          `No existing Contact found with CommCare_Case_ID__c = ${state.data.case_id}. Skipping update.`\n        );\n        return state;\n      }\n    });\n  }\n});",
           "adaptor": "@openfn/language-salesforce@9.0.2",
-          "project_credential_id": null
+          "project_credential_id": "fb13dc0b-770f-4185-9c91-a5ee7579989e"
         }
       },
       "edges": {

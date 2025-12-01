@@ -24,294 +24,6 @@ credentials:
     name: MiracleFeet Production
     owner: clifford.hakimi@miraclefeet.org
 workflows:
-  Event-based-Workflow:
-    name: Event-based Workflow
-    jobs:
-      Transform-data:
-        name: Transform data
-        adaptor: '@openfn/language-common@latest'
-        credential: null
-        body: |
-          // Check out the Job Writing Guide for help getting started:
-          // https://docs.openfn.org/documentation/jobs/job-writing-guide
-
-    triggers:
-      webhook:
-        type: webhook
-        enabled: true
-    edges:
-      webhook->Transform-data:
-        source_trigger: webhook
-        target_job: Transform-data
-        condition_type: always
-        enabled: true
-  Event-based-Workflow-1:
-    name: Event-based Workflow 1
-    jobs:
-      Transform-data:
-        name: Transform data
-        adaptor: '@openfn/language-common@latest'
-        credential: null
-        body: |
-          // Check out the Job Writing Guide for help getting started:
-          // https://docs.openfn.org/documentation/jobs/job-writing-guide
-
-    triggers:
-      webhook:
-        type: webhook
-        enabled: true
-    edges:
-      webhook->Transform-data:
-        source_trigger: webhook
-        target_job: Transform-data
-        condition_type: always
-        enabled: true
-  Event-based-Workflow-2:
-    name: Event-based Workflow 2
-    jobs:
-      Transform-data:
-        name: Transform data
-        adaptor: '@openfn/language-common@latest'
-        credential: null
-        body: |
-          // Check out the Job Writing Guide for help getting started:
-          // https://docs.openfn.org/documentation/jobs/job-writing-guide
-
-    triggers:
-      webhook:
-        type: webhook
-        enabled: true
-    edges:
-      webhook->Transform-data:
-        source_trigger: webhook
-        target_job: Transform-data
-        condition_type: always
-        enabled: true
-  Event-based-Workflow-3:
-    name: Event-based Workflow 3
-    jobs:
-      Update-Treatment-Provider:
-        name: Update Treatment Provider
-        adaptor: '@openfn/language-salesforce@9.0.2'
-        credential: null
-        body: |
-          //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummary
-          fn(state => {
-            return new Promise(resolve => {
-              setTimeout(() => resolve(state), 5000); // 5 second delay
-            });
-          });
-
-          fn(state => {
-            state.handleMultiSelect = function (state, multiField) {
-              const ms = state.data.properties[`${multiField}`];
-              if (ms) {
-                return ms
-                  .replace(/ /gi, ';')
-                  .toLowerCase()
-                  .split(';')
-                  .map(value => {
-                    return humanProper(value);
-                  })
-                  .join(';');
-              } else {
-                return '';
-              }
-            };
-            
-          //NOTE: Assumes date format YYYY-MM-DD
-            state.dateConverter = str => {
-              const dateMapper = dateString => {
-                const dateStringArray = dateString.split('-');
-                const mapper = {
-                  2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,
-                  4: dateString,
-                };
-                return mapper[dateStringArray[0].length];
-              };
-              return str && str.trim() !== ''
-                ? new Date(dateMapper(str)).toISOString()
-                : null;
-            };
-
-            return { ...state };
-          });
-
-          fn(state => {
-            const discardedClinics = [
-              'bangladesh_test_clinic',
-              'togo_test_clinic',
-              'test_bangladesh',
-              'pakistan_test',
-              'Pakistan_test',
-              'bol_test',
-              'bolivia_test_clinic',
-              'bong_test',
-              'brazil_test_clinic',
-              'brazil_test',
-              'brazzaville_test',
-              'cam_test',
-              'cambodia_test_clinic',
-              'congo_test_clinic',
-              'ecu_test',
-              'ecuador_test_clinic',
-              'gambia_test_clinic',
-              'gambia_test',
-              'gautemala_test_clinic',
-              'guat_test',
-              'guinea_test_clinic',
-              'haiti_test_clinic',
-              'hon_test',
-              'honduras_test_clinic',
-              'india_test_clinic',
-              'indonesia_test_clinic',
-              'indonesia_test',
-              'liberia_test_clinic',
-              'madagascar_test_clinic',
-              'madagascar_test',
-              'Madagascar Test Clinic',
-              'majunga_test_clinic',
-              'mali_test_clinic',
-              'mali_test',
-              'morocco_test_clinic',
-              'morocco_test',
-              'mya_test',
-              'myanmar_test_clinic',
-              'nepal_test_clinic',
-              'nepal_test',
-              'nica_prueba',
-              'nicaraugua_test_clinic',
-              'nigeria_test_clinic',
-              'nigeria_test',
-              'par_test',
-              'paraguary_test_clinic',
-              'peru_test_clinic',
-              'philippines_test',
-              'phillipines_test_clinic',
-              'senegal_test_clinic',
-              'Senegal Test Clinic',
-              'sierra_leone_test_clinic',
-              'sl_test',
-              'somalia_test_clinic',
-              'south_sudan_test_clinic',
-              'sri_lanka_test_clinic',
-              'sri_lanka_test',
-              'ss_test',
-              'tanzania_test_clinic',
-              'test_bangladesh',
-              'test_clinic1',
-              'test_clinic2',
-              'test_clinic3',
-              'test_clinic4',
-              'test_nigeria',
-              'test_som',
-              'test_somalia',
-              'test_tanzania_clinic',
-              'test_uganda_clinic',
-              'test',
-              'TestMAJ01',
-              'uganda_test_clinic',
-              'uptest',
-              'togo_test_clinic',
-              'Togo test clinic',
-              'tanzania_test_clinic',
-              'Pakistan_test', 
-              'bafata_test_clinic',
-              "c_test_tchad"
-            ];
-            
-            const { test_clinic } = state.data.properties;
-            const { test_user } = state.data.properties;
-            
-            if (discardedClinics.includes(dataValue('properties.clinic')(state)) || 
-                test_clinic==='Yes' || test_user==='Yes') {
-              console.log(
-                'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'
-              );
-              return state;
-            } else {
-              // First, query to get the Salesforce record ID
-              return query(
-                `SELECT Id FROM Contact WHERE CommCare_Case_ID__c = '${state.data.case_id}'`
-              )(state)
-              .then(state => {
-                if (state.data.records && state.data.records.length > 0) {
-                  const salesforceId = state.data.records[0].Id;
-                  
-                  const patientData = fields(
-                    field('Id', salesforceId), // Required for update
-                    field('Last_Modified_Date_CommCare__c', state =>
-                      state.dateConverter(state.data.date_modified)
-                    ),
-                    field('Patient_Name__c', humanProper(state.data.properties.case_name)),
-                    field('FirstName', humanProper(state.data.properties.provider_name)),
-                    field('LastName', humanProper(state.data.properties.provider_surname)),
-                    field('Salutation', dataValue('properties.salutation')),
-                    field('Title', dataValue('properties.title')),
-                    field('Staff_Type__c', dataValue('properties.staff_type')),
-                    field(
-                      'Active_Staff_Member__c',
-                      state => state.data.properties.active_staff_member == 'no' ? false : true
-                    ),
-                    field(
-                      'Profession__c',
-                      state => {
-                        var stage = dataValue('properties.provider_type')(state);
-                        var newStage =
-                          stage == 'midwife'  ? 'Nurse'
-                          : stage == 'nurse' ? 'Nurse'
-                          : stage == 'physical_therapist' ? 'Physiotherapist'
-                          : stage == 'occupational_therapist' ? 'Other rehabilitation professional'
-                          : stage == 'physiotherapist' ? 'Physiotherapist'
-                          : stage == 'cast_technician' ? 'CAST Technician'
-                          : stage == 'assistant' ? 'Other'
-                          : stage == 'counselor' ? 'Other Health Professional'
-                          : stage == 'orthopaedic_surgeon' ? 'Othropedic Surgeon'
-                          : stage == 'orthopaedic_technician' ? 'Other Health Professional'
-                          : stage == 'orthotist__prosthetist' ? 'Other rehabilitation professional'
-                          : stage == 'social_worker' ? 'Other Health Professional'
-                          : stage == 'volunteer' ? 'Other'
-                          : stage == 'doctor' ? 'Other medical doctor'
-                          : null;
-                        return newStage;
-                      }
-                    ),
-                    field(
-                      'Gender__c',
-                      state => {
-                        var stage = dataValue('properties.sex')(state);
-                        var newStage =
-                          stage == 'female' ? 'Female'
-                          : stage == 'male' ? 'Male'
-                          : null;
-                        return newStage;
-                      }
-                    ),
-                    field('Email', dataValue('properties.email')),
-                    field('Phone', dataValue('properties.phone')),
-                    field('MobilePhone', dataValue('properties.mobile'))
-                  );
-
-                  return update('Contact', patientData)(state);
-                } else {
-                  console.log(
-                    `No existing Contact found with CommCare_Case_ID__c = ${state.data.case_id}. Skipping update.`
-                  );
-                  return state;
-                }
-              });
-            }
-          });
-    triggers:
-      webhook:
-        type: webhook
-        enabled: true
-    edges:
-      webhook->Update-Treatment-Provider:
-        source_trigger: webhook
-        target_job: Update-Treatment-Provider
-        condition_type: always
-        enabled: true
   Fetch-cleaned-forms---Patient-and-Visit:
     name: Fetch cleaned forms - Patient and Visit
     jobs:
@@ -2169,6 +1881,231 @@ workflows:
         condition_expression: |
           state.data.properties.test_user !== "Yes"
 
+        enabled: true
+  "Update-Treatment-Provider-":
+    name: 'Update Treatment Provider '
+    jobs:
+      Update-Treatment-Provider:
+        name: Update Treatment Provider
+        adaptor: '@openfn/language-salesforce@9.0.2'
+        credential: aleksa@openfn.org-MF-Salesforce-Prod---openfn-user
+        body: |
+          //Add 5s delay to see if it addresses salesforce duplicate issues & conflicts with RollupSummary
+          fn(state => {
+            return new Promise(resolve => {
+              setTimeout(() => resolve(state), 5000); // 5 second delay
+            });
+          });
+
+          fn(state => {
+            state.handleMultiSelect = function (state, multiField) {
+              const ms = state.data.properties[`${multiField}`];
+              if (ms) {
+                return ms
+                  .replace(/ /gi, ';')
+                  .toLowerCase()
+                  .split(';')
+                  .map(value => {
+                    return humanProper(value);
+                  })
+                  .join(';');
+              } else {
+                return '';
+              }
+            };
+            
+          //NOTE: Assumes date format YYYY-MM-DD
+            state.dateConverter = str => {
+              const dateMapper = dateString => {
+                const dateStringArray = dateString.split('-');
+                const mapper = {
+                  2: `${dateStringArray[2]}-${dateStringArray[0]}-${dateStringArray[1]}`,
+                  4: dateString,
+                };
+                return mapper[dateStringArray[0].length];
+              };
+              return str && str.trim() !== ''
+                ? new Date(dateMapper(str)).toISOString()
+                : null;
+            };
+
+            return { ...state };
+          });
+
+          fn(state => {
+            const discardedClinics = [
+              'bangladesh_test_clinic',
+              'togo_test_clinic',
+              'test_bangladesh',
+              'pakistan_test',
+              'Pakistan_test',
+              'bol_test',
+              'bolivia_test_clinic',
+              'bong_test',
+              'brazil_test_clinic',
+              'brazil_test',
+              'brazzaville_test',
+              'cam_test',
+              'cambodia_test_clinic',
+              'congo_test_clinic',
+              'ecu_test',
+              'ecuador_test_clinic',
+              'gambia_test_clinic',
+              'gambia_test',
+              'gautemala_test_clinic',
+              'guat_test',
+              'guinea_test_clinic',
+              'haiti_test_clinic',
+              'hon_test',
+              'honduras_test_clinic',
+              'india_test_clinic',
+              'indonesia_test_clinic',
+              'indonesia_test',
+              'liberia_test_clinic',
+              'madagascar_test_clinic',
+              'madagascar_test',
+              'Madagascar Test Clinic',
+              'majunga_test_clinic',
+              'mali_test_clinic',
+              'mali_test',
+              'morocco_test_clinic',
+              'morocco_test',
+              'mya_test',
+              'myanmar_test_clinic',
+              'nepal_test_clinic',
+              'nepal_test',
+              'nica_prueba',
+              'nicaraugua_test_clinic',
+              'nigeria_test_clinic',
+              'nigeria_test',
+              'par_test',
+              'paraguary_test_clinic',
+              'peru_test_clinic',
+              'philippines_test',
+              'phillipines_test_clinic',
+              'senegal_test_clinic',
+              'Senegal Test Clinic',
+              'sierra_leone_test_clinic',
+              'sl_test',
+              'somalia_test_clinic',
+              'south_sudan_test_clinic',
+              'sri_lanka_test_clinic',
+              'sri_lanka_test',
+              'ss_test',
+              'tanzania_test_clinic',
+              'test_bangladesh',
+              'test_clinic1',
+              'test_clinic2',
+              'test_clinic3',
+              'test_clinic4',
+              'test_nigeria',
+              'test_som',
+              'test_somalia',
+              'test_tanzania_clinic',
+              'test_uganda_clinic',
+              'test',
+              'TestMAJ01',
+              'uganda_test_clinic',
+              'uptest',
+              'togo_test_clinic',
+              'Togo test clinic',
+              'tanzania_test_clinic',
+              'Pakistan_test', 
+              'bafata_test_clinic',
+              "c_test_tchad"
+            ];
+            
+            const { test_clinic } = state.data.properties;
+            const { test_user } = state.data.properties;
+            
+            if (discardedClinics.includes(dataValue('properties.clinic')(state)) || 
+                test_clinic==='Yes' || test_user==='Yes') {
+              console.log(
+                'This is a CommCare test clinic or test user. Not uploading data to Salesforce.'
+              );
+              return state;
+            } else {
+              // First, query to get the Salesforce record ID
+              return query(
+                `SELECT Id FROM Contact WHERE CommCare_Case_ID__c = '${state.data.case_id}'`
+              )(state)
+              .then(state => {
+                if (state.data.records && state.data.records.length > 0) {
+                  const salesforceId = state.data.records[0].Id;
+                  
+                  const patientData = fields(
+                    field('Id', salesforceId), // Required for update
+                    field('Last_Modified_Date_CommCare__c', state =>
+                      state.dateConverter(state.data.date_modified)
+                    ),
+                    field('Patient_Name__c', humanProper(state.data.properties.case_name)),
+                    field('FirstName', humanProper(state.data.properties.provider_name)),
+                    field('LastName', humanProper(state.data.properties.provider_surname)),
+                    field('Salutation', dataValue('properties.salutation')),
+                    field('Title', dataValue('properties.title')),
+                    field('Staff_Type__c', dataValue('properties.staff_type')),
+                    field(
+                      'Active_Staff_Member__c',
+                      state => state.data.properties.active_staff_member == 'no' ? false : true
+                    ),
+                    field(
+                      'Profession__c',
+                      state => {
+                        var stage = dataValue('properties.provider_type')(state);
+                        var newStage =
+                          stage == 'midwife'  ? 'Nurse'
+                          : stage == 'nurse' ? 'Nurse'
+                          : stage == 'physical_therapist' ? 'Physiotherapist'
+                          : stage == 'occupational_therapist' ? 'Other rehabilitation professional'
+                          : stage == 'physiotherapist' ? 'Physiotherapist'
+                          : stage == 'cast_technician' ? 'CAST Technician'
+                          : stage == 'assistant' ? 'Other'
+                          : stage == 'counselor' ? 'Other Health Professional'
+                          : stage == 'orthopaedic_surgeon' ? 'Othropedic Surgeon'
+                          : stage == 'orthopaedic_technician' ? 'Other Health Professional'
+                          : stage == 'orthotist__prosthetist' ? 'Other rehabilitation professional'
+                          : stage == 'social_worker' ? 'Other Health Professional'
+                          : stage == 'volunteer' ? 'Other'
+                          : stage == 'doctor' ? 'Other medical doctor'
+                          : null;
+                        return newStage;
+                      }
+                    ),
+                    field(
+                      'Gender__c',
+                      state => {
+                        var stage = dataValue('properties.sex')(state);
+                        var newStage =
+                          stage == 'female' ? 'Female'
+                          : stage == 'male' ? 'Male'
+                          : null;
+                        return newStage;
+                      }
+                    ),
+                    field('Email', dataValue('properties.email')),
+                    field('Phone', dataValue('properties.phone')),
+                    field('MobilePhone', dataValue('properties.mobile'))
+                  );
+
+                  return update('Contact', patientData)(state);
+                } else {
+                  console.log(
+                    `No existing Contact found with CommCare_Case_ID__c = ${state.data.case_id}. Skipping update.`
+                  );
+                  return state;
+                }
+              });
+            }
+          });
+    triggers:
+      webhook:
+        type: webhook
+        enabled: true
+    edges:
+      webhook->Update-Treatment-Provider:
+        source_trigger: webhook
+        target_job: Update-Treatment-Provider
+        condition_type: always
         enabled: true
   Update-Visit-WF:
     name: Update Visit WF
