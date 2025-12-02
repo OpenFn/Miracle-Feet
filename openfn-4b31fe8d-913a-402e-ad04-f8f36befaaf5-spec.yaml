@@ -3573,6 +3573,7 @@ workflows:
                       var method = dataValue('form.subcase_0.case.update.visit_type')(state); 
                       return method=='remote' ? 'Remote' : 
                         method=='on_site' ? 'On site' : 
+                        method== 'telehealth' ? 'Telehealth' :
                         method=='telerehabilitation_-_audio_only' ? '	Telerehabilitation - Audio only' :
                         method=='telerehabilitation_-_audio_and_visual' ? 'Telerehabilitation - Audio and visual' : method; 
                     }), // picklist - new field in SF added by cliff for Telemedicine
