@@ -3399,8 +3399,80 @@ workflows:
                       return icrId && icrId !== '' ? icrId : caseId;
                     }),
                     field(
+                      'Left_PBS_Standing_Hindfoot_Varus__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_standing_hindfoot_varus')
+                    ),
+                    field(
+                      'Left_PBS_Standing_Supination__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_standing_supination')
+                    ),
+                    field(
+                      'Left_PBS_Walking_Supination__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_walking_supination')
+                    ),
+                     field(
+                      'Left_PBS_Walking_Heel_Rise__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_walking_supination')
+                    ),
+                    field(
+                      'Left_PBS_Seated_Passive_Dorsiflexion__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_seated_passive_dorsiflexion')
+                    ),
+                    field(
+                      'Left_PBS_Seated_Active_Dorsiflexion__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_seated_active_dorsiflexion')
+                    ),
+                    field(
+                      'Left_PBS_Seated_Subtalar_Abduction__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_seated_subtalar_abduction')
+                    ),
+                    field(
+                      'Right_PBS_Standing_Hindfoot_Varus__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_standing_hindfoot_varus')
+                    ),
+                    field(
+                      'Right_PBS_Standing_Supination__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_standing_supination')
+                    ),
+                    field(
+                      'Right_PBS_Walking_Supination__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_walking_supination')
+                    ),
+                    field(
+                      'Right_PBS_Walking_Heel_Rise__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_walking_heel_rise')
+                    ),
+                    field(
+                      'Right_PBS_Seated_Passive_Dorsiflexion__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_seated_passive_dorsiflexion')
+                    ),
+                    field(
+                      'Right_PBS_Seated_Active_Dorsiflexion__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_seated_active_dorsiflexion')
+                    ),
+                    field(
+                      'Right_PBS_Seated_Subtalar_Abduction__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_seated_subtalar_abduction')
+                    ),
+                    field(
+                      'PBS_Caregiver_Satisfaction__c',
+                      dataValue('form.subcase_0.case.update.pbs_caregiver_satisfaction')
+                    ),
+                    field(
+                      'PBS_Pain_in_Affected_Foot__c',
+                      dataValue('form.subcase_0.case.update.pbs_pain_in_affected_foot')
+                    ),
+                    field(
+                      'PBS_Squatting__c',
+                      dataValue('form.subcase_0.case.update.pbs_squatting')
+                    ),
+                    field(
+                      'PBS_School_Attendance__c',
+                      dataValue('form.subcase_0.case.update.pbs_school_attendance')
+                    ),
+                    field(
                       'Left_Angle_of_Abduction__c',
-                      dataValue('form.subcase_0.case.update.l_angle_abduction')
+                      dataValue('form.subcase_0.case.update.l_pbs_walking_heel_rise')
                     ),
                     field(
                       'Left_Angle_of_Dorsiflexion__c',
