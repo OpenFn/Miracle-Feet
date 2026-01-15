@@ -2934,15 +2934,18 @@ workflows:
           //New job for upserting Visits post SF migration
           fn(state => {
             state.handlePhoto = function handlePhoto(state, photoField) {
-              const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
-              const uuid = state.data.metadata.instanceID;
-              const hasPhotos =
-                state.data.form.photos && state.data.form.photos.add_photos == 'yes';
-              const image = hasPhotos
-                ? state.data.form.photos.photos[`${photoField}`]
-                : null;
-              return image ? `${baseUrl}${uuid}/${image}` : '';
-            };
+            const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
+            const uuid = state.data.metadata.instanceID;
+            const hasPhotos =
+              state.data.form.photos && state.data.form.photos.add_photos == 'yes' ||
+              state.data.form.visit_type == 'telehealth' ||
+              state.data.form.visit_type == 'telerehabilitation_-_audio_only' ||
+              state.data.form.visit_type == 'telerehabilitation_-_audio_and_visual';
+            const image = hasPhotos
+              ? state.data.form.photos.photos[`${photoField}`]
+              : null;
+            return image ? `${baseUrl}${uuid}/${image}` : '';
+          };
             
             state.handleBracePhoto = function handleBracePhoto(state, photoField) {
               const baseUrl = `https://www.commcarehq.org/a/${state.data.domain}/api/form/attachment/`;
