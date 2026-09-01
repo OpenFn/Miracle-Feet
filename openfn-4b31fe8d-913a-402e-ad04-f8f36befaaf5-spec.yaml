@@ -3484,10 +3484,6 @@ workflows:
                       dataValue('form.subcase_0.case.update.r_pbs_seated_subtalar_abduction')
                     ),
                     field(
-                      'PBS_Caregiver_Satisfaction__c',
-                      dataValue('form.subcase_0.case.update.pbs_caregiver_satisfaction')
-                    ),
-                    field(
                       'PBS_Pain_in_Affected_Foot__c',
                       dataValue('form.subcase_0.case.update.pbs_pain_in_affected_foot')
                     ),
