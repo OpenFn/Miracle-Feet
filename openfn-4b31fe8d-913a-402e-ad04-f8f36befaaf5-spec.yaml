@@ -3492,10 +3492,6 @@ workflows:
                       dataValue('form.subcase_0.case.update.pbs_squatting')
                     ),
                     field(
-                      'PBS_School_Attendance__c',
-                      dataValue('form.subcase_0.case.update.pbs_school_attendance')
-                    ),
-                    field(
                       'Left_Angle_of_Abduction__c',
                       dataValue('form.subcase_0.case.update.l_angle_abduction')
                     ),
