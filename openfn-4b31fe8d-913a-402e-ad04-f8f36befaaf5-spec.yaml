@@ -3501,7 +3501,7 @@ workflows:
                     ),
                     field(
                       'Left_Angle_of_Abduction__c',
-                      dataValue('form.subcase_0.case.update.l_pbs_walking_heel_rise')
+                      dataValue('form.subcase_0.case.update.l_angle_abduction')
                     ),
                     field(
                       'Left_Angle_of_Dorsiflexion__c',
