@@ -1,6 +1,7 @@
 name: miraclefeet
 description: null
 collections: null
+channels: null
 credentials:
   "aleksa@openfn.org-Infobip-SMS-(OpenFn-user-New)":
     name: 'Infobip SMS (OpenFn user New)'
@@ -24,6 +25,31 @@ credentials:
     name: MiracleFeet Production
     owner: clifford.hakimi@miraclefeet.org
 workflows:
+  Event-based-workflow:
+    name: Event-based workflow
+    jobs:
+      Forwarding-Clinic-Supportive-Supervision-Checklist-forms:
+        name: Forwarding Clinic Supportive Supervision Checklist forms
+        adaptor: '@openfn/language-common@latest'
+        credential: null
+        body: |
+          // Validate and transform the data you've received...
+          fn(state => {
+            console.log("Do some data transformation here");
+            return state;
+          })
+
+    triggers:
+      webhook:
+        type: webhook
+        webhook_reply: before_start
+        enabled: false
+    edges:
+      webhook->Forwarding-Clinic-Supportive-Supervision-Checklist-forms:
+        source_trigger: webhook
+        target_job: Forwarding-Clinic-Supportive-Supervision-Checklist-forms
+        condition_type: always
+        enabled: true
   Fetch-cleaned-forms---Patient-and-Visit:
     name: Fetch cleaned forms - Patient and Visit
     jobs:
@@ -191,6 +217,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '00 00 01 * *'
+        cron_cursor_job: Fetch-Patient-and-Visit-Forms-and-Post-to-Workflows
         enabled: true
     edges:
       cron->Fetch-Patient-and-Visit-Forms-and-Post-to-Workflows:
@@ -958,6 +985,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Forwarding-job-Patient-Registration-Forms:
@@ -1032,6 +1060,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '30 * * * *'
+        cron_cursor_job: Get-CC-cases
         enabled: false
     edges:
       cron->Get-CC-cases:
@@ -1265,6 +1294,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Upsert-Treatment-Providers:
@@ -1871,6 +1901,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Update-Patient:
@@ -2100,6 +2131,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Update-Treatment-Provider:
@@ -2801,6 +2833,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Update-Visit:
@@ -2895,6 +2928,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Upsert-Clinic:
@@ -3406,16 +3440,12 @@ workflows:
                       dataValue('form.subcase_0.case.update.l_pbs_standing_hindfoot_varus')
                     ),
                     field(
-                      'Left_PBS_Standing_Supination__c',
-                      dataValue('form.subcase_0.case.update.l_pbs_standing_supination')
-                    ),
-                    field(
-                      'Left_PBS_Walking_Supination__c',
-                      dataValue('form.subcase_0.case.update.l_pbs_walking_supination')
+                      'Left_PBS_Supination__c',
+                      dataValue('form.subcase_0.case.update.l_pbs_supination')
                     ),
                      field(
                       'Left_PBS_Walking_Heel_Rise__c',
-                      dataValue('form.subcase_0.case.update.l_pbs_walking_supination')
+                      dataValue('form.subcase_0.case.update.l_pbs_walking_heel_rise')
                     ),
                     field(
                       'Left_PBS_Seated_Passive_Dorsiflexion__c',
@@ -3434,12 +3464,8 @@ workflows:
                       dataValue('form.subcase_0.case.update.r_pbs_standing_hindfoot_varus')
                     ),
                     field(
-                      'Right_PBS_Standing_Supination__c',
-                      dataValue('form.subcase_0.case.update.r_pbs_standing_supination')
-                    ),
-                    field(
-                      'Right_PBS_Walking_Supination__c',
-                      dataValue('form.subcase_0.case.update.r_pbs_walking_supination')
+                      'Right_PBS_Supination__c',
+                      dataValue('form.subcase_0.case.update.r_pbs_supination')
                     ),
                     field(
                       'Right_PBS_Walking_Heel_Rise__c',
@@ -4053,6 +4079,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Forwarding-job-Visit-Forms:
@@ -4230,6 +4257,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '05 00 * * *'
+        cron_cursor_job: Fetch-bracing-night-contacts-from-SF
         enabled: true
     edges:
       cron->Fetch-bracing-night-contacts-from-SF:
@@ -4654,6 +4682,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Schedule-bracing-night-SMSs:
@@ -4870,6 +4899,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '10 00 * * *'
+        cron_cursor_job: Fetch-Inactive-Clinics-from-SF
         enabled: true
     edges:
       cron->Fetch-Inactive-Clinics-from-SF:
@@ -5034,6 +5064,7 @@ workflows:
       cron:
         type: cron
         cron_expression: '0 0 * * *'
+        cron_cursor_job: Fetch-Contacts-from-SF
         enabled: true
     edges:
       cron->Fetch-Contacts-from-SF:
@@ -5831,6 +5862,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: true
     edges:
       webhook->Schedule-SMSs:
@@ -6740,6 +6772,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: false
     edges:
       webhook->Schedule-SMS-alerts-in-Infobip-v0:
@@ -7362,6 +7395,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: false
     edges:
       webhook->x-Add-New-Patient:
@@ -8177,6 +8211,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: false
     edges:
       webhook->x-Add-New-Visit:
@@ -8317,6 +8352,7 @@ workflows:
     triggers:
       webhook:
         type: webhook
+        webhook_reply: before_start
         enabled: false
     edges:
       webhook->x-Register-New-Patient-to-Device:
